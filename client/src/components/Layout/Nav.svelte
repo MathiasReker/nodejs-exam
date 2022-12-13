@@ -5,7 +5,7 @@
     import AiOutlineUser from "svelte-icons-pack/ai/AiOutlineUser";
 
     const handleLogout = () => {
-        user.set(null);
+        $user = null
         localStorage.clear();
         navigate("/login")
     }

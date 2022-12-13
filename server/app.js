@@ -10,6 +10,7 @@ import dashboardRoutes from "./routes/dashboard.js";
 import verifyToken from "./routes/validate-token.js";
 import WineGlass from "./model/WineGlass.js";
 import settings from "./routes/settings.js";
+import profile from "./routes/profile.js";
 
 const app = express();
 dotenv.config();
@@ -40,6 +41,7 @@ app.use(express.json()); // for body parser
 app.use("/api/user", authRoutes);
 app.use("/api/dashboard", verifyToken, dashboardRoutes);
 app.use(settings);
+app.use("/api/profile", profile);
 
 let data = [
     {
@@ -88,7 +90,7 @@ let data = [
         series: "RIEDEL Veloce",
         name: 'Rosé',
         grapes: ['Côtes de Provence', 'Marsannay rosé', 'Rosé', 'Côtes du Rhône Rosé'],
-        image: "https://www.riedel.com/en/shop/veloce/rose-633000055"
+        image: "https://img.riedel.com/ct/w_920,q_100,hash_db15fd/60911db7c15017946c3c-1e4ce00b1c6f4bf7f0f46bf77c747775.ssl.cf3.rackcdn.com/633000055_w-4y3PHlNU.jpg"
     }
 ];
 

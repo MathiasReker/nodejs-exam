@@ -1,6 +1,7 @@
 <script>
-    export let label = "";
-    export let bindGroup = [];
+    import {baseUrl, user} from "../stores.js";
+
+    export let bindGroup =  [];
     export let value = "";
 
     const onChange = ({target}) => {
@@ -10,6 +11,27 @@
         } else {
             bindGroup = bindGroup.filter((item) => item !== value);
         }
+
+        // save to database
+        (() => {
+            fetch(`${$baseUrl}/api/profile/glasses`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "auth-token": $user.token
+                },
+                "body": JSON.stringify({
+                    "email": $user.email,
+                    "myCollection": bindGroup
+                })
+            }).then(response => response.json());
+        })()
+
+        // store it locally..
+        $user.myCollection = bindGroup
+
+        localStorage.setItem('user', JSON.stringify($user))
+        console.log($user)
     };
 </script>
 

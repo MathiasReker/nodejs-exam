@@ -12,17 +12,7 @@
         }).then(response => response.json());
     })()
 
-    const updateUserGlasses = (async () => {
-        return await fetch(`${$baseUrl}/api/user/`, {
-            "method": "PUT",
-            "headers": {
-                "Content-Type": "application/json",
-                "auth-token": $user.token
-            },
-        }).then(response => response.json());
-    })()
-
-    let options = [];
+    let options = $user.myCollection || [];
 </script>
 
 <main class="px-3">
@@ -37,7 +27,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="form-check form-switch form-check-lg">
-                            <Checkbox label="{el.name}" value="{el.name}" bind:bindGroup={options}/>
+                            <Checkbox value="{el.name}" bind:bindGroup={options}></Checkbox>
                         </div>
                     </div>
                     <div class="col-5">

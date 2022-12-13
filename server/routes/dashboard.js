@@ -28,7 +28,6 @@ router.get("/wineGlasses", async (req, res) => {
     res.send({
         data: wineGlass
     });
-    //  console.log(test);
 })
 
 router.get("/grapes", async (req, res) => {
@@ -37,7 +36,6 @@ router.get("/grapes", async (req, res) => {
     res.send({
         data: wineGlass
     });
-    //  console.log(test);
 })
 
 export default router;

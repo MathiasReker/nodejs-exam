@@ -15,6 +15,7 @@ const router = Router();
 router.post("/register", async (req, res) => {
     // validate the user
     const {error} = registerValidation(req.body);
+
     // throw validation errors
     if (error) {
         return res.status(400).json({error: error.details[0].message});
@@ -24,6 +25,7 @@ router.post("/register", async (req, res) => {
     if (isEmailExist) {
         return res.status(400).json({error: "Email already exists"});
     }
+
     // hash the password
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, salt);
@@ -34,11 +36,8 @@ router.post("/register", async (req, res) => {
     });
     try {
         const savedUser = await user.save();
-        console.log("saved")
-        console.log(savedUser._id)
         res.json({error: null, data: {userId: savedUser._id}});
     } catch (error) {
-        console.log(7)
         res.status(400).json({error});
     }
 });
@@ -49,17 +48,33 @@ router.post("/login", async (req, res) => {
     const {error} = loginValidation(req.body);
 
     // throw validation errors
-    if (error) return res.status(400).json({error: error.details[0].message});
+    if (error) {
+        return res.status(400).json({
+            error: error.details[0].message
+        });
+    }
 
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({
+        email: req.body.email
+    });
+
+    console.log(user)
+    const loginError = "A user with this combination of credentials was not found.";
 
     // throw error when email is wrong
-    if (!user) return res.status(400).json({error: "Email is wrong"});
+    if (!user) {
+        return res.status(400).json({
+            error: loginError
+        });
+    }
 
     // check for password correctness
     const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword)
-        return res.status(400).json({error: "Password is wrong"});
+    if (!validPassword) {
+        return res.status(400).json({
+            error: loginError
+        });
+    }
 
     // create token
     const token = jwt.sign(
@@ -80,6 +95,7 @@ router.post("/login", async (req, res) => {
                 name: user.name,
                 email: user.email,
                 token: token,
+                myCollection: user.myCollection
             }
         }
     });
