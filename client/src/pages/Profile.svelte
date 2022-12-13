@@ -44,6 +44,5 @@
             <p style="color: red">{error.message}</p>
         {/await}
     </div>
-
     {options}
 </main>

@@ -1,6 +1,5 @@
 <script>
     import {onMount} from 'svelte';
-    import {navigate} from "svelte-navigator";
     import {baseUrl} from "../../stores.js";
 
     let emailAddress = "";

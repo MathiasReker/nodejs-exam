@@ -1,7 +1,8 @@
 <script>
     import {baseUrl, user} from "../stores.js";
+    import { toast } from '@zerodevx/svelte-toast'
 
-    export let bindGroup =  [];
+    export let bindGroup = [];
     export let value = "";
 
     const onChange = ({target}) => {
@@ -29,9 +30,17 @@
 
         // store it locally..
         $user.myCollection = bindGroup
-
         localStorage.setItem('user', JSON.stringify($user))
-        console.log($user)
+
+
+        // toast TODO why not working?
+        toast.push('Success!', {
+            theme: {
+                '--toastColor': 'mintcream',
+                '--toastBackground': 'rgba(72,187,120,0.9)',
+                '--toastBarBackground': '#2F855A'
+            }
+        })
     };
 </script>
 

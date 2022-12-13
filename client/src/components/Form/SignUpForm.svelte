@@ -23,7 +23,7 @@
             body: JSON.stringify({name, email, password}),
         });
         if (response.ok) {
-            window.location.replace("/");
+            location.replace("/");
         } else {
             alert("error");
         }
