@@ -1,6 +1,6 @@
 import {toast} from '@zerodevx/svelte-toast'
 
-export const success = message => toast.push(message, {
+export const displaySuccess = message => toast.push(message, {
     theme: {
         '--toastColor': 'mintcream',
         '--toastBackground': 'rgba(72,187,120,0.9)',
@@ -9,7 +9,7 @@ export const success = message => toast.push(message, {
 })
 
 // TODO Stylling
-export const error = message => toast.push(message, {
+export const displayError = message => toast.push(message, {
     theme: {
         '--toastColor': 'mintcream',
         '--toastBackground': 'rgba(72,187,120,0.9)',

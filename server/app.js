@@ -32,7 +32,7 @@ app.use(cors({
 app.use(helmet());
 app.use(express.json()); // for body parser
 
-app.use("/api/auth", verifyToken, auth);
+app.use("/api/auth", auth);
 app.use("/api/profile", verifyToken, profile);
 app.use("/api/settings", verifyToken, settings);
 app.use("/api/grapes", verifyToken, grapes);

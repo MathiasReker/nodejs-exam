@@ -1,6 +1,6 @@
 <script>
     import {baseUrl, user} from "../stores.js";
-    import {error, success} from "../toast.js";
+    import {displayError, displaySuccess} from "../toast.js";
 
     export let bindGroup = [];
     export let value = "";
@@ -30,11 +30,10 @@
                 .then(() => {
                     $user.myCollection = bindGroup
                     localStorage.setItem('user', JSON.stringify($user))
-
-                    success('Settings saved!')
+                    displaySuccess('Settings saved!')
                 })
                 .catch(() => {
-                    error("Something went wrong...")
+                    displayError("Something went wrong...")
                 })
         })()
     };

@@ -19,7 +19,6 @@ router.get("/csv", (req, res) => {
 })
 
 router.get("/pdf", (req, res) => {
-
     let options = {format: 'A4'};
 
     let file = "<h1>Welcome to html-pdf-node</h1>";
@@ -34,7 +33,6 @@ router.get("/pdf", (req, res) => {
     } catch (err) {
         console.error(err);
     }
-
 })
 
 export default router;
