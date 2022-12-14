@@ -1,20 +1,10 @@
 import WineGlass from "../model/WineGlass.js";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import connection from "./connection.js";
 
 dotenv.config();
 
-mongoose.connect(
-    process.env.DB_CONNECT,
-    {
-        autoIndex: false, // Don't build indexes
-        maxPoolSize: 10, // Maintain up to 10 socket connections
-        serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
-        socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-        family: 4 // Use IPv4, skip trying IPv6
-    },
-    () => console.log("Connected to db")
-);
+connection();
 
 const data = [
     {

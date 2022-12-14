@@ -3,12 +3,12 @@
     import SignUpForm from "../components/Form/SignUpForm.svelte";
 </script>
 
-<main>
-    <h1>Sign up</h1>
+<main class="w-100">
+    <h1 class="mb-5">Sign up</h1>
 
     <SignUpForm/>
 
-    <div>
-        <Link to="/login">Already registered?</Link>
+    <div class="mt-2 text-center">
+        Already have an account? <Link to="/login">Sign in</Link>
     </div>
 </main>
