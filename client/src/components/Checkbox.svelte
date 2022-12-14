@@ -1,6 +1,6 @@
 <script>
     import {baseUrl, user} from "../stores.js";
-    import { toast } from '@zerodevx/svelte-toast'
+    import {error, success} from "../toast.js";
 
     export let bindGroup = [];
     export let value = "";
@@ -25,22 +25,18 @@
                     "email": $user.email,
                     "myCollection": bindGroup
                 })
-            }).then(response => response.json());
+            })
+                .then(response => response.json())
+                .then(() => {
+                    $user.myCollection = bindGroup
+                    localStorage.setItem('user', JSON.stringify($user))
+
+                    success('Settings updated!')
+                })
+                .catch(() => {
+                    error("Something went wrong...")
+                })
         })()
-
-        // store it locally..
-        $user.myCollection = bindGroup
-        localStorage.setItem('user', JSON.stringify($user))
-
-
-        // toast TODO why not working?
-        toast.push('Success!', {
-            theme: {
-                '--toastColor': 'mintcream',
-                '--toastBackground': 'rgba(72,187,120,0.9)',
-                '--toastBarBackground': '#2F855A'
-            }
-        })
     };
 </script>
 

@@ -10,6 +10,7 @@
     import {user} from "./stores.js";
     import About from "./pages/About.svelte";
     import Settings from "./pages/Settings.svelte";
+    import {SvelteToast} from '@zerodevx/svelte-toast'
 
     $: if (!$user) {
         navigate("/login", {
@@ -48,6 +49,8 @@
         {/if}
     </Router>
     <Footer/>
+
+    <SvelteToast/>
 </div>
 
 <!-- https://github.com/sveltejs/prettier-plugin-svelte -->
