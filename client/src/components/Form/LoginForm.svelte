@@ -19,7 +19,7 @@
 
         const user = {email: emailAddress, password: password};
 
-        await fetch(`${$baseUrl}/api/user/login`, {
+        await fetch(`${$baseUrl}/api/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,8 +28,8 @@
         })
             .then(response => response.json())
             .then(response => {
-                if (response.data2.user) {
-                    localStorage.setItem('user', JSON.stringify(response.data2.user))
+                if (response.data.user) {
+                    localStorage.setItem("user", JSON.stringify(response.data.user))
                     // Force reload after the redirection
                     location.replace("/")
                     emailAddress = "";
@@ -49,20 +49,25 @@
     }
 </script>
 
-<form class="form" on:submit|preventDefault={handleOnSubmit}>
-    <div class="form__group">
-        <label class="form__group__label" for="emailAddress">E-Mail Address</label>
-        <input bind:this={emailAddressInput} bind:value={emailAddress} class="form__group__input" id="emailAddress"
-               required type="email"/>
-    </div>
-    <div class="form__group">
-        <label class="form__group__label" for="password">Password</label>
-        <input bind:this={passwordInput} bind:value={password} class="form__group__input" id="password" required
-               type="password"/>
-    </div>
-    <div class="form__group form__group--check">
-        <input class="form__group__checkbox" id="showPassword" on:change={handleOnChange} type="checkbox"/>
-        <label class="form__group__label" for="showPassword">Show Password</label>
-    </div>
-    <button disabled="{loading}" type="submit">Submit</button>
-</form>
+<main class="form-signin w-100 m-auto">
+    <form on:submit|preventDefault={handleOnSubmit}>
+        <div class="form-floating pb-3">
+            <input bind:this={emailAddressInput} bind:value={emailAddress} class="form-control" id="emailAddress"
+                   placeholder="name@example.com" required type="email"/>
+            <label class="form-control" for="emailAddress">E-Mail Address</label>
+        </div>
+
+        <div class="form-floating pb-3">
+            <input bind:this={passwordInput} bind:value={password} class="form-control" id="password"
+                   placeholder="password" required
+                   type="password"/>
+            <label class="form-control" for="password">Password</label>
+        </div>
+
+        <div class="form__group form__group--check">
+            <input class="form__group__checkbox" id="showPassword" on:change={handleOnChange} type="checkbox"/>
+            <label class="form__group__label" for="showPassword">Show Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Submit</button>
+    </form>
+</main>

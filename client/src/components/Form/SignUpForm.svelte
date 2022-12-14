@@ -17,7 +17,7 @@
 
     const handleOnSubmit = async () => {
         // Log user into account.
-        const response = await fetch(`${$baseUrl}/api/user/register`, {
+        const response = await fetch(`${$baseUrl}/api/auth/register`, {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({name, email, password}),

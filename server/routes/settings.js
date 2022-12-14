@@ -4,7 +4,7 @@ import pdf from "html-pdf";
 
 const router = Router();
 
-router.get("/api/csv", (req, res) => {
+router.get("/csv", (req, res) => {
     const myData = {"user": "mathias", "email": "test@test.com"};
 
     try {
@@ -16,10 +16,9 @@ router.get("/api/csv", (req, res) => {
     } catch (err) {
         console.error(err);
     }
-
 })
 
-router.get("/api/pdf", (req, res) => {
+router.get("/pdf", (req, res) => {
 
     let options = {format: 'A4'};
 

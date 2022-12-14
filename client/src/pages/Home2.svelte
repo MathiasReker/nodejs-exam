@@ -14,7 +14,7 @@
         }
 
         const wineGlasses = async () => {
-            return await fetch(`${$baseUrl}/api/dashboard/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+            return await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
                 "method": "GET",
                 "headers": {
                     "Content-Type": "application/json",

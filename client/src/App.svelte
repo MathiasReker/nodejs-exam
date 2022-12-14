@@ -6,7 +6,7 @@
     import Nav from "./components/Layout/Nav.svelte";
     import Footer from "./components/Layout/Footer.svelte";
     import MyCollection from "./pages/Profile.svelte";
-    import Home2 from "./pages/Home2.svelte";
+    import Home from "./pages/Home2.svelte";
     import {user} from "./stores.js";
     import About from "./pages/About.svelte";
     import Settings from "./pages/Settings.svelte";
@@ -28,7 +28,7 @@
         </Route>
         {#if $user}
             <Route path="/">
-                <Home2/>
+                <Home/>
             </Route>
             <Route path="/profile">
                 <MyCollection/>

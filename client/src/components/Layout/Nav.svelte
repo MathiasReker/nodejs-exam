@@ -14,7 +14,7 @@
 <header class="pb-5">
     <nav>
         <a href="/" use:link>
-            <h3 class="nav nav-masthead float-start">Wine App</h3>
+            <h3 class="nav nav-masthead float-start">Wine Glass Guide</h3>
         </a>
         <div class="nav nav-masthead float-end">
             <div class="btn-group">
@@ -26,7 +26,6 @@
                 </span>
                 </a>
                 <ul class="dropdown-menu">
-
                     {#if $user}
                         <li><a class="dropdown-item" href="/profile" use:link>Your collection</a></li>
                         <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>

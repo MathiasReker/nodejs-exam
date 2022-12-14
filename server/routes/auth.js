@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../model/User.js";
 
-import cookieSession from "cookie-session";
-
 // validation
 import {loginValidation, registerValidation} from "../validation.js";
 
@@ -86,11 +84,7 @@ router.post("/login", async (req, res) => {
     );
 
     res.header("auth-token", token).json({
-        error: null,
         data: {
-            token,
-        },
-        data2: {
             user: {
                 name: user.name,
                 email: user.email,

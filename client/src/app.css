@@ -48,3 +48,7 @@ a {
     color: #000;
     text-decoration: none;
 }
+
+.form-control {
+    background-color: inherit;
+}

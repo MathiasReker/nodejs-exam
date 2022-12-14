@@ -31,7 +31,7 @@
                     $user.myCollection = bindGroup
                     localStorage.setItem('user', JSON.stringify($user))
 
-                    success('Settings updated!')
+                    success('Settings saved!')
                 })
                 .catch(() => {
                     error("Something went wrong...")

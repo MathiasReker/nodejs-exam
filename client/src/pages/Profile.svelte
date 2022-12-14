@@ -3,7 +3,7 @@
     import Checkbox from "../components/Checkbox.svelte";
 
     const fetchWineGlasses = (async () => {
-        return await fetch(`${$baseUrl}/api/dashboard/wineGlasses`, {
+        return await fetch(`${$baseUrl}/api/wineGlasses`, {
             "method": "GET",
             "headers": {
                 "Content-Type": "application/json",
