@@ -7,6 +7,7 @@ import User from "../model/User.js";
 // validation
 import {loginValidation, registerValidation} from "../validation.js";
 import {createHash} from "crypto";
+import {sendMail} from "../util/sendMail.js";
 
 const router = Router();
 
@@ -99,15 +100,26 @@ router.post("/recover", async (req, res) => {
 
     const token = createHash('sha256').update(user.password).digest('hex');
 
-    const resetLink = `http://localhost:5173/reset?email=${user.email}&token=${token}`;
+    const resetLink = `http://localhost:5173/reset-password?email=${user.email}&token=${token}`;
 
     // TODO send mail
+    sendMail(user.email, "Reset password", resetLink)
+        .then((mail) => {
+            res.status(200).send({data: {mail}});
+            return;
+        })
+        .catch((error) => {
+            res.status(404).send({data: {error}});
+            return;
+        });
 
-    res.send({
-        data: {
-            resetLink
-        }
-    })
+    //res.send({});
+    /*
+        res.send({
+            data: {
+                resetLink
+            }
+        })*/
 });
 
 router.post("/reset", async (req, res) => {
@@ -116,22 +128,24 @@ router.post("/reset", async (req, res) => {
     const token = createHash('sha256').update(user.password).digest('hex');
 
     if (req.body.token !== token) {
-        res.send({
-            error: "Wrong token"
+        res.status(400).send({
+            error: "The token is invalid"
         })
+        return;
     }
 
-    const salt = bcrypt.genSalt(10);
-    const password = bcrypt.hash(req.body.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(req.body.password, salt);
 
-    const doc = User.findOneAndUpdate(
+    console.log("PASS", password)
+
+    const doc = await User.findOneAndUpdate(
         {email: user.email},
         {password: password},
         {new: true}
-    );
+    )
 
-    res.send(doc);
+    res.send({"data": doc});
 });
-
 
 export default router;

@@ -1,5 +1,5 @@
 <script>
-    import ForgotPasswordForm from "../components/Form/ForgotPasswordForm.svelte";
+    import ResetPasswordForm from "../components/Form/ResetPasswordForm.svelte";
 </script>
 
 <main class="px-3">
@@ -10,5 +10,5 @@
         magnam molestias nemo placeat praesentium reiciendis repellendus ut veritatis. Consequatur dolore incidunt iure
         perferendis perspiciatis voluptatem voluptatum!</p>
 
-    <ForgotPasswordForm></ForgotPasswordForm>
+    <ResetPasswordForm/>
 </main>

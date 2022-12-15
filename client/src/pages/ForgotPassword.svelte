@@ -8,5 +8,5 @@
         magnam molestias nemo placeat praesentium reiciendis repellendus ut veritatis. Consequatur dolore incidunt iure
         perferendis perspiciatis voluptatem voluptatum!</p>
 
-    <ForgotPasswordForm></ForgotPasswordForm>
+    <ForgotPasswordForm/>
 </main>

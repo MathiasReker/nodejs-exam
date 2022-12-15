@@ -14,8 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/mohanramphp/auth.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Mathias Reker",
   "license": "MIT",
   "bugs": {
@@ -38,6 +37,7 @@
     "mongoose": "^6.7.5"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "nodemailer": "^6.8.0"
   }
 }

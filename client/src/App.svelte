@@ -11,11 +11,14 @@
     import About from "./pages/About.svelte";
     import Settings from "./pages/Settings.svelte";
     import {SvelteToast} from '@zerodevx/svelte-toast'
+    import ResetPassword from "./pages/ResetPassword.svelte";
 
-    $: if (!$user) {
-        navigate("/login", {
-            replace: true,
-        });
+    if (location.pathname !== "/reset-password") {
+        $: if (!$user) {
+            navigate("/login", {
+                replace: true,
+            });
+        }
     }
 
 </script>
@@ -46,7 +49,11 @@
             <Route path="/forgot-password">
                 <ForgotPassword/>
             </Route>
+            <Route path="/reset-password">
+                <ResetPassword/>
+            </Route>
         {/if}
+        <!--<Route component="{Home}"></Route>-->
     </Router>
     <Footer/>
 
