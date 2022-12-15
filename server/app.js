@@ -9,6 +9,7 @@ import grapes from "./routes/grapes.js";
 import settings from "./routes/settings.js";
 import profile from "./routes/profile.js";
 import wineGlasses from "./routes/wineGlasses.js";
+import resetPassword from "./routes/reset-password.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api/profile", verifyToken, profile);
 app.use("/api/settings", verifyToken, settings);
 app.use("/api/grapes", verifyToken, grapes);
 app.use("/api/wineGlasses", verifyToken, wineGlasses);
+app.use("/api/users/", resetPassword)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server is running on port:", PORT));

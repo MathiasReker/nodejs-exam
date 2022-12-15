@@ -6,7 +6,7 @@
     import Nav from "./components/Layout/Nav.svelte";
     import Footer from "./components/Layout/Footer.svelte";
     import MyCollection from "./pages/Profile.svelte";
-    import Home from "./pages/Home2.svelte";
+    import Home from "./pages/Home.svelte";
     import {user} from "./stores.js";
     import About from "./pages/About.svelte";
     import Settings from "./pages/Settings.svelte";
