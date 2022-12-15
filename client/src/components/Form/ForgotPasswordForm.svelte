@@ -6,9 +6,6 @@
     let emailAddress = "";
     let emailAddressInput = null;
 
-    let password = "";
-    let passwordInput = null;
-
     let loading = false;
 
     onMount(() => {
@@ -18,7 +15,7 @@
     const handleOnSubmit = async () => {
         loading = true;
 
-        const user = {email: emailAddress, password: password};
+        const user = {email: emailAddress};
 
         await fetch(`${$baseUrl}/api/auth/login`, {
             method: "POST",
@@ -34,7 +31,6 @@
                     // Force reload after the redirection
                     location.replace("/")
                     emailAddress = "";
-                    password = "";
                 }
             }).catch(() => {
                 displayError("The user does not exists.")

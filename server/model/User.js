@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { randomUUID } from "crypto";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -27,13 +26,6 @@ const userSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-    },
-    uuid: {
-        type: String,
-        required: true,
-        default: () => {
-            return randomUUID();
-        }
     }
 });
 

@@ -2,18 +2,20 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import connection from "./util/connection.js";
+import verifyToken from "./routes/validate-token.js";
 import auth from "./routes/auth.js";
 import grapes from "./routes/grapes.js";
-import verifyToken from "./routes/validate-token.js";
 import settings from "./routes/settings.js";
 import profile from "./routes/profile.js";
 import wineGlasses from "./routes/wineGlasses.js";
-import connection from "./util/connection.js";
+
+dotenv.config();
 
 connection();
 
 const app = express();
-dotenv.config();
+
 app.use(cors({
     origin: process.env.ENV === "prod" ? process.env.FRONT_END_DOMAIN : true,
     credentials: true

@@ -43,7 +43,6 @@ router.post("/register", async (req, res) => {
 // login route
 router.post("/login", async (req, res) => {
     // validate the user
-
     const {error} = loginValidation(req.body);
 
     // throw validation errors
@@ -58,7 +57,6 @@ router.post("/login", async (req, res) => {
     });
 
     const loginError = "A user with this combination of credentials was not found.";
-
     // throw error when email is wrong
     if (!user) {
         return res.status(400).json({
