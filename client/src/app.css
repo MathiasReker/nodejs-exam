@@ -1,14 +1,11 @@
-.cover-container {
-    max-width: 42em;
-}
-
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 1000px) {
     .cover-container {
-        min-width: 40vw !important;
+        width: 40vw !important;
+
     }
 }
 
-@media only screen and (max-width: 599px) {
+@media only screen and (max-width: 999px) {
     .cover-container {
         width: 100vw !important;
     }
@@ -40,7 +37,19 @@
 /**
 Override svelte Autocomplete
  */
-.test {
+.custom-autocomplete-input {
+    border-radius: 0.3rem;
+    border: 1px solid #ced4da;
+    height: 50px;
+    line-height: 1.25;
+}
+
+.autocomplete-list {
+    border: 1px solid #ced4da !important;
+}
+
+.autocomplete {
+    height: 3.25em !important;
     width: 100%;
 }
 
@@ -49,41 +58,15 @@ a {
     text-decoration: none;
 }
 
+/**
+override bootstrap
+ */
 .form-control {
     background-color: inherit;
+    border-radius: 0.1rem;
 }
 
 .dropdown-menu {
-    --bs-dropdown-border-radius: 0.2rem
+    --bs-dropdown-border-radius: 0.1rem
 }
 
-
-.bg {
-    background-size: 300% 300%;
-    background-image: linear-gradient(
-            -45deg,
-            rgba(59, 173, 227, 1) 0%,
-            rgba(87, 111, 230, 1) 25%,
-            rgba(152, 68, 183, 1) 51%,
-            rgba(255, 53, 127, 1) 100%
-    );
-    animation: AnimateBG 20s ease infinite;
-
-}
-
-.bg-container {
-    position: relative;
-
-}
-
-@keyframes AnimateBG {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}

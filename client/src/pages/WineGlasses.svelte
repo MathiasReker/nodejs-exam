@@ -25,7 +25,7 @@
         {:then data}
             {#each data.data as el}
                 <div class="row align-items-center">
-                    <div class="col">
+                    <div class="col-3">
                         <div class="form-check form-switch form-check-lg">
                             <Checkbox value="{el.name}" bind:bindGroup={options}></Checkbox>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="col-5">
                         {el.name}
                     </div>
-                    <div class="col-5">
+                    <div class="col-4 text-right">
                         <img alt=""
                              class="img-fluid"
                              src="{el.image}">

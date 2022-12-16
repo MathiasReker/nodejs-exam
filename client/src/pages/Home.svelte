@@ -32,11 +32,17 @@
     }
 </script>
 
-<main class="px-3 flex-shrink-0">
+<main class="">
     <h1 class="pt-5">Find the wine glass</h1>
     <p class="pb-3">Select a grape from the list below</p>
 
-    <AutoComplete bind:selectedItem={selectedGrape} className="test" items={colors} onChange={onChange}/>
+    <AutoComplete
+        bind:selectedItem={selectedGrape}
+        inputClassName="custom-autocomplete-input form-control"
+        items={colors}
+        onChange={onChange}
+        noInputStyles="true"
+    />
 
     {#if selectedGrape}
         <div class="row row-cols-1 pt-5">
