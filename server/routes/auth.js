@@ -102,8 +102,9 @@ router.post("/recover", async (req, res) => {
 
     const resetLink = `http://localhost:5173/reset-password?email=${user.email}&token=${token}`;
 
+    const from = `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`;
     // TODO send mail
-    sendMail(user.email, "Reset password", resetLink)
+    sendMail(from, user.email, "Reset password", resetLink)
         .then((mail) => {
             res.status(200).send({data: {mail}});
             return;

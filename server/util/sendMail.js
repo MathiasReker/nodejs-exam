@@ -1,13 +1,13 @@
 import nodemailer from "nodemailer"
 
-export async function sendMail(to, subject, text) {
+export async function sendMail(from, to, subject, text) {
 
     let testAccount = await nodemailer.createTestAccount();
 
     let transporter = nodemailer.createTransport({
         host: process.env.SMTP,
         port: process.env.SMTP_PORT,
-        secure: false,
+        secure: false, // TODO
         auth: {
             user: testAccount.user,
             pass: testAccount.pass
@@ -15,10 +15,10 @@ export async function sendMail(to, subject, text) {
     });
 
     let info = await transporter.sendMail({
-        from: `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`,
-        to: `<${to}>`,
-        subject: subject,
-        text: text
+        from,
+        to,
+        subject,
+        text
     });
 
     console.log("Message send: %s", info.messageId);

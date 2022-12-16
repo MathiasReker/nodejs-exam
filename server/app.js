@@ -9,6 +9,7 @@ import grapes from "./routes/grapes.js";
 import settings from "./routes/settings.js";
 import profile from "./routes/profile.js";
 import wineGlasses from "./routes/wineGlasses.js";
+import mail from "./routes/mail.js";
 
 dotenv.config();
 
@@ -24,8 +25,9 @@ app.use(helmet());
 app.use(express.json()); // for body parser
 
 app.use("/api/auth", auth);
+app.use("/api/mail", mail)
 app.use("/api/profile", verifyToken, profile);
-app.use("/api/settings", verifyToken, settings);
+app.use("/api/settings", settings);
 app.use("/api/grapes", verifyToken, grapes);
 app.use("/api/wineGlasses", verifyToken, wineGlasses);
 

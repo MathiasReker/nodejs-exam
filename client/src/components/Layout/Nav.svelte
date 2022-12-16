@@ -27,7 +27,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     {#if $user}
-                        <li><a class="dropdown-item" href="/profile" use:link>Your collection</a></li>
+                        <li><a class="dropdown-item" href="/wine-glasses" use:link>Your wine glasses</a></li>
                         <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>
                         <li>
                             <hr class="dropdown-divider">

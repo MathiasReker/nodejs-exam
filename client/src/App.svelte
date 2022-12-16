@@ -5,13 +5,14 @@
     import ForgotPassword from "./pages/ForgotPassword.svelte";
     import Nav from "./components/Layout/Nav.svelte";
     import Footer from "./components/Layout/Footer.svelte";
-    import MyCollection from "./pages/Profile.svelte";
+    import WineGlasses from "./pages/WineGlasses.svelte";
     import Home from "./pages/Home.svelte";
     import {user} from "./stores.js";
     import About from "./pages/About.svelte";
     import Settings from "./pages/Settings.svelte";
     import {SvelteToast} from '@zerodevx/svelte-toast'
     import ResetPassword from "./pages/ResetPassword.svelte";
+    import Profile from "./pages/Profile.svelte";
 
     if (location.pathname !== "/reset-password") {
         $: if (!$user) {
@@ -33,11 +34,14 @@
             <Route path="/">
                 <Home/>
             </Route>
-            <Route path="/profile">
-                <MyCollection/>
+            <Route path="/wine-glasses">
+                <WineGlasses/>
             </Route>
             <Route path="/settings">
                 <Settings/>
+            </Route>
+            <Route>
+                <Profile/>
             </Route>
         {:else}
             <Route path="/login">
