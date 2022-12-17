@@ -4,25 +4,29 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineUser from "svelte-icons-pack/ai/AiOutlineUser";
 
+    export let color = "#514945";
+    export let background = "#EBD4CC"
+
     const handleLogout = () => {
         $user = null
         localStorage.clear();
         navigate("/login")
     }
+
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class="p-3 mx-auto fixed-top bg-light fixed-top">
-        <nav class="cover-container mx-auto ">
+    <div class="p-3 mx-auto fixed-top fixed-top" style="background-color: {background}" id="nav-wrapper">
+        <nav class="cover-container mx-auto">
             <a href="/" use:link>
-                <h3 class="nav nav-masthead float-start">Wine Glass Guide</h3>
+                <h3 class="nav nav-masthead float-start" style="color: {color}">Wine Glass Guide</h3>
             </a>
             <div class="nav nav-masthead float-end">
                 <div class="btn-group">
                     <a aria-expanded="false" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                       type="button">
+                       style="color: {color}" type="button">
                 <span class="mx-2">
-                    <Icon size="20px" src={AiOutlineUser}/>
+                    <Icon color="{color}" size="20px" src={AiOutlineUser}/>
                     {#if $user} {$user.name}{/if}
                 </span>
                     </a>
@@ -48,3 +52,7 @@
         </nav>
     </div>
 </header>
+
+<style>
+
+</style>

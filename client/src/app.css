@@ -62,7 +62,7 @@ a {
 override bootstrap
  */
 .form-control {
-    background-color: inherit;
+    background-color: #fff;
     border-radius: 0.1rem;
 }
 
@@ -70,3 +70,38 @@ override bootstrap
     --bs-dropdown-border-radius: 0.1rem
 }
 
+.top-image {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 330px;
+    z-index: -1;
+
+    background: linear-gradient(242deg, #894242, #D55C5A);
+    background-size: 400% 400%;
+
+    -webkit-animation: background 29s ease infinite;
+    -moz-animation: background 29s ease infinite;
+    animation: background 29s ease infinite;
+}
+
+@-webkit-keyframes background {
+0%{background-position:0% 59%}
+50%{background-position:100% 42%}
+100%{background-position:0% 59%}
+}
+@-moz-keyframes background {
+0%{background-position:0% 59%}
+50%{background-position:100% 42%}
+100%{background-position:0% 59%}
+}
+@keyframes background {
+0%{background-position:0% 59%}
+50%{background-position:100% 42%}
+100%{background-position:0% 59%}
+}
+
+.autocomplete:not(.hide-arrow):not(.is-loading)::after {
+    border-color: #894242 !important;
+}

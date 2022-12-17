@@ -1,6 +1,7 @@
 <script>
     import AutoComplete from "simple-svelte-autocomplete"
     import {baseUrl, user} from "../stores.js";
+    import Nav from "../components/Layout/Nav.svelte";
 
     let colors = ['Blauburgunder', 'Moulin à vent', 'Nebbiolo', 'Nerello Mascalese', 'Echézeaux', 'Beaujolais Cru', 'Barbaresco', 'Volnay', 'Blanc de Noirs', 'Romanée Saint Vivant', 'Musigny', 'Chambolle Musigny', 'Vougeot', 'Rosé Champagne', 'Vosne-Romanée', 'Nuits Saint Georges', 'Pinot Noir New World', 'St. Aubin', 'Pinot Noir Old World', 'Burgundy (red)', 'Pommard', 'Barolo', 'Santenay', 'Pomerol', 'St. Julien', 'Fronsac', 'St. Estèphe', 'Petit Verdot', 'Merlot', 'Margaux', 'Pauillac', 'Brunello di Montalcino', 'Montepulciano', 'Cabernet Franc', 'Pessac Leognan (Rouge)', 'Graves rouge', 'Médoc', 'Cabernet Sauvignon', 'Carménère', 'St. Emilion', 'Bordeaux (red)', 'Listrac'];
 
@@ -30,18 +31,24 @@
             list.push(el);
         })
     }
+
+    let color = "#EBD4CC";
+    let background = "";
 </script>
 
-<main class="">
-    <h1 class="pt-5">Find the wine glass</h1>
-    <p class="pb-3">Select a grape from the list below</p>
+<Nav color="{color}" background="{background}"/>
+
+<div class="mx-auto fixed-top top-image"></div>
+<main>
+    <h1 class="pt-5" style="color: {color}">Find the wine glass</h1>
+    <p class="pb-3" style="color: {color}">Select a grape from the list below</p>
 
     <AutoComplete
-        bind:selectedItem={selectedGrape}
-        inputClassName="custom-autocomplete-input form-control"
-        items={colors}
-        onChange={onChange}
-        noInputStyles="true"
+            bind:selectedItem={selectedGrape}
+            inputClassName="custom-autocomplete-input form-control"
+            items={colors}
+            noInputStyles="true"
+            onChange={onChange}
     />
 
     {#if selectedGrape}
@@ -55,3 +62,7 @@
         </div>
     {/if}
 </main>
+
+<style>
+
+</style>

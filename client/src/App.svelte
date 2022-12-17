@@ -3,7 +3,6 @@
     import {navigate, Route, Router} from "svelte-navigator";
     import SignUp from "./pages/SignUp.svelte";
     import ForgotPassword from "./pages/ForgotPassword.svelte";
-    import Nav from "./components/Layout/Nav.svelte";
     import Footer from "./components/Layout/Footer.svelte";
     import WineGlasses from "./pages/WineGlasses.svelte";
     import Home from "./pages/Home.svelte";
@@ -21,11 +20,9 @@
             });
         }
     }
-
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
-    <Nav/>
     <Router>
         <Route path="/about">
             <About/>
