@@ -1,6 +1,7 @@
 <script>
     import {baseUrl, user} from "../stores.js";
     import Nav from "../components/Layout/Nav.svelte";
+    import Pagenation from "../components/Pagenation.svelte";
 
     let loading = false;
 
@@ -21,6 +22,9 @@
 <Nav/>
 
 <main class="px-3">
+
+    <Pagenation page="Settings"/>
+
     <div>
         <h2>Change username</h2>
         <hr>

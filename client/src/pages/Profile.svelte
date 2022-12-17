@@ -2,6 +2,7 @@
     import Nav from "../components/Layout/Nav.svelte";
     import {link} from "svelte-navigator";
     import {baseUrl, user} from "../stores.js";
+    import Pagenation from "../components/Pagenation.svelte";
 
     let ownedWineGlasses = $user.myCollection.length;
 
@@ -44,6 +45,8 @@
 <Nav/>
 
 <main>
+    <Pagenation page="Profile"/>
+
     <h1>Profile</h1>
     <div>In here you can see stats for your account. Also, you</div>
 

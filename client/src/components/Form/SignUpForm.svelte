@@ -2,6 +2,8 @@
     import {onMount} from 'svelte';
     import {baseUrl} from "../../stores.js";
     import {displayError} from "../../toast.js";
+    import Pagenation from "../Pagenation.svelte";
+    import Nav from "../Layout/Nav.svelte";
 
     let email = "";
     let emailInput = null;
@@ -35,6 +37,7 @@
         });
     };
 </script>
+
 
 <form on:submit|preventDefault={handleOnSubmit}>
     <div class="form-floating mb-3">

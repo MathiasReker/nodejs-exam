@@ -2,6 +2,7 @@
     import {baseUrl, user} from "../stores.js";
     import Checkbox from "../components/Checkbox.svelte";
     import Nav from "../components/Layout/Nav.svelte";
+    import Pagenation from "../components/Pagenation.svelte";
 
     const fetchWineGlasses = (async () => {
         return await fetch(`${$baseUrl}/api/wineGlasses`, {
@@ -19,6 +20,8 @@
 <Nav/>
 
 <main class="px-3">
+    <Pagenation page="Wine glasses"/>
+
     <h1>My collection of wine glasses</h1>
     <p>Select your wine glasses below..</p>
 

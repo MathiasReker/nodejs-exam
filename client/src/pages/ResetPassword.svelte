@@ -1,8 +1,13 @@
 <script>
     import ResetPasswordForm from "../components/Form/ResetPasswordForm.svelte";
+    import Nav from "../components/Layout/Nav.svelte";
+    import Pagenation from "../components/Pagenation.svelte";
 </script>
 
+<Nav/>
+
 <main class="px-3">
+    <Pagenation page="Signup"/>
     <h1>
         Reset password
     </h1>
