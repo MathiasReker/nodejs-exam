@@ -1,44 +1,58 @@
 <script>
     import AutoComplete from 'simple-svelte-autocomplete';
-    import { baseUrl, user } from '../stores.js';
+    import {baseUrl, user} from '../stores.js';
     import Nav from '../components/Layout/Nav.svelte';
 
-    const colors = ['Blauburgunder', 'Moulin à vent', 'Nebbiolo', 'Nerello Mascalese', 'Echézeaux', 'Beaujolais Cru', 'Barbaresco', 'Volnay', 'Blanc de Noirs', 'Romanée Saint Vivant', 'Musigny', 'Chambolle Musigny', 'Vougeot', 'Rosé Champagne', 'Vosne-Romanée', 'Nuits Saint Georges', 'Pinot Noir New World', 'St. Aubin', 'Pinot Noir Old World', 'Burgundy (red)', 'Pommard', 'Barolo', 'Santenay', 'Pomerol', 'St. Julien', 'Fronsac', 'St. Estèphe', 'Petit Verdot', 'Merlot', 'Margaux', 'Pauillac', 'Brunello di Montalcino', 'Montepulciano', 'Cabernet Franc', 'Pessac Leognan (Rouge)', 'Graves rouge', 'Médoc', 'Cabernet Sauvignon', 'Carménère', 'St. Emilion', 'Bordeaux (red)', 'Listrac'];
+    //const grapes = ['Blauburgunder', 'Moulin à vent', 'Nebbiolo', 'Nerello Mascalese', 'Echézeaux', 'Beaujolais Cru', 'Barbaresco', 'Volnay', 'Blanc de Noirs', 'Romanée Saint Vivant', 'Musigny', 'Chambolle Musigny', 'Vougeot', 'Rosé Champagne', 'Vosne-Romanée', 'Nuits Saint Georges', 'Pinot Noir New World', 'St. Aubin', 'Pinot Noir Old World', 'Burgundy (red)', 'Pommard', 'Barolo', 'Santenay', 'Pomerol', 'St. Julien', 'Fronsac', 'St. Estèphe', 'Petit Verdot', 'Merlot', 'Margaux', 'Pauillac', 'Brunello di Montalcino', 'Montepulciano', 'Cabernet Franc', 'Pessac Leognan (Rouge)', 'Graves rouge', 'Médoc', 'Cabernet Sauvignon', 'Carménère', 'St. Emilion', 'Bordeaux (red)', 'Listrac'];
+    let grapes = [];
+
+    (async () => await fetch(`${$baseUrl}/api/grapes`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token': $user.token,
+        },
+    })
+        .then((response) => response.json()))()
+        .then(response => {
+            console.log(response.data.grapes)
+            grapes = response.data.grapes;
+        });
 
     let selectedGrape;
 
     let list = [];
 
     async function onChange() {
-      if (!selectedGrape) {
-        return;
-      }
+        if (!selectedGrape) {
+            return;
+        }
 
-      const wineGlasses = async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token': $user.token,
-        },
-      }).then((response) => response.json());
-
-      const result = await wineGlasses();
-
-      list = [];
-      result.data.forEach((el) => {
-        list.push(el);
-      });
-
-      // Update statistics
-      await (async () => {
-        await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token': $user.token,
-          },
+        const wineGlasses = async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': $user.token,
+            },
         }).then((response) => response.json());
-      })();
+
+        const result = await wineGlasses();
+
+        list = [];
+        result.data.forEach((el) => {
+            list.push(el);
+        });
+
+        // Update statistics
+        await (async () => {
+            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': $user.token,
+                },
+            }).then((response) => response.json());
+        })();
     }
 
     const color = '#EBD4CC';
@@ -55,7 +69,7 @@
     <AutoComplete
             bind:selectedItem={selectedGrape}
             inputClassName="custom-autocomplete-input form-control"
-            items={colors}
+            items={grapes}
             noInputStyles="true"
             onChange={onChange}
     />

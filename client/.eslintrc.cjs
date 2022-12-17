@@ -7,11 +7,8 @@ module.exports = {
         'airbnb-base',
         'plugin:svelte/base',
         'plugin:svelte/recommended',
-
-        ],
-    plugins: [
-
     ],
+    plugins: [],
 
     ignorePatterns: [
         'public/build/'

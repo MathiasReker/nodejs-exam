@@ -1,14 +1,14 @@
 <script>
     import ContactForm from '../components/Form/ContactForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagination.svelte';
+    import Pagination from '../components/Pagination.svelte';
 </script>
 
 <Nav/>
 
 <main class="px-3">
 
-    <Pagenation page="Help"/>
+    <Pagination page="Help"/>
 
     <h1>Cool project...</h1>
 
