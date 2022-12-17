@@ -31,26 +31,13 @@
             list.push(el);
         })
 
-        async () => {
-            fetch(`${$baseUrl}/api/profile/glasses`, {
-                "method": "PUT",
-                "headers": {
-                    "Content-Type": "application/json",
-                    "auth-token": $user.token
-                },
-                "body": JSON.stringify({
-                    "email": $user.email,
-                    "myCollection": bindGroup
-                })
-            })
-        }
     }
 
     let color = "#EBD4CC";
     let background = "";
 </script>
 
-<Nav color="{color}" background="{background}"/>
+<Nav background="{background}" color="{color}"/>
 
 <div class="mx-auto fixed-top top-image"></div>
 <main>

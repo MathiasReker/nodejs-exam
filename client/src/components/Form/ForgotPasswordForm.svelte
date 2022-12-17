@@ -15,21 +15,17 @@
     const handleOnSubmit = async () => {
         loading = true;
 
-        const user = {email: emailAddress};
-
-        await fetch(`${$baseUrl}/api/users/recover`, {
+        await fetch(`${$baseUrl}/api/users/${emailAddress}/recover`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user)
         })
             .then(response => response.json())
             .then(() => {
                 displaySuccess("If the user exists an email is send.")
                 // todo: display message below form instead
                 emailAddress = "";
-
             }).catch(() => {
                 displayError("The user does not exists.")
             }).finally(() => {

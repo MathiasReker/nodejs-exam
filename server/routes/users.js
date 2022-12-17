@@ -8,8 +8,8 @@ import {sendMail} from "../util/sendMail.js";
 
 const router = Router();
 
-router.post("/recover", async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+router.post("/:email/recover", async (req, res) => {
+    const user = await User.findOne({email: req.params.email});
 
     const token = createHash('sha256').update(user.password).digest('hex');
 
@@ -37,8 +37,8 @@ router.post("/recover", async (req, res) => {
 });
 
 // TODO put.
-router.post("/reset", async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+router.post("/:email/reset", async (req, res) => {
+    const user = await User.findOne({email: req.params.email});
 
     const token = createHash('sha256').update(user.password).digest('hex');
 
@@ -63,6 +63,17 @@ router.post("/reset", async (req, res) => {
     res.send({"data": doc});
 });
 
+router.put("/:email/wineGlasses", async (req, res) => {
+    const email = req.params.email
+    const glasses = req.body.myCollection
 
+    const doc = await User.findOneAndUpdate(
+        {email: email},
+        {myCollection: glasses},
+        {new: true}
+    );
+
+    res.send(doc)
+});
 
 export default router;

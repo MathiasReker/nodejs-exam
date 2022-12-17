@@ -15,7 +15,7 @@
 
         // save to database
         (() => {
-            fetch(`${$baseUrl}/api/profile/glasses`, {
+            fetch(`${$baseUrl}/api/users/${$user.email}/wineGlasses`, {
                 "method": "PUT",
                 "headers": {
                     "Content-Type": "application/json",

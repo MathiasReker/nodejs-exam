@@ -20,13 +20,12 @@
     const handleOnSubmit = async () => {
         loading = true;
 
-        await fetch(`${$baseUrl}/api/users/reset`, {
+        await fetch(`${$baseUrl}/api/users/${email}/reset`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email,
                  password,
                  token
             })
