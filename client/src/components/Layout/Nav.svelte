@@ -7,6 +7,11 @@
     export let color = "#514945";
     export let background = "#EBD4CC"
 
+    let shadow = "";
+    if (background) {
+        shadow = "box-shadow";
+    }
+
     const handleLogout = () => {
         $user = null
         localStorage.clear();
@@ -15,7 +20,7 @@
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class="p-3 mx-auto fixed-top fixed-top" id="nav-wrapper" style="background-color: {background}">
+    <div class="p-3 mx-auto fixed-top fixed-top {shadow}" id="nav-wrapper" style="background-color: {background}">
         <nav class="cover-container mx-auto">
             <a href="/" use:link>
                 <h3 class="nav nav-masthead float-start" style="color: {color}">Wine Glass Guide</h3>
@@ -53,5 +58,7 @@
 </header>
 
 <style>
-
+    .box-shadow {
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.15);
+    }
 </style>

@@ -86,13 +86,12 @@ override bootstrap
     width: 100%;
     height: 330px;
     z-index: -1;
-
     background: linear-gradient(242deg, #894242, #D55C5A);
     background-size: 400% 400%;
-
     -webkit-animation: background 29s ease infinite;
     -moz-animation: background 29s ease infinite;
     animation: background 29s ease infinite;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 @-webkit-keyframes background {
@@ -178,7 +177,7 @@ override bootstrap
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
-.show>.btn-primary.dropdown-toggle {
+.show > .btn-primary.dropdown-toggle {
     color: #212529;
     background-color: #9cdada;
     border-color: #2e7c7c
@@ -186,7 +185,7 @@ override bootstrap
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show>.btn-primary.dropdown-toggle:focus {
+.show > .btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
 }
 
@@ -216,7 +215,7 @@ override bootstrap
 
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .btn-outline-primary:not(:disabled):not(.disabled).active,
-.show>.btn-outline-primary.dropdown-toggle {
+.show > .btn-outline-primary.dropdown-toggle {
     color: #212529;
     background-color: #8ad3d3;
     border-color: #7cc
@@ -224,7 +223,7 @@ override bootstrap
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
-.show>.btn-outline-primary.dropdown-toggle:focus {
+.show > .btn-outline-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
 }
 

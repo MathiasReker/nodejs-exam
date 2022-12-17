@@ -58,8 +58,8 @@
         <Route component="{PageNotFound}"></Route>
     </Router>
     <Footer/>
-
     <SvelteToast/>
+
 </div>
 
 <!-- https://github.com/sveltejs/prettier-plugin-svelte -->
