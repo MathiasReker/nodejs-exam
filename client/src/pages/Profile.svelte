@@ -22,13 +22,30 @@
         percentOwned = ownedWineGlasses / totalWineGlasses * 100;
     })
 
+
+    let lookups = 0;
+
+    (async () => {
+        return await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json",
+                "auth-token": $user.token
+            },
+        }).then(response => response.json());
+    })().then((response) => {
+
+        lookups = response.data.lookups;
+    })
+
+
 </script>
 
 <Nav/>
 
 <main>
     <h1>Profile</h1>
-    <div>In here you can see stats for your account. Also, you </div>
+    <div>In here you can see stats for your account. Also, you</div>
 
     <div>You own {percentOwned}% of the collection!</div>
 
@@ -39,4 +56,6 @@
 
     <a class="btn btn-primary mt-3" href="/wine-glasses" use:link> Update collection</a>
 
+
+    <div>You have lookup up a glass: {lookups}</div>
 </main>

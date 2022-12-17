@@ -27,7 +27,7 @@
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({name, email, password}),
         }).then(() => {
-            location.replace("/");
+            location.replace("/"); // TODO optimize this?
         }).catch(() => {
             displayError("Something went wrong...")
         }).finally(() => {

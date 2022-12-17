@@ -6,8 +6,6 @@ import User from "../model/User.js";
 
 // validation
 import {loginValidation, registerValidation} from "../validation.js";
-import {createHash} from "crypto";
-import {sendMail} from "../util/sendMail.js";
 
 const router = Router();
 
@@ -19,8 +17,10 @@ router.post("/register", async (req, res) => {
 
     // throw validation errors
     if (error) {
+        // TODO validate front and back username password, email..
         return res.status(400).json({error: error.details[0].message});
     }
+
     const isEmailExist = await User.findOne({email: req.body.email});
     // throw error when email already registered
     if (isEmailExist) {

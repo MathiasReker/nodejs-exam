@@ -14,6 +14,7 @@
             return;
         }
 
+
         const wineGlasses = async () => {
             return await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
                 "method": "GET",
@@ -31,6 +32,16 @@
             list.push(el);
         })
 
+// Update statistics
+        await (async () => {
+            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "auth-token": $user.token
+                },
+            }).then(response => response.json());
+        })();
     }
 
     let color = "#EBD4CC";

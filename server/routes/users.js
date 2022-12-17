@@ -69,11 +69,36 @@ router.put("/:email/wineGlasses", async (req, res) => {
 
     const doc = await User.findOneAndUpdate(
         {email: email},
-        {myCollection: glasses},
+        {"settings.myCollection": glasses},
         {new: true}
     );
 
     res.send(doc)
 });
+
+router.put("/:email/statistics", async (req, res) => {
+    const email = req.params.email;
+
+    const result = await User.findOneAndUpdate({email: email},
+        {$inc: {"statistics.lookups": 1}},
+        {new: true}
+    );
+
+    res.send(result)
+})
+
+router.get("/:email/statistics", async (req, res) => {
+    const email = req.params.email;
+
+    const user = await User.findOne({email: email});
+
+    const lookups = user.statistics.lookups
+    console.log(user)
+    res.send({
+        data: {
+            lookups
+        }
+    })
+})
 
 export default router;

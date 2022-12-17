@@ -26,7 +26,21 @@ const userSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
+    },
+    statistics: {
+        lookups: {
+            type: Number,
+            default: 0,
+        }
+    },
+    settings: {
+        myCollection: {
+            type: [String],
+            required: false,
+        }
     }
+
 });
 
 export default mongoose.model("User", userSchema);
+// TODO: mycollection => settings
