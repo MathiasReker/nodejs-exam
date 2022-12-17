@@ -1,8 +1,8 @@
 <script>
-    import {Link} from "svelte-navigator";
-    import LoginForm from "../components/Form/LoginForm.svelte";
-    import Pagenation from "../components/Pagenation.svelte";
-    import Nav from "../components/Layout/Nav.svelte";
+    import { Link } from 'svelte-navigator';
+    import LoginForm from '../components/Form/LoginForm.svelte';
+    import Pagenation from '../components/Pagenation.svelte';
+    import Nav from '../components/Layout/Nav.svelte';
 </script>
 
 <Nav/>

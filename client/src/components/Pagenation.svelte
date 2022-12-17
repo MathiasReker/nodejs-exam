@@ -1,5 +1,5 @@
 <script>
-    import {link} from "svelte-navigator";
+    import { link } from 'svelte-navigator';
 
     export let page;
 </script>

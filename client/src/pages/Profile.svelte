@@ -1,44 +1,37 @@
 <script>
-    import Nav from "../components/Layout/Nav.svelte";
-    import {link} from "svelte-navigator";
-    import {baseUrl, user} from "../stores.js";
-    import Pagenation from "../components/Pagenation.svelte";
+    import { link } from 'svelte-navigator';
+    import Nav from '../components/Layout/Nav.svelte';
+    import { baseUrl, user } from '../stores.js';
+    import Pagenation from '../components/Pagenation.svelte';
 
-    let ownedWineGlasses = $user.myCollection.length;
+    const ownedWineGlasses = $user.myCollection.length;
 
     let totalWineGlasses = 0;
 
     let percentOwned = 0;
 
-    (async () => {
-        return await fetch(`${$baseUrl}/api/wineGlasses`, {
-            "method": "GET",
-            "headers": {
-                "Content-Type": "application/json",
-                "auth-token": $user.token
-            },
-        }).then(response => response.json());
-    })().then((response) => {
-        totalWineGlasses = response.data.length;
-        percentOwned = ownedWineGlasses / totalWineGlasses * 100;
-    })
-
+    (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': $user.token,
+      },
+    }).then((response) => response.json()))().then((response) => {
+      totalWineGlasses = response.data.length;
+      percentOwned = ownedWineGlasses / totalWineGlasses * 100;
+    });
 
     let lookups = 0;
 
-    (async () => {
-        return await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-            "method": "GET",
-            "headers": {
-                "Content-Type": "application/json",
-                "auth-token": $user.token
-            },
-        }).then(response => response.json());
-    })().then((response) => {
-
-        lookups = response.data.lookups;
-    })
-
+    (async () => await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': $user.token,
+      },
+    }).then((response) => response.json()))().then((response) => {
+      lookups = response.data.lookups;
+    });
 
 </script>
 
@@ -58,7 +51,6 @@
     </div>
 
     <a class="btn btn-primary mt-3" href="/wine-glasses" use:link> Update collection</a>
-
 
     <div>You have lookup up a glass: {lookups}</div>
 </main>

@@ -1,36 +1,37 @@
 <script>
-    import {onMount} from 'svelte';
-    import {baseUrl} from "../../stores.js";
-    import {displayError, displaySuccess} from "../../toast.js";
+    import { onMount } from 'svelte';
+    import { baseUrl } from '../../stores.js';
+    import { displayError, displaySuccess } from '../../toast.js';
 
-    let emailAddress = "";
+    let emailAddress = '';
     let emailAddressInput = null;
 
     let loading = false;
 
     onMount(() => {
-        emailAddressInput.focus();
+      emailAddressInput.focus();
     });
 
     const handleOnSubmit = async () => {
-        loading = true;
+      loading = true;
 
-        await fetch(`${$baseUrl}/api/users/${emailAddress}/recover`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+      await fetch(`${$baseUrl}/api/users/${emailAddress}/recover`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then(() => {
+          displaySuccess('If the user exists an email is send.');
+          // todo: display message below form instead
+          emailAddress = '';
+        }).catch(() => {
+          displayError('The user does not exists.');
         })
-            .then(response => response.json())
-            .then(() => {
-                displaySuccess("If the user exists an email is send.")
-                // todo: display message below form instead
-                emailAddress = "";
-            }).catch(() => {
-                displayError("The user does not exists.")
-            }).finally(() => {
-                loading = false;
-            });
+        .finally(() => {
+          loading = false;
+        });
     };
 </script>
 

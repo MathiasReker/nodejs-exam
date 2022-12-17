@@ -1,18 +1,16 @@
 <script>
-    import {baseUrl, user} from "../stores.js";
-    import Checkbox from "../components/Checkbox.svelte";
-    import Nav from "../components/Layout/Nav.svelte";
-    import Pagenation from "../components/Pagenation.svelte";
+    import { baseUrl, user } from '../stores.js';
+    import Checkbox from '../components/Checkbox.svelte';
+    import Nav from '../components/Layout/Nav.svelte';
+    import Pagenation from '../components/Pagenation.svelte';
 
-    const fetchWineGlasses = (async () => {
-        return await fetch(`${$baseUrl}/api/wineGlasses`, {
-            "method": "GET",
-            "headers": {
-                "Content-Type": "application/json",
-                "auth-token": $user.token
-            },
-        }).then(response => response.json());
-    })()
+    const fetchWineGlasses = (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': $user.token,
+      },
+    }).then((response) => response.json()))();
 
     let options = $user.myCollection || [];
 </script>

@@ -1,15 +1,15 @@
 <script>
-    import {user} from "../stores.js";
-    import {navigate} from "svelte-navigator";
-    import Nav from "../components/Layout/Nav.svelte";
-    import Pagination from "../components/Pagenation.svelte";
+    import { navigate } from 'svelte-navigator';
+    import { user } from '../stores.js';
+    import Nav from '../components/Layout/Nav.svelte';
+    import Pagination from '../components/Pagenation.svelte';
 
-    if (location.pathname !== "/reset-password") {
-        $: if (!$user) {
-            navigate("/login", {
-                replace: true,
-            });
-        }
+    if (location.pathname !== '/reset-password') {
+      if (!$user) {
+        navigate('/login', {
+          replace: true,
+        });
+      }
     }
 </script>
 

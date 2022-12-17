@@ -1,21 +1,19 @@
 <script>
-    import {baseUrl, user} from "../stores.js";
-    import Nav from "../components/Layout/Nav.svelte";
-    import Pagenation from "../components/Pagenation.svelte";
+    import { baseUrl, user } from '../stores.js';
+    import Nav from '../components/Layout/Nav.svelte';
+    import Pagenation from '../components/Pagenation.svelte';
 
-    let loading = false;
+    const loading = false;
 
     const handleOnSubmitExport = async () => {
-        const csv = async () => {
-            return await fetch(`${$baseUrl}/api/settings/csv`, {
-                "method": "GET",
-                "headers": {
-                    "Content-Type": "application/json",
-                    "auth-token": $user.token
-                },
-            }).then(response => response.json());
-        };
-    }
+      const csv = async () => await fetch(`${$baseUrl}/api/settings/csv`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': $user.token,
+        },
+      }).then((response) => response.json());
+    };
 
 </script>
 

@@ -1,20 +1,25 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true,
-        node: true
+        es2021: true
     },
-    extends: 'airbnb-base',
+    extends: [
+        'airbnb-base',
+        'plugin:svelte/base',
+        'plugin:svelte/recommended',
+
+        ],
     plugins: [
-        'svelte3'
+
     ],
+
     ignorePatterns: [
         'public/build/'
     ],
     overrides: [
         {
-            files: ['*.svelte'],
-            processor: 'svelte3/svelte3'
+            files: ["*.svelte"],
+            parser: "svelte-eslint-parser",
         }
     ],
     parserOptions: {

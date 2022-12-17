@@ -1,39 +1,39 @@
 <script>
-    import {onMount} from 'svelte';
-    import {baseUrl, user} from "../../stores.js";
-    import {displayError, displaySuccess} from "../../toast.js";
+    import { onMount } from 'svelte';
+    import { baseUrl, user } from '../../stores.js';
+    import { displayError, displaySuccess } from '../../toast.js';
 
-    let email = $user.email || "";
+    let email = $user.email || '';
     let emailInput = null;
 
-    let name = $user.name || "";
+    let name = $user.name || '';
     let nameInput = null;
 
-    let message = "";
+    let message = '';
     let messageInput = null;
 
     let loading = false;
 
     onMount(() => {
-        messageInput.focus();
+      messageInput.focus();
     });
 
     const handleOnSubmit = async () => {
-        loading = true;
+      loading = true;
 
-        // Log user into account.
-        await fetch(`${$baseUrl}/api/mail`, {
-            method: "POST",
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({name, email, message}),
-        }).then(() => {
-            message = "";
-            displaySuccess("message sendt..");
-        }).catch(() => {
-            displayError("Something went wrong...")
-        }).finally(() => {
-            loading = false;
-        });
+      // Log user into account.
+      await fetch(`${$baseUrl}/api/mail`, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      }).then(() => {
+        message = '';
+        displaySuccess('message sendt..');
+      }).catch(() => {
+        displayError('Something went wrong...');
+      }).finally(() => {
+        loading = false;
+      });
     };
 </script>
 

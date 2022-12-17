@@ -1,22 +1,22 @@
 <script>
-    import {link, navigate} from "svelte-navigator";
-    import {user} from "../../stores.js";
+    import { link, navigate } from 'svelte-navigator';
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import AiOutlineUser from "svelte-icons-pack/ai/AiOutlineUser";
+    import AiOutlineUser from 'svelte-icons-pack/ai/AiOutlineUser';
+    import { user } from '../../stores.js';
 
-    export let color = "#514945";
-    export let background = "#EBD4CC"
+    export let color = '#514945';
+    export let background = '#EBD4CC';
 
-    let shadow = "";
+    let shadow = '';
     if (background) {
-        shadow = "box-shadow";
+      shadow = 'box-shadow';
     }
 
     const handleLogout = () => {
-        $user = null
-        localStorage.clear();
-        navigate("/login")
-    }
+      $user = null;
+      localStorage.clear();
+      navigate('/login');
+    };
 </script>
 
 <header style="padding-bottom: 80px;">

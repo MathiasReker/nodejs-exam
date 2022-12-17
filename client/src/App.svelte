@@ -1,25 +1,25 @@
 <script>
-    import Login from "./pages/Login.svelte";
-    import {navigate, Route, Router} from "svelte-navigator";
-    import SignUp from "./pages/SignUp.svelte";
-    import ForgotPassword from "./pages/ForgotPassword.svelte";
-    import Footer from "./components/Layout/Footer.svelte";
-    import WineGlasses from "./pages/WineGlasses.svelte";
-    import Home from "./pages/Home.svelte";
-    import {user} from "./stores.js";
-    import About from "./pages/Help.svelte";
-    import Settings from "./pages/Settings.svelte";
-    import {SvelteToast} from '@zerodevx/svelte-toast'
-    import ResetPassword from "./pages/ResetPassword.svelte";
-    import Profile from "./pages/Profile.svelte";
-    import PageNotFound from "./pages/PageNotFound.svelte";
+    import { navigate, Route, Router } from 'svelte-navigator';
+    import { SvelteToast } from '@zerodevx/svelte-toast';
+    import Login from './pages/Login.svelte';
+    import SignUp from './pages/SignUp.svelte';
+    import ForgotPassword from './pages/ForgotPassword.svelte';
+    import Footer from './components/Layout/Footer.svelte';
+    import WineGlasses from './pages/WineGlasses.svelte';
+    import Home from './pages/Home.svelte';
+    import { user } from './stores.js';
+    import About from './pages/Help.svelte';
+    import Settings from './pages/Settings.svelte';
+    import ResetPassword from './pages/ResetPassword.svelte';
+    import Profile from './pages/Profile.svelte';
+    import PageNotFound from './pages/PageNotFound.svelte';
 
-    if (location.pathname !== "/reset-password") {
-        $: if (!$user) {
-            navigate("/login", {
-                replace: true,
-            });
-        }
+    if (location.pathname !== '/reset-password') {
+      if (!$user) {
+        navigate('/login', {
+          replace: true,
+        });
+      }
     }
 </script>
 

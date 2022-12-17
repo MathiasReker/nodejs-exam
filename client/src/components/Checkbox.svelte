@@ -1,41 +1,41 @@
 <script>
-    import {baseUrl, user} from "../stores.js";
-    import {displayError, displaySuccess} from "../toast.js";
+    import { baseUrl, user } from '../stores.js';
+    import { displayError, displaySuccess } from '../toast.js';
 
     export let bindGroup = [];
-    export let value = "";
+    export let value = '';
 
-    const onChange = ({target}) => {
-        const {value, checked} = target;
-        if (checked) {
-            bindGroup = [...bindGroup, value]
-        } else {
-            bindGroup = bindGroup.filter((item) => item !== value);
-        }
+    const onChange = ({ target }) => {
+      const { value, checked } = target;
+      if (checked) {
+        bindGroup = [...bindGroup, value];
+      } else {
+        bindGroup = bindGroup.filter((item) => item !== value);
+      }
 
-        // save to database
-        (() => {
-            fetch(`${$baseUrl}/api/users/${$user.email}/wineGlasses`, {
-                "method": "PUT",
-                "headers": {
-                    "Content-Type": "application/json",
-                    "auth-token": $user.token
-                },
-                "body": JSON.stringify({
-                    "email": $user.email,
-                    "myCollection": bindGroup
-                })
-            })
-                .then(response => response.json())
-                .then(() => {
-                    $user.myCollection = bindGroup
-                    localStorage.setItem('user', JSON.stringify($user))
-                    displaySuccess('Settings saved!')
-                })
-                .catch(() => {
-                    displayError("Something went wrong...")
-                })
-        })()
+      // save to database
+      (() => {
+        fetch(`${$baseUrl}/api/users/${$user.email}/wineGlasses`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': $user.token,
+          },
+          body: JSON.stringify({
+            email: $user.email,
+            myCollection: bindGroup,
+          }),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            $user.myCollection = bindGroup;
+            localStorage.setItem('user', JSON.stringify($user));
+            displaySuccess('Settings saved!');
+          })
+          .catch(() => {
+            displayError('Something went wrong...');
+          });
+      })();
     };
 </script>
 

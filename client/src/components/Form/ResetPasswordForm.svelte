@@ -1,48 +1,49 @@
 <script>
-    import {onMount} from 'svelte';
-    import {baseUrl} from "../../stores.js";
-    import {displayError, displaySuccess} from "../../toast.js";
-    import {navigate} from "svelte-navigator";
+    import { onMount } from 'svelte';
+    import { navigate } from 'svelte-navigator';
+    import { baseUrl } from '../../stores.js';
+    import { displayError, displaySuccess } from '../../toast.js';
 
     const urlParams = new URLSearchParams(location.search);
-    let email = urlParams.get("email");
-    let token = urlParams.get("token");
+    const email = urlParams.get('email');
+    const token = urlParams.get('token');
 
-    let password = "";
+    let password = '';
     let passwordInput = null;
 
     let loading = false;
 
     onMount(() => {
-        passwordInput.focus();
+      passwordInput.focus();
     });
 
     const handleOnSubmit = async () => {
-        loading = true;
+      loading = true;
 
-        await fetch(`${$baseUrl}/api/users/${email}/reset`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                 password,
-                 token
-            })
+      await fetch(`${$baseUrl}/api/users/${email}/reset`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password,
+          token,
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.error) {
+            displayError(response.error);
+          } else {
+            displaySuccess('Password successfully resat.');
+            navigate('/login');
+          }
+        }).catch(() => {
+          displayError('The user does not exists.');
         })
-            .then(response => response.json())
-            .then((response) => {
-                if (response.error) {
-                    displayError(response.error)
-                } else {
-                    displaySuccess("Password successfully resat.")
-                    navigate("/login")
-                }
-            }).catch(() => {
-                displayError("The user does not exists.")
-            }).finally(() => {
-                loading = false;
-            });
+        .finally(() => {
+          loading = false;
+        });
     };
 </script>
 

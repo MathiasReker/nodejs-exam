@@ -1,46 +1,47 @@
 <script>
-    import {onMount} from 'svelte';
-    import {baseUrl} from "../../stores.js";
-    import {displayError} from "../../toast.js";
+    import { onMount } from 'svelte';
+    import { baseUrl } from '../../stores.js';
+    import { displayError } from '../../toast.js';
 
-    let emailAddress = "";
+    let emailAddress = '';
     let emailAddressInput = null;
 
-    let password = "";
+    let password = '';
     let passwordInput = null;
 
     let loading = false;
 
     onMount(() => {
-        emailAddressInput.focus();
+      emailAddressInput.focus();
     });
 
     const handleOnSubmit = async () => {
-        loading = true;
+      loading = true;
 
-        const user = {email: emailAddress, password: password};
+      const user = { email: emailAddress, password };
 
-        await fetch(`${$baseUrl}/api/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
+      await fetch(`${$baseUrl}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.data.user) {
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            // Force reload after the redirection
+            location.replace('/');
+            emailAddress = '';
+            password = '';
+          }
+        }).catch(() => {
+          displayError('The user does not exists.');
         })
-            .then(response => response.json())
-            .then(response => {
-                if (response.data.user) {
-                    localStorage.setItem("user", JSON.stringify(response.data.user))
-                    // Force reload after the redirection
-                    location.replace("/")
-                    emailAddress = "";
-                    password = "";
-                }
-            }).catch(() => {
-                displayError("The user does not exists.")
-            }).finally(() => {
-                loading = false;
-            });
+        .finally(() => {
+          loading = false;
+        });
     };
 </script>
 

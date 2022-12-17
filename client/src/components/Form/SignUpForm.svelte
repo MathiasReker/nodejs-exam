@@ -1,43 +1,42 @@
 <script>
-    import {onMount} from 'svelte';
-    import {baseUrl} from "../../stores.js";
-    import {displayError} from "../../toast.js";
-    import Pagenation from "../Pagenation.svelte";
-    import Nav from "../Layout/Nav.svelte";
+    import { onMount } from 'svelte';
+    import { baseUrl } from '../../stores.js';
+    import { displayError } from '../../toast.js';
+    import Pagenation from '../Pagenation.svelte';
+    import Nav from '../Layout/Nav.svelte';
 
-    let email = "";
+    let email = '';
     let emailInput = null;
 
-    let password = "";
+    let password = '';
     let passwordInput = null;
 
-    let name = "";
+    let name = '';
     let nameInput = null;
 
     let loading = false;
 
     onMount(() => {
-        emailInput.focus();
+      emailInput.focus();
     });
 
     const handleOnSubmit = async () => {
-        loading = true;
+      loading = true;
 
-        // Log user into account.
-        const response = await fetch(`${$baseUrl}/api/auth/register`, {
-            method: "POST",
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({name, email, password}),
-        }).then(() => {
-            location.replace("/"); // TODO optimize this?
-        }).catch(() => {
-            displayError("Something went wrong...")
-        }).finally(() => {
-            loading = false;
-        });
+      // Log user into account.
+      const response = await fetch(`${$baseUrl}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      }).then(() => {
+        location.replace('/'); // TODO optimize this?
+      }).catch(() => {
+        displayError('Something went wrong...');
+      }).finally(() => {
+        loading = false;
+      });
     };
 </script>
-
 
 <form on:submit|preventDefault={handleOnSubmit}>
     <div class="form-floating mb-3">
