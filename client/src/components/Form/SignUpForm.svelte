@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { baseUrl } from '../../stores.js';
     import { displayError } from '../../toast.js';
-    import Pagenation from '../Pagenation.svelte';
+    import Pagenation from '../Pagination.svelte';
     import Nav from '../Layout/Nav.svelte';
 
     let email = '';

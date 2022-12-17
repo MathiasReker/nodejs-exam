@@ -1,7 +1,7 @@
 <script>
     import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
 </script>
 
 <Nav/>

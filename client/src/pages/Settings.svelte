@@ -1,7 +1,7 @@
 <script>
     import { baseUrl, user } from '../stores.js';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
 
     const loading = false;
 

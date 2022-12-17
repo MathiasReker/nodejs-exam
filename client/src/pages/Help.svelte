@@ -1,7 +1,7 @@
 <script>
     import ContactForm from '../components/Form/ContactForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
 </script>
 
 <Nav/>

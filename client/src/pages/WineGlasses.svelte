@@ -2,7 +2,7 @@
     import { baseUrl, user } from '../stores.js';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
 
     const fetchWineGlasses = (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
       method: 'GET',

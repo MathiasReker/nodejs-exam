@@ -1,7 +1,7 @@
 <script>
     import { Link } from 'svelte-navigator';
     import SignUpForm from '../components/Form/SignUpForm.svelte';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
     import Nav from '../components/Layout/Nav.svelte';
 </script>
 

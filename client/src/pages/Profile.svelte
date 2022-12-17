@@ -2,7 +2,7 @@
     import { link } from 'svelte-navigator';
     import Nav from '../components/Layout/Nav.svelte';
     import { baseUrl, user } from '../stores.js';
-    import Pagenation from '../components/Pagenation.svelte';
+    import Pagenation from '../components/Pagination.svelte';
 
     const ownedWineGlasses = $user.myCollection.length;
 

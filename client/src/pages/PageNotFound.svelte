@@ -2,7 +2,7 @@
     import { navigate } from 'svelte-navigator';
     import { user } from '../stores.js';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagenation.svelte';
+    import Pagination from '../components/Pagination.svelte';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
