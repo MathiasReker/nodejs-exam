@@ -1,27 +1,26 @@
-import nodemailer from "nodemailer"
+import nodemailer from 'nodemailer';
 
 export async function sendMail(from, to, subject, text) {
+  const testAccount = await nodemailer.createTestAccount();
 
-    let testAccount = await nodemailer.createTestAccount();
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP,
+    port: process.env.SMTP_PORT,
+    secure: false, // TODO
+    auth: {
+      user: testAccount.user,
+      pass: testAccount.pass,
+    },
+  });
 
-    let transporter = nodemailer.createTransport({
-        host: process.env.SMTP,
-        port: process.env.SMTP_PORT,
-        secure: false, // TODO
-        auth: {
-            user: testAccount.user,
-            pass: testAccount.pass
-        }
-    });
+  const info = await transporter.sendMail({
+    from,
+    to,
+    subject,
+    text,
+  });
 
-    let info = await transporter.sendMail({
-        from,
-        to,
-        subject,
-        text
-    });
+  console.log('Message send: %s', info.messageId);
 
-    console.log("Message send: %s", info.messageId);
-
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 }
