@@ -1,6 +1,5 @@
 <script>
     import AutoComplete from 'simple-svelte-autocomplete';
-    import { navigate } from 'svelte-navigator';
     import { baseUrl, user } from '../stores.js';
     import Nav from '../components/Layout/Nav.svelte';
 
