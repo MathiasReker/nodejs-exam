@@ -1,6 +1,7 @@
 <script>
     import {baseUrl, user} from "../stores.js";
     import Checkbox from "../components/Checkbox.svelte";
+    import Nav from "../components/Layout/Nav.svelte";
 
     const fetchWineGlasses = (async () => {
         return await fetch(`${$baseUrl}/api/wineGlasses`, {
@@ -14,6 +15,8 @@
 
     let options = $user.myCollection || [];
 </script>
+
+<Nav/>
 
 <main class="px-3">
     <h1>My collection of wine glasses</h1>

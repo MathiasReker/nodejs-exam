@@ -12,11 +12,10 @@
         localStorage.clear();
         navigate("/login")
     }
-
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class="p-3 mx-auto fixed-top fixed-top" style="background-color: {background}" id="nav-wrapper">
+    <div class="p-3 mx-auto fixed-top fixed-top" id="nav-wrapper" style="background-color: {background}">
         <nav class="cover-container mx-auto">
             <a href="/" use:link>
                 <h3 class="nav nav-masthead float-start" style="color: {color}">Wine Glass Guide</h3>

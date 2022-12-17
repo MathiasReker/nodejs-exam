@@ -1,5 +1,6 @@
 <script>
     import {baseUrl, user} from "../stores.js";
+    import Nav from "../components/Layout/Nav.svelte";
 
     let loading = false;
 
@@ -17,6 +18,8 @@
 
 </script>
 
+<Nav/>
+
 <main class="px-3">
     <div>
         <h2>Change username</h2>
@@ -28,7 +31,7 @@
     <div class="pt-5">
         <h2>Export account data</h2>
         <hr>
-        <p>Export all repositories and profile metadata for @MathiasReker. Exports will be available for 7 days. </p>
+        <p>Export all profile metadata for {$user.name} in a CSV format.</p>
         <button class="btn btn-secondary" on:submit|preventDefault={handleOnSubmitExport} type="button">Start export
         </button>
     </div>

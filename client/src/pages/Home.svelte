@@ -30,6 +30,20 @@
         result.data.forEach(el => {
             list.push(el);
         })
+
+        async () => {
+            fetch(`${$baseUrl}/api/profile/glasses`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "auth-token": $user.token
+                },
+                "body": JSON.stringify({
+                    "email": $user.email,
+                    "myCollection": bindGroup
+                })
+            })
+        }
     }
 
     let color = "#EBD4CC";

@@ -17,7 +17,7 @@
 
         const user = {email: emailAddress};
 
-        await fetch(`${$baseUrl}/api/auth/recover`, {
+        await fetch(`${$baseUrl}/api/users/recover`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

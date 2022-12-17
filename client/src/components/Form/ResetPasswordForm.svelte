@@ -20,7 +20,7 @@
     const handleOnSubmit = async () => {
         loading = true;
 
-        await fetch(`${$baseUrl}/api/auth/reset`, {
+        await fetch(`${$baseUrl}/api/users/reset`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
