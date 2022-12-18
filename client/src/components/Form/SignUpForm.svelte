@@ -1,9 +1,8 @@
 <script>
     import { onMount } from 'svelte';
+    import { navigate } from 'svelte-navigator';
     import { baseUrl } from '../../js/stores';
     import { displayError } from '../../js/toast';
-    import Pagenation from '../Pagination.svelte';
-    import Nav from '../Layout/Nav.svelte';
 
     let email = '';
     let emailInput = null;
@@ -23,13 +22,13 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      // Log user into account.
-      const response = await fetch(`${$baseUrl}/api/auth/register`, {
+      await fetch(`${$baseUrl}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
       }).then(() => {
-        location.replace('/'); // TODO optimize this?
+        navigate('/');
+        location.reload();
       }).catch(() => {
         displayError('Something went wrong...');
       }).finally(() => {

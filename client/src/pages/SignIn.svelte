@@ -1,18 +1,18 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import LoginForm from '../components/Form/LoginForm.svelte';
-    import Pagenation from '../components/Pagination.svelte';
+    import Pagination from '../components/Pagination.svelte';
     import Nav from '../components/Layout/Nav.svelte';
+    import SignInForm from '../components/Form/SignInForm.svelte';
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagenation page="Help"/>
+    <Pagination page="Help"/>
 
-    <h1 class="mb-5">Login</h1>
+    <h1 class="mb-5">sign in</h1>
 
-    <LoginForm/>
+    <SignInForm/>
 
     <div class="mt-2 text-center">
         <p> Don't have an account yet?

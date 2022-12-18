@@ -6,7 +6,7 @@
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
-        navigate('/login', {
+        navigate('/signin', {
           replace: true,
         });
       }

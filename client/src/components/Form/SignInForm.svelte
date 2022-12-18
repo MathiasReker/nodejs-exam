@@ -1,10 +1,11 @@
 <script>
     import { onMount } from 'svelte';
+    import { navigate } from 'svelte-navigator';
     import { baseUrl } from '../../js/stores';
     import { displayError } from '../../js/toast';
 
-    let emailAddress = '';
-    let emailAddressInput = null;
+    let email = '';
+    let emailInput = null;
 
     let password = '';
     let passwordInput = null;
@@ -12,15 +13,15 @@
     let loading = false;
 
     onMount(() => {
-      emailAddressInput.focus();
+      emailInput.focus();
     });
 
     const handleOnSubmit = async () => {
       loading = true;
 
-      const user = { email: emailAddress, password };
+      const user = { email, password };
 
-      await fetch(`${$baseUrl}/api/auth/login`, {
+      await fetch(`${$baseUrl}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,9 +32,11 @@
         .then((response) => {
           if (response.data.user) {
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            // Force reload after the redirection
-            location.replace('/');
-            emailAddress = '';
+
+            navigate('/');
+            location.reload();
+
+            email = '';
             password = '';
           }
         }).catch(() => {
@@ -48,7 +51,7 @@
 <main class="form-signin w-100 m-auto">
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
-            <input bind:this={emailAddressInput} bind:value={emailAddress} class="form-control" id="emailAddress"
+            <input bind:this={emailInput} bind:value={email} class="form-control" id="emailAddress"
                    placeholder="name@example.com" required type="email">
             <label for="emailAddress">Email address</label>
         </div>

@@ -21,16 +21,15 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      // Log user into account.
       await fetch(`${$baseUrl}/api/mail`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ name, email, message }),
       }).then(() => {
         message = '';
-        displaySuccess('message sendt..');
+        displaySuccess('The message was sent.');
       }).catch(() => {
-        displayError('Something went wrong...');
+        displayError('Something went wrong.');
       }).finally(() => {
         loading = false;
       });

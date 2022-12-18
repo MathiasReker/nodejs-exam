@@ -3,19 +3,20 @@
     import { baseUrl } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
 
-    let emailAddress = '';
-    let emailAddressInput = null;
+    let email = '';
+
+    let emailInput = null;
 
     let loading = false;
 
     onMount(() => {
-      emailAddressInput.focus();
+      emailInput.focus();
     });
 
     const handleOnSubmit = async () => {
       loading = true;
 
-      await fetch(`${$baseUrl}/api/users/${emailAddress}/recover`, {
+      await fetch(`${$baseUrl}/api/users/${email}/recover`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,10 +25,9 @@
         .then((response) => response.json())
         .then(() => {
           displaySuccess('If the user exists an email is send.');
-          // todo: display message below form instead
-          emailAddress = '';
+          email = '';
         }).catch(() => {
-          displayError('The user does not exists.');
+          displayError('Something went wrong.');
         })
         .finally(() => {
           loading = false;
@@ -38,7 +38,7 @@
 <main class="form-signin w-100 m-auto">
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
-            <input bind:this={emailAddressInput} bind:value={emailAddress} class="form-control" id="emailAddress"
+            <input bind:this={emailInput} bind:value={email} class="form-control" id="emailAddress"
                    placeholder="name@example.com" required type="email">
             <label for="emailAddress">Email address</label>
         </div>

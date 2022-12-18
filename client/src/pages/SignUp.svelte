@@ -17,7 +17,7 @@
     <div class="mt-2 text-center">
         <p>
             Already have an account?
-            <Link to="/login">Sign in</Link>
+            <Link to="/signin">Sign in</Link>
         </p>
     </div>
 </main>

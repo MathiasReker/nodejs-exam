@@ -15,7 +15,7 @@
     const handleLogout = () => {
       $user = null;
       localStorage.clear();
-      navigate('/login');
+      navigate('/signin');
     };
 </script>
 
@@ -48,7 +48,7 @@
                             </li>
                             <li><a class="dropdown-item" href="#" on:click={handleLogout} use:link>Log out</a></li>
                         {:else}
-                            <li><a class="dropdown-item" href="/login" use:link>Login</a></li>
+                            <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
                         {/if}
                     </ul>
                 </div>

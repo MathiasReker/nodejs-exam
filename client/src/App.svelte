@@ -1,7 +1,7 @@
 <script>
     import { navigate, Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
-    import Login from './pages/Login.svelte';
+    import signin from './pages/SignIn.svelte';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
@@ -13,10 +13,11 @@
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
+    import Signin from './pages/SignIn.svelte';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
-        navigate('/login', {
+        navigate('/signin', {
           replace: true,
         });
       }
@@ -42,8 +43,8 @@
                 <Profile/>
             </Route>
         {:else}
-            <Route path="/login">
-                <Login/>
+            <Route path="/signin">
+                <Signin/>
             </Route>
             <Route path="/signup">
                 <SignUp/>

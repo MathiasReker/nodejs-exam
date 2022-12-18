@@ -36,7 +36,7 @@
             displayError(response.error);
           } else {
             displaySuccess('Password successfully resat.');
-            navigate('/login');
+            navigate('/signin');
           }
         }).catch(() => {
           displayError('The user does not exists.');

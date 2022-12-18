@@ -30,6 +30,7 @@
           .then(() => {
             $user.wineGlasses = bindGroup;
             localStorage.setItem('user', JSON.stringify($user));
+
             displaySuccess('Settings saved!');
           })
           .catch(() => {

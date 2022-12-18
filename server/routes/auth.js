@@ -5,15 +5,15 @@ import bcrypt from 'bcryptjs';
 import User from '../model/User.js';
 
 // validation
-import { loginValidation, registerValidation } from '../validation.js';
+import { signinValidation, signupValidation } from '../validation.js';
 
 const router = Router();
 
 // register route
 // TODO: signup
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
   // validate the user
-  const { error } = registerValidation(req.body);
+  const { error } = signupValidation(req.body);
 
   // throw validation errors
   if (error) {
@@ -42,11 +42,10 @@ router.post('/register', async (req, res) => {
     res.status(400).json({ error });
   }
 });
-// TODO : signin
-// login route
-router.post('/login', async (req, res) => {
+
+router.post('/signin', async (req, res) => {
   // validate the user
-  const { error } = loginValidation(req.body);
+  const { error } = signinValidation(req.body);
 
   // throw validation errors
   if (error) {
@@ -59,11 +58,11 @@ router.post('/login', async (req, res) => {
     email: req.body.email,
   });
 
-  const loginError = 'A user with this combination of credentials was not found.';
+  const signInError = 'A user with this combination of credentials was not found.';
   // throw error when email is wrong
   if (!user) {
     return res.status(400).json({
-      error: loginError,
+      error: signInError,
     });
   }
 
@@ -71,7 +70,7 @@ router.post('/login', async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) {
     return res.status(400).json({
-      error: loginError,
+      error: signInError,
     });
   }
 
