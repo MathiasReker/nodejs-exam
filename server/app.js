@@ -23,13 +23,10 @@ app.use(cors({
 }));
 app.use(helmet());
 app.use(express.json()); // for body parser
-
 app.use('/api/auth', auth);
 app.use('/api/mail', mail);
 app.use('/api/settings', settings);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
 app.use('/api/users', verifyToken, users);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Server is running on port:', PORT));
+app.listen(process.env.PORT);

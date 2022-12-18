@@ -1,24 +1,24 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-    let wineGlasses = await WineGlass.find().exec();
+  const wineGlasses = await WineGlass.find().exec();
 
-    let grapes = [];
+  const grapes = [];
 
-    wineGlasses.forEach(wineGlass => {
-        grapes.push(...wineGlass.grapes);
-    })
+  wineGlasses.forEach((wineGlass) => {
+    grapes.push(...wineGlass.grapes);
+  });
 
-    grapes.sort()
+  grapes.sort();
 
-    res.send({
-        data: {
-            grapes
-        },
-    });
+  res.send({
+    data: {
+      grapes,
+    },
+  });
 });
 
 export default router;

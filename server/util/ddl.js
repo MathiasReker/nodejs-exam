@@ -6,7 +6,7 @@ dotenv.config();
 
 connection();
 
-const data = [
+const wineGlasses = [
   {
     series: 'RIEDEL Veloce',
     name: 'Cabernet/Merlot',
@@ -59,10 +59,9 @@ const data = [
 
 WineGlass.collection.drop()
   .then(async () => {
-    for (const el of data) {
-      const wineGlass = new WineGlass(el);
-      await wineGlass.save();
-    }
+    wineGlasses.forEach((wineGlass) => {
+      new WineGlass(wineGlass).save();
+    });
   })
   .then(() => {
     process.exit(0);
