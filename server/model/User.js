@@ -19,10 +19,6 @@ const userSchema = new mongoose.Schema({
     min: 6,
     max: 1024,
   },
-  myCollection: {
-    type: [String],
-    required: false,
-  },
   date: {
     type: Date,
     default: Date.now,
@@ -34,7 +30,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   settings: {
-    myCollection: {
+    wineGlasses: {
       type: [String],
       required: false,
     },
@@ -43,4 +39,3 @@ const userSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('User', userSchema);
-// TODO: mycollection => settings

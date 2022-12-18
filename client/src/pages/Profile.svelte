@@ -4,7 +4,7 @@
     import { baseUrl, user } from '../js/stores';
     import Pagination from '../components/Pagination.svelte';
 
-    const ownedWineGlasses = $user.myCollection.length;
+    const ownedWineGlasses = $user.wineGlasses.length;
 
     let totalWineGlasses = 0;
 
@@ -44,7 +44,7 @@
     <h1>Profile</h1>
     <div>In here you can see stats for your account. Also, you</div>
 
-    <div>You own {percentOwned}% of the collection!</div>
+    <div>You own {percentOwned}% of the wine glasses!</div>
 
     <div class="progress" style="height: 20px;">
         <div aria-label="Example 20px high" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{percentOwned}"

@@ -63,11 +63,11 @@ router.post('/:email/reset', async (req, res) => {
 
 router.put('/:email/wineGlasses', async (req, res) => {
   const { email } = req.params;
-  const glasses = req.body.myCollection;
+  const glasses = req.body.wineGlasses;
 
   const doc = await User.findOneAndUpdate(
     { email },
-    { 'settings.myCollection': glasses },
+    { 'settings.wineGlasses': glasses },
     { new: true },
   );
 

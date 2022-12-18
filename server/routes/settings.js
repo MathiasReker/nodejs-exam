@@ -7,7 +7,7 @@ const router = Router();
 router.get('/csv', (req, res) => {
   const user = User.findOne({ user: req.params.email });
 
-  const myData = { user: user.name, email: user.email, collection: user.collection };
+  const myData = { user: user.name, email: user.email, wineGlasses: user.wineGlasses };
 
   try {
     const parser = new Parser();
