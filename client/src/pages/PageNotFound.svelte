@@ -1,6 +1,6 @@
 <script>
     import { navigate } from 'svelte-navigator';
-    import { user } from '../stores.js';
+    import { user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import Pagination from '../components/Pagination.svelte';
 
@@ -17,6 +17,7 @@
 
 <main>
     <Pagination page="Page not found"/>
+
     <h1>Page not found</h1>
-    <p>This page does not exsists</p>
+    <p>This page does not exists</p>
 </main>

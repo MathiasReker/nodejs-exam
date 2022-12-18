@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import { baseUrl } from '../../stores.js';
-    import { displayError } from '../../toast.js';
+    import { baseUrl } from '../../js/stores';
+    import { displayError } from '../../js/toast';
     import Pagenation from '../Pagination.svelte';
     import Nav from '../Layout/Nav.svelte';
 

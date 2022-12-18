@@ -1,8 +1,8 @@
 <script>
     import { link } from 'svelte-navigator';
     import Nav from '../components/Layout/Nav.svelte';
-    import { baseUrl, user } from '../stores.js';
-    import Pagenation from '../components/Pagination.svelte';
+    import { baseUrl, user } from '../js/stores';
+    import Pagination from '../components/Pagination.svelte';
 
     const ownedWineGlasses = $user.myCollection.length;
 
@@ -10,18 +10,19 @@
 
     let percentOwned = 0;
 
+    let lookups = 0;
+
     (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'auth-token': $user.token,
       },
-    }).then((response) => response.json()))().then((response) => {
-      totalWineGlasses = response.data.length;
-      percentOwned = ownedWineGlasses / totalWineGlasses * 100;
-    });
-
-    let lookups = 0;
+    }).then((response) => response.json()))()
+      .then((response) => {
+        totalWineGlasses = response.data.length;
+        percentOwned = ownedWineGlasses / totalWineGlasses * 100;
+      });
 
     (async () => await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
       method: 'GET',
@@ -29,16 +30,16 @@
         'Content-Type': 'application/json',
         'auth-token': $user.token,
       },
-    }).then((response) => response.json()))().then((response) => {
-      lookups = response.data.lookups;
-    });
-
+    }).then((response) => response.json()))()
+      .then((response) => {
+        lookups = response.data.lookups;
+      });
 </script>
 
 <Nav/>
 
 <main>
-    <Pagenation page="Profile"/>
+    <Pagination page="Profile"/>
 
     <h1>Profile</h1>
     <div>In here you can see stats for your account. Also, you</div>

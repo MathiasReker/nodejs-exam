@@ -7,7 +7,6 @@
 <Nav/>
 
 <main class="px-3">
-
     <Pagination page="Help"/>
 
     <h1>Cool project...</h1>

@@ -1,6 +1,6 @@
 <script>
-    import { baseUrl, user } from '../stores.js';
-    import { displayError, displaySuccess } from '../toast.js';
+    import { baseUrl, user } from '../js/stores';
+    import { displayError, displaySuccess } from '../js/toast';
 
     export let bindGroup = [];
     export let value = '';

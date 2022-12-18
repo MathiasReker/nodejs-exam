@@ -2,7 +2,7 @@
     import { link, navigate } from 'svelte-navigator';
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineUser from 'svelte-icons-pack/ai/AiOutlineUser';
-    import { user } from '../../stores.js';
+    import { user } from '../../js/stores';
 
     export let color = '#514945';
     export let background = '#EBD4CC';

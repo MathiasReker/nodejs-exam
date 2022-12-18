@@ -1,8 +1,10 @@
 <script>
-    import { baseUrl, user } from '../stores.js';
+    import { baseUrl, user } from '../js/stores';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagination.svelte';
+    import Pagination from '../components/Pagination.svelte';
+
+    let options = $user.myCollection || [];
 
     const fetchWineGlasses = (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
       method: 'GET',
@@ -11,14 +13,12 @@
         'auth-token': $user.token,
       },
     }).then((response) => response.json()))();
-
-    let options = $user.myCollection || [];
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagenation page="Wine glasses"/>
+    <Pagination page="Wine glasses"/>
 
     <h1>My collection of wine glasses</h1>
     <p>Select your wine glasses below..</p>

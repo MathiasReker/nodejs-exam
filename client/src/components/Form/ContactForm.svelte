@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import { baseUrl, user } from '../../stores.js';
-    import { displayError, displaySuccess } from '../../toast.js';
+    import { baseUrl, user } from '../../js/stores';
+    import { displayError, displaySuccess } from '../../js/toast';
 
     let email = $user.email || '';
     let emailInput = null;

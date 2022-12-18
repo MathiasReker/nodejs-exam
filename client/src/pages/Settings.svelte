@@ -1,10 +1,9 @@
 <script>
-    import { baseUrl, user } from '../stores.js';
+    import { baseUrl, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagenation from '../components/Pagination.svelte';
+    import Pagination from '../components/Pagination.svelte';
 
-    const loading = false;
-
+    // TODO csv
     const handleOnSubmitExport = async () => {
       const csv = async () => await fetch(`${$baseUrl}/api/settings/csv`, {
         method: 'GET',
@@ -20,8 +19,7 @@
 <Nav/>
 
 <main class="px-3">
-
-    <Pagenation page="Settings"/>
+    <Pagination page="Settings"/>
 
     <div>
         <h2>Change username</h2>
@@ -34,7 +32,11 @@
         <h2>Export account data</h2>
         <hr>
         <p>Export all profile metadata for {$user.name} in a CSV format.</p>
-        <button class="btn btn-secondary" on:submit|preventDefault={handleOnSubmitExport} type="button">Start export
+        <button
+                class="btn btn-secondary"
+                on:submit|preventDefault={handleOnSubmitExport}
+                type="button">
+        Start export
         </button>
     </div>
 

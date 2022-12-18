@@ -1,3 +1,7 @@
+body {
+    color: #212529;
+}
+
 @media only screen and (min-width: 1000px) {
     .cover-container {
         width: 40vw !important;
@@ -79,75 +83,9 @@ override bootstrap
     --bs-dropdown-border-radius: 0.1rem
 }
 
-.top-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 330px;
-    z-index: -1;
-    background: linear-gradient(242deg, #894242, #D55C5A);
-    background-size: 400% 400%;
-    -webkit-animation: background 29s ease infinite;
-    -moz-animation: background 29s ease infinite;
-    animation: background 29s ease infinite;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-
-@-webkit-keyframes background {
-    0% {
-        background-position: 0% 59%
-    }
-    50% {
-        background-position: 100% 42%
-    }
-    100% {
-        background-position: 0% 59%
-    }
-}
-
-@-moz-keyframes background {
-    0% {
-        background-position: 0% 59%
-    }
-    50% {
-        background-position: 100% 42%
-    }
-    100% {
-        background-position: 0% 59%
-    }
-}
-
-@keyframes background {
-    0% {
-        background-position: 0% 59%
-    }
-    50% {
-        background-position: 100% 42%
-    }
-    100% {
-        background-position: 0% 59%
-    }
-}
-
 .autocomplete:not(.hide-arrow):not(.is-loading)::after {
     border-color: #894242 !important;
 }
-
-.scheme {
-    color: #514945;
-
-    color: #894242;
-
-    color: #D55C5A;
-
-    color: #F5918F;
-
-    color: #EBD4CC;
-
-    color: #FFF;
-}
-
 
 /* custom primary buttons */
 
