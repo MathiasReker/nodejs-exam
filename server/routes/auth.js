@@ -88,8 +88,10 @@ router.post('/signin', async (req, res) => {
       user: {
         name: user.name,
         email: user.email,
+        settings: {
+          wineGlasses: user.settings.wineGlasses,
+        },
         token,
-        wineGlasses: user.wineGlasses,
       },
     },
   });

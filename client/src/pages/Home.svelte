@@ -1,8 +1,11 @@
 <script>
     import AutoComplete from 'simple-svelte-autocomplete';
-    import { baseUrl, user } from '../js/stores';
+    import {baseUrl, user} from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
+    import AiOutlineCheck from "svelte-icons-pack/ai/AiOutlineCheck";
+    import AiOutlineClose from "svelte-icons-pack/ai/AiOutlineClose";
+    import Icon from 'svelte-icons-pack/Icon.svelte';
 
     let grapes = [];
 
@@ -11,46 +14,46 @@
     let wineGlasses = [];
 
     (async () => await fetch(`${$baseUrl}/api/grapes`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    })
-      .then((response) => response.json()))()
-      .then((response) => {
-        grapes = response.data.grapes;
-      });
-
-    const onChange = async () => {
-      if (!selectedGrape) {
-        return;
-      }
-
-      (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token': $user.token,
-        },
-      }).then((response) => response.json()))()
-        .then((response) => {
-          wineGlasses = [];
-          response.data.forEach((wineGlass) => {
-            wineGlasses.push(wineGlass);
-          });
-        });
-
-      // Update statistics
-      await (async () => {
-        await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-          method: 'PUT',
-          headers: {
             'Content-Type': 'application/json',
             'auth-token': $user.token,
-          },
-        }).then((response) => response.json());
-      })();
+        },
+    })
+        .then((response) => response.json()))()
+        .then((response) => {
+            grapes = response.data.grapes;
+        });
+
+    const onChange = async () => {
+        if (!selectedGrape) {
+            return;
+        }
+
+        (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': $user.token,
+            },
+        }).then((response) => response.json()))()
+            .then((response) => {
+                wineGlasses = [];
+                response.data.forEach((wineGlass) => {
+                    wineGlasses.push(wineGlass);
+                });
+            });
+
+        // Update statistics
+        await (async () => {
+            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': $user.token,
+                },
+            }).then((response) => response.json());
+        })();
     };
 
     const color = '#EBD4CC';
@@ -79,7 +82,14 @@
         <div class="row row-cols-1 pt-5">
             {#each wineGlasses as wineGlass}
                 <div class="col">
-                    <h2 class="text-center">{wineGlass.name}</h2>
+                    <h2 class="text-center">
+                        {wineGlass.name}
+                        {#if ($user.settings.wineGlasses).includes(wineGlass.name)}
+                            <Icon color="green" size="40px" src={AiOutlineCheck}/>
+                        {:else}
+                            <Icon color="red" size="40px" src={AiOutlineClose}/>
+                        {/if}
+                    </h2>
                     <img class="img-fluid" src="{wineGlass.image}" alt="">
                 </div>
             {/each}

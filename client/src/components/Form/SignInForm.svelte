@@ -31,13 +31,11 @@
         .then((response) => response.json())
         .then((response) => {
           if (response.data.user) {
+              console.log(response.data.user)
             localStorage.setItem('user', JSON.stringify(response.data.user));
 
             navigate('/');
             location.reload();
-
-            email = '';
-            password = '';
           }
         }).catch(() => {
           displayError('The user does not exists.');
@@ -48,12 +46,12 @@
     };
 </script>
 
-<main class="form-signin w-100 m-auto">
+<main class="w-100 m-auto">
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
-            <input bind:this={emailInput} bind:value={email} class="form-control" id="emailAddress"
+            <input bind:this={emailInput} bind:value={email} class="form-control" id="email"
                    placeholder="name@example.com" required type="email">
-            <label for="emailAddress">Email address</label>
+            <label for="email">Email address</label>
         </div>
         <div class="form-floating mb-3">
             <input bind:this={passwordInput} bind:value={password} class="form-control" id="password"

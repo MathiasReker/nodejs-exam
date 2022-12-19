@@ -4,7 +4,7 @@
     import { baseUrl, user } from '../js/stores';
     import Pagination from '../components/Pagination.svelte';
 
-    const ownedWineGlasses = $user.wineGlasses.length;
+    const ownedWineGlasses = $user.settings.wineGlasses.length;
 
     let totalWineGlasses = 0;
 

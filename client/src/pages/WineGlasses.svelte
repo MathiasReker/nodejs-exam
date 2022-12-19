@@ -4,7 +4,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Pagination from '../components/Pagination.svelte';
 
-    let options = $user.wineGlasses || [];
+    let options = $user.settings.wineGlasses || [];
 
     const fetchWineGlasses = (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
       method: 'GET',

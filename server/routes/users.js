@@ -8,6 +8,20 @@ import { sendMail } from '../util/sendMail.js';
 
 const router = Router();
 
+router.get('/:email/statistics', async (req, res) => {
+  const { email } = req.params;
+
+  const user = await User.findOne({ email });
+
+  const { lookups } = user.statistics;
+  console.log(user);
+  res.send({
+    data: {
+      lookups,
+    },
+  });
+});
+
 router.post('/:email/recover', async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 
@@ -75,7 +89,7 @@ router.put('/:email/wineGlasses', async (req, res) => {
 });
 
 router.put('/:email/statistics', async (req, res) => {
-  const { email } = req.params;
+  const { email } = req.params; // TODO
 
   const result = await User.findOneAndUpdate(
     { email },
@@ -86,18 +100,5 @@ router.put('/:email/statistics', async (req, res) => {
   res.send(result);
 });
 
-router.get('/:email/statistics', async (req, res) => {
-  const { email } = req.params;
-
-  const user = await User.findOne({ email });
-
-  const { lookups } = user.statistics;
-  console.log(user);
-  res.send({
-    data: {
-      lookups,
-    },
-  });
-});
 
 export default router;

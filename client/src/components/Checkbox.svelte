@@ -23,12 +23,12 @@
           },
           body: JSON.stringify({
             email: $user.email,
-            wineGlasses: bindGroup,
+            wineGlasses: bindGroup
           }),
         })
           .then((response) => response.json())
           .then(() => {
-            $user.wineGlasses = bindGroup;
+            $user.settings.wineGlasses = bindGroup;
             localStorage.setItem('user', JSON.stringify($user));
 
             displaySuccess('Settings saved!');

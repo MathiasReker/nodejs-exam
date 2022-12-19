@@ -2,6 +2,7 @@
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Pagination from '../components/Pagination.svelte';
+    import {Link} from "svelte-navigator";
 </script>
 
 <Nav/>
@@ -15,4 +16,10 @@
         perferendis perspiciatis voluptatem voluptatum!</p>
 
     <ForgotPasswordForm/>
+
+    <div class="mt-2 text-center">
+        <p>
+            <Link to="/signin">Sign in</Link>
+        </p>
+    </div>
 </main>
