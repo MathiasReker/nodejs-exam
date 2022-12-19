@@ -20,38 +20,33 @@
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class="p-3 mx-auto fixed-top fixed-top {shadow}" id="nav-wrapper" style="background-color: {background}">
-        <nav class="cover-container mx-auto">
-            <a href="/" use:link>
-                <h3 class="nav nav-masthead float-start" style="color: {color}">Wine Glass Guide</h3>
-            </a>
-            <div class="nav nav-masthead float-end">
-                <div class="btn-group">
-                    <a aria-expanded="false" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                       style="color: {color}" type="button">
-                <span class="mx-2">
+    <div class=" mx-auto fixed-top fixed-top {shadow}" id="nav-wrapper" style="background-color: {background}">
+        <nav class="cover-container navbar mx-auto px-3">
+            <a class="navbar-brand" href="/" use:link><h3 style="color: {color}">Wine Glass Guide</h3></a>
+
+            <div class="btn-group">
+                <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                   style="color: {color}">
                     <Icon color="{color}" size="20px" src={AiOutlineUser}/>
                     {#if $user} {$user.name}{/if}
-                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {#if $user}
-                            <li><a class="dropdown-item" href="/wine-glasses" use:link>Your wine glasses</a></li>
-                            <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/settings" use:link>Settings</a></li>
-                            <li><a class="dropdown-item" href="/about" use:link>Help</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#" on:click={handleLogout} use:link>Log out</a></li>
-                        {:else}
-                            <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
-                        {/if}
-                    </ul>
-                </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    {#if $user}
+                        <li><a class="dropdown-item" href="/wine-glasses" use:link>Your wine glasses</a></li>
+                        <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/settings" use:link>Settings</a></li>
+                        <li><a class="dropdown-item" href="/about" use:link>Help</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" on:click={handleLogout} use:link>Log out</a></li>
+                    {:else}
+                        <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
+                    {/if}
+                </ul>
             </div>
         </nav>
     </div>
@@ -59,6 +54,6 @@
 
 <style>
     .box-shadow {
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15),inset 0 -1px 0 rgba(0,0,0,0.15);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     }
 </style>

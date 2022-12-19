@@ -23,16 +23,16 @@
     <h1>My collection of wine glasses</h1>
     <p>Select your wine glasses below..</p>
 
-    <div class="container text-center">
+    <div class="text-center">
         {#await fetchWineGlasses}
             <p>Loading ...</p> <!-- TODO: use spinner -->
         {:then response}
             {#each response.data as wineGlass}
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <div class="form-check form-switch form-check-lg">
+
                             <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
-                        </div>
+
                     </div>
                     <div class="col-5">
                         {wineGlass.name}

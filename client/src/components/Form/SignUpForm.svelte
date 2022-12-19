@@ -15,6 +15,8 @@
 
     let loading = false;
 
+    let yes = false;
+
     onMount(() => {
       emailInput.focus();
     });
@@ -53,6 +55,17 @@
                type="password">
         <label for="password">Password</label>
     </div>
+    <div class="form-check mb-3">
+        <input bind:checked={yes} class="form-check-input" id="gdpr" type="checkbox" value="">
+        <label class="form-check-label" for="gdpr">
+            I agree to the <a href="#">privacy policy</a>
+        </label>
+    </div>
+    {#if !yes}
+        <div class="alert alert-warning" role="alert">
+            You must opt-in to continue.
+        </div>
+    {/if}
 
-    <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Submit</button>
+    <button class="w-100 btn btn-lg btn-primary" disabled="{!yes || loading}" type="submit">Submit</button>
 </form>

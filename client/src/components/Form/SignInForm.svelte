@@ -60,6 +60,6 @@
             <label for="password">Password</label>
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Submit</button>
+        <button class="w-100 btn btn-lg btn-primary" disabled={loading} type="submit">Submit</button>
     </form>
 </main>
