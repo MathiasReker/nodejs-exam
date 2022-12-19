@@ -1,7 +1,6 @@
 <script>
     import { navigate, Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
-    import signin from './pages/SignIn.svelte';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
@@ -22,6 +21,8 @@
         });
       }
     }
+
+
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
