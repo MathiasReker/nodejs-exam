@@ -28,7 +28,6 @@
         body: JSON.stringify({ name, email, password }),
       }).then(() => {
         navigate('/');
-        location.reload();
       }).catch(() => {
         displayError('Something went wrong...');
       }).finally(() => {

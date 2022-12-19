@@ -3,7 +3,7 @@
     import AiOutlineCheck from 'svelte-icons-pack/ai/AiOutlineCheck';
     import AiOutlineClose from 'svelte-icons-pack/ai/AiOutlineClose';
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import { baseUrl, user } from '../js/stores';
+    import {baseUrl, user} from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
 
@@ -14,46 +14,49 @@
     let wineGlasses = [];
 
     (async () => await fetch(`${$baseUrl}/api/grapes`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    })
-      .then((response) => response.json()))()
-      .then((response) => {
-        grapes = response.data.grapes;
-      });
-
-    const onChange = async () => {
-      if (!selectedGrape) {
-        return;
-      }
-
-      (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token': $user.token,
-        },
-      }).then((response) => response.json()))()
-        .then((response) => {
-          wineGlasses = [];
-          response.data.forEach((wineGlass) => {
-            wineGlasses.push(wineGlass);
-          });
-        });
-
-      // Update statistics
-      await (async () => {
-        await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-          method: 'PUT',
-          headers: {
             'Content-Type': 'application/json',
             'auth-token': $user.token,
-          },
-        }).then((response) => response.json());
-      })();
+        },
+    })
+        .then((response) => response.json()))()
+        .then((response) => {
+            grapes = response.data.grapes;
+        });
+
+    const onChange = async () => {
+        if (!selectedGrape) {
+            return;
+        }
+
+        (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': $user.token,
+            },
+        }).then((response) => response.json()))()
+            .then((response) => {
+                wineGlasses = [];
+                response.data.forEach((wineGlass) => {
+                    wineGlasses.push(wineGlass);
+                });
+            });
+
+        // Update statistics
+        await (async () => {
+            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': $user.token,
+                },
+                body: JSON.stringify({
+                    lookup: true
+                })
+            }).then((response) => response.json());
+        })();
     };
 
     const color = '#EBD4CC';
