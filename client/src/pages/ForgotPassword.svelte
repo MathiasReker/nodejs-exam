@@ -1,8 +1,8 @@
 <script>
+    import { Link } from 'svelte-navigator';
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Pagination from '../components/Pagination.svelte';
-    import {Link} from "svelte-navigator";
 </script>
 
 <Nav/>

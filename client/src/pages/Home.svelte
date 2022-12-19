@@ -1,11 +1,11 @@
 <script>
     import AutoComplete from 'simple-svelte-autocomplete';
-    import {baseUrl, user} from '../js/stores';
+    import AiOutlineCheck from 'svelte-icons-pack/ai/AiOutlineCheck';
+    import AiOutlineClose from 'svelte-icons-pack/ai/AiOutlineClose';
+    import Icon from 'svelte-icons-pack/Icon.svelte';
+    import { baseUrl, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-    import AiOutlineCheck from "svelte-icons-pack/ai/AiOutlineCheck";
-    import AiOutlineClose from "svelte-icons-pack/ai/AiOutlineClose";
-    import Icon from 'svelte-icons-pack/Icon.svelte';
 
     let grapes = [];
 
@@ -14,46 +14,46 @@
     let wineGlasses = [];
 
     (async () => await fetch(`${$baseUrl}/api/grapes`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'auth-token': $user.token,
-        },
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': $user.token,
+      },
     })
-        .then((response) => response.json()))()
-        .then((response) => {
-            grapes = response.data.grapes;
-        });
+      .then((response) => response.json()))()
+      .then((response) => {
+        grapes = response.data.grapes;
+      });
 
     const onChange = async () => {
-        if (!selectedGrape) {
-            return;
-        }
+      if (!selectedGrape) {
+        return;
+      }
 
-        (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': $user.token,
-            },
-        }).then((response) => response.json()))()
-            .then((response) => {
-                wineGlasses = [];
-                response.data.forEach((wineGlass) => {
-                    wineGlasses.push(wineGlass);
-                });
-            });
+      (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': $user.token,
+        },
+      }).then((response) => response.json()))()
+        .then((response) => {
+          wineGlasses = [];
+          response.data.forEach((wineGlass) => {
+            wineGlasses.push(wineGlass);
+          });
+        });
 
-        // Update statistics
-        await (async () => {
-            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'auth-token': $user.token,
-                },
-            }).then((response) => response.json());
-        })();
+      // Update statistics
+      await (async () => {
+        await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': $user.token,
+          },
+        }).then((response) => response.json());
+      })();
     };
 
     const color = '#EBD4CC';

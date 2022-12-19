@@ -25,22 +25,22 @@
 
     <div class="container text-center">
         {#await fetchWineGlasses}
-            <p>Loading ...</p>
-        {:then data}
-            {#each data.data as el}
+            <p>Loading ...</p> <!-- TODO: use spinner -->
+        {:then response}
+            {#each response.data as wineGlass}
                 <div class="row align-items-center">
                     <div class="col-3">
                         <div class="form-check form-switch form-check-lg">
-                            <Checkbox value="{el.name}" bind:bindGroup={options}></Checkbox>
+                            <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
                         </div>
                     </div>
                     <div class="col-5">
-                        {el.name}
+                        {wineGlass.name}
                     </div>
                     <div class="col-4 text-right">
                         <img alt=""
                              class="img-fluid"
-                             src="{el.image}">
+                             src="{wineGlass.image}">
                     </div>
                 </div>
             {/each}
@@ -48,5 +48,4 @@
             <p style="color: red">{error.message}</p>
         {/await}
     </div>
-    {options}
 </main>

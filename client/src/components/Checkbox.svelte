@@ -23,7 +23,7 @@
           },
           body: JSON.stringify({
             email: $user.email,
-            wineGlasses: bindGroup
+            wineGlasses: bindGroup,
           }),
         })
           .then((response) => response.json())

@@ -31,7 +31,7 @@
         .then((response) => response.json())
         .then((response) => {
           if (response.data.user) {
-              console.log(response.data.user)
+            console.log(response.data.user);
             localStorage.setItem('user', JSON.stringify(response.data.user));
 
             navigate('/');

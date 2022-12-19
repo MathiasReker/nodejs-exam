@@ -100,5 +100,4 @@ router.put('/:email/statistics', async (req, res) => {
   res.send(result);
 });
 
-
 export default router;
