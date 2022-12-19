@@ -7,6 +7,9 @@
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
 
+    import io from "socket.io-client";
+    import {displaySuccess} from "../js/toast.js";
+
     let grapes = [];
 
     let selectedGrape;
@@ -57,6 +60,16 @@
           }),
         }).then((response) => response.json());
       })();
+
+        const message = `${$user.name} looked up a ${selectedGrape}`
+        const socket = io.connect("http://127.0.0.1:3000");
+
+     /*   socket.once("foo", (data) => {
+            displaySuccess(data.data)
+        });
+*/
+
+        socket.emit("client choose a new color", {data: message});
     };
 
     const color = '#EBD4CC';
@@ -98,5 +111,7 @@
                 </div>
             {/each}
         </div>
+
     {/if}
+
 </main>

@@ -3,7 +3,6 @@
     import Nav from '../components/Layout/Nav.svelte';
     import { baseUrl, user } from '../js/stores';
     import Pagination from '../components/Pagination.svelte';
-    import SvelteChat from "./SvelteChat.svelte";
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
 
@@ -55,6 +54,4 @@
     <a class="btn btn-primary mt-3" href="/wine-glasses" use:link> Update collection</a>
 
     <div>You have lookup up a glass: {lookups}</div>
-
-    <SvelteChat/>
 </main>

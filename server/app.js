@@ -27,6 +27,7 @@ app.use(cors({
 }));
 
 const server = http.createServer(app);
+
 const io = new Server(server, {
     cors: {
         origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
@@ -36,7 +37,7 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
     socket.on("client choose a new color", (data) => {
-        io.emit("update the color", data);
+        io.emit("foo", data);
     });
 });
 
