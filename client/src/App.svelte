@@ -14,7 +14,7 @@
     import PageNotFound from './pages/PageNotFound.svelte';
     import Signin from './pages/SignIn.svelte';
     import io from "socket.io-client";
-    import {displaySuccess} from "./js/toast.js";
+    import {displayMessage, displaySuccess} from "./js/toast.js";
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -28,7 +28,7 @@
     const socket = io.connect("http://127.0.0.1:3000");
 
     socket.on("foo", (data) => {
-        displaySuccess(data.data)
+        displayMessage(data.data)
     });
 
 </script>

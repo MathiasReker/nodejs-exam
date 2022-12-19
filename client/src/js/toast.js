@@ -16,6 +16,15 @@ export const displayError = (message) => toast.push(message, {
     '--toastBarBackground': '#2F855A',
   },
 });
+
+export const displayMessage = (message) => toast.push(message, {
+  theme: {
+    '--toastColor': 'lightblue',
+    '--toastBackground': 'rgba(72,187,170,0.9)',
+    '--toastBarBackground': '#2f6785',
+  },
+});
+
 /*
 export const warning = m => toast.push(m, { theme: { ... } })
 
