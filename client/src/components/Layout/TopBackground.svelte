@@ -8,7 +8,7 @@
         width: 100%;
         height: 330px;
         z-index: -1;
-        background: linear-gradient(242deg, #894242, #D55C5A);
+        background: linear-gradient(242deg, #a52bea, #D55C5A);
         background-size: 400% 400%;
         -webkit-animation: background 29s ease infinite;
         -moz-animation: background 29s ease infinite;

@@ -3,12 +3,9 @@
     import AiOutlineCheck from 'svelte-icons-pack/ai/AiOutlineCheck';
     import AiOutlineClose from 'svelte-icons-pack/ai/AiOutlineClose';
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import { baseUrl, user } from '../js/stores';
+    import {baseUrl, user} from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-
-    import io from "socket.io-client";
-    import {displaySuccess} from "../js/toast.js";
 
     let grapes = [];
 
@@ -17,67 +14,63 @@
     let wineGlasses = [];
 
     (async () => await fetch(`${$baseUrl}/api/grapes`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    })
-      .then((response) => response.json()))()
-      .then((response) => {
-        grapes = response.data.grapes;
-      });
-
-    const onChange = async () => {
-      if (!selectedGrape) {
-        return;
-      }
-
-      (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'auth-token': $user.token,
-        },
-      }).then((response) => response.json()))()
-        .then((response) => {
-          wineGlasses = [];
-          response.data.forEach((wineGlass) => {
-            wineGlasses.push(wineGlass);
-          });
-        });
-
-      // Update statistics
-      await (async () => {
-        await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
-          method: 'PUT',
-          headers: {
             'Content-Type': 'application/json',
             'auth-token': $user.token,
-          },
-          body: JSON.stringify({
-            lookup: true,
-          }),
-        }).then((response) => response.json());
-      })();
-
-        const socket = io.connect("http://127.0.0.1:3000");
-
-     /*   socket.once("foo", (data) => {
-            displaySuccess(data.data)
+        },
+    })
+        .then((response) => response.json()))()
+        .then((response) => {
+            grapes = response.data.grapes;
         });
-*/
-           // socket.emit("client choose a new color", {data: message});
 
+    const onChange = async () => {
+        if (!selectedGrape) {
+            return;
+        }
 
-        socket.emit(
-            "client choose a new color",
-            {
-            data: {
-                email: $user.email,
-                grape: selectedGrape,
-            }
-        })
+        (async () => await fetch(`${$baseUrl}/api/wineGlasses?grape=${encodeURIComponent(selectedGrape)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': $user.token,
+            },
+        }).then((response) => response.json()))()
+            .then((response) => {
+                wineGlasses = [];
+                response.data.forEach((wineGlass) => {
+                    wineGlasses.push(wineGlass);
+                });
+            });
+
+        // Update statistics
+        await (async () => {
+            await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': $user.token,
+                },
+                body: JSON.stringify({
+                    lookup: true,
+                }),
+            }).then((response) => response.json());
+        })();
+
+        await (async () => {
+            await fetch(`${$baseUrl}/api/messages`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': $user.token,
+                },
+                body: JSON.stringify({
+                    email: $user.email,
+                    grape: selectedGrape,
+                })
+            }).then((response) => response.json());
+        })()
     };
 
     const color = '#EBD4CC';

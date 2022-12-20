@@ -12,6 +12,7 @@ import mail from './routes/mail.js';
 import users from './routes/users.js';
 import http from "http";
 import {Server} from "socket.io";
+import messages from "./routes/messages.js";
 
 dotenv.config();
 
@@ -39,10 +40,12 @@ app.use((req, res, next) => {
     req.io = io;
     return next();
 });
+
 app.use(helmet());
 app.use(express.json()); // for body parser
 app.use('/api/auth', auth);
 app.use('/api/mail', mail);
+app.use('/api/messages', verifyToken, messages);
 app.use('/api/settings', verifyToken, settings);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
