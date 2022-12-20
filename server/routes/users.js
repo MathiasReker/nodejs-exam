@@ -5,6 +5,7 @@ import User from '../model/User.js';
 
 // validation
 import { sendMail } from '../util/sendMail.js';
+import WineGlass from "../model/WineGlass.js";
 
 const router = Router();
 
@@ -14,7 +15,7 @@ router.get('/:email/statistics', async (req, res) => {
   const user = await User.findOne({ email });
 
   const { lookups } = user.statistics;
-  console.log(user);
+
   res.send({
     data: {
       lookups,
@@ -103,7 +104,32 @@ router.put('/:email/statistics', async (req, res) => {
     );
   }
 
+
+  // TODO make a new endpoint!
+
+  req.io.once("connection", (socket) => {
+    socket.on("client choose a new color", async (data) => {
+      const email = data.data.email;
+      const grape = data.data.grape;
+
+      const user = await User.findOne({email});
+      if (!user) {
+        return;
+      }
+
+      const wineGlass = await WineGlass.find({grapes: grape}).exec();
+      if (!wineGlass) {
+        return;
+      }
+
+      const message = `<strong>${user.name}</strong> looked up the <strong>${grape}</strong> grape`;
+
+      req.io.emit("foo", {data: message});
+    });
+  });
+
   res.send(result);
 });
 
 export default router;
+

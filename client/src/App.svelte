@@ -12,7 +12,7 @@
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
-    import Signin from './pages/SignIn.svelte';
+    import SignIn from './pages/SignIn.svelte';
     import io from "socket.io-client";
     import {displayMessage, displaySuccess} from "./js/toast.js";
 
@@ -54,7 +54,7 @@
             </Route>
         {:else}
             <Route path="/signin">
-                <Signin/>
+                <SignIn/>
             </Route>
             <Route path="/signup">
                 <SignUp/>

@@ -10,7 +10,6 @@ import settings from './routes/settings.js';
 import wineGlasses from './routes/wineGlasses.js';
 import mail from './routes/mail.js';
 import users from './routes/users.js';
-
 import http from "http";
 import {Server} from "socket.io";
 
@@ -25,31 +24,27 @@ app.use(cors({
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
 }));
-
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
         origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
+        credentials: true,
         methods: ["GET", "POST"]
     }
 });
 
-io.on("connection", (socket) => {
-    socket.on("client choose a new color", (data) => {
-        io.emit("foo", data);
-    });
+app.use((req, res, next) => {
+    req.io = io;
+    return next();
 });
-
-console.log(3)
-
 app.use(helmet());
 app.use(express.json()); // for body parser
 app.use('/api/auth', auth);
 app.use('/api/mail', mail);
-app.use('/api/settings', settings);
+app.use('/api/settings', verifyToken, settings);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
 app.use('/api/users', verifyToken, users);
 server.listen(process.env.PORT);
-
