@@ -1,6 +1,7 @@
 <script>
-    import { baseUrl, user } from '../js/stores';
+    import { user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
+    import { request } from '../js/fetchWrapper.js';
 
     export let bindGroup = [];
     export let value = '';
@@ -15,18 +16,13 @@
 
       // save to database
       (() => {
-        fetch(`${$baseUrl}/api/users/${$user.email}/wineGlasses`, {
+        request(`/api/users/${$user.email}/wineGlasses`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token': $user.token,
-          },
-          body: JSON.stringify({
+          body: {
             email: $user.email,
             wineGlasses: bindGroup,
-          }),
+          },
         })
-          .then((response) => response.json())
           .then(() => {
             $user.settings.wineGlasses = bindGroup;
             localStorage.setItem('user', JSON.stringify($user));

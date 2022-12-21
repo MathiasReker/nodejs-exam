@@ -3,6 +3,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import { baseUrl, user } from '../js/stores';
     import Pagination from '../components/Pagination.svelte';
+    import { request } from '../js/fetchWrapper.js';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
 
@@ -12,27 +13,19 @@
 
     let lookups = 0;
 
-    (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
+    (async () => await request('/api/wineGlasses', {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    }).then((response) => response.json()))()
-      .then((response) => {
-        totalWineGlasses = response.data.length;
+    }))()
+      .then((res) => {
+        totalWineGlasses = res.data.length;
         percentOwned = ownedWineGlasses / totalWineGlasses * 100;
       });
 
-    (async () => await fetch(`${$baseUrl}/api/users/${$user.email}/statistics`, {
+    (async () => await request(`/api/users/${$user.email}/statistics`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    }).then((response) => response.json()))()
-      .then((response) => {
-        lookups = response.data.lookups;
+    }))()
+      .then((res) => {
+        lookups = res.data.lookups;
       });
 </script>
 

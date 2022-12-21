@@ -1,5 +1,7 @@
 <div class="mx-auto fixed-top top-image"></div>
 
+<!-- TODO: cool stylings fonts : https://marcoghiani.com/blog/write-a-javascript-fetch-wrapper-in-less-than-1kb -->
+
 <style>
     .top-image {
         position: absolute;

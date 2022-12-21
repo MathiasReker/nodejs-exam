@@ -3,6 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { baseUrl } from '../../js/stores';
     import { displayError } from '../../js/toast';
+    import { request } from '../../js/fetchWrapper.js';
 
     let email = '';
     let emailInput = null;
@@ -21,18 +22,13 @@
 
       const user = { email, password };
 
-      await fetch(`${$baseUrl}/api/auth/signin`, {
+      await request('/api/auth/signin', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
+        body: user,
       })
-        .then((response) => response.json())
-        .then((response) => {
-          if (response.data.user) {
-            console.log(response.data.user);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
+        .then((res) => {
+          if (res.data.user) {
+            localStorage.setItem('user', JSON.stringify(res.data.user));
 
             navigate('/');
             location.reload();

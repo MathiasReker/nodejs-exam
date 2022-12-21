@@ -1,20 +1,20 @@
 <script>
     import { navigate, Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
+    import io from 'socket.io-client';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import { user } from './js/stores';
+    import {baseUrl, user} from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
-    import io from "socket.io-client";
-    import {displayMessage, displaySuccess} from "./js/toast.js";
+    import { displayMessage } from './js/toast.js';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -25,14 +25,11 @@
     }
 
     // TODO move to component..
-    const socket = io.connect("http://127.0.0.1:3000");
-
-    socket.on("foo", (data) => {
-        displayMessage(data.data)
+    io.connect($baseUrl).on('message:create', (res) => {
+      displayMessage(res.data);
     });
 
 </script>
-
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
     <Router>

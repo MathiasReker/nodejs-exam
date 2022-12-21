@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { baseUrl, user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
+    import { request } from '../../js/fetchWrapper.js';
 
     let email = $user.email || '';
     let emailInput = null;
@@ -21,10 +22,9 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      await fetch(`${$baseUrl}/api/mail`, {
+      await request('/api/mail', {
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: { name, email, message },
       }).then(() => {
         message = '';
         displaySuccess('The message was sent.');

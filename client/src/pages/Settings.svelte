@@ -5,13 +5,9 @@
 
     // TODO csv
     const handleOnSubmitExport = async () => {
-      const csv = async () => await fetch(`${$baseUrl}/api/settings/csv`, {
+      const csv = async () => await request(`${$baseUrl}/api/settings/csv`, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token': $user.token,
-        },
-      }).then((response) => response.json());
+      });
     };
 
 </script>
@@ -36,7 +32,7 @@
                 class="btn btn-secondary"
                 on:submit|preventDefault={handleOnSubmitExport}
                 type="button">
-        Start export
+            Start export
         </button>
     </div>
 

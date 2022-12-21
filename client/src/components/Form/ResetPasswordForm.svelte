@@ -1,8 +1,8 @@
 <script>
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
-    import { baseUrl } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
+    import { request } from '../../js/fetchWrapper.js';
 
     const urlParams = new URLSearchParams(location.search);
     const email = urlParams.get('email');
@@ -20,20 +20,16 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      await fetch(`${$baseUrl}/api/users/${email}/reset`, {
+      await request(`/api/users/${email}/reset`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+        body: {
           password,
           token,
-        }),
+        },
       })
-        .then((response) => response.json())
-        .then((response) => {
-          if (response.error) {
-            displayError(response.error);
+        .then((res) => {
+          if (res.error) {
+            displayError(res.error);
           } else {
             displaySuccess('Password successfully resat.');
             navigate('/signin');

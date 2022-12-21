@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { baseUrl } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
+    import { request } from '../../js/fetchWrapper.js';
 
     let email = '';
 
@@ -16,22 +17,16 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      await fetch(`${$baseUrl}/api/users/${email}/recover`, {
+      await request(`/api/users/${email}/recover`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then(() => {
-          displaySuccess('If the user exists an email is send.');
-          email = '';
-        }).catch(() => {
-          displayError('Something went wrong.');
-        })
-        .finally(() => {
-          loading = false;
-        });
+      }).then(() => {
+        displaySuccess('If the user exists an email is send.');
+        email = '';
+      }).catch(() => {
+        displayError('Something went wrong.');
+      }).finally(() => {
+        loading = false;
+      });
     };
 </script>
 

@@ -3,16 +3,13 @@
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Pagination from '../components/Pagination.svelte';
+    import { request } from '../js/fetchWrapper.js';
 
     let options = $user.settings.wineGlasses || [];
 
-    const fetchWineGlasses = (async () => await fetch(`${$baseUrl}/api/wineGlasses`, {
+    const fetchWineGlasses = (() => request('/api/wineGlasses', {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': $user.token,
-      },
-    }).then((response) => response.json()))();
+    }))();
 </script>
 
 <Nav/>
@@ -30,9 +27,7 @@
             {#each response.data as wineGlass}
                 <div class="row align-items-center">
                     <div class="col-3">
-
-                            <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
-
+                        <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
                     </div>
                     <div class="col-5">
                         {wineGlass.name}

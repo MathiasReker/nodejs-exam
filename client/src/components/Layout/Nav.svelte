@@ -1,21 +1,21 @@
 <script>
-    import {link, navigate} from 'svelte-navigator';
+    import { link, navigate } from 'svelte-navigator';
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineUser from 'svelte-icons-pack/ai/AiOutlineUser';
-    import {user} from '../../js/stores';
+    import { user } from '../../js/stores';
 
     export let color = '#514945';
     export let background = 'transparent';
 
     let shadow = '';
     if (background) {
-        shadow = 'box-shadow';
+      shadow = 'box-shadow';
     }
 
     const handleLogout = () => {
-        $user = null;
-        localStorage.clear();
-        navigate('/signin');
+      $user = null;
+      localStorage.clear();
+      navigate('/signin');
     };
 </script>
 

@@ -5,7 +5,7 @@ import User from '../model/User.js';
 
 // validation
 import { sendMail } from '../util/sendMail.js';
-import WineGlass from "../model/WineGlass.js";
+import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 
@@ -108,4 +108,3 @@ router.put('/:email/statistics', async (req, res) => {
 });
 
 export default router;
-

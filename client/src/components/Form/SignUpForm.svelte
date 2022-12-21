@@ -1,8 +1,8 @@
 <script>
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
-    import { baseUrl } from '../../js/stores';
     import { displayError } from '../../js/toast';
+    import { request } from '../../js/fetchWrapper.js';
 
     let email = '';
     let emailInput = null;
@@ -24,10 +24,9 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      await fetch(`${$baseUrl}/api/auth/signup`, {
+      await request('/api/auth/signup', {
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: { name, email, password },
       }).then(() => {
         navigate('/');
       }).catch(() => {
