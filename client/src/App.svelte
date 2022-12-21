@@ -7,7 +7,7 @@
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import {baseUrl, user} from './js/stores';
+    import {baseUrl, lang, user} from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -15,6 +15,8 @@
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
     import { displayMessage } from './js/toast.js';
+    import {onMount} from "svelte";
+    import Page from "./components/Page.svelte";
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -28,6 +30,11 @@
     io.connect($baseUrl).on('message:create', (res) => {
       displayMessage(res.data);
     });
+
+    onMount(async () => {
+        //const langDB = await getLang();
+        lang.set("en")
+    })
 
 </script>
 
@@ -66,7 +73,7 @@
         <Route component="{PageNotFound}"></Route>
     </Router>
     <Footer/>
-
+<Page></Page>
     <SvelteToast/>
 
 </div>
