@@ -2,12 +2,13 @@
     import { navigate, Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
+    import { onMount } from 'svelte';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import {baseUrl, lang, user} from './js/stores';
+    import { baseUrl, lang, user } from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -15,8 +16,6 @@
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
     import { displayMessage } from './js/toast.js';
-    import {onMount} from "svelte";
-    import Page from "./components/Page.svelte";
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -26,16 +25,13 @@
       }
     }
 
-    // TODO move to component..
     io.connect($baseUrl).on('message:create', (res) => {
       displayMessage(res.data);
     });
 
     onMount(async () => {
-        //const langDB = await getLang();
-        lang.set("en")
-    })
-
+      lang.set('en'); // TODO
+    });
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
@@ -73,9 +69,5 @@
         <Route component="{PageNotFound}"></Route>
     </Router>
     <Footer/>
-<Page></Page>
     <SvelteToast/>
-
 </div>
-
-<!-- https://github.com/sveltejs/prettier-plugin-svelte -->

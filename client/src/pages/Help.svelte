@@ -1,19 +1,29 @@
 <script>
     import ContactForm from '../components/Form/ContactForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Lang from '../components/Lang.svelte';
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/help', text: 'Help' },
+    ];
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Help"/>
+    <Breadcrumbs {items}/>
 
-    <h1>Cool project...</h1>
+    <div class="pt-3">
+        <h1>
+            <Lang page="help" trans="title"></Lang>
+        </h1>
 
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur culpa dolor earum, eligendi
-        magnam molestias nemo placeat praesentium reiciendis repellendus ut veritatis. Consequatur dolore incidunt iure
-        perferendis perspiciatis voluptatem voluptatum!</p>
+        <p class="lead">
+            <Lang page="help" trans="deck"></Lang>
+        </p>
 
-    <ContactForm/>
+        <ContactForm/>
+    </div>
 </main>

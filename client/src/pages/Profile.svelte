@@ -1,9 +1,10 @@
 <script>
     import { link } from 'svelte-navigator';
     import Nav from '../components/Layout/Nav.svelte';
-    import { baseUrl, user } from '../js/stores';
-    import Pagination from '../components/Pagination.svelte';
+    import { user } from '../js/stores';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import { request } from '../js/fetchWrapper.js';
+    import Head from './Head.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
 
@@ -27,12 +28,18 @@
       .then((res) => {
         lookups = res.data.lookups;
       });
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/profile', text: 'Profile' },
+    ];
 </script>
 
 <Nav/>
 
-<main>
-    <Pagination page="Profile"/>
+<Head title="Profile"/>
+<main class="px-3">
+    <Breadcrumbs {items}/>
 
     <h1>Profile</h1>
     <div>In here you can see stats for your account. Also, you</div>

@@ -6,14 +6,11 @@ export const user = writable(
 
 export const baseUrl = writable('http://localhost:3000');
 
-const languageStore = writable("en");
+const languageStore = writable('en');
 
 export const lang = {
-    subscribe: languageStore.subscribe,
-    set: (language) => {
-        languageStore.set(language);
-    },
+  subscribe: languageStore.subscribe,
+  set: (language) => {
+    languageStore.set(language);
+  },
 };
-
-
-

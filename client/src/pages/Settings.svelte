@@ -1,7 +1,11 @@
 <script>
-    import { baseUrl, user } from '../js/stores';
+    import { baseUrl, lang } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import { request } from '../js/fetchWrapper.js';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Lang from '../components/Lang.svelte';
+    import Head from './Head.svelte';
+    import { languages } from '../js/language.js';
 
     // TODO csv
     const handleOnSubmitExport = async () => {
@@ -10,36 +14,51 @@
       });
     };
 
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/settings', text: 'Settings' },
+    ];
 </script>
 
+<Head title="{languages.settings.title[$lang]}"></Head>
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Settings"/>
+    <Breadcrumbs {items}/>
 
     <div>
-        <h2>Change username</h2>
+        <h2>
+            <Lang page="settings" trans="usernameTitle"></Lang>
+        </h2>
         <hr>
-        <p>Changing your username can have unintended side effects.</p>
-        <button class="btn btn-secondary" type="button">Change username</button>
-    </div>
-
-    <div class="pt-5">
-        <h2>Export account data</h2>
-        <hr>
-        <p>Export all profile metadata for {$user.name} in a CSV format.</p>
-        <button
-                class="btn btn-secondary"
-                on:submit|preventDefault={handleOnSubmitExport}
-                type="button">
-            Start export
+        <p>
+            <Lang page="settings" trans="usernameDescription"></Lang>
+        </p>
+        <button class="btn btn-secondary" type="button">
+            <Lang page="settings" trans="usernameBtn"></Lang>
         </button>
     </div>
 
     <div class="pt-5">
-        <h2 class="text-danger">Delete account</h2>
+        <h2>
+            <Lang page="settings" trans="exportAccountDataTitle"></Lang>
+        </h2>
         <hr>
-        <p>Your account is currently </p>
-        <button class="btn btn-danger" type="button">Delete your account</button>
+        <p>
+            <Lang page="settings" trans="exportAccountDataDescription"></Lang>
+        </p>
+        <button
+                class="btn btn-secondary"
+                on:submit|preventDefault={handleOnSubmitExport}
+                type="button">
+            <Lang page="settings" trans="exportAccountDataBtn"></Lang>
+        </button>
+    </div>
+
+    <div class="pt-5">
+        <h2 class="text-danger"><Lang page="settings" trans="deleteAccountTitle"></Lang></h2>
+        <hr>
+        <p><Lang page="settings" trans="deleteAccountDescription"></Lang></p>
+        <button class="btn btn-danger" type="button"><Lang page="settings" trans="deleteAccountBtn"></Lang></button>
     </div>
 </main>

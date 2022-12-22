@@ -1,16 +1,24 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import Pagination from '../components/Pagination.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import SignInForm from '../components/Form/SignInForm.svelte';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Lang from '../components/Lang.svelte';
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/sign-in', text: 'Sign in' },
+    ];
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Help"/>
+    <Breadcrumbs {items}/>
 
-    <h1 class="mb-5">sign in</h1>
+    <h1 class="mb-3">
+        <Lang page="signIn" trans="title"></Lang>
+    </h1>
 
     <SignInForm/>
 

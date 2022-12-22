@@ -1,30 +1,43 @@
 <script>
-    import { baseUrl, user } from '../js/stores';
+    import { user, lang } from '../js/stores';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import { request } from '../js/fetchWrapper.js';
+    import Lang from '../components/Lang.svelte';
+    import Head from './Head.svelte';
+    import { languages } from '../js/language.js';
 
     let options = $user.settings.wineGlasses || [];
 
-    const fetchWineGlasses = (() => request('/api/wineGlasses', {
+    const wineGlasses = (() => request('/api/wineGlasses', {
       method: 'GET',
     }))();
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/wine-glasses', text: 'Wineglasses' },
+    ];
 </script>
+
+<Head title="{languages.wineGlasses.title[$lang]}"></Head>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Wine glasses"/>
-
-    <h1>My collection of wine glasses</h1>
-    <p>Select your wine glasses below..</p>
+    <Breadcrumbs {items}/>
+    <h1>
+        <Lang page="wineGlasses" trans="title"></Lang>
+    </h1>
+    <p class="lead">
+        <Lang page="wineGlasses" trans="deck"></Lang>
+    </p>
 
     <div class="text-center">
-        {#await fetchWineGlasses}
+        {#await wineGlasses}
             <p>Loading ...</p> <!-- TODO: use spinner -->
-        {:then response}
-            {#each response.data as wineGlass}
+        {:then res}
+            {#each res.data as wineGlass}
                 <div class="row align-items-center">
                     <div class="col-3">
                         <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>

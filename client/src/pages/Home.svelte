@@ -7,6 +7,8 @@
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper.js';
+    import Lang from '../components/Lang.svelte';
+    import Head from './Head.svelte';
 
     let grapes = [];
 
@@ -53,15 +55,20 @@
     };
 </script>
 
+<Head title="Wine Glass Guide"/>
+
 <Nav background="{background ?? ''}" color="{color ?? '#EBD4CC'}"/>
 
 <TopBackground/>
 
-<main class="px-3"> <!-- todo: use everywhere -->
-
+<main class="px-3">
     <div class="text-light">
-        <h1 class="pt-5">Find the wine glass</h1>
-        <p class="pb-3">Select a grape from the list below</p>
+        <h1 class="pt-5">
+            <Lang page="home" trans="title"></Lang>
+        </h1>
+        <p class="pb-3">
+            <Lang page="home" trans="subTitle"></Lang>
+        </p>
     </div>
 
     <AutoComplete
@@ -78,7 +85,7 @@
                 <div class="col">
                     <h2 class="text-center">
                         {wineGlass.name}
-                        {#if ($user.settings.wineGlasses).includes(wineGlass.name)}
+                        {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
                             <Icon color="green" size="40px" src={AiOutlineCheck}/>
                         {:else}
                             <Icon color="red" size="40px" src={AiOutlineClose}/>
@@ -88,7 +95,5 @@
                 </div>
             {/each}
         </div>
-
     {/if}
-
 </main>

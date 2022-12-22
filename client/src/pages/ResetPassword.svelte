@@ -1,13 +1,18 @@
 <script>
     import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/reset-password', text: 'Reset password' },
+    ];
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Signup"/>
+    <Breadcrumbs {items}/>
 
     <h1>
         Reset password

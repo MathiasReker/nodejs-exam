@@ -1,6 +1,5 @@
 <script>
     import { onMount } from 'svelte';
-    import { baseUrl } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper.js';
 

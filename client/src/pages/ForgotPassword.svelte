@@ -2,18 +2,24 @@
     import { Link } from 'svelte-navigator';
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
     import Nav from '../components/Layout/Nav.svelte';
-    import Pagination from '../components/Pagination.svelte';
+    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Lang from '../components/Lang.svelte';
+
+    const items = [
+      { href: '/', text: 'Home' },
+      { href: '/forgot-password', text: 'Forgot password' },
+    ];
 </script>
 
 <Nav/>
 
 <main class="px-3">
-    <Pagination page="Forgot password"/>
+    <Breadcrumbs {items}/>
 
-    <h1>Forgot password</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur culpa dolor earum, eligendi
-        magnam molestias nemo placeat praesentium reiciendis repellendus ut veritatis. Consequatur dolore incidunt iure
-        perferendis perspiciatis voluptatem voluptatum!</p>
+    <h1>
+        <Lang page="forgotPassword" trans="title"></Lang>
+    </h1>
+    <p class="lead"><Lang page="forgotPassword" trans="deck"></Lang></p>
 
     <ForgotPasswordForm/>
 

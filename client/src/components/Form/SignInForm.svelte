@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
-    import { baseUrl } from '../../js/stores';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper.js';
 
