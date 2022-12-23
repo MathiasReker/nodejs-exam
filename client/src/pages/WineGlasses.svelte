@@ -1,23 +1,23 @@
 <script>
-    import { user, lang } from '../js/stores';
+    import {lang, user} from '../js/stores';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
-    import { request } from '../js/fetchWrapper.js';
+    import {request} from '../js/fetchWrapper.js';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
-    import { languages } from '../js/language.js';
+    import {languages} from '../js/language.js';
     import {apiBaseUrl} from "../js/stores.js";
 
     let options = $user.settings.wineGlasses || [];
 
     const wineGlasses = (() => request('/api/wineGlasses', {
-      method: 'GET',
+        method: 'GET',
     }))();
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/wine-glasses', text: 'Wineglasses' },
+        {href: '/', text: 'Home'},
+        {href: '/wine-glasses', text: 'Wineglasses'},
     ];
 </script>
 
@@ -43,13 +43,13 @@
                     <div class="col-3">
                         <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
                     </div>
-                    <div class="col-7">
+                    <div class="col-7 text-start lead">
                         {wineGlass.name}
                     </div>
                     <div class="col-2 text-right">
                         <img alt=""
                              class="img-fluid"
-                             src="{`${$apiBaseUrl}${wineGlass.image}`}" style="max-height: 150px">
+                             src="{`${$apiBaseUrl}${wineGlass.image}`}" style="height: 150px">
                     </div>
                 </div>
             {/each}

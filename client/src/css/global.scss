@@ -1,0 +1,57 @@
+$primary: #457373;
+$secondary: #5A6868;
+$success: #48BBAA;
+$info: #0AABDA;
+$warning: #9B8148;
+$danger: #8d2100;
+$light: #ced4da;
+$dark: #102526;
+$body-bg: #FFF;
+
+@import "bootstrap/scss/bootstrap";
+
+body {
+  color: $dark;
+  font-family: 'Noticia Text', serif;
+}
+
+p {
+  font-size: 16px;
+}
+
+a {
+  color: $dark;
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 1000px) {
+  .cover-container {
+    width: 40vw !important;
+  }
+}
+
+@media only screen and (max-width: 999px) {
+  .cover-container {
+    width: 100vw !important;
+  }
+}
+
+.custom-autocomplete-input {
+  border-radius: 0.3rem;
+  border: 1px solid $light;
+  height: 50px;
+  line-height: 1.25;
+}
+
+.autocomplete-list {
+  border: 1px solid $light !important;
+}
+
+.autocomplete {
+  height: 3.25em !important;
+  width: 100%;
+}
+
+.autocomplete:not(.hide-arrow):not(.is-loading)::after {
+  border-color: $dark !important;
+}

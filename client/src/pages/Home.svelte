@@ -101,7 +101,7 @@
                     </div>
                     <div class="col" style="z-index: -1">
                         <img class="img-fluid" src="{`${$apiBaseUrl}${wineGlass.image}`}" alt=""
-                             style="max-height: 400px">
+                             style="max-height: 35vh">
                     </div>
                 {/each}
             </div>

@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import './css/autocomplete.css';
-import './css/bootstrap.css';
-import './css/global.css';
+import './css/global.scss';
 
 import App from './App.svelte';
 
