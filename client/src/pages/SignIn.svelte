@@ -4,12 +4,15 @@
     import SignInForm from '../components/Form/SignInForm.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
+    import Head from "./Head.svelte";
 
     const items = [
       { href: '/', text: 'Home' },
       { href: '/sign-in', text: 'Sign in' },
     ];
 </script>
+
+<Head title="Sing in"/>
 
 <Nav/>
 

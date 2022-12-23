@@ -35,9 +35,10 @@
     ];
 </script>
 
+<Head title="Profile"/>
+
 <Nav/>
 
-<Head title="Profile"/>
 <main class="px-3">
     <Breadcrumbs {items}/>
 

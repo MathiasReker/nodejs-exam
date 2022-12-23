@@ -7,11 +7,6 @@
     export let color = '#514945';
     export let background = 'transparent';
 
-    let shadow = '';
-    if (background) {
-      shadow = 'box-shadow';
-    }
-
     const handleLogout = () => {
       $user = null;
       localStorage.clear();
@@ -20,7 +15,7 @@
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class=" mx-auto fixed-top fixed-top {shadow}" id="nav-wrapper" style="background-color: {background}">
+    <div class=" mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper" style="background-color: {background}">
         <nav class="cover-container navbar mx-auto px-3">
             <a class="navbar-brand" href="/" use:link><h3 style="color: {color}">Wine Glass Guide</h3></a>
 
@@ -60,7 +55,6 @@
         backdrop-filter: blur(8px);
     }
 
-
     /*
      * Header
      */
@@ -83,5 +77,4 @@
         color: #fff;
         border-bottom-color: #fff;
     }
-
 </style>

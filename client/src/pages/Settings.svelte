@@ -21,6 +21,7 @@
 </script>
 
 <Head title="{languages.settings.title[$lang]}"></Head>
+
 <Nav/>
 
 <main class="px-3">

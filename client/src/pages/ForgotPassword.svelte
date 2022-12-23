@@ -4,12 +4,15 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
+    import Head from "./Head.svelte";
 
     const items = [
       { href: '/', text: 'Home' },
       { href: '/forgot-password', text: 'Forgot password' },
     ];
 </script>
+
+<Head title="Forgot password"/>
 
 <Nav/>
 

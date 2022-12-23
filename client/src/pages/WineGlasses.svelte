@@ -20,7 +20,7 @@
     ];
 </script>
 
-<Head title="{languages.wineGlasses.title[$lang]}"></Head>
+<Head title="{languages.wineGlasses.title[$lang]}"/>
 
 <Nav/>
 
