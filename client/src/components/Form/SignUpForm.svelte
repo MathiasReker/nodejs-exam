@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
-    import { request } from '../../js/fetchWrapper.js';
+    import { request } from '../../js/fetchWrapper';
 
     let email = '';
     let emailInput = null;

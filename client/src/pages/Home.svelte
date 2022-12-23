@@ -3,13 +3,12 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
-    import {user} from '../js/stores';
+    import { user, apiBaseUrl } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-    import {request} from '../js/fetchWrapper.js';
+    import { request } from '../js/fetchWrapper';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
-    import {apiBaseUrl} from "../js/stores.js";
 
     let grapes = [];
 
@@ -21,38 +20,38 @@
 
     let background;
 
-    (async () => await request('/api/grapes', {
-        method: 'GET',
+    (async () => request('/api/grapes', {
+      method: 'GET',
     }))().then((res) => {
-        grapes = res.data.grapes;
+      grapes = res.data.grapes;
     });
 
     const onChange = async () => {
-        if (!selectedGrape) {
-            return;
-        }
+      if (!selectedGrape) {
+        return;
+      }
 
-        await request('/api/wineGlasses', {
-            method: 'GET',
-            query: `grape=${selectedGrape}`,
-        }).then((res) => {
-            wineGlasses = res.data;
-        });
+      await request('/api/wineGlasses', {
+        method: 'GET',
+        query: `grape=${selectedGrape}`,
+      }).then((res) => {
+        wineGlasses = res.data;
+      });
 
-        await request(`/api/users/${$user.email}/statistics`, {
-            method: 'PUT',
-            body: {
-                lookup: true,
-            },
-        });
+      await request(`/api/users/${$user.email}/statistics`, {
+        method: 'PUT',
+        body: {
+          lookup: true,
+        },
+      });
 
-        await request('/api/messages', {
-            method: 'POST',
-            body: {
-                email: $user.email,
-                grape: selectedGrape,
-            },
-        });
+      await request('/api/messages', {
+        method: 'POST',
+        body: {
+          email: $user.email,
+          grape: selectedGrape,
+        },
+      });
     };
 </script>
 

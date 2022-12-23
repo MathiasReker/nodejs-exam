@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetchWrapper.js';
+    import { request } from '../../js/fetchWrapper';
 
     let email = '';
 

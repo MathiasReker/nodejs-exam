@@ -1,23 +1,22 @@
 <script>
-    import {lang, user} from '../js/stores';
+    import { lang, user, apiBaseUrl } from '../js/stores';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
-    import {request} from '../js/fetchWrapper.js';
+    import { request } from '../js/fetchWrapper';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
-    import {languages} from '../js/language.js';
-    import {apiBaseUrl} from "../js/stores.js";
+    import { languages } from '../js/language';
 
     let options = $user.settings.wineGlasses || [];
 
     const wineGlasses = (() => request('/api/wineGlasses', {
-        method: 'GET',
+      method: 'GET',
     }))();
 
     const items = [
-        {href: '/', text: 'Home'},
-        {href: '/wine-glasses', text: 'Wineglasses'},
+      { href: '/', text: 'Home' },
+      { href: '/wine-glasses', text: 'Wineglasses' },
     ];
 </script>
 

@@ -3,7 +3,7 @@
     import { user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
-    import Head from "./Head.svelte";
+    import Head from './Head.svelte';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -24,7 +24,7 @@
 <Nav/>
 
 <main class="px-3">
-    <Breadcrumbs page="Page not found"/>
+    <Breadcrumbs {items}/>
 
     <h1>Page not found</h1>
     <p>This page does not exists</p>

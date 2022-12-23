@@ -4,7 +4,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
-    import Head from "./Head.svelte";
+    import Head from './Head.svelte';
 
     const items = [
       { href: '/', text: 'Home' },
@@ -22,7 +22,9 @@
     <h1>
         <Lang page="forgotPassword" trans="title"></Lang>
     </h1>
-    <p class="lead"><Lang page="forgotPassword" trans="deck"></Lang></p>
+    <p class="lead">
+        <Lang page="forgotPassword" trans="deck"></Lang>
+    </p>
 
     <ForgotPasswordForm/>
 

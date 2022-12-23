@@ -1,7 +1,7 @@
 <script>
     import { user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
-    import { request } from '../js/fetchWrapper.js';
+    import { request } from '../js/fetchWrapper';
 
     export let bindGroup = [];
     export let value = '';

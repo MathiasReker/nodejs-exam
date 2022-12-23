@@ -1,6 +1,6 @@
 <script>
-    import {languages} from '../js/language.js';
-    import {lang} from '../js/stores.js';
+    import { languages } from '../js/language';
+    import { lang } from '../js/stores';
 
     export let title;
     export let metaTitle;

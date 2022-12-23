@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetchWrapper.js';
+    import { request } from '../../js/fetchWrapper';
 
     let email = $user.email || '';
     let emailInput = null;

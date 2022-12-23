@@ -15,7 +15,7 @@
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
-    import { displayMessage } from './js/toast.js';
+    import { displayMessage } from './js/toast';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {

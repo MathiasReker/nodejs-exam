@@ -4,7 +4,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
-    import Head from "./Head.svelte";
+    import Head from './Head.svelte';
 
     const items = [
       { href: '/', text: 'Home' },
@@ -19,7 +19,9 @@
 <main class="px-3">
     <Breadcrumbs {items}/>
 
-    <h1 class="mb-3"><Lang page="signIn" trans="title"></Lang></h1>
+    <h1 class="mb-3">
+        <Lang page="signIn" trans="title"></Lang>
+    </h1>
 
     <SignUpForm/>
 

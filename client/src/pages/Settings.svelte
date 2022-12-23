@@ -1,15 +1,15 @@
 <script>
     import { apiBaseUrl, lang } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
-    import { request } from '../js/fetchWrapper.js';
+    import { request } from '../js/fetchWrapper';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
-    import { languages } from '../js/language.js';
+    import { languages } from '../js/language';
 
     // TODO csv
     const handleOnSubmitExport = async () => {
-      const csv = async () => await request(`${$apiBaseUrl}/api/settings/csv`, {
+      const csv = async () => request(`${$apiBaseUrl}/api/settings/csv`, {
         method: 'GET',
       });
     };
@@ -57,9 +57,15 @@
     </div>
 
     <div class="pt-5">
-        <h2 class="text-danger"><Lang page="settings" trans="deleteAccountTitle"></Lang></h2>
+        <h2 class="text-danger">
+            <Lang page="settings" trans="deleteAccountTitle"></Lang>
+        </h2>
         <hr>
-        <p><Lang page="settings" trans="deleteAccountDescription"></Lang></p>
-        <button class="btn btn-danger" type="button"><Lang page="settings" trans="deleteAccountBtn"></Lang></button>
+        <p>
+            <Lang page="settings" trans="deleteAccountDescription"></Lang>
+        </p>
+        <button class="btn btn-danger" type="button">
+            <Lang page="settings" trans="deleteAccountBtn"></Lang>
+        </button>
     </div>
 </main>

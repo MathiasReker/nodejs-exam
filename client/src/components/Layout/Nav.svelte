@@ -1,17 +1,17 @@
 <script>
-    import {link, navigate} from 'svelte-navigator';
+    import { link, navigate } from 'svelte-navigator';
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import FiUser from "svelte-icons-pack/fi/FiUser";
-    import {user} from '../../js/stores';
-    import IoWine from "svelte-icons-pack/io/IoWine";
+    import FiUser from 'svelte-icons-pack/fi/FiUser';
+    import IoWine from 'svelte-icons-pack/io/IoWine';
+    import { user } from '../../js/stores';
 
     export let color = '#514945';
     export let background = 'transparent';
 
     const handleLogout = () => {
-        $user = null;
-        localStorage.clear();
-        navigate('/signin');
+      $user = null;
+      localStorage.clear();
+      navigate('/signin');
     };
 </script>
 
@@ -59,28 +59,5 @@
     .box-shadow {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
         backdrop-filter: blur(8px);
-    }
-
-    /*
-     * Header
-     */
-    .nav-masthead .nav-link {
-        color: rgba(255, 255, 255, .5);
-        border-bottom: .25rem solid transparent;
-        cursor: pointer;
-    }
-
-    .nav-masthead .nav-link:hover,
-    .nav-masthead .nav-link:focus {
-        border-bottom-color: rgba(255, 255, 255, .25);
-    }
-
-    .nav-masthead .nav-link + .nav-link {
-        margin-left: 1rem;
-    }
-
-    .nav-masthead .active {
-        color: #fff;
-        border-bottom-color: #fff;
     }
 </style>

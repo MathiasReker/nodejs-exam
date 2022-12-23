@@ -3,7 +3,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import { user } from '../js/stores';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
-    import { request } from '../js/fetchWrapper.js';
+    import { request } from '../js/fetchWrapper';
     import Head from './Head.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
@@ -14,7 +14,7 @@
 
     let lookups = 0;
 
-    (async () => await request('/api/wineGlasses', {
+    (async () => request('/api/wineGlasses', {
       method: 'GET',
     }))()
       .then((res) => {
@@ -22,7 +22,7 @@
         percentOwned = ownedWineGlasses / totalWineGlasses * 100;
       });
 
-    (async () => await request(`/api/users/${$user.email}/statistics`, {
+    (async () => request(`/api/users/${$user.email}/statistics`, {
       method: 'GET',
     }))()
       .then((res) => {
