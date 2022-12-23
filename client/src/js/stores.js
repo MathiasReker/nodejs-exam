@@ -4,7 +4,7 @@ export const user = writable(
   localStorage.user ? JSON.parse(localStorage.getItem('user')) : null,
 );
 
-export const baseUrl = writable('http://localhost:3000');
+export const apiBaseUrl = writable('http://localhost:3000');
 
 const languageStore = writable('en');
 

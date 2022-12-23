@@ -1,5 +1,5 @@
 <script>
-    import { baseUrl, lang } from '../js/stores';
+    import { apiBaseUrl, lang } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import { request } from '../js/fetchWrapper.js';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
@@ -9,7 +9,7 @@
 
     // TODO csv
     const handleOnSubmitExport = async () => {
-      const csv = async () => await request(`${$baseUrl}/api/settings/csv`, {
+      const csv = async () => await request(`${$apiBaseUrl}/api/settings/csv`, {
         method: 'GET',
       });
     };

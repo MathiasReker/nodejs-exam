@@ -8,7 +8,7 @@
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import { baseUrl, lang, user } from './js/stores';
+    import { apiBaseUrl, lang, user } from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -25,7 +25,7 @@
       }
     }
 
-    io.connect($baseUrl).on('message:create', (res) => {
+    io.connect($apiBaseUrl).on('message:create', (res) => {
       displayMessage(res.data);
     });
 

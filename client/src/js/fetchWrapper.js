@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { baseUrl, user } from './stores';
+import { apiBaseUrl, user } from './stores';
 
 export const request = (path, options = {}) => {
   const {
@@ -33,5 +33,5 @@ export const request = (path, options = {}) => {
     queryString = `?${queryString}`;
   }
 
-  return fetch(`${get(baseUrl)}${path}${queryString}`, reqOptions).then((res) => res.json());
+  return fetch(`${get(apiBaseUrl)}${path}${queryString}`, reqOptions).then((res) => res.json());
 };

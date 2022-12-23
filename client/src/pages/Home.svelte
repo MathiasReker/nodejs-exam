@@ -9,7 +9,7 @@
     import {request} from '../js/fetchWrapper.js';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
-    import {baseUrl} from "../js/stores.js";
+    import {apiBaseUrl} from "../js/stores.js";
 
     let grapes = [];
 
@@ -58,7 +58,7 @@
 
 <Head title="Wine Glass Guide"/>
 
-<Nav background="{background ?? ''}" color="{color ?? '#EBD4CC'}"/>
+<Nav background="{background ?? ''}" color="{color ?? '#FFF'}"/>
 
 <TopBackground/>
 
@@ -89,18 +89,19 @@
                             <h2 class=" h3 py-2">{wineGlass.name}
                                 {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
                                 <span style="color: {color}" class="align-items-center">
-                                    <Icon color="green" size="25px" src={FiCheck}/>
+                                    <Icon color="#457373" size="22px" src={FiCheck}/>
                                 </span>
                                 {:else}
                                 <span style="color: {color}" class="align-items-center">
-                                    <Icon color="red" size="25px" src={FiX}/>
+                                    <Icon color="#7C4935" size="22px" src={FiX}/>
                                 </span>
                                 {/if}
                             </h2>
                         </div>
                     </div>
                     <div class="col" style="z-index: -1">
-                        <img class="img-fluid" src="{`${$baseUrl}${wineGlass.image}`}" alt="" style="max-height: 400px">
+                        <img class="img-fluid" src="{`${$apiBaseUrl}${wineGlass.image}`}" alt=""
+                             style="max-height: 400px">
                     </div>
                 {/each}
             </div>

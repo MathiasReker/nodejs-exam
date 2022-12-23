@@ -7,7 +7,7 @@
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
     import { languages } from '../js/language.js';
-    import {baseUrl} from "../js/stores.js";
+    import {apiBaseUrl} from "../js/stores.js";
 
     let options = $user.settings.wineGlasses || [];
 
@@ -49,7 +49,7 @@
                     <div class="col-2 text-right">
                         <img alt=""
                              class="img-fluid"
-                             src="{`${$baseUrl}${wineGlass.image}`}" style="max-height: 150px">
+                             src="{`${$apiBaseUrl}${wineGlass.image}`}" style="max-height: 150px">
                     </div>
                 </div>
             {/each}
