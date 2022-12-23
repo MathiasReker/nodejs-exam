@@ -7,6 +7,7 @@
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
     import { languages } from '../js/language.js';
+    import {baseUrl} from "../js/stores.js";
 
     let options = $user.settings.wineGlasses || [];
 
@@ -38,17 +39,17 @@
             <p>Loading ...</p> <!-- TODO: use spinner -->
         {:then res}
             {#each res.data as wineGlass}
-                <div class="row align-items-center">
+                <div class="row align-items-center pb-5">
                     <div class="col-3">
                         <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
                     </div>
-                    <div class="col-5">
+                    <div class="col-7">
                         {wineGlass.name}
                     </div>
-                    <div class="col-4 text-right">
+                    <div class="col-2 text-right">
                         <img alt=""
                              class="img-fluid"
-                             src="{wineGlass.image}">
+                             src="{`${$baseUrl}${wineGlass.image}`}" style="max-height: 150px">
                     </div>
                 </div>
             {/each}

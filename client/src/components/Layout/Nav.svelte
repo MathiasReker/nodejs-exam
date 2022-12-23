@@ -1,29 +1,36 @@
 <script>
-    import { link, navigate } from 'svelte-navigator';
+    import {link, navigate} from 'svelte-navigator';
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import AiOutlineUser from 'svelte-icons-pack/ai/AiOutlineUser';
-    import { user } from '../../js/stores';
+    import {user} from '../../js/stores';
+    import IoWine from "svelte-icons-pack/io/IoWine";
 
     export let color = '#514945';
     export let background = 'transparent';
 
     const handleLogout = () => {
-      $user = null;
-      localStorage.clear();
-      navigate('/signin');
+        $user = null;
+        localStorage.clear();
+        navigate('/signin');
     };
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class=" mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper" style="background-color: {background}">
+    <div class=" mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper"
+         style="background-color: {background}">
         <nav class="cover-container navbar mx-auto px-3">
-            <a class="navbar-brand" href="/" use:link><h3 style="color: {color}">Wine Glass Guide</h3></a>
+            <a class="navbar-brand" href="/" use:link>
+                <span style="color: {color}" class="align-items-center">
+                    <Icon color="{color}" size="25px" src={IoWine}/> Wine Glass Guide
+                </span>
+            </a>
 
             <div class="btn-group">
                 <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
                    style="color: {color}">
-                    <Icon color="{color}" size="20px" src={AiOutlineUser}/>
-                    {#if $user} {$user.name}{/if}
+                <span style="color: {color}" class="align-items-center">
+                    <Icon color="{color}" size="25px" src={AiOutlineUser}/> {#if $user} {$user.name}{/if}
+                </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     {#if $user}

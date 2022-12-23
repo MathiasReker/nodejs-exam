@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import http from 'http';
-import { Server } from 'socket.io';
+import {Server} from 'socket.io';
 import connection from './util/connection.js';
 import verifyToken from './routes/validate-token.js';
 import auth from './routes/auth.js';
@@ -21,26 +21,27 @@ connection();
 const app = express();
 
 app.use(cors({
-  origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }));
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: {
-    origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
-    credentials: true,
-    methods: ['GET', 'POST'],
-  },
+    cors: {
+        origin: process.env.ENV === 'prod' ? process.env.FRONT_END_DOMAIN : true,
+        credentials: true,
+        methods: ['GET', 'POST'],
+    },
 });
 
 app.use((req, res, next) => {
-  req.io = io;
-  return next();
+    req.io = io;
+    return next();
 });
 
+app.use('/api/static', express.static('public'))
 app.use(helmet());
 app.use(express.json()); // for body parser
 app.use('/api/auth', auth);

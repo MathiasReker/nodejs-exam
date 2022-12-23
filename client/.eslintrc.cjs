@@ -9,7 +9,6 @@ module.exports = {
         'plugin:svelte/recommended',
     ],
     plugins: [],
-
     ignorePatterns: [
         'public/build/'
     ],
