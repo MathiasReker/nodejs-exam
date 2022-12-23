@@ -1,12 +1,12 @@
 <script>
     import AutoComplete from 'simple-svelte-autocomplete';
-    import AiOutlineCheck from 'svelte-icons-pack/ai/AiOutlineCheck';
-    import AiOutlineClose from 'svelte-icons-pack/ai/AiOutlineClose';
     import Icon from 'svelte-icons-pack/Icon.svelte';
-    import { user } from '../js/stores';
+    import FiCheck from 'svelte-icons-pack/fi/FiCheck';
+    import FiX from 'svelte-icons-pack/fi/FiX';
+    import {user} from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-    import { request } from '../js/fetchWrapper.js';
+    import {request} from '../js/fetchWrapper.js';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
 
@@ -21,37 +21,37 @@
     let background;
 
     (async () => await request('/api/grapes', {
-      method: 'GET',
+        method: 'GET',
     }))().then((res) => {
-      grapes = res.data.grapes;
+        grapes = res.data.grapes;
     });
 
     const onChange = async () => {
-      if (!selectedGrape) {
-        return;
-      }
+        if (!selectedGrape) {
+            return;
+        }
 
-      await request('/api/wineGlasses', {
-        method: 'GET',
-        query: `grape=${selectedGrape}`,
-      }).then((res) => {
-        wineGlasses = res.data;
-      });
+        await request('/api/wineGlasses', {
+            method: 'GET',
+            query: `grape=${selectedGrape}`,
+        }).then((res) => {
+            wineGlasses = res.data;
+        });
 
-      await request(`/api/users/${$user.email}/statistics`, {
-        method: 'PUT',
-        body: {
-          lookup: true,
-        },
-      });
+        await request(`/api/users/${$user.email}/statistics`, {
+            method: 'PUT',
+            body: {
+                lookup: true,
+            },
+        });
 
-      await request('/api/messages', {
-        method: 'POST',
-        body: {
-          email: $user.email,
-          grape: selectedGrape,
-        },
-      });
+        await request('/api/messages', {
+            method: 'POST',
+            body: {
+                email: $user.email,
+                grape: selectedGrape,
+            },
+        });
     };
 </script>
 
@@ -80,20 +80,26 @@
     />
 
     {#if selectedGrape}
-        <div class="row row-cols-1" style="padding-top: 100px">
-            {#each wineGlasses as wineGlass}
-                <div class="col">
-                    <h2 class="text-center">
-                        {wineGlass.name}
-                        {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
-                            <Icon color="green" size="40px" src={AiOutlineCheck}/>
-                        {:else}
-                            <Icon color="red" size="40px" src={AiOutlineClose}/>
-                        {/if}
-                    </h2>
-                    <img class="img-fluid" src="{wineGlass.image}" alt="">
-                </div>
-            {/each}
+        <div class="container" style="padding-top: 100px">
+            <div class="row row-cols-1 text-center">
+                {#each wineGlasses as wineGlass}
+                    <div class="col">
+                        <div class="shadow-lg bg-body rounded-5 mx-5">
+                            <h2 class=" h3 py-2">{wineGlass.name}
+                                {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
+                                    <Icon color="green" size="22px" src={FiCheck}/>
+                                {:else}
+                                    <Icon color="red" size="22px" src={FiX}/>
+                                {/if}
+                            </h2>
+                        </div>
+
+                    </div>
+                    <div class="col" style="z-index: -1">
+                        <img class="img-fluid" width="600" height="600" src="{wineGlass.image}" alt="">
+                    </div>
+                {/each}
+            </div>
         </div>
     {/if}
 </main>
