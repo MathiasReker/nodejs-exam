@@ -3,12 +3,13 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
-    import { user, apiBaseUrl } from '../js/stores';
+    import { user, apiBaseUrl, lang } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
+        import { languages } from '../js/language';
 
     let grapes = [];
 
@@ -77,6 +78,7 @@
             items={grapes}
             noInputStyles="true"
             onChange={onChange}
+            noResultsText="{languages.home.selectNoResults[$lang]}"
     />
 
     {#if selectedGrape}

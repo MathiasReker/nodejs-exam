@@ -15,8 +15,8 @@
     }))();
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/wine-glasses', text: 'Wineglasses' },
+      { href: '/', text: languages.global.home[$lang] },
+      { href: '/wine-glasses', text: languages.wineGlasses.title[$lang] },
     ];
 </script>
 

@@ -4,10 +4,10 @@
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
 
-    let email = $user.email || '';
+    let email = $user ? $user.email : '';
     let emailInput = null;
 
-    let name = $user.name || '';
+    let name = $user ? $user.name : '';
     let nameInput = null;
 
     let message = '';

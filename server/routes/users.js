@@ -23,6 +23,28 @@ router.get('/:email/statistics', async (req, res) => {
   });
 });
 
+router.delete('/:email/statistics', async (req, res) => {
+  const { email } = req.params;
+
+  const statistics = req.body;
+
+  let result = {};
+
+  if (statistics.lookup) {
+    result = await User.findOneAndUpdate(
+        { email },
+        { 'statistics.lookups': 0 },
+        { new: true },
+    );
+  }
+
+  res.send({
+    data: {
+      lookups: result.statistics.lookups
+    }
+  });
+});
+
 router.post('/:email/recover', async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 

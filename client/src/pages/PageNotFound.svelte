@@ -1,9 +1,11 @@
 <script>
     import { navigate } from 'svelte-navigator';
-    import { user } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Head from './Head.svelte';
+    import { languages } from '../js/language';
+    import Lang from '../components/Lang.svelte';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {
@@ -14,8 +16,8 @@
     }
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/page-not-found', text: 'Page not found' },
+      { href: '/', text: languages.global.home[$lang] },
+      { href: '/page-not-found', text: languages.pageNotFound.title[$lang] },
     ];
 </script>
 
@@ -26,6 +28,6 @@
 <main class="px-3">
     <Breadcrumbs {items}/>
 
-    <h1>Page not found</h1>
-    <p>This page does not exists</p>
+    <h1><Lang page="pageNotFound" trans="title"></Lang></h1>
+    <p><Lang page="pageNotFound" trans="deck"></Lang></p>
 </main>

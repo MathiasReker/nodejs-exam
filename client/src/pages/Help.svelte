@@ -4,10 +4,12 @@
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Lang from '../components/Lang.svelte';
     import Head from './Head.svelte';
+    import { languages } from '../js/language';
+    import { lang } from '../js/stores';
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/help', text: 'Help' },
+      { href: '/', text: languages.global.home[$lang] },
+      { href: '/help', text: languages.help.title[$lang] },
     ];
 </script>
 

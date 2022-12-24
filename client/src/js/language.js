@@ -8,6 +8,10 @@ export const languages = {
       en: 'Select a grape from the list below',
       da: 'Vælg en drue fra listen nedenfor',
     },
+    selectNoResults: {
+      en: 'No grape found',
+      da: 'Ingen drue fundet',
+    },
   },
   help: {
     title: {
@@ -31,14 +35,34 @@ export const languages = {
   },
   pageNotFound: {
     title: {
-      en: '...',
-      da: '...',
+      en: 'Page not found',
+      da: 'Siden blev ikke fundet',
+    },
+    deck: {
+      en: 'The page you were looking for does not exists.',
+      da: 'Siden du leder efter findes desværre ikke',
     },
   },
   profile: {
     title: {
-      en: '...',
-      da: '...',
+      en: 'Profile',
+      da: 'Profil',
+    },
+    deck: {
+      en: 'In here you can see statistics for your account.',
+      da: 'Her kan du se statistik for din profil.',
+    },
+    test: {
+      en: 'You own %s % of the collection!',
+      da: 'Du ejer <strong>%s %</strong> af samlingen!',
+    },
+    updateCollectionBtn: {
+      en: 'Update collection',
+      da: 'Ændre samling',
+    },
+    resetStatisticLookupsBtn: {
+      en: 'Reset lookups',
+      da: 'Nulstil opslag',
     },
   },
   resatPassword: {
@@ -115,6 +139,12 @@ export const languages = {
     title: {
       en: 'Wine Glass Guide',
       da: 'Vin glas guide',
+    },
+  },
+  global: {
+    home: {
+      en: 'Home',
+      da: 'Hjem',
     },
   },
 };

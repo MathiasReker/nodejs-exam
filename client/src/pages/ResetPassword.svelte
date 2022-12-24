@@ -3,10 +3,12 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
     import Head from './Head.svelte';
+    import { languages } from '../js/language';
+    import { lang } from '../js/stores';
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/reset-password', text: 'Reset password' },
+      { href: '/', text: languages.global.home[$lang] },
+      { href: '/reset-password', text: languages.resatPassword.title[$lang] },
     ];
 </script>
 

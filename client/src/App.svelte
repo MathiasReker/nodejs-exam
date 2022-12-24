@@ -1,36 +1,41 @@
 <script>
-    import { navigate, Route, Router } from 'svelte-navigator';
-    import { SvelteToast } from '@zerodevx/svelte-toast';
+    import {navigate, Route, Router} from 'svelte-navigator';
+    import {SvelteToast} from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import { apiBaseUrl, lang, user } from './js/stores';
+    import {apiBaseUrl, lang, user} from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
-    import { displayMessage } from './js/toast';
+    import {displayMessage} from './js/toast';
 
-    if (location.pathname !== '/reset-password') {
-      if (!$user) {
-        navigate('/signin', {
-          replace: true,
-        });
-      }
+    const openEndpoints = [
+        '/reset-password',
+        '/about'
+    ]
+
+    if (!$user) {
+        if (!openEndpoints.includes(location.pathname)) {
+            navigate('/signin', {
+                replace: true,
+            });
+        }
     }
 
     io.connect($apiBaseUrl).on('message:create', (res) => {
-      displayMessage(res.data);
+        displayMessage(res.data);
     });
 
     onMount(async () => {
-      lang.set('en'); // TODO
+        lang.set('da'); // TODO WIP
     });
 </script>
 

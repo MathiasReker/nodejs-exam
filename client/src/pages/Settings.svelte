@@ -15,8 +15,8 @@
     };
 
     const items = [
-      { href: '/', text: 'Home' },
-      { href: '/settings', text: 'Settings' },
+      { href: '/', text: languages.global.home[$lang] },
+      { href: '/settings', text: languages.settings.title[$lang] },
     ];
 </script>
 
