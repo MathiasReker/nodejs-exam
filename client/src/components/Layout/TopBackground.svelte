@@ -1,7 +1,5 @@
 <div class="mx-auto fixed-top top-image"></div>
 
-<!-- TODO: cool stylings fonts : https://marcoghiani.com/blog/write-a-javascript-fetch-wrapper-in-less-than-1kb -->
-
 <style>
     .top-image {
         position: absolute;
@@ -20,37 +18,37 @@
 
     @-webkit-keyframes background {
         0% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
         50% {
             background-position: 100% 42%
         }
         100% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
     }
 
     @-moz-keyframes background {
         0% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
         50% {
             background-position: 100% 42%
         }
         100% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
     }
 
     @keyframes background {
         0% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
         50% {
             background-position: 100% 42%
         }
         100% {
-            background-position: 0% 59%
+            background-position: 0 59%
         }
     }
 </style>

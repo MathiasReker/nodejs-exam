@@ -2,11 +2,11 @@
     import { link } from 'svelte-navigator';
     import Nav from '../components/Layout/Nav.svelte';
     import { lang, user } from '../js/stores';
-    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import { request } from '../js/fetchWrapper';
     import Head from './Head.svelte';
     import { languages } from '../js/language';
-    import Lang from '../components/Lang.svelte';
+    import Lang from '../components/Util/Lang.svelte';
     import { displaySuccess } from '../js/toast';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;

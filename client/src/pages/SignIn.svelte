@@ -2,8 +2,8 @@
     import { Link } from 'svelte-navigator';
     import Nav from '../components/Layout/Nav.svelte';
     import SignInForm from '../components/Form/SignInForm.svelte';
-    import Breadcrumbs from '../components/Breadcrumbs.svelte';
-    import Lang from '../components/Lang.svelte';
+    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
+    import Lang from '../components/Util/Lang.svelte';
     import Head from './Head.svelte';
 
     const items = [

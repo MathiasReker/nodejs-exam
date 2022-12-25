@@ -2,10 +2,10 @@
     import { navigate } from 'svelte-navigator';
     import { lang, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Breadcrumbs.svelte';
+    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import Head from './Head.svelte';
     import { languages } from '../js/language';
-    import Lang from '../components/Lang.svelte';
+    import Lang from '../components/Util/Lang.svelte';
 
     if (location.pathname !== '/reset-password') {
       if (!$user) {

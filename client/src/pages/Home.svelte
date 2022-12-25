@@ -7,7 +7,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';
-    import Lang from '../components/Lang.svelte';
+    import Lang from '../components/Util/Lang.svelte';
     import Head from './Head.svelte';
     import { languages } from '../js/language';
 

@@ -15,7 +15,7 @@
 
     let loading = false;
 
-    let yes = false;
+    let isOptIn = false;
 
     onMount(() => {
       emailInput.focus();
@@ -55,16 +55,16 @@
         <label for="password">Password</label>
     </div>
     <div class="form-check mb-3">
-        <input bind:checked={yes} class="form-check-input" id="gdpr" type="checkbox" value="">
+        <input bind:checked={isOptIn} class="form-check-input" id="gdpr" type="checkbox" value="">
         <label class="form-check-label" for="gdpr">
             I agree to the <a href="#">privacy policy</a>
         </label>
     </div>
-    {#if !yes}
+    {#if !isOptIn}
         <div class="alert alert-warning" role="alert">
             You must opt-in to continue.
         </div>
     {/if}
 
-    <button class="w-100 btn btn-lg btn-primary" disabled="{!yes || loading}" type="submit">Submit</button>
+    <button class="w-100 btn btn-lg btn-primary" disabled="{!isOptIn || loading}" type="submit">Submit</button>
 </form>

@@ -160,5 +160,3 @@ export const languages = {
     },
   },
 };
-
-//  https://blog.stranianelli.com/implementing-multi-language-without-any-library-in-svelte/
