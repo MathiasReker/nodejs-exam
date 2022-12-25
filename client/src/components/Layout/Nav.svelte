@@ -16,7 +16,7 @@
 </script>
 
 <header style="padding-bottom: 80px;">
-    <div class=" mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper"
+    <div class="mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper"
          style="background-color: {background}">
         <nav class="cover-container navbar mx-auto px-3">
             <a class="navbar-brand" href="/" use:link>

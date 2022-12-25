@@ -67,9 +67,9 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-secondary text-light">
+        <h5 class="card-header bg-light text-dark">
             <Lang page="profile" trans="ownedGlassesTitle"/>
-        </div>
+        </h5>
         <div class="card-body">
             <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
             <div class="progress mb-3" style="height: 20px;">
@@ -83,9 +83,9 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-secondary text-light">
+        <h5 class="card-header bg-light text-dark">
             <Lang page="profile" trans="countLookupsTitle"/>
-        </div>
+        </h5>
         <div class="card-body">
             <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', lookups)}</p>
             <btn class="btn btn-primary" on:click={handleOnResetLookups}>

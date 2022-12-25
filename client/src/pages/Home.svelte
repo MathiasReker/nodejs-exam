@@ -87,14 +87,14 @@
                 {#each wineGlasses as wineGlass}
                     <div class="col pb-5">
                         <div class="shadow-lg bg-body rounded-5 mx-5">
-                            <h2 class=" h3 py-2">{wineGlass.name}
+                            <h2 class="h3 py-2">{wineGlass.name}
                                 {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
                                 <span style="color: {color}" class="align-items-center">
-                                    <Icon color="#457373" size="22px" src={FiCheck}/>
+                                    <Icon color="#48bb8f" size="22px" src={FiCheck}/>
                                 </span>
                                 {:else}
                                 <span style="color: {color}" class="align-items-center">
-                                    <Icon color="#7C4935" size="22px" src={FiX}/>
+                                    <Icon color="#8d2100" size="22px" src={FiX}/>
                                 </span>
                                 {/if}
                             </h2>
