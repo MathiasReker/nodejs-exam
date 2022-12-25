@@ -45,7 +45,9 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><button class="dropdown-item" on:click={handleLogout}>Log out</button></li>
+                        <li>
+                            <button class="dropdown-item" on:click={handleLogout}>Log out</button>
+                        </li>
                     {:else}
                         <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
                         <li><a class="dropdown-item" href="/about" use:link>Help</a></li>

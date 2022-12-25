@@ -22,12 +22,12 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
-    "socket.io-client": "^4.5.4",
-    "svelte-navigator": "^3.2.2",
-    "svelte-icons-pack": "^2.0.0",
-    "simple-svelte-autocomplete": "^2.5.1",
-    "bootstrap": "^5.2.3",
     "@zerodevx/svelte-toast": "^0.8.2",
-    "svelte": "^3.55.0"
+    "bootstrap": "^5.2.3",
+    "simple-svelte-autocomplete": "^2.5.1",
+    "socket.io-client": "^4.5.4",
+    "svelte": "^3.55.0",
+    "svelte-icons-pack": "^2.0.0",
+    "svelte-navigator": "^3.2.2"
   }
 }

@@ -1,5 +1,5 @@
 <script>
-    import { lang, user, apiBaseUrl } from '../js/stores';
+    import { apiBaseUrl, lang, user } from '../js/stores';
     import Checkbox from '../components/Checkbox.svelte';
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Breadcrumbs.svelte';
@@ -46,7 +46,7 @@
                         {wineGlass.name}
                     </div>
                     <div class="col-2 text-right">
-                        <img alt=""
+                        <img alt="{wineGlass.name}"
                              class="img-fluid"
                              src="{`${$apiBaseUrl}${wineGlass.image}`}" style="height: 150px">
                     </div>

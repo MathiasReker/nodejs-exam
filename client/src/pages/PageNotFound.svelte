@@ -28,6 +28,10 @@
 <main class="px-3">
     <Breadcrumbs {items}/>
 
-    <h1><Lang page="pageNotFound" trans="title"></Lang></h1>
-    <p><Lang page="pageNotFound" trans="deck"></Lang></p>
+    <h1>
+        <Lang page="pageNotFound" trans="title"></Lang>
+    </h1>
+    <p>
+        <Lang page="pageNotFound" trans="deck"></Lang>
+    </p>
 </main>

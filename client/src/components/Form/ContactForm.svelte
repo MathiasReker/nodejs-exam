@@ -48,7 +48,7 @@
         <label for="email">Email</label>
     </div>
     <div class="mb-3">
-        <label class="form-label" for="message">How can we help?</label>
+        <label class="form-label" for="message">How can I help?</label>
         <textarea bind:this={messageInput} bind:value={message} class="form-control" id="message" rows="5"></textarea>
     </div>
 
