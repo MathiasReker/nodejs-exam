@@ -1,4 +1,4 @@
-export const languages = {
+const languages = {
   home: {
     title: {
       en: 'Find the wine glass',
@@ -54,7 +54,7 @@ export const languages = {
     },
     ownedGlassesTitle: {
       en: 'Owned glasses',
-      da: 'Ejet glas'
+      da: 'Ejet glas',
     },
     ownedGlassesCardBody: {
       en: 'You own %s % of the collection!',
@@ -158,5 +158,11 @@ export const languages = {
       en: 'Home',
       da: 'Hjem',
     },
+    title: {
+      en: 'Wine Glass Guide',
+      da: 'Vinglas Guide',
+    },
   },
 };
+
+export default languages;

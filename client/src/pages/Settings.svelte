@@ -1,11 +1,9 @@
 <script>
     import { apiBaseUrl, lang } from '../js/stores';
-    import Nav from '../components/Layout/Nav.svelte';
     import { request } from '../js/fetchWrapper';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import Lang from '../components/Util/Lang.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
+    import Page from './Page.svelte';
 
     // TODO csv
     const handleOnSubmitExport = async () => {
@@ -14,18 +12,16 @@
       });
     };
 
-    const items = [
+    const title = languages.settings.title[$lang];
+
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/settings', text: languages.settings.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="{languages.settings.title[$lang]}"></Head>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
+    <h1>Settings</h1> <!-- TODO padding bottom -->
 
     <div>
         <h2>
@@ -68,4 +64,4 @@
             <Lang page="settings" trans="deleteAccountBtn"></Lang>
         </button>
     </div>
-</main>
+</Page>

@@ -4,6 +4,7 @@
     import FiUser from 'svelte-icons-pack/fi/FiUser';
     import IoWine from 'svelte-icons-pack/io/IoWine';
     import { user } from '../../js/stores';
+    import Lang from '../Util/Lang.svelte';
 
     export let color = '#514945';
     export let background = 'transparent';
@@ -21,7 +22,7 @@
         <nav class="cover-container navbar mx-auto px-3">
             <a class="navbar-brand" href="/" use:link>
                 <span class="align-items-center" style="color: {color}">
-                    <Icon color="{color}" size="25px" src={IoWine}/> Wine Glass Guide
+                    <Icon color="{color}" size="25px" src={IoWine}/> <Lang page="global" trans="title"></Lang>
                 </span>
             </a>
 

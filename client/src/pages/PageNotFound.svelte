@@ -1,37 +1,22 @@
 <script>
-    import { navigate } from 'svelte-navigator';
-    import { lang, user } from '../js/stores';
-    import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import { lang } from '../js/stores';
+    import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
+    import Page from './Page.svelte';
 
-    if (location.pathname !== '/reset-password') {
-      if (!$user) {
-        navigate('/signin', {
-          replace: true,
-        });
-      }
-    }
+    const title = languages.pageNotFound.title[$lang];
 
-    const items = [
+    const pagination = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/page-not-found', text: languages.pageNotFound.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="Page not found"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
+<Page pagination="{pagination}" title="{title}">
     <h1>
         <Lang page="pageNotFound" trans="title"></Lang>
     </h1>
     <p>
         <Lang page="pageNotFound" trans="deck"></Lang>
     </p>
-</main>
+</Page>

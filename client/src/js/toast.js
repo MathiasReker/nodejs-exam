@@ -19,7 +19,7 @@ export const displayError = (message) => toast.push(message, {
 export const displayInfo = (message) => toast.push(message, {
   theme: {
     '--toastColor': '#FFF',
-    '--toastBackground': '#204a79',
+    '--toastBackground': '#205e79',
     '--toastBarBackground': '#102526',
   },
 });

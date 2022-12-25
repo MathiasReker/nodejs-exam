@@ -1,5 +1,5 @@
 <script>
-    import { languages } from '../js/language';
+    import languages from '../js/language';
     import { lang } from '../js/stores';
 
     export let title;

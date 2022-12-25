@@ -1,24 +1,18 @@
 <script>
     import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
-    import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
     import { lang } from '../js/stores';
+    import Page from './Page.svelte';
 
-    const items = [
+    const title = languages.resatPassword.title[$lang];
+
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/reset-password', text: languages.resatPassword.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="Reset password"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1>
         Reset password
     </h1>
@@ -28,4 +22,4 @@
         perferendis perspiciatis voluptatem voluptatum!</p>
 
     <ResetPasswordForm/>
-</main>
+</Page>

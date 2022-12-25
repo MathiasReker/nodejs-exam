@@ -1,24 +1,20 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import Nav from '../components/Layout/Nav.svelte';
     import SignInForm from '../components/Form/SignInForm.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import Lang from '../components/Util/Lang.svelte';
-    import Head from './Head.svelte';
+    import Page from './Page.svelte';
+    import language from '../js/language';
+    import { lang } from '../js/stores.js';
 
-    const items = [
-      { href: '/', text: 'Home' },
-      { href: '/sign-in', text: 'Sign in' },
+    const title = language.signIn.title[$lang];
+
+    const breadcrumbs = [
+      { href: '/', text: language.global.home },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="Sing in"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1 class="mb-3">
         <Lang page="signIn" trans="title"></Lang>
     </h1>
@@ -26,11 +22,11 @@
     <SignInForm/>
 
     <div class="mt-2 text-center">
-        <p> Don't have an account yet?
+        <p> Don't have an account yet? <!-- TODO -->
             <Link to="/signup">Sign up</Link>
         </p>
         <p>
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Link to="/forgot-password">Forgot password?</Link> <!-- TODO -->
         </p>
     </div>
-</main>
+</Page>

@@ -1,32 +1,26 @@
 <script>
     import ContactForm from '../components/Form/ContactForm.svelte';
-    import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import Lang from '../components/Util/Lang.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
     import { lang } from '../js/stores';
+    import Page from './Page.svelte';
 
-    const items = [
+    const title = languages.help.title[$lang];
+
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/help', text: languages.help.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="Help"/>
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
+    <h1>
+        <Lang page="help" trans="title"></Lang>
+    </h1>
 
-<Nav/>
+    <p class="lead">
+        <Lang page="help" trans="deck"></Lang>
+    </p>
 
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
-        <h1>
-            <Lang page="help" trans="title"></Lang>
-        </h1>
-
-        <p class="lead">
-            <Lang page="help" trans="deck"></Lang>
-        </p>
-
-        <ContactForm/>
-</main>
+    <ContactForm/>
+</Page>

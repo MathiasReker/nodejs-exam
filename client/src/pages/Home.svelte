@@ -9,7 +9,7 @@
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
     import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
 
     let grapes = [];
 
@@ -56,7 +56,7 @@
     };
 </script>
 
-<Head title="Wine Glass Guide"/>
+<Head title="{languages.global.title[$lang]}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}"/>
 

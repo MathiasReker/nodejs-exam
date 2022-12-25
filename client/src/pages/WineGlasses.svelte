@@ -1,12 +1,10 @@
 <script>
     import { apiBaseUrl, lang, user } from '../js/stores';
     import Checkbox from '../components/Checkbox/Checkbox.svelte';
-    import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
+    import Page from './Page.svelte';
 
     let options = $user.settings.wineGlasses || [];
 
@@ -14,18 +12,15 @@
       method: 'GET',
     }))();
 
-    const items = [
+    const title = languages.wineGlasses.title[$lang];
+
+    const pagination = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/wine-glasses', text: languages.wineGlasses.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="{languages.wineGlasses.title[$lang]}"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
+<Page pagination="{pagination}" title="{title}">
     <h1>
         <Lang page="wineGlasses" trans="title"></Lang>
     </h1>
@@ -40,7 +35,7 @@
             {#each res.data as wineGlass}
                 <div class="row align-items-center pb-5">
                     <div class="col-3">
-                        <Checkbox value="{wineGlass.name}" bind:bindGroup={options}></Checkbox>
+                        <Checkbox value="{wineGlass.name}" bind:bindGroup={options}/>
                     </div>
                     <div class="col-7 text-start lead">
                         {wineGlass.name}
@@ -56,4 +51,4 @@
             <p style="color: red">{error.message}</p>
         {/await}
     </div>
-</main>
+</Page>

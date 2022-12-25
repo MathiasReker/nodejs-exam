@@ -33,5 +33,6 @@ export const request = (path, options = {}) => {
     queryString = `?${queryString}`;
   }
 
-  return fetch(`${get(apiBaseUrl)}${path}${queryString}`, reqOptions).then((res) => res.json());
+  return fetch(`${get(apiBaseUrl)}${path}${queryString}`, reqOptions)
+    .then((res) => res.json());
 };

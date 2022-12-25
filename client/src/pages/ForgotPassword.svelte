@@ -1,29 +1,23 @@
 <script>
     import { Link } from 'svelte-navigator';
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
-    import Nav from '../components/Layout/Nav.svelte';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import Lang from '../components/Util/Lang.svelte';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
     import { lang } from '../js/stores';
+    import Page from './Page.svelte';
 
-    const items = [
+    const title = languages.forgotPassword.title[$lang];
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/forgot-password', text: languages.forgotPassword.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 
-<Head title="Forgot password"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1>
         <Lang page="forgotPassword" trans="title"></Lang>
     </h1>
+
     <p class="lead">
         <Lang page="forgotPassword" trans="deck"></Lang>
     </p>
@@ -32,7 +26,7 @@
 
     <div class="mt-2 text-center">
         <p>
-            <Link to="/signin">Sign in</Link>
+            <Link to="/signin">Sign in</Link> <!-- TODO  translate -->
         </p>
     </div>
-</main>
+</Page>

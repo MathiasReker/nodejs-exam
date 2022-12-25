@@ -1,13 +1,11 @@
 <script>
     import { link } from 'svelte-navigator';
-    import Nav from '../components/Layout/Nav.svelte';
     import { lang, user } from '../js/stores';
-    import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
     import { request } from '../js/fetchWrapper';
-    import Head from './Head.svelte';
-    import { languages } from '../js/language';
+    import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
     import { displaySuccess } from '../js/toast';
+    import Page from './Page.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
 
@@ -32,9 +30,11 @@
         lookups = res.data.lookups;
       });
 
-    const items = [
+    const title = languages.profile.title[$lang];
+
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: '/profile', text: languages.profile.title[$lang] },
+      { href: location.pathname, text: title },
     ];
 
     // TODO statistics -> endpoint change -> "lookup" is the UID!
@@ -52,13 +52,7 @@
     };
 </script>
 
-<Head title="Profile"/>
-
-<Nav/>
-
-<main class="px-3">
-    <Breadcrumbs {items}/>
-
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1>
         <Lang page="profile" trans="title"/>
     </h1>
@@ -93,4 +87,4 @@
             </btn>
         </div>
     </div>
-</main>
+</Page>
