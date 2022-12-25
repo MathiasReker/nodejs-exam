@@ -20,7 +20,6 @@
 <main class="px-3">
     <Breadcrumbs {items}/>
 
-    <div class="pt-3">
         <h1>
             <Lang page="help" trans="title"></Lang>
         </h1>
@@ -30,5 +29,4 @@
         </p>
 
         <ContactForm/>
-    </div>
 </main>
