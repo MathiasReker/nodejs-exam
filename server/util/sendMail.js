@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export const sendMail = async (from, to, subject, text) => {
+const sendMail = async (from, to, subject, text) => {
   const testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
@@ -20,8 +20,10 @@ export const sendMail = async (from, to, subject, text) => {
     text,
   });
 
-  if (process.env.ENV === 'dev') {
+  if (process.env.NODE_ENV === 'dev') {
     console.log('Message send: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   }
 };
+
+export default sendMail;

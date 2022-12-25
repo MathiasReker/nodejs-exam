@@ -4,8 +4,7 @@ import { createHash } from 'crypto';
 import User from '../model/User.js';
 
 // validation
-import { sendMail } from '../util/sendMail.js';
-import WineGlass from '../model/WineGlass.js';
+import sendMail from '../util/sendMail.js';
 
 const router = Router();
 
@@ -32,16 +31,16 @@ router.delete('/:email/statistics', async (req, res) => {
 
   if (statistics.lookup) {
     result = await User.findOneAndUpdate(
-        { email },
-        { 'statistics.lookups': 0 },
-        { new: true },
+      { email },
+      { 'statistics.lookups': 0 },
+      { new: true },
     );
   }
 
   res.send({
     data: {
-      lookups: result.statistics.lookups
-    }
+      lookups: result.statistics.lookups,
+    },
   });
 });
 
@@ -86,8 +85,6 @@ router.post('/:email/reset', async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const password = await bcrypt.hash(req.body.password, salt);
-
-  console.log('PASS', password);
 
   const doc = await User.findOneAndUpdate(
     { email: user.email },
