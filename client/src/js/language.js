@@ -52,9 +52,21 @@ export const languages = {
       en: 'In here you can see statistics for your account.',
       da: 'Her kan du se statistik for din profil.',
     },
-    test: {
+    ownedGlassesTitle: {
+      en: 'Owned glasses',
+      da: 'Ejet glas'
+    },
+    ownedGlassesCardBody: {
       en: 'You own %s % of the collection!',
       da: 'Du ejer <strong>%s %</strong> af samlingen!',
+    },
+    countLookupsTitle: {
+      en: 'Grape lookups',
+      da: 'Drue opslag',
+    },
+    countLookupsCardBody: {
+      en: 'You have lookup up a <strong>%s</strong> grapes.',
+      da: 'Du har slået <strong>%s</strong> druer op.',
     },
     updateCollectionBtn: {
       en: 'Update collection',
@@ -74,7 +86,7 @@ export const languages = {
   settings: {
     title: {
       en: 'Settings',
-      da: 'Instillinger',
+      da: 'Indstillinger',
     },
     usernameTitle: {
       en: 'Change username',

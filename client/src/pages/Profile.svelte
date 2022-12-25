@@ -62,16 +62,16 @@
     <h1>
         <Lang page="profile" trans="title"/>
     </h1>
-    <div class="py-3">
+    <div class="pb-5">
         <Lang page="profile" trans="deck"/>
     </div>
 
-    <div class="card mb-3">
-        <div class="card-header">
-            Owned glasses
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-light">
+            <Lang page="profile" trans="ownedGlassesTitle"/>
         </div>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.test[$lang].replace('%s', percentOwned)}</p>
+            <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
             <div class="progress mb-3" style="height: 20px;">
                 <div aria-label="20px high" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{percentOwned}"
                      class="progress-bar bg-secondary" role="progressbar" style="width: {percentOwned}%;"></div>
@@ -82,12 +82,12 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            Count lookups
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-light">
+            <Lang page="profile" trans="countLookupsTitle"/>
         </div>
         <div class="card-body">
-            <p class="card-text">You have lookup up a glass: <strong>{lookups}</strong></p>
+            <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', lookups)}</p>
             <btn class="btn btn-primary" on:click={handleOnResetLookups}>
                 <Lang page="profile" trans="resetStatisticLookupsBtn"/>
             </btn>

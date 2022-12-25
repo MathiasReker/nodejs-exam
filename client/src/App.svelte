@@ -15,7 +15,7 @@
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
     import SignIn from './pages/SignIn.svelte';
-    import { displayMessage } from './js/toast';
+    import { displayInfo } from './js/toast';
 
     const openEndpoints = [
       '/reset-password',
@@ -31,7 +31,7 @@
     }
 
     io.connect($apiBaseUrl).on('message:create', (res) => {
-      displayMessage(res.data);
+      displayInfo(res.data);
     });
 
     onMount(async () => {
