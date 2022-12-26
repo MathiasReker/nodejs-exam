@@ -90,6 +90,7 @@ router.post('/signin', async (req, res) => {
         email: user.email,
         settings: {
           wineGlasses: user.settings.wineGlasses,
+          language: user.settings.language,
         },
         token,
       },

@@ -3,7 +3,9 @@
     import { lang } from '../js/stores';
 
     export let title;
+
     export let metaTitle;
+
     export let metaDescription;
 </script>
 

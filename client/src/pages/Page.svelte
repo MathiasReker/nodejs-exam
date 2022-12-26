@@ -3,7 +3,7 @@
     import Nav from '../components/Layout/Nav.svelte';
     import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
 
-    export let items;
+    export let breadcrumbs;
 
     export let title;
 </script>
@@ -13,7 +13,7 @@
 <Nav/>
 
 <main class="px-3">
-    <Breadcrumbs {items}/>
+    <Breadcrumbs {breadcrumbs}/>
 
     <slot/>
 </main>

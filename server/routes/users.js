@@ -126,4 +126,32 @@ router.put('/:email/statistics', async (req, res) => {
   res.send(result);
 });
 
+router.put('/:email/settings/language', async (req, res) => {
+  const { email } = req.params;
+
+  const settings = req.body;
+
+  let result = {};
+// TODO validate!
+
+  console.log(settings)
+  if (settings.language) {
+    result = await User.findOneAndUpdate(
+        { email },
+        { 'settings.language': settings.language },
+        { new: true },
+    );
+  }
+
+  res.send(
+      {
+        data: {
+          language: result.settings.language,
+        }
+      }
+
+
+  );
+});
+
 export default router;

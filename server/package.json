@@ -5,7 +5,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "db:init": "node util/ddl.js",
+    "db:init": "node database/ddl.js",
     "dev": "cross-env nodemon app.js",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",

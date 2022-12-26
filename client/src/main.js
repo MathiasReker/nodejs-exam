@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import './css/global.scss';
+import './scss/global.scss';
 
 import App from './App.svelte';
 

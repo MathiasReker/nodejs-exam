@@ -4,7 +4,7 @@
     import FiUser from 'svelte-icons-pack/fi/FiUser';
     import IoWine from 'svelte-icons-pack/io/IoWine';
     import { user } from '../../js/stores';
-    import Lang from '../Util/Lang.svelte';
+    import Lang from "../Util/Lang.svelte";
 
     export let color = '#514945';
     export let background = 'transparent';

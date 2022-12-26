@@ -34,8 +34,12 @@ const userSchema = new mongoose.Schema({
       type: [String],
       required: false,
     },
+    language: {
+      type: String,
+      required: true,
+      default: 'en'
+    }
   },
-
 });
 
 export default mongoose.model('User', userSchema);

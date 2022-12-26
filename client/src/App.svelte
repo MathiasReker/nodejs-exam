@@ -8,7 +8,7 @@
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import { apiBaseUrl, lang, user } from './js/stores';
+    import {apiBaseUrl,  user} from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -35,8 +35,9 @@
     });
 
     onMount(async () => {
-      lang.set('da'); // TODO WIP
+      $user.lang = 'da'; // TODO WIP
     });
+
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">

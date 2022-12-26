@@ -1,16 +1,16 @@
 <script>
     import { link } from 'svelte-navigator';
 
-    export let items = [];
+    export let breadcrumbs = [];
 </script>
 
 <nav aria-label="breadcrumb" class="pb-3">
     <ol class="breadcrumb">
-        {#each items as item, i}
-            {#if i === items.length - 1}
-                <li aria-current="page" class="breadcrumb-item active">{item.text}</li>
+        {#each breadcrumbs as breadcrumb, i}
+            {#if i === breadcrumbs.length - 1}
+                <li aria-current="page" class="breadcrumb-item active">{breadcrumb.text}</li>
             {:else}
-                <li class="breadcrumb-item"><a href="{item.href}" use:link>{item.text}</a></li>
+                <li class="breadcrumb-item"><a href="{breadcrumb.href}" use:link>{breadcrumb.text}</a></li>
             {/if}
         {/each}
     </ol>
