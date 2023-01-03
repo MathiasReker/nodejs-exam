@@ -15,10 +15,6 @@ const authNavigator = () => {
       });
     }
   }
-
-  navigate('/', {
-    replace: true,
-  });
 };
 
 export default authNavigator;

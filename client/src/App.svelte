@@ -8,7 +8,7 @@
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
     import { apiBaseUrl, user } from './js/stores';
-    import About from './pages/Help.svelte';
+    import Contact from './pages/Contact.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
@@ -24,8 +24,8 @@
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
     <Router>
-        <Route path="/about">
-            <About/>
+        <Route path="/contact">
+            <Contact/>
         </Route>
         {#if $user}
             <Route path="/">
