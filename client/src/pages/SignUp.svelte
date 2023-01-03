@@ -8,13 +8,13 @@
 
     const title = languages.signUp.title[$lang];
 
-    const pagination = [
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>
 
-<Page pagination="{pagination}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1 class="mb-3">
         <Lang page="signIn" trans="title"></Lang>
     </h1>

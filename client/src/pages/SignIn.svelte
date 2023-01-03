@@ -9,7 +9,7 @@
     const title = language.signIn.title[$lang];
 
     const breadcrumbs = [
-      { href: '/', text: language.global.home },
+      { href: '/', text: language.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>

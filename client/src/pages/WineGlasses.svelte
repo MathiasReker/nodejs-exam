@@ -14,13 +14,13 @@
 
     const title = languages.wineGlasses.title[$lang];
 
-    const pagination = [
+    const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>
 
-<Page pagination="{pagination}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{title}">
     <h1>
         <Lang page="wineGlasses" trans="title"></Lang>
     </h1>

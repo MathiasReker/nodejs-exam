@@ -1,5 +1,5 @@
 <script>
-    import { navigate, Route, Router } from 'svelte-navigator';
+    import { Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
     import { onMount } from 'svelte';
@@ -8,7 +8,7 @@
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import {apiBaseUrl,  user} from './js/stores';
+    import { apiBaseUrl, user } from './js/stores';
     import About from './pages/Help.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -17,25 +17,14 @@
     import SignIn from './pages/SignIn.svelte';
     import { displayInfo } from './js/toast';
 
-    const openEndpoints = [
-      '/reset-password',
-      '/about',
-    ];
-
-    if (!$user) {
-      if (!openEndpoints.includes(location.pathname)) {
-        navigate('/signin', {
-          replace: true,
-        });
-      }
-    }
-
     io.connect($apiBaseUrl).on('message:create', (res) => {
       displayInfo(res.data);
     });
 
     onMount(async () => {
-      $user.lang = 'da'; // TODO WIP
+      if ($user) {
+        $user.lang = 'da'; // TODO WIP
+      }
     });
 
 </script>
