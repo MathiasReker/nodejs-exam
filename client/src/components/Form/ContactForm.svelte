@@ -3,6 +3,7 @@
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
+    import Lang from "../Util/Lang.svelte";
 
     let email = $user ? $user.email : '';
     let emailInput = null;
@@ -48,7 +49,9 @@
         <label for="email">Email</label>
     </div>
     <div class="mb-3">
-        <label class="form-label" for="message">How can I help?</label>
+        <label class="form-label" for="message">
+            <Lang page="contact" trans="title"></Lang>
+        </label>
         <textarea bind:this={messageInput} bind:value={message} class="form-control" id="message" rows="5"></textarea>
     </div>
 

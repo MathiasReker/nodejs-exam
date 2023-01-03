@@ -1,7 +1,6 @@
 <script>
     import { Link } from 'svelte-navigator';
     import SignUpForm from '../components/Form/SignUpForm.svelte';
-    import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import Page from './Page.svelte';
     import { lang } from '../js/stores';

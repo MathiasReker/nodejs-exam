@@ -3,7 +3,6 @@
     import { SvelteToast } from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
     import SignUp from './pages/SignUp.svelte';
-    import ForgotPassword from './pages/SetNewPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
@@ -16,6 +15,7 @@
     import SignIn from './pages/SignIn.svelte';
     import { displayInfo } from './js/toast';
     import SetNewPassword from './pages/SetNewPassword.svelte';
+    import About from "./pages/About.svelte";
 
     io.connect($apiBaseUrl).on('message:create', (res) => {
       displayInfo(res.data);
@@ -26,6 +26,9 @@
     <Router>
         <Route path="/contact">
             <Contact/>
+        </Route>
+        <Route path="/about">
+            <About/>
         </Route>
         {#if $user}
             <Route path="/">

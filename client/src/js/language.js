@@ -15,8 +15,8 @@ const languages = {
   },
   help: {
     title: {
-      en: 'Need help?',
-      da: 'Brug for hjælp?',
+      en: 'Contact us',
+      da: 'Contact os',
     },
     deck: {
       en: 'You can contact the app developer using the contact form below.',
@@ -164,6 +164,12 @@ const languages = {
       en: 'Wine Glass Guide',
       da: 'Vin glas guide',
     },
+  },
+  contact: {
+    title: {
+      en: 'How can we help?',
+      da: 'Hvordan kan vi hjælpe?'
+    }
   },
   global: {
     home: {

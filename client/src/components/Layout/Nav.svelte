@@ -43,6 +43,7 @@
                         </li>
                         <li><a class="dropdown-item" href="/settings" use:link>Settings</a></li>
                         <li><a class="dropdown-item" href="/contact" use:link>Contact</a></li>
+                        <li><a class="dropdown-item" href="/about" use:link>About</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -52,6 +53,7 @@
                     {:else}
                         <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
                         <li><a class="dropdown-item" href="/contact" use:link>Contact</a></li>
+                        <li><a class="dropdown-item" href="/about" use:link>About</a></li>
                     {/if}
                 </ul>
             </div>
