@@ -29,6 +29,7 @@
         .then(async (res) => {
           if (res.data.user) {
             $user = res.data.user;
+            localStorage.setItem('user', JSON.stringify($user));
             navigate('/');
           }
         }).catch(() => {

@@ -15,7 +15,7 @@
     import SignIn from './pages/SignIn.svelte';
     import { displayInfo } from './js/toast';
     import SetNewPassword from './pages/SetNewPassword.svelte';
-    import About from "./pages/About.svelte";
+    import About from './pages/About.svelte';
 
     io.connect($apiBaseUrl).on('message:create', (res) => {
       displayInfo(res.data);

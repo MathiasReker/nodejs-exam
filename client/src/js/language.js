@@ -168,8 +168,8 @@ const languages = {
   contact: {
     title: {
       en: 'How can we help?',
-      da: 'Hvordan kan vi hjælpe?'
-    }
+      da: 'Hvordan kan vi hjælpe?',
+    },
   },
   global: {
     home: {

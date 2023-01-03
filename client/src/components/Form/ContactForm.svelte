@@ -3,7 +3,7 @@
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import Lang from "../Util/Lang.svelte";
+    import Lang from '../Util/Lang.svelte';
 
     let email = $user ? $user.email : '';
     let emailInput = null;

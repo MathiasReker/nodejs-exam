@@ -4,6 +4,7 @@ import { user } from './stores';
 
 const openEndpoints = [
   '/reset-password',
+  '/contact',
   '/about',
 ];
 
