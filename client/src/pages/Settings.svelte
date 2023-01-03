@@ -5,6 +5,7 @@
     import languages from '../js/language';
     import Page from './Page.svelte';
     import LanguageSelector from '../components/Child.svelte';
+    import Modal from '../components/modal/Modal.svelte';
 
     // TODO csv
     const handleOnSubmitExport = async () => {
@@ -39,7 +40,7 @@
         <p>
             <Lang page="settings" trans="usernameDescription"></Lang>
         </p>
-        <button class="btn btn-secondary" type="button">
+        <button class="btn btn-secondary" type="button" data-bs-target="#exampleModal" data-bs-toggle="modal">
             <Lang page="settings" trans="usernameBtn"></Lang>
         </button>
     </div>
@@ -83,5 +84,6 @@
         </p>
         <LanguageSelector/>
     </div>
-
 </Page>
+
+<Modal/>

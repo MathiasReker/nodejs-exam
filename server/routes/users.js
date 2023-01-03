@@ -110,6 +110,19 @@ router.put('/:email/wineGlasses', async (req, res) => {
   res.send(doc);
 });
 
+router.put('/:email', async (req, res) => {
+  const { email } = req.params;
+  const { name } = req.body;
+  console.log(name);
+  const doc = await User.findOneAndUpdate(
+    { email },
+    { name },
+    { new: true },
+  );
+
+  res.send({ data: { user: doc } });
+});
+
 router.put('/:email/statistics', async (req, res) => {
   const { email } = req.params;
 
@@ -136,7 +149,6 @@ router.put('/:email/settings/language', async (req, res) => {
   let result = {};
   // TODO validate!
 
-  console.log(settings);
   if (settings.language) {
     result = await User.findOneAndUpdate(
       { email },
@@ -151,7 +163,6 @@ router.put('/:email/settings/language', async (req, res) => {
         language: result.settings.language,
       },
     },
-
   );
 });
 

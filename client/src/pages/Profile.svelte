@@ -82,9 +82,9 @@
         </h5>
         <div class="card-body">
             <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', lookups)}</p>
-            <btn class="btn btn-primary" on:click={handleOnResetLookups}>
+            <button class="btn btn-primary" on:click={handleOnResetLookups}>
                 <Lang page="profile" trans="resetStatisticLookupsBtn"/>
-            </btn>
+            </button>
         </div>
     </div>
 </Page>
