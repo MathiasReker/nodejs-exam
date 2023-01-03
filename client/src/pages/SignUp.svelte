@@ -4,7 +4,7 @@
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import Page from './Page.svelte';
-    import { lang, user } from '../js/stores.js';
+    import { lang } from '../js/stores';
 
     const title = languages.signUp.title[$lang];
 

@@ -2,7 +2,7 @@
     import ContactForm from '../components/Form/ContactForm.svelte';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
-    import { lang, user } from '../js/stores';
+    import { lang } from '../js/stores';
     import Page from './Page.svelte';
 
     const title = languages.help.title[$lang];

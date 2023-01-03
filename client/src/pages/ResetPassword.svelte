@@ -1,7 +1,7 @@
 <script>
     import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
     import languages from '../js/language';
-    import { lang, user } from '../js/stores';
+    import { lang } from '../js/stores';
     import Page from './Page.svelte';
 
     const title = languages.resatPassword.title[$lang];

@@ -3,7 +3,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
-    import { apiBaseUrl, user, lang } from '../js/stores';
+    import { apiBaseUrl, lang, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';

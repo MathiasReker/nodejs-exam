@@ -1,5 +1,5 @@
 <script>
-    import { lang, user } from '../js/stores';
+    import { lang } from '../js/stores';
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';

@@ -1,5 +1,5 @@
 <script>
-    import { apiBaseUrl, user } from '../js/stores';
+    import {apiBaseUrl, lang} from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';

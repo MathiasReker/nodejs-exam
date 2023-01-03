@@ -2,6 +2,7 @@
     import { request } from '../js/fetchWrapper';
     import { user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
+    import { lang } from '../js/stores'
 
     export let { language } = $user.settings;
 
@@ -32,7 +33,7 @@
 </script>
 
 <p>
-    <select class="form-select" bind:value={language} on:change={handleUpdateLanguage}>
+    <select bind:value={language} class="form-select" on:change={handleUpdateLanguage}>
         {#each languages as language}
             <option>{language}</option>
         {/each}

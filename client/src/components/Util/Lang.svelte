@@ -1,6 +1,6 @@
 <script>
     import languages from '../../js/language';
-    import { lang, user } from '../../js/stores.js';
+    import { lang } from '../../js/stores';
 
     export let page;
     export let trans;

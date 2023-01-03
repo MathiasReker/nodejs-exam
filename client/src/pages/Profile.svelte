@@ -1,6 +1,6 @@
 <script>
     import { link } from 'svelte-navigator';
-    import { user, lang } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';

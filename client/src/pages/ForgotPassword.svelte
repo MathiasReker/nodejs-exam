@@ -3,7 +3,7 @@
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
-    import { lang, user } from '../js/stores';
+    import { lang } from '../js/stores';
     import Page from './Page.svelte';
 
     const title = languages.forgotPassword.title[$lang];
