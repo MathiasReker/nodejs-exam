@@ -23,13 +23,13 @@ const languages = {
       da: 'Du kan komme i kontakt med appudvikleren via nedenstående kontaktformular.',
     },
   },
-  forgotPassword: {
+  passwordReset: {
     title: {
       en: 'Forgot password?',
       da: 'Glemt adgangskode?',
     },
     deck: {
-      en: 'TODO',
+      en: 'Enter your email, and we’ll send you instructions on how to reset your password.',
       da: 'TODO',
     },
   },
@@ -87,6 +87,10 @@ const languages = {
     title: {
       en: 'Settings',
       da: 'Indstillinger',
+    },
+    deck: {
+      en: 'In here you can manage settings for your account.',
+      da: 'Herinde kan du styre instillinger for din konto.',
     },
     usernameTitle: {
       en: 'Change username',

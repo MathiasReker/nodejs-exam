@@ -15,18 +15,24 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{title}">
-    <h1 class="mb-3">
-        <Lang page="signIn" trans="title"></Lang>
-    </h1>
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-3">
+                <Lang page="signIn" trans="title"></Lang>
+            </h1>
+        </div>
+        <div class="col text-end mt-auto">
+            <p>
+                <Link to="/signup">I don't have an account</Link>
+            </p>
+        </div>
+    </div>
 
     <SignInForm/>
 
     <div class="mt-2 text-center">
-        <p> Don't have an account yet? <!-- TODO -->
-            <Link to="/signup">Sign up</Link>
-        </p>
         <p>
-            <Link to="/forgot-password">Forgot password?</Link> <!-- TODO -->
+            <Link to="/reset-password">Can't sign in?</Link>
         </p>
     </div>
 </Page>

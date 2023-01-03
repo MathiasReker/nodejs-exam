@@ -1,5 +1,5 @@
 <script>
-    import {apiBaseUrl, lang} from '../js/stores';
+    import { apiBaseUrl, lang } from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
@@ -22,10 +22,14 @@
       { href: location.pathname, text: title },
     ];
 </script>
+
 <Page breadcrumbs={breadcrumbs} title={title}>
     <h1>
         <Lang page="settings" trans="title"></Lang>
-    </h1> <!-- TODO padding bottom -->
+    </h1>
+    <p class="lead">
+        <Lang page="settings" trans="deck"></Lang>
+    </p>
 
     <div>
         <h2>

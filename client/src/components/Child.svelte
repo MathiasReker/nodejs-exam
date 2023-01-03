@@ -1,8 +1,7 @@
 <script>
     import { request } from '../js/fetchWrapper';
-    import { user } from '../js/stores';
+    import { user, lang } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
-    import { lang } from '../js/stores'
 
     export let { language } = $user.settings;
 

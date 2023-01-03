@@ -3,7 +3,7 @@
     import { SvelteToast } from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
     import SignUp from './pages/SignUp.svelte';
-    import ForgotPassword from './pages/ForgotPassword.svelte';
+    import ForgotPassword from './pages/PasswordReset.svelte';
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';

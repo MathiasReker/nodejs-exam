@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 const sendMail = async (from, to, subject, text) => {
   const testAccount = await nodemailer.createTestAccount();
-
+  console.log(text)
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP,
     port: process.env.SMTP_PORT,

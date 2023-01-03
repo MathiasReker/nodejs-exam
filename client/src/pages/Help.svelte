@@ -18,9 +18,5 @@
         <Lang page="help" trans="title"></Lang>
     </h1>
 
-    <p class="lead">
-        <Lang page="help" trans="deck"></Lang>
-    </p>
-
     <ContactForm/>
 </Page>

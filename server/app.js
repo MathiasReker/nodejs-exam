@@ -53,6 +53,6 @@ app.use('/api/messages', verifyToken, messages);
 app.use('/api/settings', verifyToken, settings);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
-app.use('/api/users', verifyToken, users);
+app.use('/api/users',  users);
 app.use(pageNotFound);
 server.listen(process.env.PORT);
