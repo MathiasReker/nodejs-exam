@@ -6,8 +6,8 @@
     let language = $lang;
 
     const languages = [
-      'da',
-      'en',
+        'en',
+        'da',
     ];
 
     const handleUpdateLanguage = () => {
@@ -29,7 +29,6 @@
           displayError('Something went wrong...');
         });
     };
-
 </script>
 
 <p>

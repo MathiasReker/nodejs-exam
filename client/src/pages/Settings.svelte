@@ -1,26 +1,20 @@
 <script>
-    import { apiBaseUrl, lang } from '../js/stores';
-    import { request } from '../js/fetchWrapper';
+    import {lang, user} from '../js/stores';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import Page from './Page.svelte';
-    import LanguageSelector from '../components/Child.svelte';
-    import Modal from '../components/modal/Modal.svelte';
-
-    // TODO csv
-    const handleOnSubmitExport = async () => {
-      const csv = async () => request(`${$apiBaseUrl}/api/settings/csv`, {
-        method: 'GET',
-      });
-    };
+    import LanguageSelector from '../components/UpdateLanguageBtn.svelte';
+    import Modal from '../components/modal/UpdateUserFormModal.svelte';
+    import ExportUserDataBtn from "../components/ExportUserDataBtn.svelte";
+    import DeleteAccountBtn from "../components/DeleteAccountBtn.svelte";
 
     let title;
     $: title = languages.settings.title[$lang];
 
     let breadcrumbs;
     $: breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: location.pathname, text: title },
+        {href: '/', text: languages.global.home[$lang]},
+        {href: location.pathname, text: title},
     ];
 </script>
 
@@ -40,7 +34,7 @@
         <p>
             <Lang page="settings" trans="usernameDescription"></Lang>
         </p>
-        <button class="btn btn-secondary" type="button" data-bs-target="#exampleModal" data-bs-toggle="modal">
+        <button class="btn btn-secondary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
             <Lang page="settings" trans="usernameBtn"></Lang>
         </button>
     </div>
@@ -53,12 +47,7 @@
         <p>
             <Lang page="settings" trans="exportAccountDataDescription"></Lang>
         </p>
-        <button
-                class="btn btn-secondary"
-                on:submit|preventDefault={handleOnSubmitExport}
-                type="button">
-            <Lang page="settings" trans="exportAccountDataBtn"></Lang>
-        </button>
+        <ExportUserDataBtn/>
     </div>
 
     <div class="pt-5">
@@ -69,9 +58,7 @@
         <p>
             <Lang page="settings" trans="deleteAccountDescription"></Lang>
         </p>
-        <button class="btn btn-danger" type="button">
-            <Lang page="settings" trans="deleteAccountBtn"></Lang>
-        </button>
+        <DeleteAccountBtn/>
     </div>
 
     <div class="pt-5">
