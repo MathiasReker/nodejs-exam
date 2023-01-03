@@ -4,12 +4,12 @@
     import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
     import language from '../js/language';
-    import { user } from '../js/stores.js';
+    import { lang } from '../js/stores';
 
-    const title = language.signIn.title[$user.settings.language];
+    const title = language.signIn.title[$lang];
 
     const breadcrumbs = [
-      { href: '/', text: language.global.home[$user.settings.language] },
+      { href: '/', text: language.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>

@@ -1,6 +1,6 @@
 <script>
     import languages from '../js/language';
-    import { user } from '../js/stores.js';
+    import { lang, user } from '../js/stores.js';
 
     export let title;
 
@@ -10,8 +10,8 @@
 </script>
 
 <svelte:head>
-    <title>{title ?? languages.head.title[$user.settings.language]}</title>
-    <meta content="{metaTitle ?? languages.head.title[$user.settings.language]}" name="title"/>
+    <title>{title ?? languages.head.title[$lang]}</title>
+    <meta content="{metaTitle ?? languages.head.title[$lang]}" name="title"/>
     <meta content="{metaDescription ?? ''}" name="description"/>
     <link href="{location.href}" rel="canonical"/>
 </svelte:head>

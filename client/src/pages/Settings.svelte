@@ -14,11 +14,11 @@
     };
 
     let title;
-    $: title = languages.settings.title[$user.settings.language];
+    $: title = languages.settings.title[$lang];
 
     let breadcrumbs;
     $: breadcrumbs = [
-      { href: '/', text: languages.global.home[$user.settings.language] },
+      { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>

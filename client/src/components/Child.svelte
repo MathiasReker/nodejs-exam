@@ -18,7 +18,7 @@
         },
       })
         .then((res) => {
-          $user.settings.language = res.data.language;
+          $lang = res.data.language;
 
           localStorage.setItem('user', JSON.stringify($user));
 

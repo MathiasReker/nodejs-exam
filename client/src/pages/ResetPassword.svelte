@@ -1,13 +1,13 @@
 <script>
     import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
     import languages from '../js/language';
-    import { user } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import Page from './Page.svelte';
 
-    const title = languages.resatPassword.title[$user.settings.language];
+    const title = languages.resatPassword.title[$lang];
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$user.settings.language] },
+      { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>

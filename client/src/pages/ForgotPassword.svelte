@@ -3,12 +3,12 @@
     import ForgotPasswordForm from '../components/Form/ForgotPasswordForm.svelte';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
-    import { user } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import Page from './Page.svelte';
 
-    const title = languages.forgotPassword.title[$user.settings.language];
+    const title = languages.forgotPassword.title[$lang];
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$user.settings.language] },
+      { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>

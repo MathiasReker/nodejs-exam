@@ -1,5 +1,5 @@
 <script>
-    import { apiBaseUrl, user } from '../js/stores';
+    import { apiBaseUrl, lang, user } from '../js/stores';
     import Checkbox from '../components/Checkbox/Checkbox.svelte';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
@@ -12,10 +12,10 @@
       method: 'GET',
     }))();
 
-    const title = languages.wineGlasses.title[$user.settings.language];
+    const title = languages.wineGlasses.title[$lang];
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$user.settings.language] },
+      { href: '/', text: languages.global.home[$lang] },
       { href: location.pathname, text: title },
     ];
 </script>
