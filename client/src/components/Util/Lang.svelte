@@ -1,9 +1,9 @@
 <script>
     import languages from '../../js/language';
-    import { lang } from '../../js/stores';
+    import { user } from '../../js/stores.js';
 
     export let page;
     export let trans;
 </script>
 
-{languages[page][trans][$lang]}
+{languages[page][trans][$user.settings.language]}

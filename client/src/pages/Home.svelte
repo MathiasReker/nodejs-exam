@@ -3,7 +3,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
-    import { apiBaseUrl, lang, user } from '../js/stores';
+    import { apiBaseUrl, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';
@@ -56,7 +56,7 @@
     };
 </script>
 
-<Head title="{languages.global.title[$lang]}"/>
+<Head title="{languages.global.title[$user.settings.language]}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}"/>
 
@@ -77,7 +77,7 @@
             inputClassName="custom-autocomplete-input form-control"
             items={grapes}
             noInputStyles="true"
-            noResultsText="{languages.home.selectNoResults[$lang]}"
+            noResultsText="{languages.home.selectNoResults[$user.settings.language]}"
             onChange={onChange}
     />
 

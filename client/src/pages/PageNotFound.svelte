@@ -1,5 +1,5 @@
 <script>
-    import { lang, user } from '../js/stores';
+    import { user } from '../js/stores';
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
@@ -7,10 +7,10 @@
 
     authNavigator();
 
-    const title = languages.pageNotFound.title[$lang];
+    const title = languages.pageNotFound.title[$user.settings.language];
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
+      { href: '/', text: languages.global.home[$user.settings.language] },
       { href: location.pathname, text: title },
     ];
 </script>

@@ -1,6 +1,6 @@
 <script>
     import { link } from 'svelte-navigator';
-    import { lang, user } from '../js/stores';
+    import { user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
@@ -30,10 +30,10 @@
         lookups = res.data.lookups;
       });
 
-    const title = languages.profile.title[$lang];
+    const title = languages.profile.title[$user.settings.language];
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
+      { href: '/', text: languages.global.home[$user.settings.language] },
       { href: location.pathname, text: title },
     ];
 
@@ -65,7 +65,7 @@
             <Lang page="profile" trans="ownedGlassesTitle"/>
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
+            <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$user.settings.language].replace('%s', percentOwned)}</p>
             <div class="progress mb-3" style="height: 20px;">
                 <div aria-label="20px high" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{percentOwned}"
                      class="progress-bar bg-secondary" role="progressbar" style="width: {percentOwned}%;"></div>
@@ -81,7 +81,7 @@
             <Lang page="profile" trans="countLookupsTitle"/>
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', lookups)}</p>
+            <p class="card-text">{@html languages.profile.countLookupsCardBody[$user.settings.language].replace('%s', lookups)}</p>
             <btn class="btn btn-primary" on:click={handleOnResetLookups}>
                 <Lang page="profile" trans="resetStatisticLookupsBtn"/>
             </btn>

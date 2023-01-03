@@ -10,11 +10,15 @@ const openEndpoints = [
 const authNavigator = () => {
   if (!get(user)) {
     if (!openEndpoints.includes(location.pathname)) {
-      navigate('/signin', {
+      return navigate('/signin', {
         replace: true,
       });
     }
   }
+
+  navigate('/', {
+    replace: true,
+  });
 };
 
 export default authNavigator;

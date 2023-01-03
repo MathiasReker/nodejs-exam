@@ -5,12 +5,3 @@ export const user = writable(
 );
 
 export const apiBaseUrl = writable('http://localhost:3000'); // TODO move to env?
-
-const languageStore = writable('en');
-
-export const lang = {
-  subscribe: languageStore.subscribe,
-  set: (language) => {
-    languageStore.set(language);
-  },
-};

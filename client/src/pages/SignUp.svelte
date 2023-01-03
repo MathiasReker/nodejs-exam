@@ -3,13 +3,13 @@
     import SignUpForm from '../components/Form/SignUpForm.svelte';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
-    import { lang } from '../js/stores';
     import Page from './Page.svelte';
+    import { user } from '../js/stores.js';
 
-    const title = languages.signUp.title[$lang];
+    const title = languages.signUp.title[$user.settings.language];
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
+      { href: '/', text: languages.global.home[$user.settings.language] },
       { href: location.pathname, text: title },
     ];
 </script>

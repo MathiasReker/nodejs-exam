@@ -4,7 +4,7 @@
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import Page from './Page.svelte';
-    import { displayError, displaySuccess } from '../js/toast.js';
+    import LanguageSelector from '../components/Child.svelte';
 
     // TODO csv
     const handleOnSubmitExport = async () => {
@@ -13,42 +13,29 @@
       });
     };
 
-    const title = languages.settings.title[$user.settings.language];
+    let title;
+    $: title = languages.settings.title[$user.settings.language];
 
-    const breadcrumbs = [
+    let breadcrumbs;
+    $: breadcrumbs = [
       { href: '/', text: languages.global.home[$user.settings.language] },
       { href: location.pathname, text: title },
     ];
-
-    (() => {
-      request(`/api/users/${$user.email}/settings/language`, {
-        method: 'PUT',
-        body: {
-          language: 'da',
-        },
-      })
-        .then((res) => {
-          $user.settings.language = res.data.language;
-
-          localStorage.setItem('user', JSON.stringify($user));
-
-          displaySuccess('todo!');
-        })
-        .catch(() => {
-          displayError('Something went wrong...');
-        });
-    })();
 </script>
-
 <Page breadcrumbs={breadcrumbs} title={title}>
-
-    <h1>Settings</h1> <!-- TODO padding bottom -->
+    <h1>
+        <Lang page="settings" trans="title"></Lang>
+    </h1> <!-- TODO padding bottom -->
 
     <div>
         <h2>
             <Lang page="settings" trans="usernameTitle"></Lang>
         </h2>
+
         <hr>
+
+        <LanguageSelector/>
+
         <p>
             <Lang page="settings" trans="usernameDescription"></Lang>
         </p>

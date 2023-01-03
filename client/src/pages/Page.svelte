@@ -13,7 +13,7 @@
 <Nav/>
 
 <main class="px-3">
-    <Breadcrumbs {breadcrumbs}/>
+    <Breadcrumbs bind:breadcrumbs={breadcrumbs}/>
 
     <slot/>
 </main>
