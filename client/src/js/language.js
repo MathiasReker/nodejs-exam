@@ -124,6 +124,14 @@ const languages = {
       en: 'Delete your account',
       da: 'Slet din konto',
     },
+    changeLanguageTitle: {
+      en: 'Ændre sprog',
+      da: 'Change langauge',
+    },
+    changeLanguageDescription: {
+      en: 'Vælg dit fortrukne sprog',
+      da: 'Choose your preferred language',
+    },
   },
   signIn: {
     title: {

@@ -31,11 +31,7 @@
         <h2>
             <Lang page="settings" trans="usernameTitle"></Lang>
         </h2>
-
         <hr>
-
-        <LanguageSelector/>
-
         <p>
             <Lang page="settings" trans="usernameDescription"></Lang>
         </p>
@@ -72,4 +68,16 @@
             <Lang page="settings" trans="deleteAccountBtn"></Lang>
         </button>
     </div>
+
+    <div class="pt-5">
+        <h2 class="text-danger">
+            <Lang page="settings" trans="changeLanguageTitle"></Lang>
+        </h2>
+        <hr>
+        <p>
+            <Lang page="settings" trans="changeLanguageDescription"></Lang>
+        </p>
+        <LanguageSelector/>
+    </div>
+
 </Page>

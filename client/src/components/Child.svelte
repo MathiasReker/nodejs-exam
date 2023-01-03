@@ -3,8 +3,6 @@
     import { user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
 
-    // export let selected
-
     export let { language } = $user.settings;
 
     const languages = [

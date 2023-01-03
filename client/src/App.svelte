@@ -2,7 +2,6 @@
     import { Route, Router } from 'svelte-navigator';
     import { SvelteToast } from '@zerodevx/svelte-toast';
     import io from 'socket.io-client';
-    import { onMount } from 'svelte';
     import SignUp from './pages/SignUp.svelte';
     import ForgotPassword from './pages/ForgotPassword.svelte';
     import Footer from './components/Layout/Footer.svelte';
@@ -20,13 +19,6 @@
     io.connect($apiBaseUrl).on('message:create', (res) => {
       displayInfo(res.data);
     });
-
-    onMount(async () => {
-      if ($user) {
-        $user.lang = 'da'; // TODO WIP
-      }
-    });
-
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
