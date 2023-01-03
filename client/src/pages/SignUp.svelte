@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
-                <Lang page="signIn" trans="title"></Lang>
+                Sign up <!-- TODO -->
             </h1>
         </div>
         <div class="col text-end mt-auto">

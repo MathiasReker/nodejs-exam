@@ -5,6 +5,7 @@
     import { lang } from '../js/stores';
     import Page from './Page.svelte';
     import PasswordResetForm from '../components/Form/ResetPasswordForm.svelte';
+    import SetNewPasswordForm from '../components/Form/SetNewPasswordForm.svelte';
 
     const title = languages.passwordReset.title[$lang];
     const breadcrumbs = [
@@ -17,7 +18,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
-                <Lang page="passwordReset" trans="title"></Lang>
+           Set new password
             </h1>
         </div>
         <div class="col text-end mt-auto">
@@ -27,5 +28,5 @@
         </div>
     </div>
 
-    <PasswordResetForm/>
+    <SetNewPasswordForm/>
 </Page>

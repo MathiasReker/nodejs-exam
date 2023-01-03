@@ -1,9 +1,9 @@
 <script>
     import { request } from '../js/fetchWrapper';
-    import { user, lang } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
 
-    export let { language } = $user.settings;
+    let language = $lang;
 
     const languages = [
       'da',
@@ -20,6 +20,7 @@
         .then((res) => {
           $lang = res.data.language;
 
+          $user.settings.language = res.data.language;
           localStorage.setItem('user', JSON.stringify($user));
 
           displaySuccess('todo!');

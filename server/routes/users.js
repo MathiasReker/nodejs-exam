@@ -49,11 +49,13 @@ router.post('/:email/recover', async (req, res) => {
 
   const token = createHash('sha256').update(user.password).digest('hex');
 
-  const resetLink = `http://localhost:5173/reset-password?email=${user.email}&token=${token}`;
+  const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`;
+
+  const email = `You have just requested a password reset for the Wine glasses guide account associated with this email address.\n\nReset password using the following link: \n${resetLink}`;
 
   const from = `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`;
-  // TODO send mail
-  sendMail(from, user.email, 'Reset password', resetLink)
+
+  sendMail(from, user.email, 'Reset password', email)
     .then((mail) => {
       res.status(200).send({ data: { mail } });
     })
@@ -132,24 +134,23 @@ router.put('/:email/settings/language', async (req, res) => {
   const settings = req.body;
 
   let result = {};
-// TODO validate!
+  // TODO validate!
 
-  console.log(settings)
+  console.log(settings);
   if (settings.language) {
     result = await User.findOneAndUpdate(
-        { email },
-        { 'settings.language': settings.language },
-        { new: true },
+      { email },
+      { 'settings.language': settings.language },
+      { new: true },
     );
   }
 
   res.send(
-      {
-        data: {
-          language: result.settings.language,
-        }
-      }
-
+    {
+      data: {
+        language: result.settings.language,
+      },
+    },
 
   );
 });

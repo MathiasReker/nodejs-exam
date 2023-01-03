@@ -3,6 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
+    import { user } from '../../js/stores.js';
 
     let email = '';
     let emailInput = null;
@@ -19,18 +20,16 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      const user = { email, password };
+      const userSignIn = { email, password };
 
       await request('/api/auth/signin', {
         method: 'POST',
-        body: user,
+        body: userSignIn,
       })
-        .then((res) => {
+        .then(async (res) => {
           if (res.data.user) {
-            localStorage.setItem('user', JSON.stringify(res.data.user));
-
+            $user = res.data.user;
             navigate('/');
-            location.reload();
           }
         }).catch(() => {
           displayError('The user does not exists.');
