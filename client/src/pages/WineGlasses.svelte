@@ -39,13 +39,14 @@
                     <div class="col-3">
                         <Checkbox value="{wineGlass.name}" bind:bindGroup={options}/>
                     </div>
-                    <div class="col-7 text-start lead">
+                    <div class="col-6 text-start lead">
                         {wineGlass.name}
                     </div>
-                    <div class="col-2 text-right">
+                    <div class="col-3 text-right">
                         <img alt="{wineGlass.name}"
                              class="img-fluid"
-                             src="{`${$apiBaseUrl}${wineGlass.image}`}" style="height: 150px">
+                             src="{`${$apiBaseUrl}${wineGlass.image}`}"
+                             style="height: 150px">
                     </div>
                 </div>
             {/each}
