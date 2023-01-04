@@ -9,7 +9,6 @@ import connection from './database/connection.js';
 import verifyToken from './middleware/validate-token.js';
 import auth from './routes/auth.js';
 import grapes from './routes/grapes.js';
-import settings from './routes/settings.js';
 import wineGlasses from './routes/wine-glasses.js';
 import mail from './routes/mail.js';
 import users from './routes/users.js';
@@ -50,9 +49,8 @@ app.use(express.json()); // for body parser
 app.use('/api/auth', auth);
 app.use('/api/mail', mail);
 app.use('/api/messages', verifyToken, messages);
-app.use('/api/settings', verifyToken, settings);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
-app.use('/api/users', users); // todo add verify token
+app.use('/api/users', verifyToken, users);
 app.use(pageNotFound);
 server.listen(process.env.PORT);

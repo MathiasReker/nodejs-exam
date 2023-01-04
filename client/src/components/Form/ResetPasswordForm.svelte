@@ -16,7 +16,7 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      await request(`/api/users/${email}/recover`, {
+      await request(`/api/auth/${email}/recover`, {
         method: 'POST',
       }).then(() => {
         displaySuccess('If the user exists an email is send.');

@@ -15,7 +15,7 @@
     });
     const handleOnSubmit = async () => {
       loading = true;
-      await request(`/api/users/${email}/reset`, {
+      await request(`/api/auth/${email}/reset`, {
         method: 'POST',
         body: {
           password,
