@@ -16,6 +16,7 @@
     import { displayInfo } from './js/toast';
     import SetNewPassword from './pages/SetNewPassword.svelte';
     import About from './pages/About.svelte';
+    import PrivacyPolicy from "./pages/PrivacyPolicy.svelte";
 
     io.connect($apiBaseUrl).on('message:create', (res) => {
       displayInfo(res.data);
@@ -29,6 +30,9 @@
         </Route>
         <Route path="/about">
             <About/>
+        </Route>
+        <Route path="/privacy-policy">
+            <PrivacyPolicy/>
         </Route>
         {#if $user}
             <Route path="/">

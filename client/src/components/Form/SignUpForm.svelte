@@ -3,6 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
+    import PrivacyPolicyDiv from "../PrivacyPolicyDiv.svelte";
 
     let email = '';
     let emailInput = null;
@@ -57,7 +58,7 @@
     <div class="form-check mb-3">
         <input bind:checked={isOptIn} class="form-check-input" id="gdpr" type="checkbox" value="">
         <label class="form-check-label" for="gdpr">
-            I agree to the <a href="#">privacy policy</a>
+            I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">privacy policy</a>
         </label>
     </div>
     {#if !isOptIn}
@@ -68,3 +69,20 @@
 
     <button class="w-100 btn btn-lg btn-primary" disabled="{!isOptIn || loading}" type="submit">Submit</button>
 </form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <PrivacyPolicyDiv/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

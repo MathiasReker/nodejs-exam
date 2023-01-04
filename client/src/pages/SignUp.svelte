@@ -29,5 +29,4 @@
     </div>
 
     <SignUpForm/>
-
 </Page>
