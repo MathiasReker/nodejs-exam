@@ -2,12 +2,12 @@ import { Router } from 'express';
 
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { createHash } from 'crypto';
 import User from '../model/User.js';
 
 // validation
 import { signinValidation, signupValidation } from '../validation.js';
-import {createHash} from "crypto";
-import sendMail from "../util/sendMail.js";
+import sendMail from '../util/sendMail.js';
 
 const router = Router();
 
@@ -100,7 +100,6 @@ router.post('/signin', async (req, res) => {
   });
 });
 
-
 router.post('/:email/recover', async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 
@@ -113,12 +112,12 @@ router.post('/:email/recover', async (req, res) => {
   const from = `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`;
 
   sendMail(from, user.email, 'Reset password', email)
-      .then((mail) => {
-        res.status(200).send({ data: { mail } });
-      })
-      .catch((error) => {
-        res.status(404).send({ data: { error } });
-      });
+    .then((mail) => {
+      res.status(200).send({ data: { mail } });
+    })
+    .catch((error) => {
+      res.status(404).send({ data: { error } });
+    });
 
   // res.send({});
   /*
@@ -146,9 +145,9 @@ router.post('/:email/reset', async (req, res) => {
   const password = await bcrypt.hash(req.body.password, salt);
 
   const doc = await User.findOneAndUpdate(
-      { email: user.email },
-      { password },
-      { new: true },
+    { email: user.email },
+    { password },
+    { new: true },
   );
 
   res.send({ data: doc });

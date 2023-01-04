@@ -1,7 +1,7 @@
 <script>
-    import {user} from '../../js/stores.js';
-    import {request} from '../../js/fetchWrapper.js';
-    import {displayError, displaySuccess} from '../../js/toast.js';
+    import { user } from '../../js/stores.js';
+    import { request } from '../../js/fetchWrapper.js';
+    import { displayError, displaySuccess } from '../../js/toast.js';
 
     let name = $user ? $user.name : '';
     let nameInput = null;
@@ -9,23 +9,23 @@
     let loading = false;
 
     const handleOnSubmit = async () => {
-        loading = true;
-        // todo validate
+      loading = true;
+      // todo validate
 
-        await request(`/api/users/${$user.email}`, {
-            method: 'PUT',
-            body: {
-                name,
-            },
-        }).then((res) => {
-            $user.name = res.data.user.name;
+      await request(`/api/users/${$user.email}`, {
+        method: 'PUT',
+        body: {
+          name,
+        },
+      }).then((res) => {
+        $user.name = res.data.user.name;
 
-            displaySuccess(`Username changed to ${$user.name}`);
-        }).catch(() => {
-            displayError('Something went wrong.');
-        }).finally(() => {
-            loading = false;
-        });
+        displaySuccess(`Username changed to ${$user.name}`);
+      }).catch(() => {
+        displayError('Something went wrong.');
+      }).finally(() => {
+        loading = false;
+      });
     };
 </script>
 

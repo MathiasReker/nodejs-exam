@@ -44,7 +44,6 @@ router.delete('/:email/statistics', async (req, res) => {
   });
 });
 
-
 router.put('/:email/wineGlasses', async (req, res) => {
   const { email } = req.params;
   const glasses = req.body.wineGlasses;

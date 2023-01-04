@@ -6,8 +6,16 @@
     let language = $lang;
 
     const languages = [
-        'en',
-        'da',
+      {
+        iso: 'en',
+        img: '🇬🇧',
+        language: 'English',
+      },
+      {
+        iso: 'da',
+        img: '🇩🇰',
+        language: 'Danish',
+      },
     ];
 
     const handleUpdateLanguage = () => {
@@ -31,10 +39,10 @@
     };
 </script>
 
-<p>
+<div>
     <select bind:value={language} class="form-select" on:change={handleUpdateLanguage}>
         {#each languages as language}
-            <option>{language}</option>
+            <option value="{language.iso}">{`${language.img} ${language.language}`}</option>
         {/each}
     </select>
-</p>
+</div>

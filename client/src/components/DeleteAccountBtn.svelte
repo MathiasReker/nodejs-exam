@@ -1,5 +1,5 @@
 <script>
-    import Lang from "./Util/Lang.svelte";
+    import Lang from './Util/Lang.svelte';
 </script>
 
 <button class="btn btn-danger" type="button">
