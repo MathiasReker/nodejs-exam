@@ -30,7 +30,9 @@
 
     <div class="text-center">
         {#await wineGlasses}
-            <p>Loading ...</p> <!-- TODO: use spinner -->
+            <div class="text-center">
+                <div class="spinner-border" role="status"></div>
+            </div>
         {:then res}
             {#each res.data as wineGlass}
                 <div class="row align-items-center pb-5">
