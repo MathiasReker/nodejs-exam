@@ -101,15 +101,13 @@
                         </div>
                     </div>
                     <div class="col" style="z-index: -1">
-                     <!--   <picture>
+                        <picture>
                             <img
-                                    src="{`${$apiBaseUrl}${wineGlass.image}`}"
+                                    crossorigin="anonymous"
+                                    src="{`${$apiBaseUrl}${wineGlass.image}?h=400`}"
                                     alt="{wineGlass.name}"
-                            />
-                        </picture> -->
-
-                        <img src="{`${$apiBaseUrl}${wineGlass.image}`}" alt="{wineGlass.name}"
-                             style="height: 400px">
+                                    height="400">
+                        </picture>
                     </div>
                 {/each}
             </div>

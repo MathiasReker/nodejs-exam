@@ -1,10 +1,5 @@
 import { Router } from 'express';
-import bcrypt from 'bcryptjs';
-import { createHash } from 'crypto';
 import User from '../model/User.js';
-
-// validation
-import sendMail from '../util/sendMail.js';
 
 const router = Router();
 

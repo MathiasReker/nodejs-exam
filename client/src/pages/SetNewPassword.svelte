@@ -1,10 +1,8 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import { lang } from '../js/stores';
     import Page from './Page.svelte';
-    import PasswordResetForm from '../components/Form/ResetPasswordForm.svelte';
     import SetNewPasswordForm from '../components/Form/SetNewPasswordForm.svelte';
 
     const title = languages.passwordReset.title[$lang];
@@ -18,7 +16,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
-           Set new password
+                Set new password
             </h1>
         </div>
         <div class="col text-end mt-auto">

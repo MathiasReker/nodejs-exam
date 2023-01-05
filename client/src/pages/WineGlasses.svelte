@@ -43,10 +43,13 @@
                         {wineGlass.name}
                     </div>
                     <div class="col-3 text-right">
-                        <img alt="{wineGlass.name}"
-                             class="img-fluid"
-                             src="{`${$apiBaseUrl}${wineGlass.image}`}"
-                             style="height: 150px">
+                        <picture>
+                            <img
+                                    crossorigin="anonymous"
+                                    src="{`${$apiBaseUrl}${wineGlass.image}?h=130`}"
+                                    alt="{wineGlass.name}"
+                                    height="130">
+                        </picture>
                     </div>
                 </div>
             {/each}

@@ -6,11 +6,10 @@ import path from 'path';
 const router = Router();
 
 router.get('/:image', (req, res) => {
-  const height = +req.query.h || 400;
+  let height = +req.query.h || 400;
 
-  const maxHeight = 500;
-  if (height > maxHeight) {
-    return res.send({ error: `Height must be a maximum of ${maxHeight}` }).status(403);
+  if (height > 500) {
+    height = 500;
   }
 
   const inputFile = path.resolve(`./public/images/${req.params.image}`);

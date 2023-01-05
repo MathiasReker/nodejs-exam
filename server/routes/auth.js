@@ -121,11 +121,11 @@ router.post('/:email/recover', async (req, res) => {
 
   // res.send({});
   /*
-          res.send({
-              data: {
-                  resetLink
-              }
-          }) */
+            res.send({
+                data: {
+                    resetLink
+                }
+            }) */
 });
 
 // TODO put.
