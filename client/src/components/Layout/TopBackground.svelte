@@ -1,7 +1,7 @@
-<div class="mx-auto fixed-top top-image"></div>
+<div class="mx-auto fixed-top top-background"></div>
 
 <style>
-    .top-image {
+    .top-background {
         position: absolute;
         top: 0;
         right: 0;
