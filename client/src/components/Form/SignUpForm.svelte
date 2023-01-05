@@ -3,7 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import PrivacyPolicyDiv from "../PrivacyPolicyDiv.svelte";
+    import PrivacyPolicyDiv from '../PrivacyPolicyDiv.svelte';
 
     let email = '';
     let emailInput = null;

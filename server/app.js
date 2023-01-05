@@ -14,6 +14,7 @@ import mail from './routes/mail.js';
 import users from './routes/users.js';
 import messages from './routes/messages.js';
 import pageNotFound from './middleware/page-not-found.js';
+import images from './routes/images.js';
 
 dotenv.config();
 
@@ -42,10 +43,11 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use('/api/static', express.static('public'));
+// app.use('/api/static', express.static('public'));
 app.use(compression());
 app.use(helmet());
 app.use(express.json()); // for body parser
+app.use('/api/images', images);
 app.use('/api/auth', auth);
 app.use('/api/mail', mail);
 app.use('/api/messages', verifyToken, messages);
