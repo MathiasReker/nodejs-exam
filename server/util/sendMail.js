@@ -1,5 +1,3 @@
-'use strict';
-
 import nodemailer from 'nodemailer';
 
 const sendMail = async (from, to, subject, text) => {

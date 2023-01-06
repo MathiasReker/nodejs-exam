@@ -1,5 +1,3 @@
-'use strict';
-
 import { get } from 'svelte/store';
 import { navigate } from 'svelte-navigator';
 import { user } from './stores';

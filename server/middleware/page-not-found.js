@@ -1,5 +1,3 @@
-'use strict';
-
 const pageNotFound = (req, res) => {
   res.status(404).send({
     error: 'Sorry, page does not exist',

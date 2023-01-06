@@ -1,5 +1,3 @@
-'use strict';
-
 import Joi from '@hapi/joi';
 
 export const signupValidation = (data) => {

@@ -1,5 +1,3 @@
-'use strict';
-
 import { Router } from 'express';
 import WineGlass from '../model/WineGlass.js';
 

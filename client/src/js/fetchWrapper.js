@@ -1,5 +1,3 @@
-'use strict';
-
 import { get } from 'svelte/store';
 import { apiBaseUrl, user } from './stores';
 

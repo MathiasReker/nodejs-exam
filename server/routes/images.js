@@ -1,5 +1,3 @@
-'use strict';
-
 import { Router } from 'express';
 import sharp from 'sharp';
 import * as fs from 'fs';

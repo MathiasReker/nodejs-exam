@@ -6,7 +6,7 @@
     import LanguageSelector from '../components/UpdateLanguageBtn.svelte';
     import ExportUserDataBtn from '../components/ExportUserDataBtn.svelte';
     import DeleteAccountBtn from '../components/DeleteAccountBtn.svelte';
-    import UpdateUserBtn from "../components/UpdateUserBtn.svelte";
+    import UpdateUserBtn from '../components/UpdateUserBtn.svelte';
 
     let title;
     $: title = languages.settings.title[$lang];

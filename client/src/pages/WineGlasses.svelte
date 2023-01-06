@@ -1,7 +1,7 @@
 <script>
-    import {apiBaseUrl, lang, user} from '../js/stores';
+    import { apiBaseUrl, lang, user } from '../js/stores';
     import Checkbox from '../components/Checkbox/Checkbox.svelte';
-    import {request} from '../js/fetchWrapper';
+    import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';
     import Page from './Page.svelte';
@@ -9,14 +9,14 @@
     let options = $user.settings.wineGlasses || [];
 
     const wineGlasses = (() => request('/api/wineGlasses', {
-        method: 'GET',
+      method: 'GET',
     }))();
 
     const title = languages.wineGlasses.title[$lang];
 
     const breadcrumbs = [
-        {href: '/', text: languages.global.home[$lang]},
-        {href: location.pathname, text: title},
+      { href: '/', text: languages.global.home[$lang] },
+      { href: location.pathname, text: title },
     ];
 </script>
 

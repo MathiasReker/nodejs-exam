@@ -4,7 +4,7 @@
 
     const jsonToCsv = (arr) => {
       const array = [Object.keys(arr[0])].concat(arr);
-// TODO refactor
+      // TODO refactor
       return array.map((it) => Object.values(it).join(';')).join('\n');
     };
 
@@ -27,9 +27,9 @@
 </script>
 
 <a
-    class="btn btn-secondary"
-    download="wine_glass_guide.csv"
-    href="{objUrl}"
-    type="button">
+        class="btn btn-secondary"
+        download="wine_glass_guide.csv"
+        href="{objUrl}"
+        type="button">
     <Lang page="settings" trans="exportAccountDataBtn"></Lang>
 </a>
