@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-    <title>{title ?? languages.head.title[$lang]}</title>
+    <title>{title ?? languages.head.title[$lang]}</title> <!-- TODO -->
     <meta content="{metaTitle ?? languages.head.title[$lang]}" name="title"/>
     <meta content="{metaDescription ?? ''}" name="description"/>
     <link href="{location.href}" rel="canonical"/>

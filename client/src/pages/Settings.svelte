@@ -4,9 +4,9 @@
     import languages from '../js/language';
     import Page from './Page.svelte';
     import LanguageSelector from '../components/UpdateLanguageBtn.svelte';
-    import Modal from '../components/modal/UpdateUserFormModal.svelte';
     import ExportUserDataBtn from '../components/ExportUserDataBtn.svelte';
     import DeleteAccountBtn from '../components/DeleteAccountBtn.svelte';
+    import UpdateUserBtn from "../components/UpdateUserBtn.svelte";
 
     let title;
     $: title = languages.settings.title[$lang];
@@ -47,9 +47,7 @@
         <p>
             <Lang page="settings" trans="usernameDescription"></Lang>
         </p>
-        <button class="btn btn-secondary" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
-            <Lang page="settings" trans="usernameBtn"></Lang>
-        </button>
+        <UpdateUserBtn/>
     </div>
 
     <div class="pb-5">
@@ -74,5 +72,3 @@
         <DeleteAccountBtn/>
     </div>
 </Page>
-
-<Modal/>
