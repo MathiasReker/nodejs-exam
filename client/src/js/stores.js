@@ -8,6 +8,4 @@ export const lang = writable(
   get(user) ? get(user).settings.language : 'en',
 );
 
-export const apiBaseUrl = writable('http://localhost:3000'); // TODO move to env?
-
 // TODO store webtoken in cookie, to be immune to xss

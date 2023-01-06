@@ -6,7 +6,7 @@
     import Footer from './components/Layout/Footer.svelte';
     import WineGlasses from './pages/WineGlasses.svelte';
     import Home from './pages/Home.svelte';
-    import { apiBaseUrl, user } from './js/stores';
+    import { user } from './js/stores';
     import Contact from './pages/Contact.svelte';
     import Settings from './pages/Settings.svelte';
     import ResetPassword from './pages/ResetPassword.svelte';
@@ -18,7 +18,7 @@
     import About from './pages/About.svelte';
     import PrivacyPolicy from './pages/PrivacyPolicy.svelte';
 
-    io.connect($apiBaseUrl).on('message:create', (res) => {
+    io.connect(import.meta.env.VITE_API_BASE_URL).on('message:create', (res) => {
       displayInfo(res.data);
     });
 </script>

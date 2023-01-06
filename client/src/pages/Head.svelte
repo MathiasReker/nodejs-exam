@@ -1,6 +1,6 @@
 <script>
     import languages from '../js/language';
-    import { lang, apiBaseUrl } from '../js/stores';
+    import { lang } from '../js/stores';
 
     export let title;
 
@@ -14,5 +14,5 @@
     <meta content="{metaTitle ?? languages.head.title[$lang]}" name="title"/>
     <meta content="{metaDescription ?? ''}" name="description"/>
     <link href="{window.location.href}" rel="canonical"/>
-    <link crossorigin="anonymous" href="{apiBaseUrl}" rel="preconnect">
+    <link crossorigin="anonymous" href="{import.meta.env.VITE_API_BASE_URL}" rel="preconnect">
 </svelte:head>

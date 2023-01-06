@@ -1,5 +1,5 @@
 <script>
-    import { apiBaseUrl, lang, user } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import Checkbox from '../components/Checkbox/Checkbox.svelte';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
@@ -45,7 +45,7 @@
                     <div class="col-3 text-right">
                         <img
                                 crossorigin="anonymous"
-                                src="{`${$apiBaseUrl}${wineGlass.image}?h=130`}"
+                                src="{`${import.meta.env.VITE_API_BASE_URL}${wineGlass.image}?h=130`}"
                                 alt="{wineGlass.name}"
                                 height="130">
                     </div>

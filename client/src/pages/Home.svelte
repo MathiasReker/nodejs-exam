@@ -3,7 +3,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
-    import { apiBaseUrl, lang, user } from '../js/stores';
+    import { lang, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';
@@ -106,7 +106,7 @@
                     <div class="col" style="z-index: -1">
                         <img
                                 crossorigin="anonymous"
-                                src="{`${$apiBaseUrl}${wineGlass.image}?h=400`}"
+                                src="{`${import.meta.env.VITE_API_BASE_URL}${wineGlass.image}?h=400`}"
                                 alt="{wineGlass.name}"
                                 height="400">
                     </div>

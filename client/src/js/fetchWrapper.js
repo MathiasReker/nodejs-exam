@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { apiBaseUrl, user } from './stores';
+import { user } from './stores';
 
 export const request = (path, options = {}) => {
   const {
@@ -33,6 +33,6 @@ export const request = (path, options = {}) => {
     queryString = `?${queryString}`;
   }
 
-  return fetch(`${get(apiBaseUrl)}${path}${queryString}`, reqOptions)
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}${path}${queryString}`, reqOptions)
     .then((res) => res.json());
 };
