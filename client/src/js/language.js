@@ -1,4 +1,4 @@
-const languages = {
+export const languages = {
   home: {
     title: {
       en: 'Find the wine glass',

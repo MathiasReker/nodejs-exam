@@ -16,7 +16,7 @@
 
     const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: location.pathname, text: title },
+      { href: window.location.pathname, text: title },
     ];
 </script>
 
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-3 text-right">
                         <img
-                                crossorigin
+                                crossorigin="anonymous"
                                 src="{`${$apiBaseUrl}${wineGlass.image}?h=130`}"
                                 alt="{wineGlass.name}"
                                 height="130">

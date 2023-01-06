@@ -4,7 +4,7 @@
     import { request } from '../../js/fetchWrapper';
 
     export let bindGroup = [];
-    export let value = '';
+    export let checkbox = '';
 
     const onChange = ({ target }) => {
       const { value, checked } = target;
@@ -37,12 +37,12 @@
 </script>
 
 <div class="form-check form-switch form-switch-md">
-    <input checked={bindGroup.includes(value)}
+    <input checked={bindGroup.includes(checkbox)}
            class="form-check-input"
            on:change={onChange}
            role="switch"
            type="checkbox"
-           {value}>
+           {checkbox}>
 </div>
 
 <style>

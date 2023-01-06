@@ -13,6 +13,6 @@
     <title>{title ?? languages.head.title[$lang]}</title> <!-- TODO -->
     <meta content="{metaTitle ?? languages.head.title[$lang]}" name="title"/>
     <meta content="{metaDescription ?? ''}" name="description"/>
-    <link href="{location.href}" rel="canonical"/>
-    <link crossorigin href="{apiBaseUrl}" rel="preconnect">
+    <link href="{window.location.href}" rel="canonical"/>
+    <link crossorigin="anonymous" href="{apiBaseUrl}" rel="preconnect">
 </svelte:head>

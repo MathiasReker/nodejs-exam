@@ -22,7 +22,8 @@
         <nav class="cover-container navbar mx-auto px-3">
             <a class="navbar-brand" href="/" use:link>
                 <span class="align-items-center" style="color: {color}">
-                    <Icon color="{color}" size="25px" src={IoWine}/> <Lang page="global" trans="title"></Lang>
+                    <Icon color="{color}" size="25px" src={IoWine}/>
+                    <Lang page="global" trans="title"></Lang>
                 </span>
             </a>
 
@@ -36,7 +37,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     {#if $user}
-                        <li><a class="dropdown-item" href="/wine-glasses" use:link>Your wine glasses</a></li>
+                        <li><a class="dropdown-item" href="/wine-glasses" use:link>
+                            Your wine glasses</a></li>
                         <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>
                         <li>
                             <hr class="dropdown-divider">

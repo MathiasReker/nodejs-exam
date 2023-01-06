@@ -14,7 +14,7 @@
     let breadcrumbs;
     $: breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: location.pathname, text: title },
+      { href: window.location.pathname, text: title },
     ];
 </script>
 

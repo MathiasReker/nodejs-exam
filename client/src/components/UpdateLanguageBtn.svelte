@@ -40,7 +40,11 @@
 </script>
 
 <div>
-    <select bind:value={language} class="form-select" on:change={handleUpdateLanguage} style="max-width: 200px">
+    <select
+            bind:value={language}
+            class="form-select"
+            on:change={handleUpdateLanguage}
+            style="max-width: 200px">
         {#each languages as language}
             <option value="{language.iso}">{`${language.img} ${language.language}`}</option>
         {/each}

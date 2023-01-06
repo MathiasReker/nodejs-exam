@@ -13,10 +13,10 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
 
-      await request(`/api/auth/${email}/recover`, {
+      request(`/api/auth/${email}/recover`, {
         method: 'POST',
       }).then(() => {
         displaySuccess('If the user exists an email is send.');

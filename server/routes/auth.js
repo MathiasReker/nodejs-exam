@@ -20,13 +20,15 @@ router.post('/signup', async (req, res) => {
   // throw validation errors
   if (error) {
     // TODO validate front and back username password, email..
-    return res.status(400).json({ error: error.details[0].message });
+    res.status(400).json({ error: error.details[0].message });
+    return;
   }
 
   const isEmailExist = await User.findOne({ email: req.body.email });
   // throw exception when email already registered
   if (isEmailExist) {
-    return res.status(400).json({ error: 'Email already exists' });
+    res.status(400).json({ error: 'Email already exists' });
+    return;
   }
 
   // hash the password
@@ -39,9 +41,10 @@ router.post('/signup', async (req, res) => {
   });
   try {
     const savedUser = await user.save();
+    // eslint-disable-next-line no-underscore-dangle
     res.json({ error: null, data: { userId: savedUser._id } });
-  } catch (error) {
-    res.status(400).json({ error });
+  } catch (err) {
+    res.status(400).json({ err });
   }
 });
 
@@ -51,9 +54,10 @@ router.post('/signin', async (req, res) => {
 
   // throw validation errors
   if (error) {
-    return res.status(400).json({
+    res.status(400).json({
       error: error.details[0].message,
     });
+    return;
   }
 
   const user = await User.findOne({
@@ -63,23 +67,26 @@ router.post('/signin', async (req, res) => {
   const signInError = 'A user with this combination of credentials was not found.';
   // throw exception when email is wrong
   if (!user) {
-    return res.status(400).json({
+    res.status(400).json({
       error: signInError,
     });
+    return;
   }
 
   // check for password correctness
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) {
-    return res.status(400).json({
+    res.status(400).json({
       error: signInError,
     });
+    return;
   }
 
   // create token
   const token = jwt.sign(
     {
       name: user.name,
+      // eslint-disable-next-line no-underscore-dangle
       id: user._id,
     },
     process.env.TOKEN_SECRET,

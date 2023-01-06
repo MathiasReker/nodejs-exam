@@ -5,7 +5,7 @@ import path from 'path';
 
 const router = Router();
 
-router.get('/:image', (req, res, next) => {
+router.get('/:image', (req, res) => {
   let height = +req.query.h || 400;
 
   if (height > 500) {
@@ -15,7 +15,8 @@ router.get('/:image', (req, res, next) => {
   const inputFile = path.resolve(`./public/images/${req.params.image}`);
 
   if (!fs.existsSync(inputFile)) {
-    return res.sendStatus(404);
+    res.sendStatus(404);
+    return;
   }
 
   const outputDirectory = `./public/cache/images/${req.params.image.slice(0, 2)}/`;
@@ -25,7 +26,8 @@ router.get('/:image', (req, res, next) => {
   const outputFile = path.resolve(`${outputDirectory}${file.name}-${height}${file.ext}`);
 
   if (fs.existsSync(outputFile)) {
-    return res.sendFile(outputFile);
+    res.sendFile(outputFile);
+    return;
   }
 
   if (!fs.existsSync(outputDirectory)) {

@@ -3,13 +3,12 @@
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import { user } from '../../js/stores.js';
+    import { user } from '../../js/stores';
 
     let email = '';
     let emailInput = null;
 
     let password = '';
-    let passwordInput = null;
 
     let loading = false;
 
@@ -17,16 +16,16 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
 
       const userSignIn = { email, password };
 
-      await request('/api/auth/signin', {
+      request('/api/auth/signin', {
         method: 'POST',
         body: userSignIn,
       })
-        .then(async (res) => {
+        .then((res) => {
           if (res.data.user) {
             $user = res.data.user;
             localStorage.setItem('user', JSON.stringify($user));
@@ -49,12 +48,15 @@
             <label for="email">Email address</label>
         </div>
         <div class="form-floating mb-3">
-            <input bind:this={passwordInput} bind:value={password} class="form-control" id="password"
+            <input bind:value={password} class="form-control" id="password"
                    placeholder="Password" required
                    type="password">
             <label for="password">Password</label>
         </div>
-
-        <button class="w-100 btn btn-lg btn-primary" disabled={loading} type="submit">Submit</button>
+        <button
+                class="w-100 btn btn-lg btn-primary"
+                disabled={loading}
+                type="submit">Submit
+        </button>
     </form>
 </main>

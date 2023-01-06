@@ -1,15 +1,16 @@
 <script>
     import { onMount } from 'svelte';
+    import { useFocus } from 'svelte-navigator';
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
     import Lang from '../Util/Lang.svelte';
 
+    const registerFocus = useFocus();
+
     let email = $user ? $user.email : '';
-    let emailInput = null;
 
     let name = $user ? $user.name : '';
-    let nameInput = null;
 
     let message = '';
     let messageInput = null;
@@ -20,10 +21,10 @@
       messageInput.focus();
     });
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
 
-      await request('/api/mail', {
+      request('/api/mail', {
         method: 'POST',
         body: { name, email, message },
       }).then(() => {
@@ -39,12 +40,12 @@
 
 <form on:submit|preventDefault={handleOnSubmit}>
     <div class="form-floating mb-3">
-        <input bind:this={nameInput} bind:value={name} class="form-control" id="name"
+        <input bind:value={name} class="form-control" id="name"
                placeholder="Name" required type="text">
         <label for="name">Name</label>
     </div>
     <div class="form-floating mb-3">
-        <input bind:this={emailInput} bind:value={email} class="form-control" id="email"
+        <input bind:value={email} class="form-control" id="email"
                placeholder="name@example.com" required type="email">
         <label for="email">Email</label>
     </div>
@@ -52,7 +53,13 @@
         <label class="form-label" for="message">
             <Lang page="contact" trans="title"></Lang>
         </label>
-        <textarea bind:this={messageInput} bind:value={message} class="form-control" id="message" rows="5"></textarea>
+        <textarea
+                use:registerFocus
+                bind:this={messageInput}
+                bind:value={message}
+                class="form-control"
+                id="message"
+                rows="5"></textarea>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Send</button>

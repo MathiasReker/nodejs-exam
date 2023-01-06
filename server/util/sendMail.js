@@ -21,8 +21,8 @@ const sendMail = async (from, to, subject, text) => {
   });
 
   if (process.env.NODE_ENV === 'dev') {
-    console.log('Message send: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    console.log('Message send: %s', info.messageId); // TODO
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info)); // TODO
   }
 };
 

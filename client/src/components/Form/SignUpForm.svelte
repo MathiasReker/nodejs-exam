@@ -9,10 +9,8 @@
     let emailInput = null;
 
     let password = '';
-    let passwordInput = null;
 
     let name = '';
-    let nameInput = null;
 
     let loading = false;
 
@@ -22,10 +20,10 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
 
-      await request('/api/auth/signup', {
+      request('/api/auth/signup', {
         method: 'POST',
         body: { name, email, password },
       }).then(() => {
@@ -40,7 +38,7 @@
 
 <form on:submit|preventDefault={handleOnSubmit}>
     <div class="form-floating mb-3">
-        <input bind:this={nameInput} bind:value={name} class="form-control" id="name"
+        <input bind:value={name} class="form-control" id="name"
                placeholder="Name" required type="text">
         <label for="name">Name</label>
     </div>
@@ -50,16 +48,20 @@
         <label for="email">Email address</label>
     </div>
     <div class="form-floating mb-3">
-        <input bind:this={passwordInput} bind:value={password} class="form-control" id="password"
+        <input bind:value={password} class="form-control" id="password"
                placeholder="Password" required
                type="password">
         <label for="password">Password</label>
     </div>
     <div class="form-check mb-3">
         <input bind:checked={isOptIn} class="form-check-input" id="gdpr" type="checkbox" value="">
-        <label class="form-check-label" for="gdpr">
-            I agree to the <a data-bs-target="#exampleModal" data-bs-toggle="modal" data-bs-whatever="@getbootstrap"
-                              href="#">privacy policy</a>
+        <label
+                class="form-check-label"
+                for="gdpr">I agree to the
+            <a data-bs-target="#exampleModal"
+               data-bs-toggle="modal"
+               data-bs-whatever="@getbootstrap"
+               href="#">privacy policy</a>
         </label>
     </div>
     {#if !isOptIn}

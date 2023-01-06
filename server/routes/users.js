@@ -28,6 +28,7 @@ router.delete('/:email/statistics/lookups', (req, res) => {
     )
       .exec()
       .then((user) => {
+        // eslint-disable-next-line no-shadow
         const { lookups } = user.statistics;
 
         res.send({ data: { lookups } });
@@ -79,6 +80,7 @@ router.put('/:email/statistics/lookups', (req, res) => {
     )
       .exec()
       .then((user) => {
+        // eslint-disable-next-line no-shadow
         const { lookups } = user.statistics;
         res.send({ data: { lookups } });
       });

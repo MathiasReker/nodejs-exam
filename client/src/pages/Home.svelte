@@ -21,31 +21,35 @@
 
     let background;
 
-    (async () => request('/api/grapes', {
+    (() => request('/api/grapes', {
       method: 'GET',
     }))().then((res) => {
       grapes = res.data.grapes;
     });
 
-    const onChange = async () => {
+    const onChange = () => {
       if (!selectedGrape) {
         return;
       }
 
-      await request(`/api/wineGlasses/${selectedGrape}`, {
+      request(`/api/wineGlasses/${selectedGrape}`, {
         method: 'GET',
       }).then((res) => {
         wineGlasses = res.data;
       });
 
-      await request(`/api/users/${$user.email}/statistics/lookups`, {
+      request(`/api/users/${$user.email}/statistics/lookups`, {
         method: 'PUT',
         body: {
           lookups: true,
         },
+      }).then((res) => {
+        $user.statistics = {}; // TODO remove
+        $user.statistics.lookups = res.data.lookups;
+        localStorage.setItem('user', JSON.stringify($user));
       });
 
-      await request('/api/messages', {
+      request('/api/messages', {
         method: 'POST',
         body: {
           email: $user.email,
@@ -101,7 +105,7 @@
                     </div>
                     <div class="col" style="z-index: -1">
                         <img
-                                crossorigin
+                                crossorigin="anonymous"
                                 src="{`${$apiBaseUrl}${wineGlass.image}?h=400`}"
                                 alt="{wineGlass.name}"
                                 height="400">

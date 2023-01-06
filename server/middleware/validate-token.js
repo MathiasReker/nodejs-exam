@@ -4,7 +4,8 @@ const verifyToken = (req, res, next) => {
   const token = req.header('auth-token');
 
   if (!token) {
-    return res.status(401).json({ error: 'Access denied' });
+    res.status(401).json({ error: 'Access denied' });
+    return;
   }
 
   try {

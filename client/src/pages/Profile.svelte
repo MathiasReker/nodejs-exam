@@ -15,18 +15,21 @@
 
     let lookups = 0;
 
-    (async () => request('/api/wineGlasses', {
+    (() => request('/api/wineGlasses', {
       method: 'GET',
     }))()
       .then((res) => {
         totalWineGlasses = res.data.length;
-        percentOwned = ownedWineGlasses / totalWineGlasses * 100;
+        percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
       });
 
-    (async () => request(`/api/users/${$user.email}/statistics/lookups`, {
+    (() => request(`/api/users/${$user.email}/statistics/lookups`, {
       method: 'GET',
     }))()
       .then((res) => {
+        $user.statistics = {}; // TODO remove
+        $user.statistics.lookups = res.data.lookups;
+        localStorage.setItem('user', JSON.stringify($user));
         lookups = res.data.lookups;
       });
 
@@ -34,19 +37,23 @@
 
     const breadcrumbs = [
       { href: '/', text: languages.global.home[$lang] },
-      { href: location.pathname, text: title },
+      { href: window.location.pathname, text: title },
     ];
 
     // TODO statistics -> endpoint change -> "lookup" is the UID!
 
-    const handleOnResetLookups = async () => {
-      await request(`/api/users/${$user.email}/statistics/lookups`, {
+    const handleOnResetLookups = () => {
+      request(`/api/users/${$user.email}/statistics/lookups`, {
         method: 'DELETE',
         body: {
           lookups: true,
         },
       }).then((res) => {
         lookups = res.data.lookups;
+
+        $user.statistics = {}; // TODO remove
+        $user.statistics.lookups = res.data.lookups;
+        localStorage.setItem('user', JSON.stringify($user));
         displaySuccess('Count lookups has been reset');
       });
     };
@@ -66,9 +73,16 @@
         </h5>
         <div class="card-body">
             <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
-            <div class="progress mb-3" style="height: 20px;">
-                <div aria-label="20px high" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{percentOwned}"
-                     class="progress-bar bg-secondary" role="progressbar" style="width: {percentOwned}%;"></div>
+            <div class="progress mb-3" style="height: 20px">
+                <div
+                        aria-label="20px high"
+                        aria-valuemax="100"
+                        aria-valuemin="0"
+                        aria-valuenow="{percentOwned}"
+                        class="progress-bar bg-secondary"
+                        role="progressbar"
+                        style="width: {percentOwned}%">
+                </div>
             </div>
             <a class="btn btn-primary" href="/wine-glasses" use:link>
                 <Lang page="profile" trans="updateCollectionBtn"/>

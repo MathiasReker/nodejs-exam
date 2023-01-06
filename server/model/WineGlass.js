@@ -21,5 +21,3 @@ const wineGlassSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('WineGlass', wineGlassSchema);
-
-// https://www.riedel.com/en/collections/riedel-veloce

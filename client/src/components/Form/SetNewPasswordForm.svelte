@@ -4,7 +4,7 @@
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
 
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
     const token = urlParams.get('token');
     let password = '';
@@ -13,9 +13,9 @@
     onMount(() => {
       passwordInput.focus();
     });
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
-      await request(`/api/auth/${email}/reset`, {
+      request(`/api/auth/${email}/reset`, {
         method: 'POST',
         body: {
           password,

@@ -4,7 +4,7 @@ import sendMail from '../util/sendMail.js';
 const router = Router();
 
 router.post('/', (req, res) => {
-  const from = req.body.mail;// `${req.body.name} <${req.body.mail}>`;
+  const from = req.body.mail; // TODO `${req.body.name} <${req.body.mail}>`;
 
   const to = 'contact@demo.com'; // TODO ENV
 

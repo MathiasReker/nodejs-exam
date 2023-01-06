@@ -22,5 +22,12 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    rules: {},
+    rules: {
+        "import/prefer-default-export": "off",
+        "import/no-named-as-default-member": "off",
+        "import/no-mutable-exports": "off",
+        "import/no-named-as-default": "off",
+        "svelte/no-at-html-tags": "off",
+        "max-len": ["error", { "code": 120 }]
+    },
 };

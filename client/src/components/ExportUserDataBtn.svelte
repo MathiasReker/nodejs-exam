@@ -1,24 +1,22 @@
 <script>
-    import { user } from '../js/stores.js';
+    import { user } from '../js/stores';
     import Lang from './Util/Lang.svelte';
 
-    const jsonToCsv = (arr) => {
-      const array = [Object.keys(arr[0])].concat(arr);
-      // TODO refactor
-      return array.map((it) => Object.values(it).join(';')).join('\n');
+    const jsonToCsv = (data) => {
+      const array = [Object.keys(data)].concat(data);
+
+      return array.map((value) => Object.values(value).join(';')).join('\n');
     };
 
-    // TODO: Add statistics..
     const csvContent = (
       jsonToCsv(
-        [
-          {
-            username: $user.name,
-            email: $user.email,
-            language: $user.settings.language,
-            wineGlasses: $user.settings.wineGlasses.join(','),
-          },
-        ],
+        {
+          username: $user.name,
+          email: $user.email,
+          language: $user.settings.language,
+          wineGlasses: $user.settings.wineGlasses.join(','),
+          statistics: $user.statistics.lookups,
+        },
       )
     );
 
