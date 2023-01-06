@@ -1,3 +1,5 @@
+'strict mode';
+
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
@@ -15,6 +17,7 @@ import users from './routes/users.js';
 import messages from './routes/messages.js';
 import pageNotFound from './middleware/page-not-found.js';
 import images from './routes/images.js';
+import {error} from "@hapi/joi/lib/annotate.js";
 
 dotenv.config();
 
@@ -46,13 +49,15 @@ app.use((req, res, next) => {
 // app.use('/api/static', express.static('public'));
 app.use(compression());
 app.use(helmet());
-app.use(express.json()); // for body parser
+app.use(express.urlencoded({ extended: true, limit: "1kb" })); // TODO do we need this?
+app.use(express.json({ limit: "1kb" })); // for body parser
+app.use('/api/auth', auth); // TODO add bruteforce protection
+app.use('/api/mail', mail); // TODO add bruteforce protection
 app.use('/api/images', images);
-app.use('/api/auth', auth);
-app.use('/api/mail', mail);
 app.use('/api/messages', verifyToken, messages);
 app.use('/api/grapes', verifyToken, grapes);
 app.use('/api/wineGlasses', verifyToken, wineGlasses);
 app.use('/api/users', verifyToken, users);
 app.use(pageNotFound);
+app.use(error)
 server.listen(process.env.PORT);

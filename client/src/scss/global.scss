@@ -10,7 +10,7 @@ $border-radius: 0.2rem;
 $border-radius-lg: 0.2rem;
 
 @import "bootstrap/scss/bootstrap";
-
+/* todo.. enable in production
 * {
   -webkit-user-select: none;
   user-select: none;
@@ -19,7 +19,7 @@ $border-radius-lg: 0.2rem;
 img {
   pointer-events: none;
 }
-
+*/
 body {
   color: $dark;
   font-family: 'Chivo', sans-serif;
