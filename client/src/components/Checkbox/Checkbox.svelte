@@ -23,8 +23,8 @@
             wineGlasses: bindGroup,
           },
         })
-          .then(() => {
-            $user.settings.wineGlasses = bindGroup;
+          .then((res) => {
+            $user.settings.wineGlasses = res.data.wineGlasses;
             localStorage.setItem('user', JSON.stringify($user));
 
             displaySuccess('Settings saved!');

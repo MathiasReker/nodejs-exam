@@ -3,21 +3,15 @@ import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  const wineGlasses = await WineGlass.find().exec();
+router.get('/', (req, res) => {
+  WineGlass.find().exec().then((wineGlasses) => {
+    const grapes = [];
 
-  const grapes = [];
+    wineGlasses.forEach((wineGlass) => {
+      grapes.push(...wineGlass.grapes);
+    });
 
-  wineGlasses.forEach((wineGlass) => {
-    grapes.push(...wineGlass.grapes);
-  });
-
-  grapes.sort();
-
-  res.send({
-    data: {
-      grapes,
-    },
+    res.send({ data: { grapes } });
   });
 });
 

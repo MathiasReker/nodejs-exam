@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
   }
 
   const isEmailExist = await User.findOne({ email: req.body.email });
-  // throw error when email already registered
+  // throw exception when email already registered
   if (isEmailExist) {
     return res.status(400).json({ error: 'Email already exists' });
   }
@@ -61,7 +61,7 @@ router.post('/signin', async (req, res) => {
   });
 
   const signInError = 'A user with this combination of credentials was not found.';
-  // throw error when email is wrong
+  // throw exception when email is wrong
   if (!user) {
     return res.status(400).json({
       error: signInError,
@@ -118,14 +118,6 @@ router.post('/:email/recover', async (req, res) => {
     .catch((error) => {
       res.status(404).send({ data: { error } });
     });
-
-  // res.send({});
-  /*
-              res.send({
-                  data: {
-                      resetLink
-                  }
-              }) */
 });
 
 // TODO put.

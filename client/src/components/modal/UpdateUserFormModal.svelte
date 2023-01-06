@@ -8,11 +8,11 @@
 
     let loading = false;
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = () => {
       loading = true;
       // todo validate
 
-      await request(`/api/users/${$user.email}`, {
+      request(`/api/users/${$user.email}`, {
         method: 'PUT',
         body: {
           name,

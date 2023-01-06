@@ -3,109 +3,107 @@ import User from '../model/User.js';
 
 const router = Router();
 
-router.get('/:email/statistics', async (req, res) => {
+router.get('/:email/statistics/lookups', (req, res) => {
   const { email } = req.params;
 
-  const user = await User.findOne({ email });
+  User.findOne({ email })
+    .exec()
+    .then((user) => {
+      const { lookups } = user.statistics;
 
-  const { lookups } = user.statistics;
-
-  res.send({
-    data: {
-      lookups,
-    },
-  });
+      res.send({ data: { lookups } });
+    });
 });
 
-router.delete('/:email/statistics', async (req, res) => {
+router.delete('/:email/statistics/lookups', (req, res) => {
   const { email } = req.params;
 
-  const statistics = req.body;
+  const { lookups } = req.body;
 
-  let result = {};
-
-  if (statistics.lookup) {
-    result = await User.findOneAndUpdate(
+  if (lookups) {
+    User.findOneAndUpdate(
       { email },
       { 'statistics.lookups': 0 },
       { new: true },
-    );
-  }
+    )
+      .exec()
+      .then((user) => {
+        const { lookups } = user.statistics;
 
-  res.send({
-    data: {
-      lookups: result.statistics.lookups,
-    },
-  });
+        res.send({ data: { lookups } });
+      });
+  }
 });
 
-router.put('/:email/wineGlasses', async (req, res) => {
+router.put('/:email/wineGlasses', (req, res) => {
   const { email } = req.params;
   const glasses = req.body.wineGlasses;
 
-  const doc = await User.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email },
     { 'settings.wineGlasses': glasses },
     { new: true },
-  );
+  )
+    .exec()
+    .then((user) => {
+      const { wineGlasses } = user.settings;
 
-  res.send(doc);
+      res.send({ data: { wineGlasses } });
+    });
 });
 
-router.put('/:email', async (req, res) => {
+router.put('/:email', (req, res) => {
   const { email } = req.params;
   const { name } = req.body;
-  console.log(name);
-  const doc = await User.findOneAndUpdate(
+
+  User.findOneAndUpdate(
     { email },
     { name },
     { new: true },
-  );
-
-  res.send({ data: { user: doc } });
+  )
+    .exec()
+    .then((user) => {
+      res.send({ data: { user } }); // TODO remove _id
+    });
 });
 
-router.put('/:email/statistics', async (req, res) => {
+router.put('/:email/statistics/lookups', (req, res) => {
   const { email } = req.params;
+  const { lookups } = req.body;
 
-  const statistics = req.body;
-
-  let result = {};
-
-  if (statistics.lookup) {
-    result = await User.findOneAndUpdate(
+  if (lookups) {
+    User.findOneAndUpdate(
       { email },
       { $inc: { 'statistics.lookups': 1 } },
       { new: true },
-    );
+    )
+      .exec()
+      .then((user) => {
+        const { lookups } = user.statistics;
+        res.send({ data: { lookups } });
+      });
   }
-
-  res.send(result);
 });
 
-router.put('/:email/settings/language', async (req, res) => {
+router.put('/:email/settings/language', (req, res) => {
   const { email } = req.params;
-
   const settings = req.body;
 
-  let result = {};
   // TODO validate!
 
   if (settings.language) {
-    result = await User.findOneAndUpdate(
+    User.findOneAndUpdate(
       { email },
       { 'settings.language': settings.language },
       { new: true },
-    );
-  }
+    )
+      .exec()
+      .then((user) => {
+        const { language } = user.settings;
 
-  res.send(
-    {
-      data: {
-        language: result.settings.language,
-      },
-    },
-  );
+        res.send({ data: { language } });
+      });
+  }
 });
 
 export default router;

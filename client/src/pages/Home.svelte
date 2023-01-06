@@ -32,17 +32,16 @@
         return;
       }
 
-      await request('/api/wineGlasses', {
+      await request(`/api/wineGlasses/${selectedGrape}`, {
         method: 'GET',
-        query: `grape=${selectedGrape}`,
       }).then((res) => {
         wineGlasses = res.data;
       });
 
-      await request(`/api/users/${$user.email}/statistics`, {
+      await request(`/api/users/${$user.email}/statistics/lookups`, {
         method: 'PUT',
         body: {
-          lookup: true,
+          lookups: true,
         },
       });
 

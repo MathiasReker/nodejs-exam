@@ -3,7 +3,6 @@ import User from '../model/User.js';
 import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
-
 router.post('/', async (req, res) => {
   const { email, grape } = req.body;
 
@@ -17,7 +16,7 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  const message = `<strong>${user.name}</strong> looked up the <strong>${grape}</strong> grape`;
+  const message = `${user.name} looked up the ${grape} grape`;
 
   req.io.emit('message:create', { data: message });
 
