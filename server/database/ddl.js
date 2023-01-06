@@ -1,3 +1,5 @@
+'use strict';
+
 import dotenv from 'dotenv';
 import WineGlass from '../model/WineGlass.js';
 import connection from './connection.js';

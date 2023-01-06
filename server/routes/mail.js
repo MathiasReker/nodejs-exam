@@ -1,3 +1,5 @@
+'use strict';
+
 import { Router } from 'express';
 import sendMail from '../util/sendMail.js';
 

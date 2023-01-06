@@ -1,3 +1,5 @@
+'use strict';
+
 import { toast } from '@zerodevx/svelte-toast';
 
 export const displaySuccess = (message) => toast.push(message, {

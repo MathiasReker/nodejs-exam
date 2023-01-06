@@ -1,3 +1,5 @@
+'use strict';
+
 import { Router } from 'express';
 import { createHash } from 'crypto';
 import bcrypt from 'bcryptjs';

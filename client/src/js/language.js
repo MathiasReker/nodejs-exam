@@ -1,3 +1,5 @@
+'use strict';
+
 const languages = {
   home: {
     title: {
