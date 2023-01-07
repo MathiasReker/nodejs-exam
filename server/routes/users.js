@@ -4,9 +4,9 @@ import User from '../model/User.js';
 const router = Router();
 
 router.get('/:id/statistics/lookups', (req, res) => {
-  const uuid = req.params.id;
+  const { id } = req.params;
 
-  User.findOne({ uuid })
+  User.findOne({ uuid: id })
     .exec()
     .then((user) => {
       const { lookups } = user.statistics;
@@ -16,26 +16,26 @@ router.get('/:id/statistics/lookups', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const uuid = req.params.id;
+  const { id } = req.params;
   const { name } = req.body;
 
   User.findOneAndUpdate(
-    { uuid },
+    { uuid: id },
     { name },
     { new: true },
   )
     .exec()
     .then((user) => {
-      res.send({ data: { user } }); // TODO remove _id
+      res.send({ data: { name: user.name } });
     });
 });
 
-router.put('/:id/wineGlasses', (req, res) => {
-  const uuid = req.params.id;
+router.put('/:id/wine-glasses', (req, res) => {
+  const { id } = req.params;
   const { wineGlasses } = req.body;
 
   User.findOneAndUpdate(
-    { uuid },
+    { uuid: id},
     { 'settings.wineGlasses': wineGlasses },
     { new: true },
   )
@@ -49,12 +49,12 @@ router.put('/:id/wineGlasses', (req, res) => {
 });
 
 router.put('/:id/statistics/lookups', (req, res) => {
-  const uuid = req.params.id;
+  const { id } = req.params;
   const { lookups } = req.body;
 
   if (lookups) {
     User.findOneAndUpdate(
-      { uuid },
+      { uuid: id },
       { $inc: { 'statistics.lookups': 1 } },
       { new: true },
     )
@@ -68,24 +68,22 @@ router.put('/:id/statistics/lookups', (req, res) => {
 });
 
 router.put('/:id/settings/language', (req, res) => {
-  const uuid = req.params.id;
-  const settings = req.body;
+  const { id } = req.params;
+  const { language } = req.body;
 
   // TODO validate!
+  User.findOneAndUpdate(
+    { uuid: id },
+    { 'settings.language': language },
+    { new: true },
+  )
+    .exec()
+    .then((user) => {
+      // eslint-disable-next-line no-shadow
+      const { language } = user.settings;
 
-  if (settings.language) {
-    User.findOneAndUpdate(
-      { uuid },
-      { 'settings.language': settings.language },
-      { new: true },
-    )
-      .exec()
-      .then((user) => {
-        const { language } = user.settings;
-
-        res.send({ data: { language } });
-      });
-  }
+      res.send({ data: { language } });
+    });
 });
 
 router.delete('/:id/statistics/lookups', (req, res) => {

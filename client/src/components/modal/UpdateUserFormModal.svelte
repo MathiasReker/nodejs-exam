@@ -17,7 +17,7 @@
           name,
         },
       }).then((res) => {
-        $user.name = res.data.user.name;
+        $user.name = res.data.name;
         localStorage.setItem('user', JSON.stringify($user));
 
         displaySuccess(`Username changed to ${$user.name}`);

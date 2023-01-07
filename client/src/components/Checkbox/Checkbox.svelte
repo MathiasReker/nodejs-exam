@@ -17,7 +17,7 @@
 
       // save to database
       (() => {
-        request(`/api/users/${$user.uuid}/wineGlasses`, {
+        request(`/api/users/${$user.uuid}/wine-glasses`, {
           method: 'PUT',
           body: {
             wineGlasses: bindGroup,
