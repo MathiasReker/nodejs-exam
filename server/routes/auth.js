@@ -4,26 +4,16 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { createHash } from 'crypto';
 import User from '../model/User.js';
-
-// validation
-import { signinValidation, signupValidation } from '../validation.js';
+import {
+  recoverRules, resetRules, signInRules, signupRules,
+} from './validations/auth.js';
 import mail from '../util/mail.js';
+import validate from '../middleware/validate.js';
 
 const router = Router();
 
-// register route
-// TODO: signup
-router.post('/signup', async (req, res) => {
+router.post('/signup', validate(signupRules), async (req, res) => {
   // validate the user
-  const { error } = signupValidation(req.body);
-
-  // throw validation errors
-  if (error) {
-    // TODO validate front and back username password, email..
-    res.status(400).json({ error: error.details[0].message });
-    return;
-  }
-
   const isEmailExist = await User.findOne({ email: req.body.email });
   // throw exception when email already registered
   if (isEmailExist) {
@@ -48,18 +38,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-router.post('/signin', async (req, res) => {
-  // validate the user
-  const { error } = signinValidation(req.body);
-
-  // throw validation errors
-  if (error) {
-    res.status(400).json({
-      error: error.details[0].message,
-    });
-    return;
-  }
-
+router.post('/signin', validate(signInRules), async (req, res) => {
   const user = await User.findOne({
     email: req.body.email,
   });
@@ -108,7 +87,7 @@ router.post('/signin', async (req, res) => {
   });
 });
 
-router.post('/:email/recover', async (req, res) => {
+router.post('/:email/recover', validate(recoverRules), async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 
   const token = createHash('sha256').update(user.password).digest('hex');
@@ -130,7 +109,7 @@ contact support. Thank you for using Wine Glass Guide!`;
     });
 });
 
-router.put('/:email/reset', async (req, res) => {
+router.put('/:email/reset', validate(resetRules), async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 
   const token = createHash('sha256').update(user.password).digest('hex');

@@ -11,7 +11,7 @@ import verifyToken from './middleware/validate-token.js';
 import auth from './routes/auth.js';
 import grapes from './routes/grapes.js';
 import wineGlasses from './routes/wine-glasses.js';
-import mail from './routes/mail.js';
+import mail from './routes/mails.js';
 import users from './routes/users.js';
 import messages from './routes/messages.js';
 import images from './routes/images.js';

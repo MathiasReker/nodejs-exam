@@ -1,5 +1,12 @@
 import { Router } from 'express';
 import User from '../model/User.js';
+import validate from '../middleware/validate.js';
+import {
+  userRules,
+  userSettingsLanguageRules,
+  userStatistiscsLookupsRules,
+  wineGlassRules,
+} from './validations/users.js';
 
 const router = Router();
 
@@ -15,10 +22,12 @@ router.get('/:id/statistics/lookups', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validate(userRules), (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
+  // TODO ... user endpoint and only possible to update name??
+  // TODO parse whole user object?
   User.findOneAndUpdate(
     { uuid: id },
     { name },
@@ -30,12 +39,12 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.put('/:id/wine-glasses', (req, res) => {
+router.put('/:id/wine-glasses', validate(wineGlassRules), (req, res) => {
   const { id } = req.params;
   const { wineGlasses } = req.body;
 
   User.findOneAndUpdate(
-    { uuid: id},
+    { uuid: id },
     { 'settings.wineGlasses': wineGlasses },
     { new: true },
   )
@@ -48,7 +57,7 @@ router.put('/:id/wine-glasses', (req, res) => {
     });
 });
 
-router.put('/:id/statistics/lookups', (req, res) => {
+router.put('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), (req, res) => {
   const { id } = req.params;
   const { lookups } = req.body;
 
@@ -67,11 +76,10 @@ router.put('/:id/statistics/lookups', (req, res) => {
   }
 });
 
-router.put('/:id/settings/language', (req, res) => {
+router.put('/:id/settings/language', validate(userSettingsLanguageRules), (req, res) => {
   const { id } = req.params;
   const { language } = req.body;
 
-  // TODO validate!
   User.findOneAndUpdate(
     { uuid: id },
     { 'settings.language': language },
@@ -86,7 +94,7 @@ router.put('/:id/settings/language', (req, res) => {
     });
 });
 
-router.delete('/:id/statistics/lookups', (req, res) => {
+router.delete('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), (req, res) => {
   const uuid = req.params.id;
 
   const { lookups } = req.body;

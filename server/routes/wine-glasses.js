@@ -3,7 +3,7 @@ import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   WineGlass.find()
     .exec()
     .then((wineGlass) => {
