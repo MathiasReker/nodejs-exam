@@ -7,7 +7,7 @@ import User from '../model/User.js';
 
 // validation
 import { signinValidation, signupValidation } from '../validation.js';
-import sendMail from '../util/sendMail.js';
+import mail from '../util/mail.js';
 
 const router = Router();
 
@@ -112,15 +112,15 @@ router.post('/:email/recover', async (req, res) => {
 
   const token = createHash('sha256').update(user.password).digest('hex');
 
-  const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`;
+  const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`; // TODO
 
   const email = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
   Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues signing in, please
 contact support. Thank you for using Wine Glass Guide!`;
 
-  const from = `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`;
+  const from = `"${process.env.DEFAULT_MAIL_SENDER}"`;
 
-  sendMail(from, user.email, 'Reset password', email)
+  mail(from, user.email, 'Reset password', email)
     .then((mail) => {
       res.status(200).send({ data: { mail } });
     })

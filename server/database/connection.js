@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export default () => mongoose.connect(
-  process.env.DB_CONNECT,
+  process.env.DB_CONNECTION,
   {
     autoIndex: false, // Don't build indexes
     maxPoolSize: 10, // Maintain up to 10 socket connections
