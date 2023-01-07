@@ -32,15 +32,16 @@ router.put('/:id', (req, res) => {
 
 router.put('/:id/wineGlasses', (req, res) => {
   const uuid = req.params.id;
-  const glasses = req.body.wineGlasses;
+  const { wineGlasses } = req.body;
 
   User.findOneAndUpdate(
     { uuid },
-    { 'settings.wineGlasses': glasses },
+    { 'settings.wineGlasses': wineGlasses },
     { new: true },
   )
     .exec()
     .then((user) => {
+      // eslint-disable-next-line no-shadow
       const { wineGlasses } = user.settings;
 
       res.send({ data: { wineGlasses } });

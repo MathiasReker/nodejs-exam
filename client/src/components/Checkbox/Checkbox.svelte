@@ -4,9 +4,10 @@
     import { request } from '../../js/fetchWrapper';
 
     export let bindGroup = [];
-    export let checkbox = '';
+    export let value = '';
 
     const onChange = ({ target }) => {
+      // eslint-disable-next-line no-shadow
       const { value, checked } = target;
       if (checked) {
         bindGroup = [...bindGroup, value];
@@ -19,7 +20,6 @@
         request(`/api/users/${$user.uuid}/wineGlasses`, {
           method: 'PUT',
           body: {
-            email: $user.email,
             wineGlasses: bindGroup,
           },
         })
@@ -37,12 +37,12 @@
 </script>
 
 <div class="form-check form-switch form-switch-md">
-    <input checked={bindGroup.includes(checkbox)}
+    <input checked={bindGroup.includes(value)}
            class="form-check-input"
            on:change={onChange}
            role="switch"
            type="checkbox"
-           {checkbox}>
+           {value}>
 </div>
 
 <style>
