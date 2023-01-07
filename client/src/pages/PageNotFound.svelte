@@ -3,9 +3,9 @@
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
-    import authNavigator from '../js/authNavigator';
+    import handleAuthNavigator from '../js/handleAuthNavigator.js';
 
-    authNavigator();
+    handleAuthNavigator();
 
     const title = languages.pageNotFound.title[$lang];
 

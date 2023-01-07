@@ -15,25 +15,19 @@ router.get('/:email/statistics/lookups', (req, res) => {
     });
 });
 
-router.delete('/:email/statistics/lookups', (req, res) => {
+router.put('/:email', (req, res) => {
   const { email } = req.params;
+  const { name } = req.body;
 
-  const { lookups } = req.body;
-
-  if (lookups) {
-    User.findOneAndUpdate(
-      { email },
-      { 'statistics.lookups': 0 },
-      { new: true },
-    )
-      .exec()
-      .then((user) => {
-        // eslint-disable-next-line no-shadow
-        const { lookups } = user.statistics;
-
-        res.send({ data: { lookups } });
-      });
-  }
+  User.findOneAndUpdate(
+    { email },
+    { name },
+    { new: true },
+  )
+    .exec()
+    .then((user) => {
+      res.send({ data: { user } }); // TODO remove _id
+    });
 });
 
 router.put('/:email/wineGlasses', (req, res) => {
@@ -50,21 +44,6 @@ router.put('/:email/wineGlasses', (req, res) => {
       const { wineGlasses } = user.settings;
 
       res.send({ data: { wineGlasses } });
-    });
-});
-
-router.put('/:email', (req, res) => {
-  const { email } = req.params;
-  const { name } = req.body;
-
-  User.findOneAndUpdate(
-    { email },
-    { name },
-    { new: true },
-  )
-    .exec()
-    .then((user) => {
-      res.send({ data: { user } }); // TODO remove _id
     });
 });
 
@@ -104,6 +83,27 @@ router.put('/:email/settings/language', (req, res) => {
         const { language } = user.settings;
 
         res.send({ data: { language } });
+      });
+  }
+});
+
+router.delete('/:email/statistics/lookups', (req, res) => {
+  const { email } = req.params;
+
+  const { lookups } = req.body;
+
+  if (lookups) {
+    User.findOneAndUpdate(
+      { email },
+      { 'statistics.lookups': 0 },
+      { new: true },
+    )
+      .exec()
+      .then((user) => {
+        // eslint-disable-next-line no-shadow
+        const { lookups } = user.statistics;
+
+        res.send({ data: { lookups } });
       });
   }
 });

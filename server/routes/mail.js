@@ -12,9 +12,7 @@ router.post('/', (req, res) => {
 
   sendMail(from, to, 'Question', text).then(() => {
     res.send({
-      data: {
-        message: 'Success',
-      },
+      message: 'Mail sent!',
     });
   });
 });

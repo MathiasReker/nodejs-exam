@@ -67,7 +67,7 @@
         <Lang page="profile" trans="deck"/>
     </div>
 
-    <div class="card mb-4">
+    <div class="card mb-5">
         <h5 class="card-header bg-light text-dark">
             <Lang page="profile" trans="ownedGlassesTitle"/>
         </h5>
@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <div class="card mb-4">
+    <div class="card mb-5">
         <h5 class="card-header bg-light text-dark">
             <Lang page="profile" trans="countLookupsTitle"/>
         </h5>

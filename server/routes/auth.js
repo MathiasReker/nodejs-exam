@@ -114,7 +114,9 @@ router.post('/:email/recover', async (req, res) => {
 
   const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`;
 
-  const email = `You have just requested a password reset for the Wine glasses guide account associated with this email address.\n\nReset password using the following link: \n${resetLink}`;
+  const email = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
+  Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues signing in, please
+contact support. Thank you for using Wine Glass Guide!`;
 
   const from = `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_ACCOUNT}>`;
 
@@ -127,8 +129,7 @@ router.post('/:email/recover', async (req, res) => {
     });
 });
 
-// TODO put.
-router.post('/:email/reset', async (req, res) => {
+router.put('/:email/reset', async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
 
   const token = createHash('sha256').update(user.password).digest('hex');
@@ -143,13 +144,13 @@ router.post('/:email/reset', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const password = await bcrypt.hash(req.body.password, salt);
 
-  const doc = await User.findOneAndUpdate(
+  const result = await User.findOneAndUpdate(
     { email: user.email },
     { password },
     { new: true },
   );
 
-  res.send({ data: doc });
+  res.send({ data: result });
 });
 
 export default router;

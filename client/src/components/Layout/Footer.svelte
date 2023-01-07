@@ -8,6 +8,6 @@
 <footer class="text-muted mt-auto text-center pt-5">
     <p>© {currentYear}
         <Lang page="global" trans="title"></Lang>
-        | <a href="/privacy-policy" use:link>Privacy Policy</a> <!-- TODO translate-->
+        | <a href="/privacy-policy" use:link><Lang page="privacyPolicy" trans="title"></Lang></a>
     </p>
 </footer>

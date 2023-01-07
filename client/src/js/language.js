@@ -181,6 +181,12 @@ export const languages = {
       da: 'Vinglas Guide',
     },
   },
+  privacyPolicy: {
+    title: {
+      en: 'Privacy Policy',
+      da: 'Fortrolighedspolitik',
+    },
+  },
 };
 
 export default languages;

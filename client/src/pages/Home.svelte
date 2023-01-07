@@ -27,7 +27,7 @@
       grapes = res.data.grapes;
     });
 
-    const onChange = () => {
+    const handleOnChange = () => {
       if (!selectedGrape) {
         return;
       }
@@ -81,7 +81,7 @@
             items={grapes}
             noInputStyles="true"
             noResultsText="{languages.home.selectNoResults[$lang]}"
-            onChange={onChange}
+            onChange={handleOnChange}
     />
 
     {#if selectedGrape}

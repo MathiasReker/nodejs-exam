@@ -16,7 +16,7 @@
     const handleOnSubmit = () => {
       loading = true;
       request(`/api/auth/${email}/reset`, {
-        method: 'POST',
+        method: 'PUT',
         body: {
           password,
           token,
