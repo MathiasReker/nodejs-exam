@@ -19,7 +19,7 @@
     ];
 
     const handleUpdateLanguage = () => {
-      request(`/api/users/${$user.email}/settings/language`, {
+      request(`/api/users/${$user.uuid}/settings/language`, {
         method: 'PUT',
         body: {
           language,

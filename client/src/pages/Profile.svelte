@@ -23,7 +23,7 @@
         percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
       });
 
-    (() => request(`/api/users/${$user.email}/statistics/lookups`, {
+    (() => request(`/api/users/${$user.uuid}/statistics/lookups`, {
       method: 'GET',
     }))()
       .then((res) => {
@@ -43,7 +43,7 @@
     // TODO statistics -> endpoint change -> "lookup" is the UID!
 
     const handleOnResetLookups = () => {
-      request(`/api/users/${$user.email}/statistics/lookups`, {
+      request(`/api/users/${$user.uuid}/statistics/lookups`, {
         method: 'DELETE',
         body: {
           lookups: true,

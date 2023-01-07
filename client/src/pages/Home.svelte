@@ -38,7 +38,7 @@
         wineGlasses = res.data;
       });
 
-      request(`/api/users/${$user.email}/statistics/lookups`, {
+      request(`/api/users/${$user.uuid}/statistics/lookups`, {
         method: 'PUT',
         body: {
           lookups: true,

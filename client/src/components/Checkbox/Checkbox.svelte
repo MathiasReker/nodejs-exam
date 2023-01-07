@@ -16,7 +16,7 @@
 
       // save to database
       (() => {
-        request(`/api/users/${$user.email}/wineGlasses`, {
+        request(`/api/users/${$user.uuid}/wineGlasses`, {
           method: 'PUT',
           body: {
             email: $user.email,

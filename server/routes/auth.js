@@ -89,7 +89,7 @@ router.post('/signin', async (req, res) => {
       // eslint-disable-next-line no-underscore-dangle
       id: user._id,
     },
-    process.env.TOKEN_SECRET,
+    process.env.JWT_SECRET_KEY,
   );
 
   res.header('auth-token', token).json({
@@ -101,6 +101,7 @@ router.post('/signin', async (req, res) => {
           wineGlasses: user.settings.wineGlasses,
           language: user.settings.language,
         },
+        uuid: user.uuid,
         token,
       },
     },

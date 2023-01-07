@@ -3,10 +3,10 @@ import User from '../model/User.js';
 
 const router = Router();
 
-router.get('/:email/statistics/lookups', (req, res) => {
-  const { email } = req.params;
+router.get('/:id/statistics/lookups', (req, res) => {
+  const uuid = req.params.id;
 
-  User.findOne({ email })
+  User.findOne({ uuid })
     .exec()
     .then((user) => {
       const { lookups } = user.statistics;
@@ -15,12 +15,12 @@ router.get('/:email/statistics/lookups', (req, res) => {
     });
 });
 
-router.put('/:email', (req, res) => {
-  const { email } = req.params;
+router.put('/:id', (req, res) => {
+  const uuid = req.params.id;
   const { name } = req.body;
 
   User.findOneAndUpdate(
-    { email },
+    { uuid },
     { name },
     { new: true },
   )
@@ -30,12 +30,12 @@ router.put('/:email', (req, res) => {
     });
 });
 
-router.put('/:email/wineGlasses', (req, res) => {
-  const { email } = req.params;
+router.put('/:id/wineGlasses', (req, res) => {
+  const uuid = req.params.id;
   const glasses = req.body.wineGlasses;
 
   User.findOneAndUpdate(
-    { email },
+    { uuid },
     { 'settings.wineGlasses': glasses },
     { new: true },
   )
@@ -47,13 +47,13 @@ router.put('/:email/wineGlasses', (req, res) => {
     });
 });
 
-router.put('/:email/statistics/lookups', (req, res) => {
-  const { email } = req.params;
+router.put('/:id/statistics/lookups', (req, res) => {
+  const uuid = req.params.id;
   const { lookups } = req.body;
 
   if (lookups) {
     User.findOneAndUpdate(
-      { email },
+      { uuid },
       { $inc: { 'statistics.lookups': 1 } },
       { new: true },
     )
@@ -66,15 +66,15 @@ router.put('/:email/statistics/lookups', (req, res) => {
   }
 });
 
-router.put('/:email/settings/language', (req, res) => {
-  const { email } = req.params;
+router.put('/:id/settings/language', (req, res) => {
+  const uuid = req.params.id;
   const settings = req.body;
 
   // TODO validate!
 
   if (settings.language) {
     User.findOneAndUpdate(
-      { email },
+      { uuid },
       { 'settings.language': settings.language },
       { new: true },
     )
@@ -87,14 +87,14 @@ router.put('/:email/settings/language', (req, res) => {
   }
 });
 
-router.delete('/:email/statistics/lookups', (req, res) => {
-  const { email } = req.params;
+router.delete('/:id/statistics/lookups', (req, res) => {
+  const uuid = req.params.id;
 
   const { lookups } = req.body;
 
   if (lookups) {
     User.findOneAndUpdate(
-      { email },
+      { uuid },
       { 'statistics.lookups': 0 },
       { new: true },
     )

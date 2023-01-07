@@ -11,7 +11,7 @@
       loading = true;
       // todo validate
 
-      request(`/api/users/${$user.email}`, {
+      request(`/api/users/${$user.uuid}`, {
         method: 'PUT',
         body: {
           name,

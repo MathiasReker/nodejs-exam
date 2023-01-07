@@ -1,5 +1,7 @@
 export const notFound = (req, res) => {
-  res.sendStatus(404);
+  res.status(404).send({
+    error: 'Not found',
+  });
 };
 
 export const handler = (req, res) => {
@@ -9,6 +11,5 @@ export const handler = (req, res) => {
 
   res.status(500).send({
     error: 'Something broke. Try again later',
-    data: {},
   });
 };
