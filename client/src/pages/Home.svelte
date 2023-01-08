@@ -11,6 +11,7 @@
     import Lang from '../components/Util/Lang.svelte';
     import Head from './Head.svelte';
     import languages from '../js/language';
+    import { displayError } from '../js/toast';
 
     let grapes = [];
 
@@ -23,11 +24,15 @@
     let background;
 
     onMount(async () => {
-      const fetchGrapes = await request('/api/grapes', {
-        method: 'GET',
-      });
+      try {
+        const fetchGrapes = await request('/api/grapes', {
+          method: 'GET',
+        });
 
-      grapes = fetchGrapes.data.grapes;
+        grapes = fetchGrapes.data.grapes;
+      } catch (err) {
+        displayError(err);
+      }
     });
 
     const handleOnChange = async () => {
@@ -35,30 +40,42 @@
         return;
       }
 
-      const wineGlassFetch = await request(`/api/wineGlasses/${selectedGrape}`, {
-        method: 'GET',
-      });
+      try {
+        const wineGlassFetch = await request(`/api/wineGlasses/${selectedGrape}`, {
+          method: 'GET',
+        });
 
-      wineGlass = wineGlassFetch.data;
+        wineGlass = wineGlassFetch.data;
+      } catch (err) {
+        displayError(err);
+      }
 
-      const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
-        method: 'PUT',
-        body: {
-          lookups: true,
-        },
-      });
+      try {
+        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+          method: 'PUT',
+          body: {
+            lookups: true,
+          },
+        });
 
-      $user.statistics = {}; // TODO remove
-      $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
-      localStorage.setItem('user', JSON.stringify($user));
+        $user.statistics = {}; // TODO remove
+        $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
+        localStorage.setItem('user', JSON.stringify($user));
+      } catch (err) {
+        displayError(err);
+      }
 
-      await request('/api/messages', {
-        method: 'POST',
-        body: {
-          email: $user.email,
-          grape: selectedGrape,
-        },
-      });
+      try {
+        await request('/api/messages', {
+          method: 'POST',
+          body: {
+            email: $user.email,
+            grape: selectedGrape,
+          },
+        });
+      } catch (err) {
+        displayError(err);
+      }
     };
 </script>
 

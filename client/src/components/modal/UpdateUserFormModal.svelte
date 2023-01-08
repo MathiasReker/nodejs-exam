@@ -10,15 +10,13 @@
     const handleOnSubmit = async () => {
       loading = true;
       // todo validate
-
-      const userFetch = await request(`/api/users/${$user.uuid}`, {
-        method: 'PUT',
-        body: {
-          name,
-        },
-      });
-
       try {
+        const userFetch = await request(`/api/users/${$user.uuid}`, {
+          method: 'PUT',
+          body: {
+            name,
+          },
+        });
         $user.name = userFetch.data.name;
         localStorage.setItem('user', JSON.stringify($user));
         displaySuccess(`Username changed to ${$user.name}`);

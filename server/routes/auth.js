@@ -14,6 +14,8 @@ const router = Router();
 
 router.post('/signup', validate(signupRules), async (req, res) => {
   // validate the user
+  // TODO: simplify email, name, password...
+
   const isEmailExist = await User.findOne({ email: req.body.email });
   // throw exception when email already registered
   if (isEmailExist) {
@@ -103,9 +105,14 @@ contact support. Thank you for using Wine Glass Guide!`;
   try {
     // eslint-disable-next-line no-shadow
     const mail = await sendMail(from, user.email, 'Reset password', text);
-    res.status(200).send({ data: { mail } });
+    res.status(200).send({
+      data: {
+        message: 'Success',
+        mail,
+      },
+    });
   } catch (err) {
-    res.status(404).send({ data: { err } });
+    res.status(404).send({ data: { errors: [err] } });
   }
 });
 

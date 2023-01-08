@@ -21,10 +21,11 @@
           method: 'POST',
           body: { email },
         });
+        displaySuccess('Success');
       } catch (err) {
-        displaySuccess(err);
-        email = '';
+        displayError(err);
       } finally {
+        email = '';
         loading = false;
       }
     };

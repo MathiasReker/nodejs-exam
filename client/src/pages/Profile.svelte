@@ -17,12 +17,16 @@
     let lookups = 0;
 
     onMount(async () => {
-      const wineGlassesFetch = await request('/api/wineGlasses', {
-        method: 'GET',
-      });
+      try {
+        const wineGlassesFetch = await request('/api/wineGlasses', {
+          method: 'GET',
+        });
 
-      totalWineGlasses = wineGlassesFetch.data.length;
-      percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
+        totalWineGlasses = wineGlassesFetch.data.length;
+        percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
+      } catch (err) {
+        displayError(err);
+      }
 
       try {
         const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
@@ -48,14 +52,18 @@
     // TODO statistics -> endpoint change -> "lookup" is the UID!
 
     const handleOnResetLookups = async () => {
-      const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
-        method: 'DELETE',
-        body: {
-          lookups: true,
-        },
-      });
+      try {
+        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+          method: 'DELETE',
+          body: {
+            lookups: true,
+          },
+        });
 
-      lookups = statisticsLookupsFetch.data.lookups; // TODO handle this variable..
+        lookups = statisticsLookupsFetch.data.lookups; // TODO handle this variable..
+      } catch (err) {
+        displayError(err);
+      }
 
       $user.statistics = {}; // TODO remove
       $user.statistics.lookups = lookups;

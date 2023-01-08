@@ -21,21 +21,25 @@
 
       const userSignIn = { email, password };
 
-      const fetchAuthSignIn = await request('/api/auth/signin', {
-        method: 'POST',
-        body: userSignIn,
-      });
+      try {
+        const fetchAuthSignIn = await request('/api/auth/signin', {
+          method: 'POST',
+          body: userSignIn,
+        });
 
-      if (fetchAuthSignIn.data.user) {
-        try {
-          $user = fetchAuthSignIn.data.user;
-          localStorage.setItem('user', JSON.stringify($user));
-          navigate('/');
-        } catch (err) {
-          displayError(err);
-        } finally {
-          loading = false;
+        if (fetchAuthSignIn.data.user) {
+          try {
+            $user = fetchAuthSignIn.data.user;
+            localStorage.setItem('user', JSON.stringify($user));
+            navigate('/');
+          } catch (err) {
+            displayError(err);
+          } finally {
+            loading = false;
+          }
         }
+      } catch (err) {
+        displayError(err);
       }
     };
 </script>
