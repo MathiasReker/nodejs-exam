@@ -17,8 +17,9 @@
       loading = true;
 
       try {
-        await request(`/api/auth/${email}/recover`, {
+        await request('/api/auth/recover', {
           method: 'POST',
+          body: { email },
         });
       } catch (err) {
         displaySuccess(err);

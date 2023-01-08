@@ -8,7 +8,7 @@ export const wineGlassRules = [
   body('wineGlasses').isArray().exists(),
 ];
 
-export const userStatistiscsLookupsRules = [
+export const userStatisticsLookupsRules = [
   body('lookups').isBoolean().exists(),
 ];
 

@@ -33,6 +33,8 @@
       } catch (err) {
         displayError(err);
       } finally {
+        message = '';
+        messageInput.focus();
         loading = false;
       }
     };

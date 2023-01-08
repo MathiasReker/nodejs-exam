@@ -4,7 +4,7 @@ import validate from '../middleware/validate.js';
 import {
   userRules,
   userSettingsLanguageRules,
-  userStatistiscsLookupsRules,
+  userStatisticsLookupsRules,
   wineGlassRules,
 } from './validations/users.js';
 
@@ -46,7 +46,7 @@ router.put('/:id/wine-glasses', validate(wineGlassRules), async (req, res) => {
   res.send({ data: { wineGlasses: user.settings.wineGlasses } });
 });
 
-router.put('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), async (req, res) => {
+router.put('/:id/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
   const { id } = req.params;
   const { lookups } = req.body;
 
@@ -75,7 +75,7 @@ router.put('/:id/settings/language', validate(userSettingsLanguageRules), async 
   res.send({ data: { language: user.settings.language } });
 });
 
-router.delete('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), async (req, res) => {
+router.delete('/:id/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
   const uuid = req.params.id;
   const { lookups } = req.body;
 

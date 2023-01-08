@@ -87,8 +87,8 @@ router.post('/signin', validate(signInRules), async (req, res) => {
   });
 });
 
-router.post('/:email/recover', validate(recoverRules), async (req, res) => {
-  const user = await User.findOne({ email: req.params.email });
+router.post('/recover', validate(recoverRules), async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
 
   const token = createHash('sha256').update(user.password).digest('hex');
 
@@ -109,8 +109,8 @@ contact support. Thank you for using Wine Glass Guide!`;
   }
 });
 
-router.put('/:email/reset', validate(resetRules), async (req, res) => {
-  const user = await User.findOne({ email: req.params.email });
+router.put('/reset', validate(resetRules), async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
 
   const token = createHash('sha256').update(user.password).digest('hex');
 

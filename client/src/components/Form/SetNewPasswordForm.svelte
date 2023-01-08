@@ -17,9 +17,10 @@
       loading = true;
 
       try {
-        await request(`/api/auth/${email}/reset`, {
+        await request(`/api/auth/reset`, {
           method: 'PUT',
           body: {
+            email,
             password,
             token,
           },
