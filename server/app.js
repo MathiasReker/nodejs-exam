@@ -15,7 +15,8 @@ import mail from './routes/mails.js';
 import users from './routes/users.js';
 import messages from './routes/messages.js';
 import images from './routes/images.js';
-import { notFound, handler } from './middleware/error.js';
+import { handler, notFound } from './middleware/error.js';
+import { corsOptions, ioCorsOptions } from './config/cors-config.js';
 
 dotenv.config();
 
@@ -23,21 +24,7 @@ connection();
 
 const app = express();
 
-const corsOptions = {
-  origin: process.env.NODE_ENV !== 'dev' ? process.env.CORS_ALLOWED_ORIGIN : true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-};
-
 const server = http.createServer(app);
-
-const ioCorsOptions = {
-  cors: {
-    origin: process.env.NODE_ENV !== 'dev' ? process.env.CORS_ALLOWED_ORIGIN : true,
-    credentials: true,
-    methods: ['GET', 'POST'],
-  },
-};
 
 const io = new Server(server, ioCorsOptions);
 

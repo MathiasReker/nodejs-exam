@@ -1,0 +1,8 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export const ddosConfig = {
+  burst: process.env.DDOS_BRUST,
+  limit: process.env.DDOS_LIMIT,
+};

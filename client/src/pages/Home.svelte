@@ -15,7 +15,7 @@
 
     let selectedGrape;
 
-    let wineGlasses = [];
+    let wineGlass = {};
 
     let color;
 
@@ -35,7 +35,8 @@
       request(`/api/wineGlasses/${selectedGrape}`, {
         method: 'GET',
       }).then((res) => {
-        wineGlasses = res.data;
+        wineGlass = res.data;
+          console.log(res.data);
       });
 
       request(`/api/users/${$user.uuid}/statistics/lookups`, {
@@ -87,7 +88,6 @@
     {#if selectedGrape}
         <div class="container" style="padding-top: 100px">
             <div class="row row-cols-1 text-center">
-                {#each wineGlasses as wineGlass}
                     <div class="col pb-5">
                         <div class="shadow-lg bg-body rounded-5 mx-5">
                             <h2 class="h3 py-2">{wineGlass.name}
@@ -106,11 +106,10 @@
                     <div class="col" style="z-index: -1">
                         <img
                                 crossorigin="anonymous"
-                                src="{`${import.meta.env.VITE_API_BASE_URL}${wineGlass.image}?h=400`}"
+                                src="{`${wineGlass.image}?h=400`}"
                                 alt="{wineGlass.name}"
                                 height="400">
                     </div>
-                {/each}
             </div>
         </div>
     {/if}
