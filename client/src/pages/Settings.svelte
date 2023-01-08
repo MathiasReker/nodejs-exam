@@ -19,7 +19,7 @@
 </script>
 
 <Page breadcrumbs={breadcrumbs} title={title}>
-    <div class="pb-5">
+    <div class="mb-5">
         <h1>
             <Lang page="settings" trans="title"></Lang>
         </h1>
@@ -28,7 +28,7 @@
         </p>
     </div>
 
-    <div class="pb-5">
+    <div class="mb-5">
         <h2>
             <Lang page="settings" trans="changeLanguageTitle"></Lang>
         </h2>
@@ -39,7 +39,7 @@
         <LanguageSelector/>
     </div>
 
-    <div class="pb-5">
+    <div class="mb-5">
         <h2>
             <Lang page="settings" trans="usernameTitle"></Lang>
         </h2>
@@ -50,7 +50,7 @@
         <UpdateUserBtn/>
     </div>
 
-    <div class="pb-5">
+    <div class="mb-5">
         <h2>
             <Lang page="settings" trans="exportAccountDataTitle"></Lang>
         </h2>
@@ -61,7 +61,7 @@
         <ExportUserDataBtn/>
     </div>
 
-    <div class="pb-5">
+    <div>
         <h2 class="text-danger">
             <Lang page="settings" trans="deleteAccountTitle"></Lang>
         </h2>

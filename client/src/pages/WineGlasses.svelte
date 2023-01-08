@@ -35,7 +35,7 @@
             </div>
         {:then res}
             {#each res.data as wineGlass}
-                <div class="row align-items-center pb-5">
+                <div class="row align-items-center mb-5-nl">
                     <div class="col-3">
                         <Checkbox value="{wineGlass.name}" bind:bindGroup={options}/>
                     </div>
@@ -56,3 +56,9 @@
         {/await}
     </div>
 </Page>
+
+<style>
+    .mb-5-nl:not(:last-child) {
+        margin-bottom: 3rem!important;
+    }
+</style>
