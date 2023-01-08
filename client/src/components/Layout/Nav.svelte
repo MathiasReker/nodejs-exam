@@ -8,6 +8,7 @@
 
     export let color = '#514945';
     export let background = 'transparent';
+    export let sticky = true;
 
     const handleLogout = () => {
       $user = null;
@@ -16,8 +17,8 @@
     };
 </script>
 
-<header style="padding-bottom: 80px;">
-    <div class="mx-auto fixed-top fixed-top {background ? 'box-shadow' : ''}" id="nav-wrapper"
+<header style="margin-bottom: {sticky ? '80' : '0'}px">
+    <div class="mx-auto {sticky ? 'fixed-top' : ''} {background ? 'box-shadow' : ''}" id="nav-wrapper"
          style="background-color: {background}">
         <nav class="cover-container navbar mx-auto px-3">
             <a class="navbar-brand" href="/" use:link>
