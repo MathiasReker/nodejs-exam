@@ -5,7 +5,7 @@ import path from 'path';
 
 const router = Router();
 
-router.get('/:image', (req, res) => {
+router.get('/:image', async (req, res) => {
   let height = +req.query.h || 400;
 
   if (height > 500) {
@@ -34,12 +34,9 @@ router.get('/:image', (req, res) => {
     fs.mkdirSync(outputDirectory, { recursive: true });
   }
 
-  sharp(inputFile)
-    .resize({ height })
-    .toFile(outputFile)
-    .then(() => {
-      res.sendFile(outputFile);
-    });
+  await sharp(inputFile).resize({ height }).toFile(outputFile);
+
+  res.sendFile(outputFile);
 });
 
 export default router;

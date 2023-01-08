@@ -21,20 +21,20 @@
       messageInput.focus();
     });
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
 
-      request('/api/mail', {
-        method: 'POST',
-        body: { name, email, message },
-      }).then(() => {
-        message = '';
+      try {
+        await request('/api/mail', {
+          method: 'POST',
+          body: { name, email, message },
+        });
         displaySuccess('The message was sent.');
-      }).catch(() => {
-        displayError('Something went wrong.');
-      }).finally(() => {
+      } catch (err) {
+        displayError(err);
+      } finally {
         loading = false;
-      });
+      }
     };
 </script>
 

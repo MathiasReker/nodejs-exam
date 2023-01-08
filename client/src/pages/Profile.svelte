@@ -1,10 +1,11 @@
 <script>
     import { link } from 'svelte-navigator';
+    import { onMount } from 'svelte';
     import { lang, user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
-    import { displaySuccess } from '../js/toast';
+    import { displayError, displaySuccess } from '../js/toast';
     import Page from './Page.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
@@ -15,23 +16,27 @@
 
     let lookups = 0;
 
-    (() => request('/api/wineGlasses', {
-      method: 'GET',
-    }))()
-      .then((res) => {
-        totalWineGlasses = res.data.length;
-        percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
+    onMount(async () => {
+      const wineGlassesFetch = await request('/api/wineGlasses', {
+        method: 'GET',
       });
 
-    (() => request(`/api/users/${$user.uuid}/statistics/lookups`, {
-      method: 'GET',
-    }))()
-      .then((res) => {
+      totalWineGlasses = wineGlassesFetch.data.length;
+      percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
+
+      try {
+        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+          method: 'GET',
+        });
+
         $user.statistics = {}; // TODO remove
-        $user.statistics.lookups = res.data.lookups;
+        $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
         localStorage.setItem('user', JSON.stringify($user));
-        lookups = res.data.lookups;
-      });
+        lookups = statisticsLookupsFetch.data.lookups;
+      } catch (err) {
+        displayError(err);
+      }
+    });
 
     const title = languages.profile.title[$lang];
 
@@ -42,20 +47,20 @@
 
     // TODO statistics -> endpoint change -> "lookup" is the UID!
 
-    const handleOnResetLookups = () => {
-      request(`/api/users/${$user.uuid}/statistics/lookups`, {
+    const handleOnResetLookups = async () => {
+      const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
         method: 'DELETE',
         body: {
           lookups: true,
         },
-      }).then((res) => {
-        lookups = res.data.lookups;
-
-        $user.statistics = {}; // TODO remove
-        $user.statistics.lookups = res.data.lookups;
-        localStorage.setItem('user', JSON.stringify($user));
-        displaySuccess('Count lookups has been reset');
       });
+
+      lookups = statisticsLookupsFetch.data.lookups; // TODO handle this variable..
+
+      $user.statistics = {}; // TODO remove
+      $user.statistics.lookups = lookups;
+      localStorage.setItem('user', JSON.stringify($user));
+      displaySuccess('Count lookups has been reset');
     };
 </script>
 

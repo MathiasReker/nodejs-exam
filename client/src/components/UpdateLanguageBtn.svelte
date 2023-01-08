@@ -18,24 +18,24 @@
       },
     ];
 
-    const handleUpdateLanguage = () => {
-      request(`/api/users/${$user.uuid}/settings/language`, {
-        method: 'PUT',
-        body: {
-          language,
-        },
-      })
-        .then((res) => {
-          $lang = res.data.language;
-
-          $user.settings.language = res.data.language;
-          localStorage.setItem('user', JSON.stringify($user));
-
-          displaySuccess('todo!');
-        })
-        .catch(() => {
-          displayError('Something went wrong...');
+    const handleUpdateLanguage = async () => {
+      try {
+        const updateLanguageFetch = await request(`/api/users/${$user.uuid}/settings/language`, {
+          method: 'PUT',
+          body: {
+            language,
+          },
         });
+
+        $lang = updateLanguageFetch.data.language;
+
+        $user.settings.language = updateLanguageFetch.data.language;
+        localStorage.setItem('user', JSON.stringify($user));
+
+        displaySuccess('todo!');
+      } catch (err) {
+        displayError(err);
+      }
     };
 </script>
 

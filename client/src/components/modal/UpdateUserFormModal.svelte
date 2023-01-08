@@ -7,25 +7,26 @@
 
     let loading = false;
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
       // todo validate
 
-      request(`/api/users/${$user.uuid}`, {
+      const userFetch = await request(`/api/users/${$user.uuid}`, {
         method: 'PUT',
         body: {
           name,
         },
-      }).then((res) => {
-        $user.name = res.data.name;
-        localStorage.setItem('user', JSON.stringify($user));
-
-        displaySuccess(`Username changed to ${$user.name}`);
-      }).catch(() => {
-        displayError('Something went wrong.');
-      }).finally(() => {
-        loading = false;
       });
+
+      try {
+        $user.name = userFetch.data.name;
+        localStorage.setItem('user', JSON.stringify($user));
+        displaySuccess(`Username changed to ${$user.name}`);
+      } catch (err) {
+        displayError('Something went wrong.');
+      } finally {
+        loading = false;
+      }
     };
 </script>
 

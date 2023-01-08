@@ -16,22 +16,21 @@
       }
 
       // save to database
-      (() => {
-        request(`/api/users/${$user.uuid}/wine-glasses`, {
-          method: 'PUT',
-          body: {
-            wineGlasses: bindGroup,
-          },
-        })
-          .then((res) => {
-            $user.settings.wineGlasses = res.data.wineGlasses;
-            localStorage.setItem('user', JSON.stringify($user));
-
-            displaySuccess('Settings saved!');
-          })
-          .catch(() => {
-            displayError('Something went wrong...');
+      (async () => {
+        try {
+          const wineGlassesFetch = await request(`/api/users/${$user.uuid}/wine-glasses`, {
+            method: 'PUT',
+            body: {
+              wineGlasses: bindGroup,
+            },
           });
+
+          $user.settings.wineGlasses = wineGlassesFetch.data.wineGlasses;
+          localStorage.setItem('user', JSON.stringify($user));
+          displaySuccess('Settings saved!');
+        } catch (err) {
+          displayError(err);
+        }
       })();
     };
 </script>

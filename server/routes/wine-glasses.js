@@ -3,31 +3,27 @@ import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  WineGlass.find()
-    .exec()
-    .then((wineGlass) => {
-      res.send({ data: wineGlass }); // TODO
-    });
+router.get('/', async (req, res) => {
+  const wineGlasses = await WineGlass.find().exec();
+
+  res.send({ data: wineGlasses });
 });
 
-router.get('/:grape', (req, res) => {
+router.get('/:grape', async (req, res) => {
   const { grape } = req.params;
 
   if (grape) {
-    WineGlass.findOne({ grapes: grape })
-      .exec()
-      .then((wineGlass) => {
-        res.send({
-          message: 'Success',
-          data: {
-            series: wineGlass.series,
-            name: wineGlass.name,
-            grapes: wineGlass.grapes,
-            image: `${process.env.BASE_URL}${wineGlass.image}`,
-          },
-        });
-      });
+    const wineGlass = await WineGlass.findOne({ grapes: grape }).exec();
+
+    res.send({
+      message: 'Success',
+      data: {
+        series: wineGlass.series,
+        name: wineGlass.name,
+        grapes: wineGlass.grapes,
+        image: `${process.env.BASE_URL}${wineGlass.image}`,
+      },
+    });
   }
 });
 

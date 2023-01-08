@@ -13,30 +13,26 @@
     onMount(() => {
       passwordInput.focus();
     });
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
-      request(`/api/auth/${email}/reset`, {
-        method: 'PUT',
-        body: {
-          password,
-          token,
-        },
-      })
-        .then((res) => {
-          if (res.error) {
-            displayError(res.error);
-          } else {
-            displaySuccess('Password successfully resat.');
-            navigate('/signin');
-          }
-        }).catch(() => {
-          displayError('The user does not exists.');
-        })
-        .finally(() => {
-          loading = false;
+
+      try {
+        await request(`/api/auth/${email}/reset`, {
+          method: 'PUT',
+          body: {
+            password,
+            token,
+          },
         });
+        displaySuccess('Password successfully resat.');
+        navigate('/signin');
+      } catch (err) {
+        displayError(err);
+      } finally {
+        loading = false;
+      }
     };
-</script>
+ </script>
 
 <main class="form-signin w-100 m-auto">
     {#if email && token}

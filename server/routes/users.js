@@ -10,108 +10,83 @@ import {
 
 const router = Router();
 
-router.get('/:id/statistics/lookups', (req, res) => {
+router.get('/:id/statistics/lookups', async (req, res) => {
   const { id } = req.params;
+  const user = await User.findOne({ uuid: id }).exec();
 
-  User.findOne({ uuid: id })
-    .exec()
-    .then((user) => {
-      const { lookups } = user.statistics;
-
-      res.send({ data: { lookups } });
-    });
+  const { lookups } = user.statistics;
+  res.send({ data: { lookups } });
 });
 
-router.put('/:id', validate(userRules), (req, res) => {
+router.put('/:id', validate(userRules), async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
   // TODO ... user endpoint and only possible to update name??
   // TODO parse whole user object?
-  User.findOneAndUpdate(
+  const user = await User.findOneAndUpdate(
     { uuid: id },
     { name },
     { new: true },
-  )
-    .exec()
-    .then((user) => {
-      res.send({ data: { name: user.name } });
-    });
+  ).exec();
+
+  res.send({ data: { name: user.name } });
 });
 
-router.put('/:id/wine-glasses', validate(wineGlassRules), (req, res) => {
+router.put('/:id/wine-glasses', validate(wineGlassRules), async (req, res) => {
   const { id } = req.params;
   const { wineGlasses } = req.body;
 
-  User.findOneAndUpdate(
+  const user = await User.findOneAndUpdate(
     { uuid: id },
     { 'settings.wineGlasses': wineGlasses },
     { new: true },
-  )
-    .exec()
-    .then((user) => {
-      // eslint-disable-next-line no-shadow
-      const { wineGlasses } = user.settings;
+  ).exec();
 
-      res.send({ data: { wineGlasses } });
-    });
+  res.send({ data: { wineGlasses: user.settings.wineGlasses } });
 });
 
-router.put('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), (req, res) => {
+router.put('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), async (req, res) => {
   const { id } = req.params;
   const { lookups } = req.body;
 
   if (lookups) {
-    User.findOneAndUpdate(
+    const user = await User.findOneAndUpdate(
       { uuid: id },
       { $inc: { 'statistics.lookups': 1 } },
       { new: true },
-    )
-      .exec()
-      .then((user) => {
-        // eslint-disable-next-line no-shadow
-        const { lookups } = user.statistics;
-        res.send({ data: { lookups } });
-      });
+    ).exec();
+
+    res.send({ data: { lookups: user.statistics.lookups } });
   }
+  // TODO error handles
 });
 
-router.put('/:id/settings/language', validate(userSettingsLanguageRules), (req, res) => {
+router.put('/:id/settings/language', validate(userSettingsLanguageRules), async (req, res) => {
   const { id } = req.params;
   const { language } = req.body;
 
-  User.findOneAndUpdate(
+  const user = await User.findOneAndUpdate(
     { uuid: id },
     { 'settings.language': language },
     { new: true },
-  )
-    .exec()
-    .then((user) => {
-      // eslint-disable-next-line no-shadow
-      const { language } = user.settings;
+  ).exec();
 
-      res.send({ data: { language } });
-    });
+  res.send({ data: { language: user.settings.language } });
 });
 
-router.delete('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), (req, res) => {
+router.delete('/:id/statistics/lookups', validate(userStatistiscsLookupsRules), async (req, res) => {
   const uuid = req.params.id;
-
   const { lookups } = req.body;
 
   if (lookups) {
-    User.findOneAndUpdate(
+    const user = await User.findOneAndUpdate(
       { uuid },
       { 'statistics.lookups': 0 },
       { new: true },
-    )
-      .exec()
-      .then((user) => {
-        // eslint-disable-next-line no-shadow
-        const { lookups } = user.statistics;
+    ).exec();
 
-        res.send({ data: { lookups } });
-      });
+    res.send({ data: { lookups: user.statistics.lookups } });
   }
 });
 

@@ -20,19 +20,20 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
 
-      request('/api/auth/signup', {
-        method: 'POST',
-        body: { name, email, password },
-      }).then(() => {
+      try {
+        await request('/api/auth/signup', {
+          method: 'POST',
+          body: { name, email, password },
+        });
         navigate('/');
-      }).catch(() => {
-        displayError('Something went wrong...');
-      }).finally(() => {
+      } catch (err) {
+        displayError(err);
+      } finally {
         loading = false;
-      });
+      }
     };
 </script>
 

@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
 import { user } from './stores';
 
-export const request = (path, options = {}) => {
+export const request = async (path, options = {}) => {
   const {
     headers,
     query = null,
@@ -33,6 +33,7 @@ export const request = (path, options = {}) => {
     queryString = `?${queryString}`;
   }
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}${path}${queryString}`, reqOptions)
-    .then((res) => res.json());
+  const fetchWrapper = await fetch(`${import.meta.env.VITE_API_BASE_URL}${path}${queryString}`, reqOptions);
+
+  return fetchWrapper.json();
 };

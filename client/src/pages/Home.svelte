@@ -3,6 +3,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
+    import { onMount } from 'svelte';
     import { lang, user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
@@ -21,36 +22,37 @@
 
     let background;
 
-    (() => request('/api/grapes', {
-      method: 'GET',
-    }))().then((res) => {
-      grapes = res.data.grapes;
+    onMount(async () => {
+      const fetchGrapes = await request('/api/grapes', {
+        method: 'GET',
+      });
+
+      grapes = fetchGrapes.data.grapes;
     });
 
-    const handleOnChange = () => {
+    const handleOnChange = async () => {
       if (!selectedGrape) {
         return;
       }
 
-      request(`/api/wineGlasses/${selectedGrape}`, {
+      const wineGlassFetch = await request(`/api/wineGlasses/${selectedGrape}`, {
         method: 'GET',
-      }).then((res) => {
-        wineGlass = res.data;
-          console.log(res.data);
       });
 
-      request(`/api/users/${$user.uuid}/statistics/lookups`, {
+      wineGlass = wineGlassFetch.data;
+
+      const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
         method: 'PUT',
         body: {
           lookups: true,
         },
-      }).then((res) => {
-        $user.statistics = {}; // TODO remove
-        $user.statistics.lookups = res.data.lookups;
-        localStorage.setItem('user', JSON.stringify($user));
       });
 
-      request('/api/messages', {
+      $user.statistics = {}; // TODO remove
+      $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
+      localStorage.setItem('user', JSON.stringify($user));
+
+      await request('/api/messages', {
         method: 'POST',
         body: {
           email: $user.email,

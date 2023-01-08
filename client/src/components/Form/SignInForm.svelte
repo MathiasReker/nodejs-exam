@@ -16,27 +16,27 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
 
       const userSignIn = { email, password };
 
-      request('/api/auth/signin', {
+      const fetchAuthSignIn = await request('/api/auth/signin', {
         method: 'POST',
         body: userSignIn,
-      })
-        .then((res) => {
-          if (res.data.user) {
-            $user = res.data.user;
-            localStorage.setItem('user', JSON.stringify($user));
-            navigate('/');
-          }
-        }).catch(() => {
-          displayError('The user does not exists.');
-        })
-        .finally(() => {
+      });
+
+      if (fetchAuthSignIn.data.user) {
+        try {
+          $user = fetchAuthSignIn.data.user;
+          localStorage.setItem('user', JSON.stringify($user));
+          navigate('/');
+        } catch (err) {
+          displayError(err);
+        } finally {
           loading = false;
-        });
+        }
+      }
     };
 </script>
 

@@ -57,12 +57,16 @@ const wineGlasses = [
   },
 ];
 
-WineGlass.collection.drop()
-  .then(async () => {
+(async () => {
+  try {
+    await WineGlass.collection.drop();
+
+    // eslint-disable-next-line no-restricted-syntax
     for (const wineGlass of wineGlasses) {
+      // eslint-disable-next-line no-await-in-loop
       await new WineGlass(wineGlass).save();
     }
-  })
-  .then(() => {
+  } finally {
     process.exit(0);
-  });
+  }
+})();

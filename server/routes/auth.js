@@ -7,8 +7,8 @@ import User from '../model/User.js';
 import {
   recoverRules, resetRules, signInRules, signupRules,
 } from './validations/auth.js';
-import mail from '../util/mail.js';
 import validate from '../middleware/validate.js';
+import sendMail from '../util/mail.js';
 
 const router = Router();
 
@@ -94,19 +94,19 @@ router.post('/:email/recover', validate(recoverRules), async (req, res) => {
 
   const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`; // TODO
 
-  const email = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
+  const text = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
   Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues signing in, please
 contact support. Thank you for using Wine Glass Guide!`;
 
   const from = `"${process.env.DEFAULT_MAIL_SENDER}"`;
 
-  mail(from, user.email, 'Reset password', email)
-    .then((mail) => {
-      res.status(200).send({ data: { mail } });
-    })
-    .catch((error) => {
-      res.status(404).send({ data: { error } });
-    });
+  try {
+    // eslint-disable-next-line no-shadow
+    const mail = await sendMail(from, user.email, 'Reset password', text);
+    res.status(200).send({ data: { mail } });
+  } catch (err) {
+    res.status(404).send({ data: { err } });
+  }
 });
 
 router.put('/:email/reset', validate(resetRules), async (req, res) => {

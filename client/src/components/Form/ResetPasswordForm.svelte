@@ -13,19 +13,19 @@
       emailInput.focus();
     });
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
       loading = true;
 
-      request(`/api/auth/${email}/recover`, {
-        method: 'POST',
-      }).then(() => {
-        displaySuccess('If the user exists an email is send.');
+      try {
+        await request(`/api/auth/${email}/recover`, {
+          method: 'POST',
+        });
+      } catch (err) {
+        displaySuccess(err);
         email = '';
-      }).catch(() => {
-        displayError('Something went wrong.');
-      }).finally(() => {
+      } finally {
         loading = false;
-      });
+      }
     };
 </script>
 
