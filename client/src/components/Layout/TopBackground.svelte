@@ -6,7 +6,7 @@
         top: 0;
         right: 0;
         width: 100%;
-        height: 330px;
+        height: 300px;
         z-index: -1;
         background: linear-gradient(242deg, #457373, #9B8148);
         background-size: 400% 400%;
