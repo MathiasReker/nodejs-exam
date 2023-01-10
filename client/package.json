@@ -24,6 +24,7 @@
   "dependencies": {
     "@fontsource/chivo": "^4.5.10",
     "@fontsource/playfair-display": "^4.5.12",
+    "@popperjs/core": "^2.11.6",
     "@zerodevx/svelte-toast": "^0.8.2",
     "bootstrap": "^5.2.3",
     "simple-svelte-autocomplete": "^2.5.1",

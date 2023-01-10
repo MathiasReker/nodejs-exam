@@ -15,7 +15,7 @@
         bindGroup = bindGroup.filter((item) => item !== value);
       }
 
-      // save to database
+      // save to database TODO: do we need this anonymous function?
       (async () => {
         try {
           const wineGlassesFetch = await request(`/api/users/${$user.uuid}/wine-glasses`, {

@@ -17,6 +17,7 @@
     import SetNewPassword from './pages/SetNewPassword.svelte';
     import About from './pages/About.svelte';
     import PrivacyPolicy from './pages/PrivacyPolicy.svelte';
+    import CookieConsent from './components/CookieConsent.svelte';
 
     io.connect(import.meta.env.VITE_API_BASE_URL).on('message:create', (res) => {
       displayInfo(res.data);
@@ -65,4 +66,5 @@
     </Router>
     <Footer/>
     <SvelteToast/>
+    <CookieConsent/>
 </div>
