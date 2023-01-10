@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-const ddosConfig = {
+const ddosConfig = { // TODO move..
   burst: process.env.DDOS_BRUST,
   limit: process.env.DDOS_LIMIT,
 };

@@ -1,8 +1,6 @@
 <script>
-    import { displaySuccess } from '../../js/toast';
-    import { getCookie, setCookie } from '../../js/cookie';
-
-    let cookieConsent = getCookie('cookie') || {};
+    import { setCookie } from '../../js/cookie';
+    import { cookieConsent } from '../../js/stores';
 
     export let value = '';
     export let disabled;
@@ -12,24 +10,19 @@
       // eslint-disable-next-line no-shadow
       const { value, checked } = target;
 
-      cookieConsent = getCookie('cookie');
-
-      cookieConsent[value] = checked;
-
-      setCookie('cookie', cookieConsent, 10);
-
-      displaySuccess('Settings saved!');
+      $cookieConsent[value] = checked;
+      setCookie('cookie', $cookieConsent, 10);
     };
 </script>
 
 <div class="form-check form-switch form-switch-md">
-    <input checked={cookieConsent[value]}
+    <input checked={$cookieConsent[value]}
            class="form-check-input"
            disabled="{disabled}"
+           id="{value}"
            on:change={onChange}
            role="switch"
            type="checkbox"
-           id="{value}"
            {value}>
 
     <label class="form-check-label px-3 lead" for="{value}"><strong>{display}</strong></label>

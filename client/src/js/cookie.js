@@ -1,7 +1,5 @@
 export const setCookie = (name, value, days) => {
-
   const obj = JSON.stringify(value);
-
   let expires = '';
   if (days) {
     const date = new Date();
@@ -11,7 +9,7 @@ export const setCookie = (name, value, days) => {
   document.cookie = `${name}=${obj || ''}${expires}; Path=/; SameSite=Strict;`;
 };
 
-export const getCookie = (name) => {
+export const getCookie = (name) => { // TODO simplify: https://www.tabnine.com/academy/javascript/how-to-set-cookies-javascript/
   const nameEQ = `${name}=`;
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -23,7 +21,8 @@ export const getCookie = (name) => {
       return JSON.parse(c.substring(nameEQ.length, c.length));
     }
   }
-  return undefined;
+
+  return null;
 };
 
 export const deleteCookie = (name) => {

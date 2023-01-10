@@ -107,28 +107,28 @@
     {#if selectedGrape}
         <div class="container" style="padding-top: 100px">
             <div class="row row-cols-1 text-center">
-                    <div class="col pb-5">
-                        <div class="shadow-lg bg-body rounded-5 mx-4">
-                            <h2 class="h3 py-2">{wineGlass.name}
-                                {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
+                <div class="col pb-5">
+                    <div class="shadow-lg bg-body rounded-5 mx-4">
+                        <h2 class="h3 py-2">{wineGlass.name}
+                            {#if $user && ($user.settings.wineGlasses).includes(wineGlass.name)}
                                 <span style="color: {color}" class="align-items-center">
                                     <Icon color="#48bb8f" size="22px" src={FiCheck}/>
                                 </span>
-                                {:else}
+                            {:else}
                                 <span style="color: {color}" class="align-items-center">
                                     <Icon color="#8d2100" size="22px" src={FiX}/>
                                 </span>
-                                {/if}
-                            </h2>
-                        </div>
+                            {/if}
+                        </h2>
                     </div>
-                    <div class="col" style="z-index: -1">
-                        <img
-                                crossorigin="anonymous"
-                                src="{`${wineGlass.image}?h=350`}"
-                                alt="{wineGlass.name}"
-                                height="350">
-                    </div>
+                </div>
+                <div class="col" style="z-index: -1">
+                    <img
+                            crossorigin="anonymous"
+                            src="{`${wineGlass.image}?h=350`}"
+                            alt="{wineGlass.name}"
+                            height="350">
+                </div>
             </div>
         </div>
     {/if}

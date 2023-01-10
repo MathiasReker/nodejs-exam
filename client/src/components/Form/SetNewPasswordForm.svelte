@@ -17,7 +17,7 @@
       loading = true;
 
       try {
-        await request(`/api/auth/reset`, {
+        await request('/api/auth/reset', {
           method: 'PUT',
           body: {
             email,
@@ -33,7 +33,7 @@
         loading = false;
       }
     };
- </script>
+</script>
 
 <main class="form-signin w-100 m-auto">
     {#if email && token}

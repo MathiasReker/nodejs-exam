@@ -66,7 +66,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
   // create token
   const token = jwt.sign(
     {
-      name: user.name,
+      name: user.name, // TODO remove?
       // eslint-disable-next-line no-underscore-dangle
       id: user._id,
     },

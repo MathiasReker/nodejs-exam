@@ -56,12 +56,12 @@
             <Lang page="contact" trans="title"></Lang>
         </label>
         <textarea
-                use:registerFocus
                 bind:this={messageInput}
                 bind:value={message}
                 class="form-control"
                 id="message"
-                rows="5"></textarea>
+                rows="5"
+                use:registerFocus></textarea>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Send</button>

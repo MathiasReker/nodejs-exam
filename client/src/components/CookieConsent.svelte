@@ -4,16 +4,24 @@
 
     import CheckboxCookies from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
+    import { setCookie } from '../js/cookie.js';
+    import { cookieConsent } from '../js/stores.js';
 
     const cookieStorageDays = 365;
 
+    let collapseExample;
+
     let cookieConsentModal;
+
+    let isOpen = false;
 
     onMount(() => {
       new Modal(cookieConsentModal).show();
-
-      console.log(cookieConsentModal.classList);
     });
+
+    const handleOnCollapse = () => {
+      isOpen = collapseExample.getAttribute('aria-expanded') === 'true';
+    };
 
     const cookies = [
       {
@@ -40,12 +48,31 @@
       {
         displayName: 'Personalization',
         technicalName: 'personalization',
-        description: ['Storage of your preferences from previous visits', 'Collecting user feedback to improve our website', 'Recording of your interests in order to provide customised content and offers'],
+        description: [
+          'Storage of your preferences from previous visits',
+          'Collecting user feedback to improve our website',
+          'Recording of your interests in order to provide customised content and offers',
+        ],
         value: false,
         disabled: false,
       },
     ];
 
+    const handleAcceptAllCookies = () => {
+      cookies.forEach((cookie) => {
+        $cookieConsent[cookie.technicalName] = true;
+      });
+
+      setCookie('cookie', $cookieConsent, 10);
+    };
+
+    const handleDisagreeToCookies = () => {
+      cookies.filter((cookie) => cookie.technicalName !== 'necessary').forEach((cookie) => {
+        $cookieConsent[cookie.technicalName] = false;
+      });
+
+      setCookie('cookie', $cookieConsent, 10);
+    };
 </script>
 
 <!-- Modal -->
@@ -62,14 +89,14 @@
                 <p>By clicking “Accept all cookies”, you agree Stack Exchange can store cookies on your device and
                     disclose information in accordance with our Cookie Policy.</p>
                 <div>
-                    <button aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary mb-3"
-                            data-bs-target="#collapseExample" data-bs-toggle="collapse" type="button">
+                    <button aria-controls="collapseExample" aria-expanded="false" bind:this={collapseExample}
+                            class="btn btn-primary mb-3" data-bs-target="#collapseExample"
+                            data-bs-toggle="collapse" on:click={handleOnCollapse} type="button">
                         My settings
                     </button>
                 </div>
                 <div class="collapse" id="collapseExample">
                     {#each cookies as cookie}
-
                         <div class="mb-3">
                             <div class="">
                                 <CheckboxCookies value="{cookie.technicalName}" display="{cookie.displayName}"
@@ -85,8 +112,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">I do not agree</button>
-                <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Agree</button>
+                {#if !isOpen}
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"
+                            on:click={handleDisagreeToCookies}>I do not agree
+                    </button>
+                    <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
+                            on:click={handleAcceptAllCookies}>
+                        Agree
+                    </button>
+                {:else}
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Agree to selection</button>
+                    <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
+                            on:click={handleAcceptAllCookies}>Agree to all
+                    </button>
+                {/if}
             </div>
         </div>
     </div>
@@ -95,7 +134,6 @@
 <CookieBtn/>
 
 <style>
-
     ul {
         padding-left: 80px;
     }

@@ -59,6 +59,6 @@
 
 <style>
     .mb-5-nl:not(:last-child) {
-        margin-bottom: 3rem!important;
+        margin-bottom: 3rem !important;
     }
 </style>

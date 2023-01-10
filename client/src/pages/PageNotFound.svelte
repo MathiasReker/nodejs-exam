@@ -3,7 +3,7 @@
     import languages from '../js/language';
     import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
-    import handleAuthNavigator from '../js/handleAuthNavigator.js';
+    import handleAuthNavigator from '../js/handleAuthNavigator';
 
     handleAuthNavigator();
 
