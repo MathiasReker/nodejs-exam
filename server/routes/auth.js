@@ -14,35 +14,38 @@ const router = Router();
 
 router.post('/signup', validate(signupRules), async (req, res) => {
   // validate the user
-  // TODO: simplify email, name, password...
+  const { email, name, password } = req.body;
 
-  const isEmailExist = await User.findOne({ email: req.body.email });
-  // throw exception when email already registered
+  const isEmailExist = await User.findOne({ email });
   if (isEmailExist) {
     res.status(400).json({ error: 'Email already exists' });
     return;
   }
 
   // hash the password
-  const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(req.body.password, salt);
+  const salt = await bcrypt.genSalt(10); // TODO env 12-14
+  const hashedPassword = await bcrypt.hash(password, salt);
+
   const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password,
+    name,
+    email,
+    password: hashedPassword,
   });
+
   try {
     const savedUser = await user.save();
     // eslint-disable-next-line no-underscore-dangle
-    res.json({ error: null, data: { userId: savedUser._id } });
+    res.json({ data: { userId: savedUser._id } });
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ error: err });
   }
 });
 
 router.post('/signin', validate(signInRules), async (req, res) => {
+  const { email, password } = req.body;
+
   const user = await User.findOne({
-    email: req.body.email,
+    email,
   });
 
   const signInError = 'A user with this combination of credentials was not found.';
@@ -55,7 +58,8 @@ router.post('/signin', validate(signInRules), async (req, res) => {
   }
 
   // check for password correctness
-  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  const validPassword = await bcrypt.compare(password, user.password);
+
   if (!validPassword) {
     res.status(400).json({
       error: signInError,
@@ -65,12 +69,12 @@ router.post('/signin', validate(signInRules), async (req, res) => {
 
   // create token
   const token = jwt.sign(
-      {
-        name: user.name, // TODO remove?
-        // eslint-disable-next-line no-underscore-dangle
-        id: user._id,
-      },
-      process.env.JWT_SECRET_KEY,
+    {
+      name: user.name, // TODO remove?
+      // eslint-disable-next-line no-underscore-dangle
+      id: user._id,
+    },
+    process.env.JWT_SECRET_KEY,
   );
 
   res.header('auth-token', token).json({
@@ -83,7 +87,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
           language: user.settings.language,
         },
         uuid: user.uuid,
-        token,
+        token, // TODO save in cookie
       },
     },
   });
@@ -132,9 +136,9 @@ router.put('/reset', validate(resetRules), async (req, res) => {
   const password = await bcrypt.hash(req.body.password, salt);
 
   const result = await User.findOneAndUpdate(
-      { email: user.email },
-      { password },
-      { new: true },
+    { email: user.email },
+    { password },
+    { new: true },
   );
 
   res.send({ data: result });
