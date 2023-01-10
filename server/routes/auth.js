@@ -18,7 +18,7 @@ router.post('/signup', validate(signupRules), async (req, res) => {
 
   const isEmailExist = await User.findOne({ email });
   if (isEmailExist) {
-    res.status(400).json({ error: 'Email already exists' });
+    res.status(400).json({ errors: ['Email already exists'] });
     return;
   }
 
@@ -37,7 +37,7 @@ router.post('/signup', validate(signupRules), async (req, res) => {
     // eslint-disable-next-line no-underscore-dangle
     res.json({ data: { userId: savedUser._id } });
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.status(400).json({ errors: [err] });
   }
 });
 
@@ -52,7 +52,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
   // throw exception when email is wrong
   if (!user) {
     res.status(400).json({
-      error: signInError,
+      errors: [signInError],
     });
     return;
   }
@@ -62,7 +62,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
 
   if (!validPassword) {
     res.status(400).json({
-      error: signInError,
+      errors: [signInError],
     });
     return;
   }
@@ -94,11 +94,18 @@ router.post('/signin', validate(signInRules), async (req, res) => {
 });
 
 router.post('/recover', validate(recoverRules), async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(400).json({ errors: ['Email does not exists'] });
+    return;
+  }
 
   const token = createHash('sha256').update(user.password).digest('hex');
 
-  const resetLink = `http://localhost:5173/set-new-password?email=${user.email}&token=${token}`; // TODO
+  const resetLink = `${process.env.CORS_ALLOWED_ORIGIN}/set-new-password?email=${user.email}&token=${token}`;
 
   const text = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
   Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues signing in, please
@@ -116,28 +123,35 @@ contact support. Thank you for using Wine Glass Guide!`;
       },
     });
   } catch (err) {
-    res.status(404).send({ data: { errors: [err] } });
+    res.status(404).send({ errors: [err] });
   }
 });
 
 router.put('/reset', validate(resetRules), async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
+  const { email, token, password } = req.body;
 
-  const token = createHash('sha256').update(user.password).digest('hex');
+  const user = await User.findOne({ email });
 
-  if (req.body.token !== token) {
+  if (!user) {
+    res.status(400).json({ errors: ['Email does not exists'] });
+    return;
+  }
+
+  const hashedToken = createHash('sha256').update(user.password).digest('hex');
+
+  if (token !== hashedToken) {
     res.status(400).send({
-      error: 'The token is invalid',
+      errors: ['The token is invalid'],
     });
     return;
   }
 
   const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(req.body.password, salt);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   const result = await User.findOneAndUpdate(
     { email: user.email },
-    { password },
+    { password: hashedPassword },
     { new: true },
   );
 
