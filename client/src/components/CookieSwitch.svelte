@@ -2,12 +2,10 @@
     import { onMount } from 'svelte';
     import { Modal } from 'bootstrap';
 
-    import CheckboxCookies from './Checkbox/CheckboxCookies.svelte';
+    import CookieSwitch from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
-    import { getCookie, setCookie } from '../js/cookie.js';
-    import { cookieConsent } from '../js/stores.js';
-
-    const cookieStorageDays = 365;
+    import { getCookie, setCookie } from '../js/cookie';
+    import { cookieConsent } from '../js/stores';
 
     let collapseExample;
 
@@ -60,12 +58,14 @@
       },
     ];
 
+    const cookieDaysToExpire = 365;
+
     const handleAcceptAllCookies = () => {
       cookies.forEach((cookie) => {
         $cookieConsent[cookie.technicalName] = true;
       });
 
-      setCookie('cookie', $cookieConsent, 10);
+      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
     };
 
     const handleDisagreeToCookies = () => {
@@ -73,7 +73,7 @@
         $cookieConsent[cookie.technicalName] = false;
       });
 
-      setCookie('cookie', $cookieConsent, 10);
+      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
     };
 </script>
 
@@ -101,8 +101,10 @@
                     {#each cookies as cookie}
                         <div class="mb-3">
                             <div class="">
-                                <CheckboxCookies value="{cookie.technicalName}" display="{cookie.displayName}"
-                                                 disabled="{cookie.disabled}"/>
+                                <CookieSwitch value="{cookie.technicalName}"
+                                                 display="{cookie.displayName}"
+                                                 disabled="{cookie.disabled}"
+                                                 cookieDaysToExpire="{cookieDaysToExpire}"/>
                                 <ul class="list-group">
                                     {#each cookie.description as description}
                                         <li>{description}</li>

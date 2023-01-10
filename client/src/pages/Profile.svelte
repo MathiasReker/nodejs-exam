@@ -9,11 +9,8 @@
     import Page from './Page.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
-
     let totalWineGlasses = 0;
-
     let percentOwned = 0;
-
     let lookups = 0;
 
     onMount(async () => {
@@ -86,7 +83,7 @@
         </h5>
         <div class="card-body">
             <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
-            <div class="progress mb-3" style="height: 20px">
+            <div class="progress mb-3" style="height: 20px"> <!-- todo component -->
                 <div
                         aria-label="20px high"
                         aria-valuemax="100"

@@ -14,13 +14,9 @@
     import { displayError } from '../js/toast';
 
     let grapes = [];
-
     let selectedGrape;
-
     let wineGlass = {};
-
     let color;
-
     let background;
 
     onMount(async () => {

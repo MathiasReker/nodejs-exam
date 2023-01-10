@@ -7,9 +7,7 @@
 
     let email = '';
     let emailInput = null;
-
     let password = '';
-
     let loading = false;
 
     onMount(() => {

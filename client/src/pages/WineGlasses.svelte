@@ -1,6 +1,6 @@
 <script>
     import { lang, user } from '../js/stores';
-    import Checkbox from '../components/Checkbox/Checkbox.svelte';
+    import Checkbox from '../components/Checkbox/WineGlassesSwitch.svelte';
     import { request } from '../js/fetchWrapper';
     import Lang from '../components/Util/Lang.svelte';
     import languages from '../js/language';

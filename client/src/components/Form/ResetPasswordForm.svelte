@@ -4,9 +4,7 @@
     import { request } from '../../js/fetchWrapper';
 
     let email = '';
-
     let emailInput = null;
-
     let loading = false;
 
     onMount(() => {

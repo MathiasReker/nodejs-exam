@@ -7,9 +7,11 @@
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
     const token = urlParams.get('token');
+
     let password = '';
     let passwordInput = null;
     let loading = false;
+
     onMount(() => {
       passwordInput.focus();
     });

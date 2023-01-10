@@ -5,13 +5,14 @@
     export let value = '';
     export let disabled;
     export let display;
+    export let cookieDaysToExpire;
 
     const onChange = ({ target }) => {
       // eslint-disable-next-line no-shadow
       const { value, checked } = target;
 
       $cookieConsent[value] = checked;
-      setCookie('cookie', $cookieConsent, 10);
+      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
     };
 </script>
 

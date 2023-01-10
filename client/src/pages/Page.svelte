@@ -4,7 +4,6 @@
     import Breadcrumbs from '../components/Layout/Breadcrumbs.svelte';
 
     export let breadcrumbs = [];
-
     export let title;
 </script>
 

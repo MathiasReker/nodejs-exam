@@ -9,7 +9,7 @@
 
     const handleOnSubmit = async () => {
       loading = true;
-      // todo validate
+
       try {
         const userFetch = await request(`/api/users/${$user.uuid}`, {
           method: 'PUT',

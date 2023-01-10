@@ -14,7 +14,6 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{title}">
-
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
