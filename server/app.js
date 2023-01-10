@@ -17,28 +17,19 @@ import messages from './routes/messages.js';
 import images from './routes/images.js';
 import { handler, notFound } from './middleware/error.js';
 import { corsOptions, ioCorsOptions } from './config/cors-config.js';
+import { ddosConfig } from './config/ddos-config.js';
 
 dotenv.config();
-
 connection();
 
 const app = express();
-
 const server = http.createServer(app);
-
 const io = new Server(server, ioCorsOptions);
-
+const ddos = new Ddos(ddosConfig);
 app.use((req, res, next) => {
   req.io = io;
   return next();
 });
-
-const ddosConfig = { // TODO move..
-  burst: process.env.DDOS_BRUST,
-  limit: process.env.DDOS_LIMIT,
-};
-
-const ddos = new Ddos(ddosConfig);
 app.use(ddos.express);
 app.use(compress());
 app.use(helmet());

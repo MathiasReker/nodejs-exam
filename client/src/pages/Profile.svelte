@@ -11,7 +11,6 @@
     const ownedWineGlasses = $user.settings.wineGlasses.length;
     let totalWineGlasses = 0;
     let percentOwned = 0;
-    let lookups = 0;
 
     onMount(async () => {
       try {
@@ -30,10 +29,10 @@
           method: 'GET',
         });
 
-        $user.statistics = {}; // TODO remove
+        $user.statistics = {};
         $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
         localStorage.setItem('user', JSON.stringify($user));
-        lookups = statisticsLookupsFetch.data.lookups;
+        $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
       } catch (err) {
         displayError(err);
       }
@@ -46,8 +45,6 @@
       { href: window.location.pathname, text: title },
     ];
 
-    // TODO statistics -> endpoint change -> "lookup" is the UID!
-
     const handleOnResetLookups = async () => {
       try {
         const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
@@ -57,15 +54,12 @@
           },
         });
 
-        lookups = statisticsLookupsFetch.data.lookups; // TODO handle this variable..
+        $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
+        localStorage.setItem('user', JSON.stringify($user));
+        displaySuccess('Count lookups has been reset');
       } catch (err) {
         displayError(err);
       }
-
-      $user.statistics = {}; // TODO remove
-      $user.statistics.lookups = lookups;
-      localStorage.setItem('user', JSON.stringify($user));
-      displaySuccess('Count lookups has been reset');
     };
 </script>
 
@@ -105,7 +99,7 @@
             <Lang page="profile" trans="countLookupsTitle"/>
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', lookups)}</p>
+            <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', $user.statistics.lookups)}</p>
             <button class="btn btn-primary" on:click={handleOnResetLookups}>
                 <Lang page="profile" trans="resetStatisticLookupsBtn"/>
             </button>

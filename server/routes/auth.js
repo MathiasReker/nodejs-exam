@@ -65,12 +65,12 @@ router.post('/signin', validate(signInRules), async (req, res) => {
 
   // create token
   const token = jwt.sign(
-    {
-      name: user.name, // TODO remove?
-      // eslint-disable-next-line no-underscore-dangle
-      id: user._id,
-    },
-    process.env.JWT_SECRET_KEY,
+      {
+        name: user.name, // TODO remove?
+        // eslint-disable-next-line no-underscore-dangle
+        id: user._id,
+      },
+      process.env.JWT_SECRET_KEY,
   );
 
   res.header('auth-token', token).json({
@@ -132,9 +132,9 @@ router.put('/reset', validate(resetRules), async (req, res) => {
   const password = await bcrypt.hash(req.body.password, salt);
 
   const result = await User.findOneAndUpdate(
-    { email: user.email },
-    { password },
-    { new: true },
+      { email: user.email },
+      { password },
+      { new: true },
   );
 
   res.send({ data: result });

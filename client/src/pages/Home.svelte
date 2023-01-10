@@ -54,7 +54,7 @@
           },
         });
 
-        $user.statistics = {}; // TODO remove
+        $user.statistics = {};
         $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
         localStorage.setItem('user', JSON.stringify($user));
       } catch (err) {

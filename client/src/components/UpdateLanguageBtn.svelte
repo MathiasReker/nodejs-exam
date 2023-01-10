@@ -32,7 +32,7 @@
         $user.settings.language = updateLanguageFetch.data.language;
         localStorage.setItem('user', JSON.stringify($user));
 
-        displaySuccess('todo!');
+        displaySuccess('Language updated!');
       } catch (err) {
         displayError(err);
       }
