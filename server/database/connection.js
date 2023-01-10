@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+mongoose.set('strictQuery', true);
 export default () => mongoose.connect(
   process.env.DB_CONNECTION,
   {
