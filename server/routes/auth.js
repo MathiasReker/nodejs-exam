@@ -75,6 +75,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
       id: user._id,
     },
     process.env.JWT_SECRET_KEY,
+    { expiresIn: process.env.JWT_EXPIRATION_INTERVAL },
   );
 
   res.header('auth-token', token).json({

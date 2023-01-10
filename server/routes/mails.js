@@ -6,13 +6,9 @@ import { mailRules } from './validations/mails.js';
 const router = Router();
 
 router.post('/', validate(mailRules), async (req, res) => {
-  const from = req.body.mail; // TODO `${req.body.name} <${req.body.mail}>`;
+  const { mail, message } = req.body;
 
-  const to = 'contact@demo.com'; // TODO ENV: ADMIN_MAIL
-
-  const text = req.body.message;
-
-  await sendMail(from, to, 'Question', text);
+  await sendMail(mail, 'contact@demo.com', 'Question', message);
 
   res.send({
     message: 'Mail sent!',
