@@ -6,7 +6,7 @@
     export let bindGroup = [];
     export let value = '';
 
-    const onChange = ({ target }) => {
+    const onChange = async ({ target }) => {
       // eslint-disable-next-line no-shadow
       const { value, checked } = target;
       if (checked) {
@@ -15,23 +15,20 @@
         bindGroup = bindGroup.filter((item) => item !== value);
       }
 
-      // save to database TODO: do we need this anonymous function?
-      (async () => {
-        try {
-          const wineGlassesFetch = await request(`/api/users/${$user.uuid}/wine-glasses`, {
-            method: 'PUT',
-            body: {
-              wineGlasses: bindGroup,
-            },
-          });
+      try {
+        const wineGlassesFetch = await request(`/api/users/${$user.uuid}/wine-glasses`, {
+          method: 'PUT',
+          body: {
+            wineGlasses: bindGroup,
+          },
+        });
 
-          $user.settings.wineGlasses = wineGlassesFetch.data.wineGlasses;
-          localStorage.setItem('user', JSON.stringify($user));
-          displaySuccess('Settings saved!');
-        } catch (err) {
-          displayError(err);
-        }
-      })();
+        $user.settings.wineGlasses = wineGlassesFetch.data.wineGlasses;
+        localStorage.setItem('user', JSON.stringify($user));
+        displaySuccess('Settings saved!');
+      } catch (err) {
+        displayError(err);
+      }
     };
 </script>
 

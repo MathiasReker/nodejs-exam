@@ -4,7 +4,7 @@
 
     import CheckboxCookies from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
-    import { setCookie } from '../js/cookie.js';
+    import { getCookie, setCookie } from '../js/cookie.js';
     import { cookieConsent } from '../js/stores.js';
 
     const cookieStorageDays = 365;
@@ -16,7 +16,9 @@
     let isOpen = false;
 
     onMount(() => {
-      new Modal(cookieConsentModal).show();
+      if (getCookie('cookie') === null) {
+        new Modal(cookieConsentModal).show();
+      }
     });
 
     const handleOnCollapse = () => {

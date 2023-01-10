@@ -59,7 +59,6 @@ router.put('/:id/statistics/lookups', validate(userStatisticsLookupsRules), asyn
 
     res.send({ data: { lookups: user.statistics.lookups } });
   }
-  // TODO error handles
 });
 
 router.put('/:id/settings/language', validate(userSettingsLanguageRules), async (req, res) => {
