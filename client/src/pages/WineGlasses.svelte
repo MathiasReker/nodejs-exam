@@ -45,7 +45,7 @@
                     <div class="col-3 text-right">
                         <img
                                 crossorigin="anonymous"
-                                src="{`${import.meta.env.VITE_API_BASE_URL}${wineGlass.image}?h=130`}"
+                                src="{`${import.meta.env.VITE_API_BASE_URL}${wineGlass.image}?height=130`}"
                                 alt="{wineGlass.name}"
                                 height="130">
                     </div>

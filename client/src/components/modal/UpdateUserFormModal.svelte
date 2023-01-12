@@ -11,7 +11,7 @@
       loading = true;
 
       try {
-        const userFetch = await request(`/api/users/${$user.uuid}`, {
+        const userFetch = await request('/api/users/me', {
           method: 'PUT',
           body: {
             name,

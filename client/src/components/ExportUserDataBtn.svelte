@@ -15,7 +15,7 @@
           email: $user.email,
           language: $user.settings.language,
           wineGlasses: $user.settings.wineGlasses.join(','),
-          grapeLookups: $user.statistics.lookups,
+          //   grapeLookups: $user.statistics.lookups,
         },
       )
     );

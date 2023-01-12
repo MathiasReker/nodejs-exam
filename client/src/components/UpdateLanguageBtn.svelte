@@ -20,7 +20,7 @@
 
     const handleUpdateLanguage = async () => {
       try {
-        const updateLanguageFetch = await request(`/api/users/${$user.uuid}/settings/language`, {
+        const updateLanguageFetch = await request('/api/users/me/settings/language', {
           method: 'PUT',
           body: {
             language,

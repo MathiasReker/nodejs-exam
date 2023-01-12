@@ -17,7 +17,7 @@
       }
 
       try {
-        const wineGlassesFetch = await request(`/api/users/${$user.uuid}/wine-glasses`, {
+        const wineGlassesFetch = await request('/api/users/me/wine-glasses', {
           method: 'PUT',
           body: {
             wineGlasses: bindGroup,

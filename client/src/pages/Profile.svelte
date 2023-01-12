@@ -25,7 +25,7 @@
       }
 
       try {
-        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+        const statisticsLookupsFetch = await request('/api/users/me/statistics/lookups', {
           method: 'GET',
         });
 
@@ -47,7 +47,7 @@
 
     const handleOnResetLookups = async () => {
       try {
-        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+        const statisticsLookupsFetch = await request('/api/users/me/statistics/lookups', {
           method: 'DELETE',
           body: {
             lookups: true,

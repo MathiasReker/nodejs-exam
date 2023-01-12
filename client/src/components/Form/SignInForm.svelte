@@ -25,9 +25,9 @@
           body: userSignIn,
         });
 
-        if (fetchAuthSignIn.data.user) {
+        if (fetchAuthSignIn.data) {
           try {
-            $user = fetchAuthSignIn.data.user;
+            $user = fetchAuthSignIn.data;
             localStorage.setItem('user', JSON.stringify($user));
             navigate('/');
           } catch (err) {

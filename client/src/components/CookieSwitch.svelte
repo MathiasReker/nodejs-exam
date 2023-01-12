@@ -2,9 +2,9 @@
     import { onMount } from 'svelte';
     import { Modal } from 'bootstrap';
 
+    import cookies from 'js-cookie';
     import CookieSwitch from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
-    import { getCookie, setCookie } from '../js/cookie';
     import { cookieConsent } from '../js/stores';
 
     let collapseExample;
@@ -14,7 +14,7 @@
     let isOpen = false;
 
     onMount(() => {
-      if (getCookie('cookie') === null) {
+      if (!cookies.get('cookie')) {
         new Modal(cookieConsentModal).show();
       }
     });
@@ -23,7 +23,7 @@
       isOpen = collapseExample.getAttribute('aria-expanded') === 'true';
     };
 
-    const cookies = [
+    const cookieOptions = [
       {
         displayName: 'Necessary',
         technicalName: 'necessary',
@@ -61,30 +61,30 @@
     const cookieDaysToExpire = 365;
 
     const handleAcceptAllCookies = () => {
-      cookies.forEach((cookie) => {
+      cookieOptions.forEach((cookie) => {
         $cookieConsent[cookie.technicalName] = true;
       });
 
-      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
+      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 
     const handleDisagreeToCookies = () => {
-      cookies.filter((cookie) => cookie.technicalName !== 'necessary').forEach((cookie) => {
+      cookieOptions.filter((cookie) => cookie.technicalName !== 'necessary').forEach((cookie) => {
         $cookieConsent[cookie.technicalName] = false;
       });
 
-      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
+      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 </script>
 
 <!-- Modal -->
-<div aria-hidden="true" aria-labelledby="exampleModal2Label" bind:this={cookieConsentModal} class="modal fade"
-     id="exampleModal2"
+<div aria-hidden="true" aria-labelledby="cookieConsentModalLabel" bind:this={cookieConsentModal} class="modal fade"
+     id="cookieConsentModal"
      tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModal2Label">Privacy Settings</h1>
+                <h1 class="modal-title fs-5" id="CookieConsentModalLabel">Privacy Settings</h1>
                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <div class="modal-body">
@@ -98,7 +98,7 @@
                     </button>
                 </div>
                 <div class="collapse" id="collapseExample">
-                    {#each cookies as cookie}
+                    {#each cookieOptions as cookie}
                         <div class="mb-3">
                             <div class="">
                                 <CookieSwitch value="{cookie.technicalName}"

@@ -25,7 +25,7 @@
           method: 'GET',
         });
 
-        grapes = fetchGrapes.data.grapes;
+        grapes = fetchGrapes.data;
       } catch (err) {
         displayError(err);
       }
@@ -47,15 +47,16 @@
       }
 
       try {
-        const statisticsLookupsFetch = await request(`/api/users/${$user.uuid}/statistics/lookups`, {
+        const statisticsLookupsFetch = await request('/api/users/me/statistics/lookups', {
           method: 'PUT',
           body: {
             lookups: true,
           },
         });
 
-        $user.statistics = {};
-        $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
+        $user.statistics = {
+          lookups: statisticsLookupsFetch.data.lookups,
+        };
         localStorage.setItem('user', JSON.stringify($user));
       } catch (err) {
         displayError(err);
@@ -121,7 +122,7 @@
                 <div class="col" style="z-index: -1">
                     <img
                             crossorigin="anonymous"
-                            src="{`${wineGlass.image}?h=350`}"
+                            src="{`${wineGlass.image}?height=350`}"
                             alt="{wineGlass.name}"
                             height="350">
                 </div>

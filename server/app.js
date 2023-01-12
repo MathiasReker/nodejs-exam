@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import compress from 'compression';
 import Ddos from 'ddos';
 import connection from './database/connection.js';
-import verifyToken from './middleware/validate-token.js';
+import verifyToken from './middleware/verify-token.js';
 import auth from './routes/auth.js';
 import grapes from './routes/grapes.js';
 import wineGlasses from './routes/wine-glasses.js';

@@ -27,6 +27,7 @@
     "@popperjs/core": "^2.11.6",
     "@zerodevx/svelte-toast": "^0.8.2",
     "bootstrap": "^5.2.3",
+    "js-cookie": "^3.0.1",
     "simple-svelte-autocomplete": "^2.5.1",
     "socket.io-client": "^4.5.4",
     "svelte": "^3.55.0",

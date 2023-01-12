@@ -1,5 +1,5 @@
 <script>
-    import { setCookie } from '../../js/cookie';
+    import cookies from 'js-cookie';
     import { cookieConsent } from '../../js/stores';
 
     export let value = '';
@@ -12,7 +12,7 @@
       const { value, checked } = target;
 
       $cookieConsent[value] = checked;
-      setCookie('cookie', $cookieConsent, cookieDaysToExpire);
+      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 </script>
 

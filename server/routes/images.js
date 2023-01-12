@@ -6,7 +6,7 @@ import path from 'path';
 const router = Router();
 
 router.get('/:image', async (req, res) => {
-  let height = +req.query.h || 400;
+  let height = +req.query.height || 400;
 
   if (height > 500) {
     height = 500;

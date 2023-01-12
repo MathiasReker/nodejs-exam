@@ -35,13 +35,13 @@ router.post('/signup', validate(signupRules), async (req, res) => {
   try {
     const savedUser = await user.save();
     // eslint-disable-next-line no-underscore-dangle
-    res.json({ data: { userId: savedUser._id } });
+    res.json({ data: { userId: savedUser.uuid } });
   } catch (err) {
     res.status(400).json({ errors: [err] });
   }
 });
 
-router.post('/signin', validate(signInRules), async (req, res) => {
+router.post('/signin', validate(signInRules), async (req, res) => { // TODO: rename /login
   const { email, password } = req.body;
 
   const user = await User.findOne({
@@ -70,9 +70,7 @@ router.post('/signin', validate(signInRules), async (req, res) => {
   // create token
   const token = jwt.sign(
     {
-      name: user.name, // TODO remove?
-      // eslint-disable-next-line no-underscore-dangle
-      id: user._id,
+      id: user.uuid,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: process.env.JWT_EXPIRATION_INTERVAL },
@@ -80,16 +78,15 @@ router.post('/signin', validate(signInRules), async (req, res) => {
 
   res.header('auth-token', token).json({
     data: {
-      user: {
-        name: user.name,
-        email: user.email,
-        settings: {
-          wineGlasses: user.settings.wineGlasses,
-          language: user.settings.language,
-        },
-        uuid: user.uuid,
-        token, // TODO save in cookie
+      name: user.name,
+      email: user.email,
+      settings: {
+        wineGlasses: user.settings.wineGlasses,
+        language: user.settings.language,
       },
+      uuid: user.uuid,
+      token,
+      createdAt: user._id.getTimestamp(),
     },
   });
 });

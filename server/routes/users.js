@@ -10,22 +10,20 @@ import {
 
 const router = Router();
 
-router.get('/:id/statistics/lookups', async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findOne({ uuid: id }).exec();
+router.get('/me/statistics/lookups', async (req, res) => {
+  const user = await User.findOne({ uuid: req.id }).exec();
 
   const { lookups } = user.statistics;
   res.send({ data: { lookups } });
 });
 
-router.put('/:id', validate(userRules), async (req, res) => {
-  const { id } = req.params;
+router.put('/me', validate(userRules), async (req, res) => {
   const { name } = req.body;
 
   // TODO ... user endpoint and only possible to update name??
   // TODO parse whole user object?
   const user = await User.findOneAndUpdate(
-    { uuid: id },
+    { uuid: req.id },
     { name },
     { new: true },
   ).exec();
@@ -33,12 +31,11 @@ router.put('/:id', validate(userRules), async (req, res) => {
   res.send({ data: { name: user.name } });
 });
 
-router.put('/:id/wine-glasses', validate(wineGlassRules), async (req, res) => {
-  const { id } = req.params;
+router.put('/me/wine-glasses', validate(wineGlassRules), async (req, res) => {
   const { wineGlasses } = req.body;
 
   const user = await User.findOneAndUpdate(
-    { uuid: id },
+    { uuid: req.id },
     { 'settings.wineGlasses': wineGlasses },
     { new: true },
   ).exec();
@@ -46,13 +43,12 @@ router.put('/:id/wine-glasses', validate(wineGlassRules), async (req, res) => {
   res.send({ data: { wineGlasses: user.settings.wineGlasses } });
 });
 
-router.put('/:id/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
-  const { id } = req.params;
+router.put('/me/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
   const { lookups } = req.body;
 
   if (lookups) {
     const user = await User.findOneAndUpdate(
-      { uuid: id },
+      { uuid: req.id },
       { $inc: { 'statistics.lookups': 1 } },
       { new: true },
     ).exec();
@@ -61,12 +57,11 @@ router.put('/:id/statistics/lookups', validate(userStatisticsLookupsRules), asyn
   }
 });
 
-router.put('/:id/settings/language', validate(userSettingsLanguageRules), async (req, res) => {
-  const { id } = req.params;
+router.put('/me/settings/language', validate(userSettingsLanguageRules), async (req, res) => {
   const { language } = req.body;
 
   const user = await User.findOneAndUpdate(
-    { uuid: id },
+    { uuid: req.id },
     { 'settings.language': language },
     { new: true },
   ).exec();
@@ -74,13 +69,12 @@ router.put('/:id/settings/language', validate(userSettingsLanguageRules), async 
   res.send({ data: { language: user.settings.language } });
 });
 
-router.delete('/:id/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
-  const uuid = req.params.id;
+router.delete('/me/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
   const { lookups } = req.body;
 
   if (lookups) {
     const user = await User.findOneAndUpdate(
-      { uuid },
+      { uuid: req.id },
       { 'statistics.lookups': 0 },
       { new: true },
     ).exec();
