@@ -4,11 +4,13 @@ import WineGlass from '../model/WineGlass.js';
 
 const router = Router();
 router.post('/', async (req, res) => {
-  const { email, grape } = req.body;
+  const { grape } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ uuid: req.id });
   if (!user) {
-    return;
+    res.json({
+      errors: ['User not found'],
+    }).status(404);
   }
 
   const wineGlass = await WineGlass.find({ grapes: grape }).exec();
@@ -20,7 +22,10 @@ router.post('/', async (req, res) => {
 
   req.io.emit('message:create', { data: message });
 
-  res.send({});
+  res.json({
+    message: 'Success',
+    data: {},
+  });
 });
 
 export default router;

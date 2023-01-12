@@ -1,5 +1,5 @@
 export const notFound = (req, res) => {
-  res.status(404).send({
+  res.status(404).json({
     errors: ['Not found'],
   });
 };

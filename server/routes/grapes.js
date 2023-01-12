@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     grapes.push(...wineGlass.grapes);
   });
 
-  res.send({ data: grapes });
+  res.json({ data: grapes });
 });
 
 export default router;

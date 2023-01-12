@@ -6,7 +6,7 @@ const router = Router();
 router.get('/', async (req, res) => {
   const wineGlasses = await WineGlass.find().exec();
 
-  res.send({ data: wineGlasses });
+  res.json({ data: wineGlasses });
 });
 
 router.get('/:grape', async (req, res) => {
@@ -15,7 +15,7 @@ router.get('/:grape', async (req, res) => {
   if (grape) {
     const wineGlass = await WineGlass.findOne({ grapes: grape }).exec();
 
-    res.send({
+    res.json({
       message: 'Success',
       data: {
         series: wineGlass.series,

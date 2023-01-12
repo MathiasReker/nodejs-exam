@@ -14,7 +14,7 @@ router.get('/me/statistics/lookups', async (req, res) => {
   const user = await User.findOne({ uuid: req.id }).exec();
 
   const { lookups } = user.statistics;
-  res.send({ data: { lookups } });
+  res.json({ data: { lookups } });
 });
 
 router.put('/me', validate(userRules), async (req, res) => {
@@ -28,7 +28,7 @@ router.put('/me', validate(userRules), async (req, res) => {
     { new: true },
   ).exec();
 
-  res.send({ data: { name: user.name } });
+  res.json({ data: { name: user.name } });
 });
 
 router.put('/me/wine-glasses', validate(wineGlassRules), async (req, res) => {
@@ -40,7 +40,7 @@ router.put('/me/wine-glasses', validate(wineGlassRules), async (req, res) => {
     { new: true },
   ).exec();
 
-  res.send({ data: { wineGlasses: user.settings.wineGlasses } });
+  res.json({ data: { wineGlasses: user.settings.wineGlasses } });
 });
 
 router.put('/me/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
@@ -53,7 +53,7 @@ router.put('/me/statistics/lookups', validate(userStatisticsLookupsRules), async
       { new: true },
     ).exec();
 
-    res.send({ data: { lookups: user.statistics.lookups } });
+    res.json({ data: { lookups: user.statistics.lookups } });
   }
 });
 
@@ -66,7 +66,7 @@ router.put('/me/settings/language', validate(userSettingsLanguageRules), async (
     { new: true },
   ).exec();
 
-  res.send({ data: { language: user.settings.language } });
+  res.json({ data: { language: user.settings.language } });
 });
 
 router.delete('/me/statistics/lookups', validate(userStatisticsLookupsRules), async (req, res) => {
@@ -79,7 +79,7 @@ router.delete('/me/statistics/lookups', validate(userStatisticsLookupsRules), as
       { new: true },
     ).exec();
 
-    res.send({ data: { lookups: user.statistics.lookups } });
+    res.json({ data: { lookups: user.statistics.lookups } });
   }
 });
 

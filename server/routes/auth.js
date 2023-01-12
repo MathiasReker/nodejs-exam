@@ -113,14 +113,14 @@ contact support. Thank you for using Wine Glass Guide!`;
   try {
     // eslint-disable-next-line no-shadow
     const mail = await sendMail(from, user.email, 'Reset password', text);
-    res.status(200).send({
+    res.status(200).json({
       data: {
         message: 'Success',
         mail,
       },
     });
   } catch (err) {
-    res.status(404).send({ errors: [err] });
+    res.status(404).json({ errors: [err] });
   }
 });
 
@@ -137,7 +137,7 @@ router.put('/reset', validate(resetRules), async (req, res) => {
   const hashedToken = createHash('sha256').update(user.password).digest('hex');
 
   if (token !== hashedToken) {
-    res.status(400).send({
+    res.status(400).json({
       errors: ['The token is invalid'],
     });
     return;
@@ -152,7 +152,7 @@ router.put('/reset', validate(resetRules), async (req, res) => {
     { new: true },
   );
 
-  res.send({ data: result });
+  res.json({ data: result });
 });
 
 export default router;
