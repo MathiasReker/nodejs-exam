@@ -18,6 +18,7 @@ import images from './routes/images.js';
 import { handler, notFound } from './middleware/error.js';
 import { corsOptions, ioCorsOptions } from './config/cors-config.js';
 import { ddosConfig } from './config/ddos-config.js';
+import { jsonOptions, urlEncodedOptions } from './config/express.js';
 
 dotenv.config();
 connection();
@@ -34,10 +35,10 @@ app.use(ddos.express);
 app.use(compress());
 app.use(helmet());
 app.use(cors(corsOptions));
-app.use(express.urlencoded({ extended: true, limit: '1kb' }));
-app.use(express.json({ limit: '1kb' })); // for body parser
+app.use(express.urlencoded(urlEncodedOptions));
+app.use(express.json(jsonOptions)); // for body parser
 app.use('/api/auth', auth);
-app.use('/api/mail', mail);
+app.use('/api/mails', mail);
 app.use('/api/images', images);
 app.use('/api/messages', verifyToken, messages);
 app.use('/api/users', verifyToken, users);

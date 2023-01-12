@@ -25,7 +25,7 @@
       loading = true;
 
       try {
-        await request('/api/mail', {
+        await request('/api/mails', {
           method: 'POST',
           body: { name, email, message },
         });
