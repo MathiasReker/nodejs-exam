@@ -28,6 +28,6 @@ module.exports = {
         "import/no-mutable-exports": "off",
         "import/no-named-as-default": "off",
         "svelte/no-at-html-tags": "off",
-        "max-len": ["error", {"code": 120}]
+        "max-len": ["error", { "code": 120 }]
     },
 };

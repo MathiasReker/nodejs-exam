@@ -99,7 +99,9 @@
             <Lang page="profile" trans="countLookupsTitle"/>
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.countLookupsCardBody[$lang].replace('%s', $user.statistics.lookups)}</p>
+            <p class="card-text">
+                {@html languages.profile.countLookupsCardBody[$lang].replace('%s', $user.statistics.lookups)}
+            </p>
             <button class="btn btn-primary" on:click={handleOnResetLookups}>
                 <Lang page="profile" trans="resetStatisticLookupsBtn"/>
             </button>
