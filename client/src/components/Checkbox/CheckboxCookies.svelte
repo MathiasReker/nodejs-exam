@@ -12,7 +12,7 @@
       const { value, checked } = target;
 
       $cookieConsent[value] = checked;
-      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
+      cookies.set('cookieConsent', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 </script>
 

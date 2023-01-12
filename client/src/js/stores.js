@@ -6,7 +6,7 @@ export const user = writable(
 );
 
 export const cookieConsent = writable(
-  cookies.get('cookie') ? JSON.parse(cookies.get('cookie')) : {
+  cookies.get('cookieConsent') ? JSON.parse(cookies.get('cookieConsent')) : {
     necessary: true, statistics: false, marketing: false, personalization: false,
   },
 );

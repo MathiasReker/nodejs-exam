@@ -14,7 +14,7 @@
     let isOpen = false;
 
     onMount(() => {
-      if (!cookies.get('cookie')) {
+      if (!cookies.get('cookieConsent')) {
         new Modal(cookieConsentModal).show();
       }
     });
@@ -65,7 +65,7 @@
         $cookieConsent[cookie.technicalName] = true;
       });
 
-      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
+      cookies.set('cookieConsent', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 
     const handleDisagreeToCookies = () => {
@@ -73,7 +73,7 @@
         $cookieConsent[cookie.technicalName] = false;
       });
 
-      cookies.set('cookie', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
+      cookies.set('cookieConsent', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
     };
 </script>
 
