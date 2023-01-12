@@ -12,5 +12,4 @@
     <meta content="{metaTitle ?? languages.head.title[$lang]}" name="title"/>
     <meta content="{metaDescription ?? ''}" name="description"/>
     <link href="{window.location.href}" rel="canonical"/>
-    <link crossorigin="anonymous" href="{import.meta.env.VITE_API_BASE_URL}" rel="preconnect">
 </svelte:head>
