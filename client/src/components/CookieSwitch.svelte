@@ -88,17 +88,22 @@
 </script>
 
 <!-- Modal -->
-<div aria-hidden="true" aria-labelledby="cookieConsentModalLabel" bind:this={cookieConsentModal} class="modal fade"
+<div aria-hidden="true"
+     aria-labelledby="cookieConsentModalLabel"
+     bind:this={cookieConsentModal}
+     class="modal fade"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false"
      id="cookieConsentModal"
      tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="CookieConsentModalLabel">Privacy Settings</h1>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+
             </div>
             <div class="modal-body">
-                <p>By clicking “Accept all cookies”, you agree Stack Exchange can store cookies on your device and
+                <p>By clicking accepts cookies, you agree to Wine Glass Guide can store cookies on your device and
                     disclose information in accordance with our Cookie Policy.</p>
                 <div>
                     <button aria-controls="collapseExample" aria-expanded="false" bind:this={collapseExample}
@@ -112,9 +117,9 @@
                         <div class="mb-3">
                             <div class="">
                                 <CookieSwitch value="{cookie.technicalName}"
-                                                 display="{cookie.displayName}"
-                                                 disabled="{cookie.disabled}"
-                                                 cookieDaysToExpire="{cookieDaysToExpire}"/>
+                                              display="{cookie.displayName}"
+                                              disabled="{cookie.disabled}"
+                                              cookieDaysToExpire="{cookieDaysToExpire}"/>
                                 <ul class="list-group">
                                     {#each cookie.description as description}
                                         <li>{description}</li>
