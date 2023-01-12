@@ -12,7 +12,13 @@
       const { value, checked } = target;
 
       $cookieConsent[value] = checked;
-      cookies.set('cookieConsent', JSON.stringify($cookieConsent), { expires: cookieDaysToExpire });
+
+      cookies.set('cookieConsent', JSON.stringify($cookieConsent), {
+        path: '/',
+        expires: cookieDaysToExpire,
+        sameSite: 'strict',
+        secure: import.meta.env.VITE_ENV !== 'dev',
+      });
     };
 </script>
 

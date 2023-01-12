@@ -34,7 +34,6 @@ router.post('/signup', validate(signupRules), async (req, res) => {
 
   try {
     const savedUser = await user.save();
-    // eslint-disable-next-line no-underscore-dangle
     res.json({ data: { userId: savedUser.uuid } });
   } catch (err) {
     res.status(400).json({ errors: [err] });
