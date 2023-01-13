@@ -1,15 +1,15 @@
 <script>
     import { link } from 'svelte-navigator';
-    import Lang from '../Util/Lang.svelte';
+    import { t } from '../../js/localization.js';
 
     const currentYear = new Date().getFullYear();
 </script>
 
 <footer class="text-muted mt-auto text-center pt-5">
     <p>© {currentYear}
-        <Lang page="global" trans="title"></Lang>
+        {$t('global.title')}
         | <a href="/privacy-policy" use:link>
-            <Lang page="privacyPolicy" trans="title"></Lang>
+            {$t('privacyPolicy.title')}
         </a>
     </p>
 </footer>

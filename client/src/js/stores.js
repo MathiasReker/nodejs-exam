@@ -1,4 +1,4 @@
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import cookies from 'js-cookie';
 
 export const user = writable(
@@ -11,6 +11,4 @@ export const cookieConsent = writable(
   },
 );
 
-export const lang = writable(
-  get(user) ? get(user).settings.language : 'en',
-);
+// TODO rename stores.js?

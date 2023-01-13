@@ -1,38 +1,25 @@
 <script>
+    import { locale, locales } from '../js/localization.js';
+    import { user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
-    import { lang, user } from '../js/stores';
     import { displayError, displaySuccess } from '../js/toast';
-
-    let language = $lang;
-
-    const languages = [
-      {
-        iso: 'en',
-        img: '🇬🇧',
-        language: 'English',
-      },
-      {
-        iso: 'da',
-        img: '🇩🇰',
-        language: 'Danish',
-      },
-    ];
 
     const handleUpdateLanguage = async () => {
       try {
         const updateLanguageFetch = await request('/api/users/me/settings/language', {
           method: 'PUT',
           body: {
-            language,
+            language: $locale,
           },
         });
 
-        $lang = updateLanguageFetch.data.language;
+        $locale = updateLanguageFetch.data.language;
 
         $user.settings.language = updateLanguageFetch.data.language;
+
         localStorage.setItem('user', JSON.stringify($user));
 
-        displaySuccess('Language updated!');
+        displaySuccess('Language updated!'); // TODO
       } catch (err) {
         displayError(err);
       }
@@ -41,12 +28,12 @@
 
 <div>
     <select
-            bind:value={language}
+            bind:value={$locale}
             class="form-select"
             on:change={handleUpdateLanguage}
             style="max-width: 200px">
-        {#each languages as language}
-            <option value="{language.iso}">{`${language.img} ${language.language}`}</option>
+        {#each locales as l}
+            <option value="{l.iso}">{`${l.img} ${l.language}`}</option>
         {/each}
     </select>
 </div>

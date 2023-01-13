@@ -1,12 +1,11 @@
 <script>
     import { link } from 'svelte-navigator';
     import { onMount } from 'svelte';
-    import { lang, user } from '../js/stores';
+    import { user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
-    import languages from '../js/language';
-    import Lang from '../components/Util/Lang.svelte';
     import { displayError, displaySuccess } from '../js/toast';
     import Page from './Page.svelte';
+    import { t } from '../js/localization';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
     let totalWineGlasses = 0;
@@ -38,11 +37,9 @@
       }
     });
 
-    const title = languages.profile.title[$lang];
-
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('profile.title') },
     ];
 
     const handleOnResetLookups = async () => {
@@ -56,27 +53,32 @@
 
         $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
         localStorage.setItem('user', JSON.stringify($user));
-        displaySuccess('Count lookups has been reset');
+
+        displaySuccess($t('profile.countLookupsDisplaySuccess'));
       } catch (err) {
         displayError(err);
       }
     };
+
+    const { language } = navigator;
+    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+    const accountCreateAt = new Date($user.createdAt).toLocaleDateString(language, { timeZone });
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('profile.title')}">
     <h1>
-        <Lang page="profile" trans="title"/>
+        {$t('profile.title')}
     </h1>
     <div class="pb-5">
-        <Lang page="profile" trans="deck"/>
+        {$t('profile.description')}
     </div>
 
     <div class="card mb-5">
         <h5 class="card-header bg-light text-dark">
-            <Lang page="profile" trans="ownedGlassesTitle"/>
+            {$t('profile.ownedWineGlassesTitle')}
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html languages.profile.ownedGlassesCardBody[$lang].replace('%s', percentOwned)}</p>
+            <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}!</p>
             <div class="progress mb-3" style="height: 20px"> <!-- todo component -->
                 <div
                         aria-label="20px high"
@@ -89,22 +91,31 @@
                 </div>
             </div>
             <a class="btn btn-primary" href="/wine-glasses" use:link>
-                <Lang page="profile" trans="updateCollectionBtn"/>
+                {$t('profile.updateCollectionBtn')}
             </a>
         </div>
     </div>
 
     <div class="card mb-5">
         <h5 class="card-header bg-light text-dark">
-            <Lang page="profile" trans="countLookupsTitle"/>
+            {$t('profile.countLookupsTitle')}
         </h5>
         <div class="card-body">
             <p class="card-text">
-                {@html languages.profile.countLookupsCardBody[$lang].replace('%s', $user.statistics.lookups)}
+                {@html $t('profile.countLookupsCardBody', { lookups: $user.statistics.lookups })}
             </p>
             <button class="btn btn-primary" on:click={handleOnResetLookups}>
-                <Lang page="profile" trans="resetStatisticLookupsBtn"/>
+                {$t('profile.resetStatisticsLookupsBtn')}
             </button>
+        </div>
+    </div>
+
+    <div class="card mb-5">
+        <h5 class="card-header bg-light text-dark">
+            Account <!-- TOOD -->
+        </h5>
+        <div class="card-body">
+            <p>Your account was created {accountCreateAt}.</p> <!-- TOOD -->
         </div>
     </div>
 </Page>

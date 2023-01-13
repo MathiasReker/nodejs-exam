@@ -1,6 +1,5 @@
 <script>
     import { user } from '../js/stores';
-    import Lang from './Util/Lang.svelte';
 
     const jsonToCsv = (data) => {
       const array = [Object.keys(data)].concat(data);
@@ -15,7 +14,7 @@
           email: $user.email,
           language: $user.settings.language,
           wineGlasses: $user.settings.wineGlasses.join(','),
-          //   grapeLookups: $user.statistics.lookups,
+          //   grapeLookups: $user.statistics.lookups, // TODO fix..
         },
       )
     );
@@ -29,5 +28,5 @@
         download="wine_glass_guide.csv"
         href="{objUrl}"
         type="button">
-    <Lang page="settings" trans="exportAccountDataBtn"></Lang>
+    exportAccountDataBtn
 </a>

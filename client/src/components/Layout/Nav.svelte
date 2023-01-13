@@ -4,7 +4,7 @@
     import FiUser from 'svelte-icons-pack/fi/FiUser';
     import IoWine from 'svelte-icons-pack/io/IoWine';
     import { user } from '../../js/stores';
-    import Lang from '../Util/Lang.svelte';
+    import { t } from '../../js/localization';
 
     export let color = '#514945';
     export let background = 'transparent';
@@ -24,10 +24,10 @@
             <a class="navbar-brand" href="/" use:link>
                 <span class="align-items-center" style="color: {color}">
                     <Icon color="{color}" size="25px" src={IoWine}/>
-                    <Lang page="global" trans="title"></Lang>
+                    {$t('global.title')}
                 </span>
             </a>
-
+<!-- TODO: translate -->
             <div class="btn-group">
                 <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
                    style="color: {color}">

@@ -3,6 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
+    import { t } from '../../js/localization';
 
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
@@ -43,16 +44,16 @@
             <div class="form-floating mb-3">
                 <input value={email} class="form-control" id="email"
                        placeholder="name@example.com" required disabled type="email">
-                <label for="email">Email address</label>
+                <label for="email">{$t('global.emailAddress')}</label>
             </div>
             <div class="form-floating mb-3">
                 <input bind:this={passwordInput} bind:value={password} class="form-control" id="password"
                        placeholder="Password" required
                        type="password">
-                <label for="password">Password</label>
+                <label for="password">{$t('global.password')}</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Submit</button>
+            <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">{$t('setNewPassword.submit')}</button>
         </form>
     {/if}
 </main>

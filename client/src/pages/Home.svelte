@@ -4,14 +4,13 @@
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
     import { onMount } from 'svelte';
-    import { lang, user } from '../js/stores';
+    import { user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
     import { request } from '../js/fetchWrapper';
-    import Lang from '../components/Util/Lang.svelte';
     import Head from './Head.svelte';
-    import languages from '../js/language';
     import { displayError } from '../js/toast';
+    import { t } from '../js/localization';
 
     let grapes = [];
     let selectedGrape;
@@ -73,10 +72,10 @@
       } catch (err) {
         displayError(err);
       }
-    };
+    };// TODO make this file smaller..
 </script>
 
-<Head title="{languages.global.title[$lang]}"/>
+<Head title="{$t('global.title')}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}" sticky="{false}"/>
 
@@ -85,10 +84,10 @@
 <main class="px-3">
     <div class="text-light">
         <h1 class="pt-5">
-            <Lang page="home" trans="title"></Lang>
+            {$t('home.title')}
         </h1>
         <p class="pb-3">
-            <Lang page="home" trans="subTitle"></Lang>
+            {$t('home.subTitle')}
         </p>
     </div>
 
@@ -97,7 +96,7 @@
             inputClassName="custom-autocomplete-input form-control"
             items={grapes}
             noInputStyles="true"
-            noResultsText="{languages.home.selectNoResults[$lang]}"
+            noResultsText="{$t('home.noResults')}"
             onChange={handleOnChange}
     />
 

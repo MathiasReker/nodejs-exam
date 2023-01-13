@@ -1,10 +1,9 @@
 <script>
-    import { lang, user } from '../js/stores';
+    import { user } from '../js/stores';
     import Checkbox from '../components/Checkbox/WineGlassesSwitch.svelte';
     import { request } from '../js/fetchWrapper';
-    import Lang from '../components/Util/Lang.svelte';
-    import languages from '../js/language';
     import Page from './Page.svelte';
+    import { t } from '../js/localization';
 
     let options = $user.settings.wineGlasses || [];
 
@@ -12,20 +11,18 @@
       method: 'GET',
     }))();
 
-    const title = languages.wineGlasses.title[$lang];
-
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('wineGlasses.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('wineGlasses.title')}">
     <h1>
-        <Lang page="wineGlasses" trans="title"></Lang>
+        {$t('wineGlasses.title')}
     </h1>
     <p class="lead">
-        <Lang page="wineGlasses" trans="deck"></Lang>
+        {$t('wineGlasses.description')}
     </p>
 
     <div class="text-center">

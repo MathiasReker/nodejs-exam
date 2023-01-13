@@ -1,73 +1,67 @@
 <script>
-    import { lang } from '../js/stores';
-    import Lang from '../components/Util/Lang.svelte';
-    import languages from '../js/language';
     import Page from './Page.svelte';
     import LanguageSelector from '../components/UpdateLanguageBtn.svelte';
     import ExportUserDataBtn from '../components/ExportUserDataBtn.svelte';
     import DeleteAccountBtn from '../components/DeleteAccountBtn.svelte';
     import UpdateUserBtn from '../components/UpdateUserBtn.svelte';
+    import { t } from '../js/localization.js';
 
-    let title;
-    $: title = languages.settings.title[$lang];
-
-    let breadcrumbs;
-    $: breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+    const breadcrumbs = [
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('settings.title') },
     ];
 </script>
 
-<Page breadcrumbs={breadcrumbs} title={title}>
+<Page breadcrumbs={breadcrumbs} title={$t('settings.title')}>
     <div class="mb-5">
         <h1>
-            <Lang page="settings" trans="title"></Lang>
+            {$t('settings.title')}
         </h1>
         <p class="lead">
-            <Lang page="settings" trans="deck"></Lang>
+            {$t('settings.description')}
         </p>
     </div>
 
     <div class="mb-5">
         <h2>
-            <Lang page="settings" trans="changeLanguageTitle"></Lang>
+            {$t('settings.updateLanguageTitle')}
         </h2>
         <hr>
         <p>
-            <Lang page="settings" trans="changeLanguageDescription"></Lang>
+            {$t('settings.updateLanguageDescription')}
         </p>
         <LanguageSelector/>
     </div>
 
     <div class="mb-5">
         <h2>
-            <Lang page="settings" trans="usernameTitle"></Lang>
+            {$t('settings.updateUsernameTitle')}
         </h2>
         <hr>
         <p>
-            <Lang page="settings" trans="usernameDescription"></Lang>
+            {$t('settings.updateUsernameDescription')}
         </p>
         <UpdateUserBtn/>
     </div>
 
     <div class="mb-5">
         <h2>
-            <Lang page="settings" trans="exportAccountDataTitle"></Lang>
+            {$t('settings.exportUserDataTitle')}
         </h2>
         <hr>
         <p>
-            <Lang page="settings" trans="exportAccountDataDescription"></Lang>
+            {$t('settings.exportUserDataDescription')}
         </p>
         <ExportUserDataBtn/>
     </div>
 
     <div>
         <h2 class="text-danger">
-            <Lang page="settings" trans="deleteAccountTitle"></Lang>
+            {$t('settings.deleteAccountTitle')}
         </h2>
         <hr>
         <p>
-            <Lang page="settings" trans="deleteAccountDescription"></Lang>
+            {$t('settings.deleteAccountDescription')}
         </p>
         <DeleteAccountBtn/>
     </div>

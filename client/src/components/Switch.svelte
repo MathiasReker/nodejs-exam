@@ -7,9 +7,9 @@
 
 <div class="form-check form-switch form-switch-md">
     <input checked={checked}
-           id="{value}"
-           disabled="{disabled}"
            class="form-check-input"
+           disabled="{disabled}"
+           id="{value}"
            on:change={onChange}
            role="switch"
            type="checkbox"

@@ -4,12 +4,11 @@
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import Lang from '../Util/Lang.svelte';
+    import {t} from "../../js/localization.js";
 
     const registerFocus = useFocus();
 
     let email = $user ? $user.email : '';
-
     let name = $user ? $user.name : '';
 
     let message = '';
@@ -44,16 +43,16 @@
     <div class="form-floating mb-3">
         <input bind:value={name} class="form-control" id="name"
                placeholder="Name" required type="text">
-        <label for="name">Name</label>
+        <label for="name">{$t('global.name')}</label>
     </div>
     <div class="form-floating mb-3">
         <input bind:value={email} class="form-control" id="email"
                placeholder="name@example.com" required type="email">
-        <label for="email">Email</label>
+        <label for="email">{$t('global.name')}</label>
     </div>
     <div class="mb-3">
         <label class="form-label" for="message">
-            <Lang page="contact" trans="title"></Lang>
+            {$t('contact.title')}
         </label>
         <textarea
                 bind:this={messageInput}
@@ -64,5 +63,5 @@
                 use:registerFocus></textarea>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">Send</button>
+    <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">{$t('contact.submit')}</button>
 </form>

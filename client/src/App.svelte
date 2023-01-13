@@ -25,7 +25,7 @@
 </script>
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
-    <Router>
+    <Router> <!-- TODO use private routes? -->
         <Route path="/contact">
             <Contact/>
         </Route>

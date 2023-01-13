@@ -1,21 +1,18 @@
 <script>
-    import languages from '../js/language';
-    import { lang } from '../js/stores';
     import Page from './Page.svelte';
-
-    const title = languages.help.title[$lang];
+    import { t } from '../js/localization';
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('about.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('about.title')}">
     <h1>
-        About..
+        {$t('about.title')}
     </h1>
     <p>
-        This is another project ...
+        {$t('settings.description')}
     </p>
 </Page>

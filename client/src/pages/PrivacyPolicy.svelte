@@ -1,17 +1,14 @@
 <script>
-    import languages from '../js/language';
-    import { lang } from '../js/stores';
     import Page from './Page.svelte';
     import PrivacyPolicyDiv from '../components/PrivacyPolicyDiv.svelte';
-
-    const title = 'Privacy Policy';
+    import { t } from '../js/localization';
 
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('privacyPolicy.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('privacyPolicy.title')}">
     <PrivacyPolicyDiv/>
 </Page>

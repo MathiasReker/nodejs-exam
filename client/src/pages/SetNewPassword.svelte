@@ -1,27 +1,25 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import languages from '../js/language';
-    import { lang } from '../js/stores';
     import Page from './Page.svelte';
     import SetNewPasswordForm from '../components/Form/SetNewPasswordForm.svelte';
+    import { t } from '../js/localization';
 
-    const title = languages.passwordReset.title[$lang];
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('setNewPassword.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('setNewPassword.title')}">
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
-                Set new password
+                {$t('setNewPassword.title')}
             </h1>
         </div>
         <div class="col text-end mt-auto">
             <p>
-                <Link to="/signin">Sign in</Link>
+                <Link to="/signin">{$t('signIn.title')}</Link>
             </p>
         </div>
     </div>

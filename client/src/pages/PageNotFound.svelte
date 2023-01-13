@@ -1,25 +1,21 @@
 <script>
-    import { lang } from '../js/stores';
-    import languages from '../js/language';
-    import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
     import handleAuthNavigator from '../js/handleAuthNavigator';
+    import { t } from '../js/localization';
 
     handleAuthNavigator();
 
-    const title = languages.pageNotFound.title[$lang];
-
     const breadcrumbs = [
-      { href: '/', text: languages.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.title') },
+      { href: window.location.pathname, text: $t('pageNotFound.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('pageNotFound.title')}">
     <h1>
-        <Lang page="pageNotFound" trans="title"></Lang>
+        {$t('pageNotFound.title')}
     </h1>
     <p>
-        <Lang page="pageNotFound" trans="deck"></Lang>
+        {$t('pageNotFound.description')}
     </p>
 </Page>

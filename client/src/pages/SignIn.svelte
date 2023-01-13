@@ -1,29 +1,25 @@
 <script>
     import { Link } from 'svelte-navigator';
     import SignInForm from '../components/Form/SignInForm.svelte';
-    import Lang from '../components/Util/Lang.svelte';
     import Page from './Page.svelte';
-    import language from '../js/language';
-    import { lang } from '../js/stores';
-
-    const title = language.signIn.title[$lang];
+    import { t } from '../js/localization.js';
 
     const breadcrumbs = [
-      { href: '/', text: language.global.home[$lang] },
-      { href: window.location.pathname, text: title },
+      { href: '/', text: $t('global.home') },
+      { href: window.location.pathname, text: $t('signIn.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{title}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('signIn.title')}">
     <div class="row">
         <div class="col">
             <h1 class="mb-3">
-                <Lang page="signIn" trans="title"></Lang>
+                {$t('signIn.title')}
             </h1>
         </div>
         <div class="col text-end mt-auto">
             <p>
-                <Link to="/signup">I don't have an account</Link>
+                <Link to="/signup">{$t('signIn.noAccount')}</Link>
             </p>
         </div>
     </div>
@@ -32,7 +28,7 @@
 
     <div class="mt-2 text-center">
         <p>
-            <Link to="/reset-password">Can't sign in?</Link>
+            <Link to="/reset-password">{$t('signIn.forgotPassword')}</Link>
         </p>
     </div>
 </Page>

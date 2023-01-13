@@ -2,6 +2,7 @@
     import { user } from '../../js/stores';
     import { request } from '../../js/fetchWrapper';
     import { displayError, displaySuccess } from '../../js/toast';
+    import {t} from "../../js/localization";
 
     let name = $user ? $user.name : '';
 
@@ -37,7 +38,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">TODO</h1>
                 <button
                         aria-label="Close"
                         class="btn-close"
@@ -50,20 +51,20 @@
                     <div class="form-floating mb-3">
                         <input bind:value={name} class="form-control" id="name"
                                placeholder="Name" required type="text">
-                        <label for="name">Name</label>
+                        <label for="name">{$t('global.name')}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button
                             class="btn btn-secondary"
                             data-bs-dismiss="modal"
-                            type="button">Close
+                            type="button">{$t('global.close')}
                     </button>
                     <button
                             class="btn btn-primary"
                             data-bs-dismiss="modal"
                             disabled="{loading}"
-                            type="submit">Save
+                            type="submit">{$t('global.save')}
                     </button>
                 </div>
             </form>
