@@ -6,7 +6,7 @@ export const signupRules = [
   body('password').isLength({ min: 8, max: 255 }).exists(),
 ];
 
-export const signInRules = [
+export const loginRules = [
   body('email').isEmail().exists(),
   body('password').isLength({ min: 8, max: 255 }).exists(),
 ];

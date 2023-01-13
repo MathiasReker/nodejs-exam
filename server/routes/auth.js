@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import { createHash } from 'crypto';
 import User from '../model/User.js';
 import {
-  recoverRules, resetRules, signInRules, signupRules,
+  loginRules, recoverRules, resetRules, signupRules,
 } from './validations/auth.js';
 import validate from '../middleware/validate.js';
 import sendMail from '../util/mail.js';
@@ -39,18 +39,18 @@ router.post('/signup', validate(signupRules), async (req, res) => {
   }
 });
 
-router.post('/signin', validate(signInRules), async (req, res) => { // TODO: rename /login
+router.post('/login', validate(loginRules), async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({
     email,
   });
 
-  const signInError = 'A user with this combination of credentials was not found.';
+  const loginError = 'A user with this combination of credentials was not found.';
   // throw exception when email is wrong
   if (!user) {
     res.status(400).json({
-      errors: [signInError],
+      errors: [loginError],
     });
     return;
   }
@@ -60,7 +60,7 @@ router.post('/signin', validate(signInRules), async (req, res) => { // TODO: ren
 
   if (!validPassword) {
     res.status(400).json({
-      errors: [signInError],
+      errors: [loginError],
     });
     return;
   }
@@ -84,6 +84,7 @@ router.post('/signin', validate(signInRules), async (req, res) => { // TODO: ren
       },
       uuid: user.uuid,
       token,
+      // eslint-disable-next-line no-underscore-dangle
       createdAt: user._id.getTimestamp(),
     },
   });
@@ -104,7 +105,7 @@ router.post('/recover', validate(recoverRules), async (req, res) => {
   const resetLink = `${process.env.CORS_ALLOWED_ORIGIN}/set-new-password?email=${user.email}&token=${token}`;
 
   const text = `You have just requested a password reset for the Wine Glass Guide account associated with this email address.\n\n
-  Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues signing in, please
+  Reset password using the following link: \n${resetLink}\n\nIf you continue to have issues login, please
 contact support. Thank you for using Wine Glass Guide!`;
 
   const from = `"${process.env.DEFAULT_MAIL_SENDER}"`;

@@ -12,7 +12,7 @@
     import ResetPassword from './pages/ResetPassword.svelte';
     import Profile from './pages/Profile.svelte';
     import PageNotFound from './pages/PageNotFound.svelte';
-    import SignIn from './pages/SignIn.svelte';
+    import Login from './pages/Login.svelte';
     import { displayInfo } from './js/toast';
     import SetNewPassword from './pages/SetNewPassword.svelte';
     import About from './pages/About.svelte';
@@ -49,8 +49,8 @@
                 <Profile/>
             </Route>
         {:else}
-            <Route path="/signin">
-                <SignIn/>
+            <Route path="/login">
+                <Login/>
             </Route>
             <Route path="/signup">
                 <SignUp/>

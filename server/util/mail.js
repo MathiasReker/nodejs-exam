@@ -25,7 +25,9 @@ const sendMail = async (from, to, subject, text) => {
   });
 
   if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
     console.log('Message send: %s', info.messageId);
+    // eslint-disable-next-line no-console
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   }
 };

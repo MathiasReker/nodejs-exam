@@ -1,6 +1,6 @@
 <script>
     import Page from './Page.svelte';
-    import authNavigator from '../js/auth-navigator.js';
+    import authNavigator from '../js/auth-navigator';
     import { t } from '../js/localization';
 
     authNavigator();

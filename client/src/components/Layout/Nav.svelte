@@ -13,7 +13,7 @@
     const handleLogout = () => {
       $user = null;
       localStorage.clear();
-      navigate('/signin');
+      navigate('/login');
     };
 </script>
 
@@ -57,7 +57,7 @@
                             <button class="dropdown-item" on:click={handleLogout}>{$t('nav.logOut')}</button>
                         </li>
                     {:else}
-                        <li><a class="dropdown-item" href="/signin" use:link>{$t('nav.logIn')}</a></li>
+                        <li><a class="dropdown-item" href="/login" use:link>{$t('nav.logIn')}</a></li>
                         <li><a class="dropdown-item" href="/contact" use:link>{$t('nav.contact')}</a></li>
                         <li><a class="dropdown-item" href="/about" use:link>{$t('nav.about')}</a></li>
                     {/if}

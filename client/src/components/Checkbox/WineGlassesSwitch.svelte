@@ -1,9 +1,9 @@
 <script>
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import Switch from '../Switch.svelte';
-    import { t } from '../../js/localization.js';
+    import { t } from '../../js/localization';
 
     export let bindGroup = [];
     export let value = '';

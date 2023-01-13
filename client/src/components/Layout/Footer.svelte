@@ -1,6 +1,6 @@
 <script>
     import { link } from 'svelte-navigator';
-    import { t } from '../../js/localization.js';
+    import { t } from '../../js/localization';
 
     const currentYear = new Date().getFullYear();
 </script>

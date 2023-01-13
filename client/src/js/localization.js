@@ -27,6 +27,7 @@ export const locale = writable(
     : defaultLanguage,
 );
 
+// eslint-disable-next-line no-shadow
 const translate = (locale, key, variables) => {
   if (!key) throw new Error('No key provided to $t()');
   if (!locale) throw new Error(`No translation for key "${key}"`);
@@ -37,7 +38,7 @@ const translate = (locale, key, variables) => {
   if (!text) throw new Error(`No translation found for ${locale}.${key}`);
 
   // Replace any passed in variables in the translation string.
-  Object.keys(variables).map((variable) => {
+  Object.keys(variables).forEach((variable) => {
     const regex = new RegExp(`{{${variable}}}`, 'g');
     text = text.replace(regex, variables[variable]);
   });

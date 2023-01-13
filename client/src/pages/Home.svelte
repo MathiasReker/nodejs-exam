@@ -7,7 +7,7 @@
     import { user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-    import { request } from '../js/fetch-wrapper.js';
+    import { request } from '../js/fetch-wrapper';
     import Head from './Head.svelte';
     import { displayError } from '../js/toast';
     import { t } from '../js/localization';
@@ -75,7 +75,7 @@
     };
 </script>
 
-<Head title="{$t('global.title')}" metaTitle="{$t('global.title')}" metaDescription="{$t('global.title')}"/>
+<Head metaDescription="{$t('global.title')}" metaTitle="{$t('global.title')}" title="{$t('global.title')}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}" sticky="{false}"/>
 

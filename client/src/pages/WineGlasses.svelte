@@ -1,7 +1,7 @@
 <script>
     import { user } from '../js/stores';
     import Checkbox from '../components/Checkbox/WineGlassesSwitch.svelte';
-    import { request } from '../js/fetch-wrapper.js';
+    import { request } from '../js/fetch-wrapper';
     import Page from './Page.svelte';
     import { t } from '../js/localization';
 

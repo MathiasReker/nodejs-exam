@@ -2,9 +2,9 @@
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import { user } from '../../js/stores';
-    import { t } from '../../js/localization.js';
+    import { t } from '../../js/localization';
 
     let email = '';
     let emailInput = null;
@@ -18,17 +18,17 @@
     const handleOnSubmit = async () => {
       loading = true;
 
-      const userSignIn = { email, password };
+      const userLogin = { email, password };
 
       try {
-        const fetchAuthSignIn = await request('/api/auth/signin', {
+        const fetchAuthLogin = await request('/api/auth/login', {
           method: 'POST',
-          body: userSignIn,
+          body: userLogin,
         });
 
-        if (fetchAuthSignIn.data) {
+        if (fetchAuthLogin.data) {
           try {
-            $user = fetchAuthSignIn.data;
+            $user = fetchAuthLogin.data;
             localStorage.setItem('user', JSON.stringify($user));
             navigate('/');
           } catch (err) {
@@ -59,7 +59,7 @@
         <button
                 class="w-100 btn btn-lg btn-primary"
                 disabled={loading}
-                type="submit">{$t('signIn.submit')}
+                type="submit">{$t('login.submit')}
         </button>
     </form>
 </main>

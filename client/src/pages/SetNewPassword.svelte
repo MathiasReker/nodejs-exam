@@ -19,7 +19,7 @@
         </div>
         <div class="col text-end mt-auto">
             <p>
-                <Link to="/signin">{$t('signIn.title')}</Link>
+                <Link to="/login">{$t('login.title')}</Link>
             </p>
         </div>
     </div>

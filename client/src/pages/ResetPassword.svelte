@@ -19,7 +19,7 @@
         </div>
         <div class="col text-end mt-auto">
             <p>
-                <Link to="/signin">{$t('resetPassword.backToSignIn')}</Link>
+                <Link to="/login">{$t('resetPassword.backToLogin')}</Link>
             </p>
         </div>
     </div>

@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import PrivacyPolicyDiv from '../PrivacyPolicyDiv.svelte';
     import { t } from '../../js/localization';
 

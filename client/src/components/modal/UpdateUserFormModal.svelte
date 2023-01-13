@@ -1,6 +1,6 @@
 <script>
     import { user } from '../../js/stores';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import { displayError, displaySuccess } from '../../js/toast';
     import { t } from '../../js/localization';
 

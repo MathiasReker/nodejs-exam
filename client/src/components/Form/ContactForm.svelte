@@ -3,7 +3,7 @@
     import { useFocus } from 'svelte-navigator';
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import { t } from '../../js/localization';
 
     const registerFocus = useFocus();

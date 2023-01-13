@@ -6,7 +6,7 @@
     import CookieSwitch from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
     import { cookieConsent } from '../js/stores';
-    import { t } from '../js/localization.js';
+    import { t } from '../js/localization';
 
     let collapse;
 

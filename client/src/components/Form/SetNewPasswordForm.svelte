@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetch-wrapper.js';
+    import { request } from '../../js/fetch-wrapper';
     import { t } from '../../js/localization';
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -29,7 +29,7 @@
           },
         });
         displaySuccess($t('setNewPassword.successfullyResat'));
-        navigate('/signin');
+        navigate('/login');
       } catch (err) {
         displayError(err);
       } finally {
@@ -38,7 +38,7 @@
     };
 </script>
 
-<main class="form-signin w-100 m-auto">
+<main class="form-login w-100 m-auto">
     {#if email && token}
         <form on:submit|preventDefault={handleOnSubmit}>
             <div class="form-floating mb-3">
