@@ -82,6 +82,7 @@ router.post('/login', validate(loginRules), async (req, res) => {
         wineGlasses: user.settings.wineGlasses,
         language: user.settings.language,
       },
+      statistics: user.statistics.lookups,
       uuid: user.uuid,
       token,
       // eslint-disable-next-line no-underscore-dangle

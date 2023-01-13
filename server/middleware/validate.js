@@ -8,5 +8,5 @@ export default (validations) => async (req, res, next) => {
     return next();
   }
 
-  return res.status(422).json({ message: 'Validation errors', errors: errors.array() });
+  return res.status(422).json({ errors: errors.array() });
 };

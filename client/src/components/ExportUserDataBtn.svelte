@@ -1,5 +1,6 @@
 <script>
     import { user } from '../js/stores';
+    import { t } from '../js/localization';
 
     const jsonToCsv = (data) => {
       const array = [Object.keys(data)].concat(data);
@@ -14,7 +15,7 @@
           email: $user.email,
           language: $user.settings.language,
           wineGlasses: $user.settings.wineGlasses.join(','),
-          //   grapeLookups: $user.statistics.lookups, // TODO fix..
+          grapeLookups: $user.statistics.lookups,
         },
       )
     );
@@ -28,5 +29,5 @@
         download="wine_glass_guide.csv"
         href="{objUrl}"
         type="button">
-    exportAccountDataBtn
+        {$t('settings.exportToCsvBtn')}
 </a>
