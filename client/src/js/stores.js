@@ -10,5 +10,3 @@ export const cookieConsent = writable(
     necessary: true, statistics: false, marketing: false, personalization: false,
   },
 );
-
-// TODO rename stores.js?

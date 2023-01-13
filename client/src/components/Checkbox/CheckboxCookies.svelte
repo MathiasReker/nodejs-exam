@@ -17,7 +17,7 @@
         path: '/',
         expires: cookieDaysToExpire,
         sameSite: 'strict',
-        secure: import.meta.env.VITE_ENV !== 'dev',
+        secure: import.meta.env.VITE_ENV !== 'development',
       });
     };
 </script>

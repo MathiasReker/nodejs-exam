@@ -10,9 +10,7 @@ router.post('/', validate(mailRules), async (req, res) => {
 
   await sendMail(mail, 'contact@demo.com', 'Question', message);
 
-  res.json({
-    message: 'Mail sent!',
-  });
+  res.json({ data: {} });
 });
 
 export default router;

@@ -72,10 +72,10 @@
       } catch (err) {
         displayError(err);
       }
-    };// TODO make this file smaller..
+    };
 </script>
 
-<Head title="{$t('global.title')}"/>
+<Head title="{$t('global.title')}" metaTitle="{$t('global.title')}" metaDescription="{$t('global.title')}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}" sticky="{false}"/>
 

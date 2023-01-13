@@ -78,7 +78,7 @@
             {$t('profile.ownedWineGlassesTitle')}
         </h5>
         <div class="card-body">
-            <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}!</p>
+            <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}</p>
             <div class="progress mb-3" style="height: 20px"> <!-- todo component -->
                 <div
                         aria-label="20px high"

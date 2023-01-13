@@ -16,7 +16,6 @@ router.get('/:grape', async (req, res) => {
     const wineGlass = await WineGlass.findOne({ grapes: grape }).exec();
 
     res.json({
-      message: 'Success',
       data: {
         series: wineGlass.series,
         name: wineGlass.name,

@@ -13,7 +13,6 @@ import sendMail from '../util/mail.js';
 const router = Router();
 
 router.post('/signup', validate(signupRules), async (req, res) => {
-  // validate the user
   const { email, name, password } = req.body;
 
   const isEmailExist = await User.findOne({ email });
@@ -113,9 +112,8 @@ contact support. Thank you for using Wine Glass Guide!`;
   try {
     // eslint-disable-next-line no-shadow
     const mail = await sendMail(from, user.email, 'Reset password', text);
-    res.status(200).json({
+    res.json({
       data: {
-        message: 'Success',
         mail,
       },
     });
@@ -146,13 +144,13 @@ router.put('/reset', validate(resetRules), async (req, res) => {
   const salt = await bcrypt.genSalt(+process.env.BCRYPT_SALT_ROUNDS);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const result = await User.findOneAndUpdate(
+  const newUser = await User.findOneAndUpdate(
     { email: user.email },
     { password: hashedPassword },
     { new: true },
   );
 
-  res.json({ data: result });
+  res.json({ data: newUser });
 });
 
 export default router;

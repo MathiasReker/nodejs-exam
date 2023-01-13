@@ -23,7 +23,6 @@ router.post('/', async (req, res) => {
   req.io.emit('message:create', { data: message });
 
   res.json({
-    message: 'Success',
     data: {},
   });
 });

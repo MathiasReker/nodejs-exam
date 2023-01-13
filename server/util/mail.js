@@ -4,7 +4,7 @@ const sendMail = async (from, to, subject, text) => {
   const testAccount = await nodemailer.createTestAccount();
 
   const {
-    SMTP_HOST, SMTP_PORT,
+    NODE_ENV, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD,
   } = process.env;
 
   const transporter = nodemailer.createTransport({
@@ -12,8 +12,8 @@ const sendMail = async (from, to, subject, text) => {
     port: SMTP_PORT,
     secure: +SMTP_PORT === 465,
     auth: {
-      user: testAccount.user, // SMTP_USER
-      pass: testAccount.pass, // SMTP_PASSWORD
+      user: NODE_ENV === 'development' ? testAccount.user : SMTP_USER,
+      pass: NODE_ENV === 'development' ? testAccount.pass : SMTP_PASSWORD,
     },
   });
 
@@ -24,7 +24,7 @@ const sendMail = async (from, to, subject, text) => {
     text,
   });
 
-  if (process.env.NODE_ENV === 'dev') {
+  if (process.env.NODE_ENV === 'development') {
     console.log('Message send: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   }
