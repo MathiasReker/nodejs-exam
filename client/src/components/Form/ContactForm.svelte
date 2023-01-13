@@ -30,7 +30,7 @@
         });
         displaySuccess($t('contact.successfullySent'));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       } finally {
         message = '';
         messageInput.focus();

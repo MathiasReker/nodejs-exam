@@ -22,7 +22,7 @@
         localStorage.setItem('user', JSON.stringify($user));
         displaySuccess(`Username changed to ${$user.name}`);
       } catch (err) {
-        displayError('Something went wrong.');
+        displayError($t('global.error'));
       } finally {
         loading = false;
       }

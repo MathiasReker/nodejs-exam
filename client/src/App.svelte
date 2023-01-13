@@ -26,15 +26,6 @@
 
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
     <Router>
-        <Route path="/contact">
-            <Contact/>
-        </Route>
-        <Route path="/about">
-            <About/>
-        </Route>
-        <Route path="/privacy-policy">
-            <PrivacyPolicy/>
-        </Route>
         <PrivateRoute path="/">
             <Home/>
         </PrivateRoute>
@@ -47,6 +38,15 @@
         <PrivateRoute path="/profile">
             <Profile/>
         </PrivateRoute>
+        <Route path="/contact">
+            <Contact/>
+        </Route>
+        <Route path="/about">
+            <About/>
+        </Route>
+        <Route path="/privacy-policy">
+            <PrivacyPolicy/>
+        </Route>
         <Route path="/login">
             <Login/>
         </Route>
@@ -63,5 +63,5 @@
     </Router>
     <Footer/>
     <SvelteToast/>
-    <CookieConsent/>
 </div>
+<CookieConsent/>

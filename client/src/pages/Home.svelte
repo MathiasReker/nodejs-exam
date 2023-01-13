@@ -26,7 +26,7 @@
 
         grapes = fetchGrapes.data;
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     });
 
@@ -42,7 +42,7 @@
 
         wineGlass = wineGlassFetch.data;
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
 
       try {
@@ -58,7 +58,7 @@
         };
         localStorage.setItem('user', JSON.stringify($user));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
 
       try {
@@ -70,7 +70,7 @@
           },
         });
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     };
 </script>

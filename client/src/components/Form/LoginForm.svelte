@@ -32,13 +32,13 @@
             localStorage.setItem('user', JSON.stringify($user));
             navigate('/');
           } catch (err) {
-            displayError(err);
+            displayError($t('global.error'));
           } finally {
             loading = false;
           }
         }
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     };
 </script>

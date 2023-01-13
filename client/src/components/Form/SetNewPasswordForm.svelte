@@ -31,7 +31,7 @@
         displaySuccess($t('setNewPassword.successfullyResat'));
         navigate('/login');
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       } finally {
         loading = false;
       }

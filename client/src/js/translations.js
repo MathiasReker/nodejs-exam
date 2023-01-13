@@ -85,6 +85,9 @@ export default {
     'signUp.title': 'Sign up',
     'wineGlasses.description': 'Select your collection of wineglasses.',
     'wineGlasses.title': 'Wine glasses',
+    'global.error': 'Something went wrong',
+    'profile.accountCreatedAt': 'Account created at {{accountCreateAt}}.',
+    'profile.accountTitle': 'Account',
   },
   da: {
     'about.description': 'This project is about ...',
@@ -171,5 +174,8 @@ export default {
     'signUp.title': 'Sign up',
     'wineGlasses.description': 'Select your collection of wineglasses.',
     'wineGlasses.title': 'Wine glasses',
+    'global.error': 'Something went wrong',
+    'profile.accountCreatedAt': 'Account created at {{accountCreateAt}}.',
+    'profile.accountTitle': 'Account',
   },
 };

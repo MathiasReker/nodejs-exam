@@ -20,7 +20,7 @@
         totalWineGlasses = wineGlassesFetch.data.length;
         percentOwned = (ownedWineGlasses / totalWineGlasses) * 100;
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
 
       try {
@@ -33,7 +33,7 @@
         localStorage.setItem('user', JSON.stringify($user));
         $user.statistics.lookups = statisticsLookupsFetch.data.lookups;
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     });
 
@@ -56,7 +56,7 @@
 
         displaySuccess($t('profile.countLookupsDisplaySuccess'));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     };
 
@@ -112,10 +112,10 @@
 
     <div class="card mb-5">
         <h5 class="card-header bg-light text-dark">
-            Account <!-- TOOD -->
+            {$t('profile.accountTitle')}
         </h5>
         <div class="card-body">
-            <p>Your account was created {accountCreateAt}.</p> <!-- TOOD -->
+            {$t('profile.accountCreatedAt', { accountCreateAt })}
         </div>
     </div>
 </Page>

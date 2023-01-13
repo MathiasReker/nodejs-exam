@@ -21,7 +21,7 @@
 
         displaySuccess($t('settings.languageUpdatedSuccessfully'));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     };
 </script>

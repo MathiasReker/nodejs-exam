@@ -22,7 +22,7 @@
         });
         displaySuccess($t('login.successLogin'));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       } finally {
         email = '';
         loading = false;

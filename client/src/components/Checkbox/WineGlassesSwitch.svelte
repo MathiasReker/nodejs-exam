@@ -29,7 +29,7 @@
         localStorage.setItem('user', JSON.stringify($user));
         displaySuccess($t('settings.settingsSaved'));
       } catch (err) {
-        displayError(err);
+        displayError($t('global.error'));
       }
     };
 </script>
