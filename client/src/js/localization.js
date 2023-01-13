@@ -15,11 +15,9 @@ export const locales = [
   },
 ];
 
-const supportedLanguages = ['en', 'da'];
-
 const browserLanguage = window.navigator.language.split('-')[0];
 
-const defaultLanguage = supportedLanguages.includes(browserLanguage)
+const defaultLanguage = locales.map((language) => language.iso).includes(browserLanguage)
   ? browserLanguage
   : locales[0].iso;
 
