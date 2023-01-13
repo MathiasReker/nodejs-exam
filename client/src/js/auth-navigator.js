@@ -8,7 +8,7 @@ const openEndpoints = [
   '/about',
 ];
 
-const handleAuthNavigator = () => {
+const authNavigator = () => {
   if (!get(user)) {
     if (!openEndpoints.includes(window.location.pathname)) {
       navigate('/signin', { replace: true });
@@ -16,4 +16,4 @@ const handleAuthNavigator = () => {
   }
 };
 
-export default handleAuthNavigator;
+export default authNavigator;

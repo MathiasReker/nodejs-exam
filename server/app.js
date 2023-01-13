@@ -18,7 +18,7 @@ import images from './routes/images.js';
 import { notFound } from './middleware/error.js';
 import { corsOptions, ioCorsOptions } from './config/cors-config.js';
 import { ddosConfig } from './config/ddos-config.js';
-import { jsonOptions, urlEncodedOptions } from './config/express.js';
+import { jsonOptions, urlEncodedOptions } from './config/express-config.js';
 
 dotenv.config();
 connection();

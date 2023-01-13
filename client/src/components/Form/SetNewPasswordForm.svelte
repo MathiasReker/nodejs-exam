@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetchWrapper';
+    import { request } from '../../js/fetch-wrapper.js';
     import { t } from '../../js/localization';
 
     const urlParams = new URLSearchParams(window.location.search);

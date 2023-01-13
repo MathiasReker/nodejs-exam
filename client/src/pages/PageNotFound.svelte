@@ -1,9 +1,9 @@
 <script>
     import Page from './Page.svelte';
-    import handleAuthNavigator from '../js/handleAuthNavigator';
+    import authNavigator from '../js/auth-navigator.js';
     import { t } from '../js/localization';
 
-    handleAuthNavigator();
+    authNavigator();
 
     const breadcrumbs = [
       { href: '/', text: $t('global.title') },

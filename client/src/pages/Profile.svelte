@@ -2,7 +2,7 @@
     import { link } from 'svelte-navigator';
     import { onMount } from 'svelte';
     import { user } from '../js/stores';
-    import { request } from '../js/fetchWrapper';
+    import { request } from '../js/fetch-wrapper.js';
     import { displayError, displaySuccess } from '../js/toast';
     import Page from './Page.svelte';
     import { t } from '../js/localization';

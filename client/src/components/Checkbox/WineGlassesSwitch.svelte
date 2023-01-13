@@ -1,7 +1,7 @@
 <script>
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
-    import { request } from '../../js/fetchWrapper';
+    import { request } from '../../js/fetch-wrapper.js';
     import Switch from '../Switch.svelte';
     import { t } from '../../js/localization.js';
 

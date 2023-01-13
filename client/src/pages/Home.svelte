@@ -7,7 +7,7 @@
     import { user } from '../js/stores';
     import Nav from '../components/Layout/Nav.svelte';
     import TopBackground from '../components/Layout/TopBackground.svelte';
-    import { request } from '../js/fetchWrapper';
+    import { request } from '../js/fetch-wrapper.js';
     import Head from './Head.svelte';
     import { displayError } from '../js/toast';
     import { t } from '../js/localization';
