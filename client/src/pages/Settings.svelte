@@ -4,7 +4,7 @@
     import ExportUserDataBtn from '../components/ExportUserDataBtn.svelte';
     import DeleteAccountBtn from '../components/DeleteAccountBtn.svelte';
     import UpdateUserBtn from '../components/UpdateUserBtn.svelte';
-    import { t } from '../js/localization.js';
+    import { t } from '../js/localization';
 
     const breadcrumbs = [
       { href: '/', text: $t('global.home') },

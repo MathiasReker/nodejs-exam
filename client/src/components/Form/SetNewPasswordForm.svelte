@@ -28,7 +28,7 @@
             token,
           },
         });
-        displaySuccess('Password successfully resat.');
+        displaySuccess($t('setNewPassword.successfullyResat'));
         navigate('/signin');
       } catch (err) {
         displayError(err);
@@ -43,7 +43,7 @@
         <form on:submit|preventDefault={handleOnSubmit}>
             <div class="form-floating mb-3">
                 <input value={email} class="form-control" id="email"
-                       placeholder="name@example.com" required disabled type="email">
+                       placeholder="demo@demo.com" required disabled type="email">
                 <label for="email">{$t('global.emailAddress')}</label>
             </div>
             <div class="form-floating mb-3">
@@ -53,7 +53,8 @@
                 <label for="password">{$t('global.password')}</label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">{$t('setNewPassword.submit')}</button>
+            <button class="w-100 btn btn-lg btn-primary" disabled="{loading}"
+                    type="submit">{$t('setNewPassword.submit')}</button>
         </form>
     {/if}
 </main>

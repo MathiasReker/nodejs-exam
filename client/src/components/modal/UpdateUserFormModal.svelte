@@ -2,7 +2,7 @@
     import { user } from '../../js/stores';
     import { request } from '../../js/fetchWrapper';
     import { displayError, displaySuccess } from '../../js/toast';
-    import {t} from "../../js/localization";
+    import { t } from '../../js/localization';
 
     let name = $user ? $user.name : '';
 
@@ -31,14 +31,14 @@
 
 <div
         aria-hidden="true"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="updateUserModalLabel"
         class="modal fade"
-        id="exampleModal"
+        id="updateUserModal"
         tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">TODO</h1>
+                <h1 class="modal-title fs-5" id="updateUserModalLabel">{$t('settings.updateUserModalTitle')}</h1>
                 <button
                         aria-label="Close"
                         class="btn-close"
@@ -49,8 +49,12 @@
             <form on:submit|preventDefault={handleOnSubmit}>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input bind:value={name} class="form-control" id="name"
-                               placeholder="Name" required type="text">
+                        <input bind:value={name}
+                               class="form-control"
+                               id="name"
+                               placeholder="Name"
+                               required
+                               type="text">
                         <label for="name">{$t('global.name')}</label>
                     </div>
                 </div>

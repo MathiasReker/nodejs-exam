@@ -2,22 +2,34 @@ import { derived, get, writable } from 'svelte/store';
 import translations from './translations';
 import { user } from './stores';
 
-export const locale = writable(
-  get(user) ? get(user).settings.language : 'en',  // TODO default browser language
-);
-// TODO rename translate to localization?
 export const locales = [
   {
     iso: 'en',
     img: '🇬🇧',
-    language: 'English', // TODO translate
+    language: 'English',
   },
   {
     iso: 'da',
     img: '🇩🇰',
-    language: 'Danish',  // TODO translate
+    language: 'Dansk',
   },
 ];
+
+const supportedLanguages = ['en', 'da']; // TODO mrege locales..
+
+const browserLanguage = window.navigator.language.split('-')[0];
+
+const defaultLanguage = supportedLanguages.includes(browserLanguage)
+  ? browserLanguage
+  : locales[0].iso;
+
+export const locale = writable(
+  get(user)
+    ? get(user).settings.language
+    : defaultLanguage,
+);
+
+// TODO rename translate to localization?
 
 function translate(locale, key, vars) {
   // Let's throw some errors if we're trying to use keys/locales that don't exist.

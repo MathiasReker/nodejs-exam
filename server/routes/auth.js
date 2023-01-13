@@ -23,7 +23,7 @@ router.post('/signup', validate(signupRules), async (req, res) => {
   }
 
   // hash the password
-  const salt = await bcrypt.genSalt(10); // TODO env 12-14
+  const salt = await bcrypt.genSalt(+process.env.BCRYPT_SALT_ROUNDS);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const user = new User({
@@ -143,7 +143,7 @@ router.put('/reset', validate(resetRules), async (req, res) => {
     return;
   }
 
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(+process.env.BCRYPT_SALT_ROUNDS);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const result = await User.findOneAndUpdate(

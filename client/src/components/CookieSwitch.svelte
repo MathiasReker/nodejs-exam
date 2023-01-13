@@ -6,8 +6,9 @@
     import CookieSwitch from './Checkbox/CheckboxCookies.svelte';
     import CookieBtn from './CookieBtn.svelte';
     import { cookieConsent } from '../js/stores';
+    import { t } from '../js/localization.js';
 
-    let collapseExample;
+    let collapse;
 
     let cookieConsentModal;
 
@@ -20,38 +21,38 @@
     });
 
     const handleOnCollapse = () => {
-      isOpen = collapseExample.getAttribute('aria-expanded') === 'true';
+      isOpen = collapse.getAttribute('aria-expanded') === 'true';
     };
 
     const cookieOptions = [
       {
-        displayName: 'Necessary', // TODO translate..
+        displayName: $t('cookieConsent.necessary'),
         technicalName: 'necessary',
-        description: ['Required to run the website'], // TODO translate..
+        description: [$t('cookieConsent.necessaryListItem1')],
         value: true,
         disabled: true,
       },
       {
-        displayName: 'Statistics', // TODO translate..
+        displayName: $t('cookieConsent.statistics'),
         technicalName: 'statistics',
-        description: ['Monitoring website usage and optimizing the user experience'], // TODO translate..
+        description: [$t('cookieConsent.statisticsListItem1')],
         value: false,
         disabled: false,
       },
       {
-        displayName: 'Marketing', // TODO translate..
+        displayName: $t('cookieConsent.marketing'),
         technicalName: 'marketing',
-        description: ['Evaluation of marketing actions'], // TODO translate..
+        description: [$t('cookieConsent.marketingListItem1')],
         value: false,
         disabled: false,
       },
       {
-        displayName: 'Personalization', // TODO translate..
+        displayName: $t('cookieConsent.personalization'),
         technicalName: 'personalization',
         description: [
-          'Storage of your preferences from previous visits',  // TODO translate..
-          'Collecting user feedback to improve our website',  // TODO translate..
-          'Recording of your interests in order to provide customised content and offers',  // TODO translate..
+          $t('cookieConsent.personalizationListItem1'),
+          $t('cookieConsent.personalizationListItem2'),
+          $t('cookieConsent.personalizationListItem3'),
         ],
         value: false,
         disabled: false,
@@ -99,23 +100,26 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="CookieConsentModalLabel">We use cookies</h1>
-<!-- TODO translate ... -->
+                <h1 class="modal-title fs-5" id="CookieConsentModalLabel">{$t('cookieConsent.title')}</h1>
             </div>
             <div class="modal-body">
-                <p>By clicking accepts cookies, you agree to Wine Glass Guide can store cookies on your device and
-                    disclose information in accordance with our Cookie Policy.</p>
+                <p>{$t('cookieConsent.description')}</p>
                 <div>
-                    <button aria-controls="collapseExample" aria-expanded="false" bind:this={collapseExample}
-                            class="btn btn-primary mb-3" data-bs-target="#collapseExample"
-                            data-bs-toggle="collapse" on:click={handleOnCollapse} type="button">
-                        My settings
+                    <button aria-controls="cookieConsentCollapse"
+                            aria-expanded="false"
+                            bind:this={collapse}
+                            class="btn btn-primary mb-3"
+                            data-bs-target="#cookieConsentCollapse"
+                            data-bs-toggle="collapse"
+                            on:click={handleOnCollapse}
+                            type="button">
+                        {$t('cookieConsent.collapseBtn')}
                     </button>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="cookieConsentCollapse">
                     {#each cookieOptions as cookie}
                         <div class="mb-3">
-                            <div class="">
+                            <div>
                                 <CookieSwitch value="{cookie.technicalName}"
                                               display="{cookie.displayName}"
                                               disabled="{cookie.disabled}"
@@ -132,17 +136,25 @@
             </div>
             <div class="modal-footer">
                 {#if !isOpen}
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"
-                            on:click={handleDisagreeToCookies}>I do not agree
+                    <button class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                            type="button"
+                            on:click={handleDisagreeToCookies}>{$t('cookieConsent.agreeNoBtn')}
                     </button>
-                    <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
+                    <button class="btn btn-primary"
+                            data-bs-dismiss="modal"
+                            type="button"
                             on:click={handleAcceptAllCookies}>
-                        Agree
+                        {$t('cookieConsent.agreeBtn')}
                     </button>
                 {:else}
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Agree to selection</button>
-                    <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
-                            on:click={handleAcceptAllCookies}>Agree to all
+                    <button class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                            type="button">{$t('cookieConsent.agreeSelectionBtn')}</button>
+                    <button class="btn btn-primary"
+                            data-bs-dismiss="modal"
+                            type="button"
+                            on:click={handleAcceptAllCookies}>{$t('cookieConsent.agreeAllBtn')}
                     </button>
                 {/if}
             </div>

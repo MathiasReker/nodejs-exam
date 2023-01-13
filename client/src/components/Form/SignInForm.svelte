@@ -4,7 +4,7 @@
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
     import { user } from '../../js/stores';
-    import {t} from "../../js/localization.js";
+    import { t } from '../../js/localization.js';
 
     let email = '';
     let emailInput = null;
@@ -47,7 +47,7 @@
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
             <input bind:this={emailInput} bind:value={email} class="form-control" id="email"
-                   placeholder="name@example.com" required type="email">
+                   placeholder="demo@demo.com" required type="email">
             <label for="email">{$t('global.emailAddress')}</label>
         </div>
         <div class="form-floating mb-3">

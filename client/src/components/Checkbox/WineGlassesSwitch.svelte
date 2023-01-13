@@ -3,6 +3,7 @@
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
     import Switch from '../Switch.svelte';
+    import { t } from '../../js/localization.js';
 
     export let bindGroup = [];
     export let value = '';
@@ -26,7 +27,7 @@
 
         $user.settings.wineGlasses = wineGlassesFetch.data.wineGlasses;
         localStorage.setItem('user', JSON.stringify($user));
-        displaySuccess('Settings saved!');
+        displaySuccess($t('settings.settingsSaved'));
       } catch (err) {
         displayError(err);
       }

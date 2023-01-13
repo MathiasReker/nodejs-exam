@@ -27,9 +27,12 @@
                     {$t('global.title')}
                 </span>
             </a>
-<!-- TODO: translate -->
+
             <div class="btn-group">
-                <a aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                <a aria-expanded="false"
+                   class="dropdown-toggle"
+                   data-bs-toggle="dropdown"
+                   href="#user"
                    style="color: {color}">
                 <span class="align-items-center" style="color: {color}">
                     <Icon color="{color}" size="25px" src={FiUser}/>
@@ -39,24 +42,24 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     {#if $user}
                         <li><a class="dropdown-item" href="/wine-glasses" use:link>
-                            Your wine glasses</a></li>
-                        <li><a class="dropdown-item" href="/profile" use:link>Your profile</a></li>
+                            {$t('nav.myWineGlasses')}</a></li>
+                        <li><a class="dropdown-item" href="/profile" use:link>{$t('nav.myProfile')}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/settings" use:link>Settings</a></li>
-                        <li><a class="dropdown-item" href="/contact" use:link>Contact</a></li>
-                        <li><a class="dropdown-item" href="/about" use:link>About</a></li>
+                        <li><a class="dropdown-item" href="/settings" use:link>{$t('nav.settings')}</a></li>
+                        <li><a class="dropdown-item" href="/contact" use:link>{$t('nav.contact')}</a></li>
+                        <li><a class="dropdown-item" href="/about" use:link>{$t('nav.about')}</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <button class="dropdown-item" on:click={handleLogout}>Log out</button>
+                            <button class="dropdown-item" on:click={handleLogout}>{$t('nav.logOut')}</button>
                         </li>
                     {:else}
-                        <li><a class="dropdown-item" href="/signin" use:link>signin</a></li>
-                        <li><a class="dropdown-item" href="/contact" use:link>Contact</a></li>
-                        <li><a class="dropdown-item" href="/about" use:link>About</a></li>
+                        <li><a class="dropdown-item" href="/signin" use:link>{$t('nav.logIn')}</a></li>
+                        <li><a class="dropdown-item" href="/contact" use:link>{$t('nav.contact')}</a></li>
+                        <li><a class="dropdown-item" href="/about" use:link>{$t('nav.about')}</a></li>
                     {/if}
                 </ul>
             </div>

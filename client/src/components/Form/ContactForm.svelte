@@ -4,7 +4,7 @@
     import { user } from '../../js/stores';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import {t} from "../../js/localization.js";
+    import { t } from '../../js/localization';
 
     const registerFocus = useFocus();
 
@@ -28,7 +28,7 @@
           method: 'POST',
           body: { name, email, message },
         });
-        displaySuccess('The message was sent.');
+        displaySuccess($t('contact.successfullySent'));
       } catch (err) {
         displayError(err);
       } finally {
@@ -47,8 +47,8 @@
     </div>
     <div class="form-floating mb-3">
         <input bind:value={email} class="form-control" id="email"
-               placeholder="name@example.com" required type="email">
-        <label for="email">{$t('global.name')}</label>
+               placeholder="demo@demo.com" required type="email">
+        <label for="email">{$t('global.emailAddress')}</label>
     </div>
     <div class="mb-3">
         <label class="form-label" for="message">

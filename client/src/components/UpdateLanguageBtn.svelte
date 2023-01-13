@@ -1,5 +1,5 @@
 <script>
-    import { locale, locales } from '../js/localization.js';
+    import { locale, locales, t } from '../js/localization';
     import { user } from '../js/stores';
     import { request } from '../js/fetchWrapper';
     import { displayError, displaySuccess } from '../js/toast';
@@ -19,7 +19,7 @@
 
         localStorage.setItem('user', JSON.stringify($user));
 
-        displaySuccess('Language updated!'); // TODO
+        displaySuccess($t('settings.languageUpdatedSuccessfully'));
       } catch (err) {
         displayError(err);
       }

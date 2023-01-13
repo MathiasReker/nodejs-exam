@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetchWrapper';
-    import {t} from "../../js/localization.js";
+    import { t } from '../../js/localization';
 
     let email = '';
     let emailInput = null;
@@ -20,7 +20,7 @@
           method: 'POST',
           body: { email },
         });
-        displaySuccess('Success'); // TODO
+        displaySuccess($t('signIn.successLogin'));
       } catch (err) {
         displayError(err);
       } finally {
@@ -34,10 +34,11 @@
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
             <input bind:this={emailInput} bind:value={email} class="form-control" id="emailAddress"
-                   placeholder="name@example.com" required type="email">
+                   placeholder="demo@demo.com" required type="email">
             <label for="emailAddress">{$t('global.emailAddress')}</label>
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary" disabled="{loading}" type="submit">{$t('resetPassword.submit')}</button>
+        <button class="w-100 btn btn-lg btn-primary" disabled="{loading}"
+                type="submit">{$t('resetPassword.submit')}</button>
     </form>
 </main>
