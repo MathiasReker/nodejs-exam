@@ -1,13 +1,9 @@
 <script>
-    import { useLocation, useNavigate } from 'svelte-navigator';
+    import { navigate } from 'svelte-navigator';
     import { user } from '../../../js/user.js';
 
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    $: if (!$user) {
+    if (!$user) {
       navigate('/login', {
-        state: { from: $location.pathname },
         replace: true,
       });
     }

@@ -75,7 +75,7 @@
     };
 </script>
 
-<Head metaDescription="{$t('global.title')}" metaTitle="{$t('global.title')}" title="{$t('global.title')}"/>
+<Head title="{$t('global.title')}"/>
 
 <Nav background="{background ?? ''}" color="{color ?? '#FFF'}" sticky="{false}"/>
 

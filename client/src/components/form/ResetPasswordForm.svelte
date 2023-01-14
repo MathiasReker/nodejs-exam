@@ -20,8 +20,9 @@
           method: 'POST',
           body: { email },
         });
-        displaySuccess($t('login.successLogin'));
+        displaySuccess($t('resetPassword.success')); // TODO fix
       } catch (err) {
+          console.log(err)
         displayError($t('global.error'));
       } finally {
         email = '';
@@ -33,8 +34,13 @@
 <main class="form-login w-100 m-auto">
     <form on:submit|preventDefault={handleOnSubmit}>
         <div class="form-floating mb-3">
-            <input bind:this={emailInput} bind:value={email} class="form-control" id="emailAddress"
-                   placeholder="demo@demo.com" required type="email">
+            <input bind:this={emailInput}
+                   bind:value={email}
+                   class="form-control"
+                   id="emailAddress"
+                   placeholder="demo@demo.com"
+                   required
+                   type="email">
             <label for="emailAddress">{$t('global.emailAddress')}</label>
         </div>
 

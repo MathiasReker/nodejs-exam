@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { navigate } from 'svelte-navigator';
-    import { displayError } from '../../js/toast';
+    import { displayError, displayWarning } from '../../js/toast';
     import { request } from '../../js/fetch-wrapper';
     import PrivacyPolicyDiv from '../div/PrivacyPolicyDiv.svelte';
     import { t } from '../../js/localization';
@@ -12,12 +12,24 @@
     let name = '';
     let loading = false;
     let isOptIn = false;
+    let isValidName;
+    let isValidPassword;
 
     onMount(() => {
       emailInput.focus();
     });
 
     const handleOnSubmit = async () => {
+      if (!isValidName) {
+        displayWarning('Name must be between 8 and 255 characters'); // TODO translate
+        return;
+      }
+
+      if (!isValidPassword) {
+        displayWarning('Password must be between 8 and 255 characters'); // TODO translate
+        return;
+      }
+
       loading = true;
 
       try {
@@ -32,6 +44,9 @@
         loading = false;
       }
     };
+
+    $: isValidName = password.length >= 4 && password.length <= 255;
+    $: isValidPassword = password.length >= 8 && password.length <= 255;
 </script>
 
 <form on:submit|preventDefault={handleOnSubmit}>

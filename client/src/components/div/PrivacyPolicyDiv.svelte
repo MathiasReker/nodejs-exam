@@ -1,5 +1,4 @@
 <div>
-    <h1>Privacy Policy of <strong>Wine Glass Guide</strong></h1>
     <p><strong>Wine Glass Guide</strong> operates the <strong>Wine Glass Guide</strong> website, which provides the
         SERVICE.</p>
     <p>This page is used to inform website visitors regarding our policies with the collection, use, and disclosure
