@@ -6,6 +6,8 @@
     import { displayError, displaySuccess } from '../js/toast';
     import Page from './Page.svelte';
     import { t } from '../js/localization';
+    import ProgressBar from '../components/ProgressBar.svelte';
+    import Card from '../components/Card.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
     let totalWineGlasses = 0;
@@ -65,57 +67,25 @@
     const accountCreateAt = new Date($user.createdAt).toLocaleDateString(language, { timeZone });
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('profile.title')}">
-    <h1>
-        {$t('profile.title')}
-    </h1>
-    <div class="pb-5">
-        {$t('profile.description')}
-    </div>
+<Page breadcrumbs="{breadcrumbs}" title="{$t('profile.title')}" description="{$t('profile.description')}">
+    <Card title="{$t('profile.ownedWineGlassesTitle')}">
+        <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}</p>
+        <ProgressBar valueNow={percentOwned} valueTotal={percentOwned}/>
+        <a class="btn btn-primary" href="/wine-glasses" use:link>
+            {$t('profile.updateCollectionBtn')}
+        </a>
+    </Card>
 
-    <div class="card mb-5">
-        <h5 class="card-header bg-light text-dark">
-            {$t('profile.ownedWineGlassesTitle')}
-        </h5>
-        <div class="card-body">
-            <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}</p>
-            <div class="progress mb-3" style="height: 20px"> <!-- todo component -->
-                <div
-                        aria-label="20px high"
-                        aria-valuemax="100"
-                        aria-valuemin="0"
-                        aria-valuenow="{percentOwned}"
-                        class="progress-bar bg-secondary"
-                        role="progressbar"
-                        style="width: {percentOwned}%">
-                </div>
-            </div>
-            <a class="btn btn-primary" href="/wine-glasses" use:link>
-                {$t('profile.updateCollectionBtn')}
-            </a>
-        </div>
-    </div>
+    <Card title="{$t('profile.countLookupsTitle')}">
+        <p class="card-text">
+            {@html $t('profile.countLookupsCardBody', { lookups: $user.statistics.lookups })}
+        </p>
+        <button class="btn btn-primary" on:click={handleOnResetLookups}>
+            {$t('profile.resetStatisticsLookupsBtn')}
+        </button>
+    </Card>
 
-    <div class="card mb-5">
-        <h5 class="card-header bg-light text-dark">
-            {$t('profile.countLookupsTitle')}
-        </h5>
-        <div class="card-body">
-            <p class="card-text">
-                {@html $t('profile.countLookupsCardBody', { lookups: $user.statistics.lookups })}
-            </p>
-            <button class="btn btn-primary" on:click={handleOnResetLookups}>
-                {$t('profile.resetStatisticsLookupsBtn')}
-            </button>
-        </div>
-    </div>
-
-    <div class="card mb-5">
-        <h5 class="card-header bg-light text-dark">
-            {$t('profile.accountTitle')}
-        </h5>
-        <div class="card-body">
-            {$t('profile.accountCreatedAt', { accountCreateAt })}
-        </div>
-    </div>
+    <Card title="{$t('profile.accountTitle')}">
+        {$t('profile.accountCreatedAt', { accountCreateAt })}
+    </Card>
 </Page>

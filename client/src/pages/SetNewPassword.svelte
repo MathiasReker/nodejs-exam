@@ -11,17 +11,10 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('setNewPassword.title')}">
-    <div class="row">
-        <div class="col">
-            <h1 class="mb-3">
-                {$t('setNewPassword.title')}
-            </h1>
-        </div>
-        <div class="col text-end mt-auto">
-            <p>
-                <Link to="/login">{$t('login.title')}</Link>
-            </p>
-        </div>
+    <div class="col text-end mt-auto">
+        <p>
+            <Link to="/login">{$t('login.title')}</Link>
+        </p>
     </div>
 
     <SetNewPasswordForm/>

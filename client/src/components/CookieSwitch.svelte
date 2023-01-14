@@ -88,7 +88,6 @@
     };
 </script>
 
-<!-- Modal -->
 <div aria-hidden="true"
      aria-labelledby="cookieConsentModalLabel"
      bind:this={cookieConsentModal}

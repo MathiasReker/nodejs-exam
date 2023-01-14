@@ -8,11 +8,6 @@
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('about.title')}">
-    <h1>
-        {$t('about.title')}
-    </h1>
-    <p>
-        {$t('settings.description')}
-    </p>
+<Page breadcrumbs="{breadcrumbs}" title="{$t('about.title')}" description="{$t('settings.description')}">
+
 </Page>

@@ -83,4 +83,5 @@ router.delete('/me/statistics/lookups', validate(userStatisticsLookupsRules), as
   }
 });
 
+// TODO delete user
 export default router;

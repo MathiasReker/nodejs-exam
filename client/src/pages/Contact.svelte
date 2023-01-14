@@ -10,9 +10,5 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('contact.title')}">
-    <h1>
-        {$t('contact.title')}
-    </h1>
-
     <ContactForm/>
 </Page>

@@ -4,26 +4,21 @@
     import { request } from '../js/fetch-wrapper';
     import Page from './Page.svelte';
     import { t } from '../js/localization';
+    import { displayError } from '../js/toast.js';
 
     let options = $user.settings.wineGlasses || [];
 
     const wineGlasses = (() => request('/api/wineGlasses', {
       method: 'GET',
     }))();
-
+    // TODO refactor fetch?
     const breadcrumbs = [
       { href: '/', text: $t('global.home') },
       { href: window.location.pathname, text: $t('wineGlasses.title') },
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('wineGlasses.title')}">
-    <h1>
-        {$t('wineGlasses.title')}
-    </h1>
-    <p class="lead">
-        {$t('wineGlasses.description')}
-    </p>
+<Page breadcrumbs="{breadcrumbs}" description="{$t('wineGlasses.description')}" title="{$t('wineGlasses.title')}">
 
     <div class="text-center">
         {#await wineGlasses}
@@ -48,8 +43,8 @@
                     </div>
                 </div>
             {/each}
-        {:catch error}
-            <p class="text-danger">{error.message}</p>
+        {:catch err}
+            {displayError($t('global.error'))}
         {/await}
     </div>
 </Page>

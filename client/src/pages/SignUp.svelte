@@ -11,17 +11,11 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('signUp.title')}">
-    <div class="row">
-        <div class="col">
-            <h1 class="mb-3">
-                {$t('signUp.title')}
-            </h1>
-        </div>
-        <div class="col text-end mt-auto">
-            <p>
-                <Link to="/login">{$t('signUp.haveAccount')}</Link>
-            </p>
-        </div>
+
+    <div class="col text-end mt-auto">
+        <p>
+            <Link to="/login">{$t('signUp.haveAccount')}</Link>
+        </p>
     </div>
 
     <SignUpForm/>

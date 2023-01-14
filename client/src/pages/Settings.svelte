@@ -12,15 +12,7 @@
     ];
 </script>
 
-<Page breadcrumbs={breadcrumbs} title={$t('settings.title')}>
-    <div class="mb-5">
-        <h1>
-            {$t('settings.title')}
-        </h1>
-        <p class="lead">
-            {$t('settings.description')}
-        </p>
-    </div>
+<Page breadcrumbs={breadcrumbs} title={$t('settings.title')} description="{$t('settings.description')}">
 
     <div class="mb-5">
         <h2>
