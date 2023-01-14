@@ -1,23 +1,24 @@
 <script>
-    import Page from './Page.svelte';
-    import LanguageSelector from '../components/UpdateLanguageBtn.svelte';
-    import ExportUserDataBtn from '../components/ExportUserDataBtn.svelte';
-    import DeleteAccountBtn from '../components/DeleteAccountBtn.svelte';
-    import UpdateUserBtn from '../components/UpdateUserBtn.svelte';
+    import Page from '../components/page/Page.svelte';
+    import LanguageSelector from '../components/button/UpdateLanguageButton.svelte';
+    import ExportUserDataBtn from '../components/button/ExportUserDataButton.svelte';
+    import DeleteAccountBtn from '../components/button/DeleteAccountButton.svelte';
+    import UpdateUserBtn from '../components/button/UpdateUserButton.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [
       { href: '/', text: $t('global.home') },
       { href: window.location.pathname, text: $t('settings.title') },
     ];
+
 </script>
 
 <Page breadcrumbs={breadcrumbs} title={$t('settings.title')} description="{$t('settings.description')}">
 
     <div class="mb-5">
-        <h2>
+        <h3>
             {$t('settings.updateLanguageTitle')}
-        </h2>
+        </h3>
         <hr>
         <p>
             {$t('settings.updateLanguageDescription')}
@@ -26,9 +27,9 @@
     </div>
 
     <div class="mb-5">
-        <h2>
+        <h3>
             {$t('settings.updateUsernameTitle')}
-        </h2>
+        </h3>
         <hr>
         <p>
             {$t('settings.updateUsernameDescription')}
@@ -37,9 +38,9 @@
     </div>
 
     <div class="mb-5">
-        <h2>
+        <h3>
             {$t('settings.exportUserDataTitle')}
-        </h2>
+        </h3>
         <hr>
         <p>
             {$t('settings.exportUserDataDescription')}
@@ -48,9 +49,9 @@
     </div>
 
     <div>
-        <h2 class="text-danger">
+        <h3 class="text-danger">
             {$t('settings.deleteAccountTitle')}
-        </h2>
+        </h3>
         <hr>
         <p>
             {$t('settings.deleteAccountDescription')}

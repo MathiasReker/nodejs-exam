@@ -1,6 +1,6 @@
 <script>
-    import Page from './Page.svelte';
-    import PrivacyPolicyDiv from '../components/PrivacyPolicyDiv.svelte';
+    import Page from '../components/page/Page.svelte';
+    import PrivacyPolicyDiv from '../components/div/PrivacyPolicyDiv.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

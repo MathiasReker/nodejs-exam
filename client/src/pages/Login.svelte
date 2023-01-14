@@ -1,7 +1,7 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import LoginForm from '../components/Form/LoginForm.svelte';
-    import Page from './Page.svelte';
+    import LoginForm from '../components/form/LoginForm.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

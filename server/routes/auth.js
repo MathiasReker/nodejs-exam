@@ -74,7 +74,7 @@ router.post('/login', validate(loginRules), async (req, res) => {
     { expiresIn: process.env.JWT_EXPIRATION_INTERVAL },
   );
 
-  res.header('auth-token', token).json({
+  res.header('Authorization', token).json({
     data: {
       name: user.name,
       email: user.email,

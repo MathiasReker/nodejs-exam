@@ -3,10 +3,10 @@
     import { Modal } from 'bootstrap';
 
     import cookies from 'js-cookie';
-    import CookieSwitch from './Checkbox/CheckboxCookies.svelte';
-    import CookieBtn from './CookieBtn.svelte';
-    import { cookieConsent } from '../js/stores';
-    import { t } from '../js/localization';
+    import CookieSwitch from './CookiesSwitch.svelte';
+    import CookieBtn from '../button/CookieButton.svelte';
+    import { cookieConsent } from '../../js/cookie-consent.js';
+    import { t } from '../../js/localization.js';
 
     let collapse;
 

@@ -1,8 +1,8 @@
 <script>
-    import { locale, locales, t } from '../js/localization';
-    import { user } from '../js/stores';
-    import { request } from '../js/fetch-wrapper';
-    import { displayError, displaySuccess } from '../js/toast';
+    import { locale, locales, t } from '../../js/localization.js';
+    import { user } from '../../js/user.js';
+    import { request } from '../../js/fetch-wrapper.js';
+    import { displayError, displaySuccess } from '../../js/toast.js';
 
     const handleUpdateLanguage = async () => {
       try {

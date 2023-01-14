@@ -1,6 +1,6 @@
 <script>
-    import UpdateUserFormModal from './modal/UpdateUserFormModal.svelte';
-    import { t } from '../js/localization';
+    import UpdateUserFormModal from '../modal/UpdateUserFormModal.svelte';
+    import { t } from '../../js/localization.js';
 </script>
 
 <button

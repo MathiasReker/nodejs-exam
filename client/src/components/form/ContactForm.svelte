@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { useFocus } from 'svelte-navigator';
-    import { user } from '../../js/stores';
+    import { user } from '../../js/user.js';
     import { displayError, displaySuccess } from '../../js/toast';
     import { request } from '../../js/fetch-wrapper';
     import { t } from '../../js/localization';

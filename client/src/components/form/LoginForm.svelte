@@ -3,7 +3,7 @@
     import { navigate } from 'svelte-navigator';
     import { displayError } from '../../js/toast';
     import { request } from '../../js/fetch-wrapper';
-    import { user } from '../../js/stores';
+    import { user } from '../../js/user.js';
     import { t } from '../../js/localization';
 
     let email = '';

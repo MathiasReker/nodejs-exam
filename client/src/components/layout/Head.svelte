@@ -1,5 +1,5 @@
 <script>
-    import { t } from '../js/localization';
+    import { t } from '../../js/localization';
 
     export let title;
     export let metaTitle;

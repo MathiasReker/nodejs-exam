@@ -1,13 +1,13 @@
 <script>
     import { link } from 'svelte-navigator';
     import { onMount } from 'svelte';
-    import { user } from '../js/stores';
+    import { user } from '../js/user.js';
     import { request } from '../js/fetch-wrapper';
     import { displayError, displaySuccess } from '../js/toast';
-    import Page from './Page.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
-    import ProgressBar from '../components/ProgressBar.svelte';
-    import Card from '../components/Card.svelte';
+    import ProgressBar from '../components/progress-bar/ProgressBar.svelte';
+    import Card from '../components/card/Card.svelte';
 
     const ownedWineGlasses = $user.settings.wineGlasses.length;
     let totalWineGlasses = 0;

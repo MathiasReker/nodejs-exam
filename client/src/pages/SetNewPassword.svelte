@@ -1,7 +1,7 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import Page from './Page.svelte';
-    import SetNewPasswordForm from '../components/Form/SetNewPasswordForm.svelte';
+    import Page from '../components/page/Page.svelte';
+    import SetNewPasswordForm from '../components/form/SetNewPasswordForm.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

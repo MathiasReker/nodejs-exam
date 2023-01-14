@@ -1,10 +1,10 @@
 <script>
-    import { user } from '../js/stores';
-    import Checkbox from '../components/Checkbox/WineGlassesSwitch.svelte';
+    import { user } from '../js/user.js';
+    import Checkbox from '../components/switch/WineGlassesSwitch.svelte';
     import { request } from '../js/fetch-wrapper';
-    import Page from './Page.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
-    import { displayError } from '../js/toast.js';
+    import { displayError } from '../js/toast';
 
     let options = $user.settings.wineGlasses || [];
 

@@ -1,5 +1,5 @@
 <script>
-    import Page from './Page.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [
@@ -8,6 +8,6 @@
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('about.title')}" description="{$t('settings.description')}">
+<Page breadcrumbs="{breadcrumbs}" title="{$t('about.title')}" description="{$t('about.description')}">
 
 </Page>

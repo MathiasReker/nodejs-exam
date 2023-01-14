@@ -1,6 +1,6 @@
 <script>
-    import { user } from '../js/stores';
-    import { t } from '../js/localization';
+    import { user } from '../../js/user.js';
+    import { t } from '../../js/localization.js';
 
     const jsonToCsv = (data) => {
       const array = [Object.keys(data)].concat(data);

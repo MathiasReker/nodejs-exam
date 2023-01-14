@@ -1,5 +1,5 @@
 <script>
-    import Page from './Page.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

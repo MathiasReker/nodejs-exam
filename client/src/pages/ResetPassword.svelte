@@ -1,7 +1,7 @@
 <script>
     import { Link } from 'svelte-navigator';
-    import ResetPasswordForm from '../components/Form/ResetPasswordForm.svelte';
-    import Page from './Page.svelte';
+    import ResetPasswordForm from '../components/form/ResetPasswordForm.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

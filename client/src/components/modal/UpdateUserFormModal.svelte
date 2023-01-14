@@ -1,5 +1,5 @@
 <script>
-    import { user } from '../../js/stores';
+    import { user } from '../../js/user.js';
     import { request } from '../../js/fetch-wrapper';
     import { displayError, displaySuccess } from '../../js/toast';
     import { t } from '../../js/localization';

@@ -4,11 +4,11 @@
     import FiCheck from 'svelte-icons-pack/fi/FiCheck';
     import FiX from 'svelte-icons-pack/fi/FiX';
     import { onMount } from 'svelte';
-    import { user } from '../js/stores';
-    import Nav from '../components/Layout/Nav.svelte';
-    import TopBackground from '../components/Layout/TopBackground.svelte';
+    import { user } from '../js/user.js';
+    import Nav from '../components/layout/Nav.svelte';
+    import TopBackground from '../components/layout/TopBackground.svelte';
     import { request } from '../js/fetch-wrapper';
-    import Head from './Head.svelte';
+    import Head from '../components/layout/Head.svelte';
     import { displayError } from '../js/toast';
     import { t } from '../js/localization';
 

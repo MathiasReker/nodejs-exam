@@ -1,6 +1,6 @@
 <script>
-    import ContactForm from '../components/Form/ContactForm.svelte';
-    import Page from './Page.svelte';
+    import ContactForm from '../components/form/ContactForm.svelte';
+    import Page from '../components/page/Page.svelte';
     import { t } from '../js/localization';
 
     const breadcrumbs = [

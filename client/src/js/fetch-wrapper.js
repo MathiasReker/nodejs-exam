@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { user } from './stores';
+import { user } from './user.js';
 
 export const request = async (path, options = {}) => {
   const {
@@ -18,7 +18,7 @@ export const request = async (path, options = {}) => {
   };
 
   if (get(user)) {
-    reqOptions.headers['auth-token'] = get(user).token;
+    reqOptions.headers.Authorization = get(user).token;
   }
 
   if (body) {

@@ -3,7 +3,7 @@
     import Icon from 'svelte-icons-pack/Icon.svelte';
     import FiUser from 'svelte-icons-pack/fi/FiUser';
     import IoWine from 'svelte-icons-pack/io/IoWine';
-    import { user } from '../../js/stores';
+    import { user } from '../../js/user.js';
     import { t } from '../../js/localization';
 
     export let color = '#514945';

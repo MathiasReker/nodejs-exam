@@ -1,6 +1,6 @@
 import { derived, get, writable } from 'svelte/store';
 import translations from './translations';
-import { user } from './stores';
+import { user } from './user.js';
 
 export const locales = [
   {

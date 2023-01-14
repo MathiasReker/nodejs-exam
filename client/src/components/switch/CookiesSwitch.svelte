@@ -1,6 +1,6 @@
 <script>
     import cookies from 'js-cookie';
-    import { cookieConsent } from '../../js/stores';
+    import { cookieConsent } from '../../js/cookie-consent';
 
     export let value = '';
     export let disabled;
