@@ -29,13 +29,19 @@ export const locale = writable(
 
 // eslint-disable-next-line no-shadow
 const translate = (locale, key, variables) => {
-  if (!key) throw new Error('No key provided to $t()');
-  if (!locale) throw new Error(`No translation for key "${key}"`);
+  if (!key) {
+    throw new Error('No key provided to $t()');
+  }
 
-  // Grab the translation from the translations object.
+  if (!locale) {
+    throw new Error(`No translation for key "${key}"`);
+  }
+
   let text = translations[locale][key];
 
-  if (!text) throw new Error(`No translation found for ${locale}.${key}`);
+  if (!text) {
+    throw new Error(`No translation found for ${locale}.${key}`);
+  }
 
   // Replace any passed in variables in the translation string.
   Object.keys(variables).forEach((variable) => {
