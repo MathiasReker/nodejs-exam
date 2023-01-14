@@ -4,7 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import http from 'http';
 import { Server } from 'socket.io';
-import compress from 'compression';
+import compression from 'compression';
 import Ddos from 'ddos';
 import connection from './database/connection.js';
 import verifyToken from './middleware/verify-token.js';
@@ -32,11 +32,11 @@ app.use((req, res, next) => {
   return next();
 });
 app.use(ddos.express);
-app.use(compress());
+app.use(compression());
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.urlencoded(urlEncodedOptions));
-app.use(express.json(jsonOptions)); // for body parser
+app.use(express.json(jsonOptions));
 app.use('/api/auth', auth);
 app.use('/api/mails', mails);
 app.use('/api/images', images);
