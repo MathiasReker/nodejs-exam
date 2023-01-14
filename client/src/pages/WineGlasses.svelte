@@ -6,9 +6,9 @@
     import { t } from '../js/localization';
     import { displayError } from '../js/toast';
 
-    let options = $user.settings.wineGlasses || [];
+    let { wineGlasses } = $user.settings || [];
 
-    const wineGlasses = (() => request('/api/wineGlasses', {
+    const wineGlassesFetch = (() => request('/api/wineGlasses', {
       method: 'GET',
     }))();
 
@@ -21,7 +21,7 @@
 <Page breadcrumbs="{breadcrumbs}" description="{$t('wineGlasses.description')}" title="{$t('wineGlasses.title')}">
 
     <div class="text-center">
-        {#await wineGlasses}
+        {#await wineGlassesFetch}
             <div class="text-center">
                 <div class="spinner-border" role="status"></div>
             </div>
@@ -29,7 +29,7 @@
             {#each res.data as wineGlass}
                 <div class="row align-items-center mb-5-nl">
                     <div class="col-3">
-                        <Checkbox value="{wineGlass.name}" bind:bindGroup={options}/>
+                        <Checkbox value="{wineGlass.name}" bind:bindGroup={wineGlasses}/>
                     </div>
                     <div class="col-6 text-start lead">
                         {wineGlass.name}
