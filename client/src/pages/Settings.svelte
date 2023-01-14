@@ -13,7 +13,7 @@
 
 </script>
 
-<Page breadcrumbs={breadcrumbs} title={$t('settings.title')} description="{$t('settings.description')}">
+<Page breadcrumbs={breadcrumbs} description="{$t('settings.description')}" title={$t('settings.title')}>
 
     <div class="mb-5">
         <h3>

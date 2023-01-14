@@ -11,7 +11,7 @@
     const wineGlasses = (() => request('/api/wineGlasses', {
       method: 'GET',
     }))();
-    // TODO refactor fetch?
+
     const breadcrumbs = [
       { href: '/', text: $t('global.home') },
       { href: window.location.pathname, text: $t('wineGlasses.title') },

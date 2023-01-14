@@ -29,5 +29,5 @@
         download="wine_glass_guide.csv"
         href="{objUrl}"
         type="button">
-        {$t('settings.exportToCsvBtn')}
+    {$t('settings.exportToCsvBtn')}
 </a>

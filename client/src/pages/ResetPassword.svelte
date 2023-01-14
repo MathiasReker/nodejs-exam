@@ -12,7 +12,7 @@
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('resetPassword.title')}">
 
-    <div class="col text-end mt-auto">
+    <div class="text-end mt-auto">
         <p>
             <Link to="/login">{$t('resetPassword.backToLogin')}</Link>
         </p>

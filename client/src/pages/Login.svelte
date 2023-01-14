@@ -11,7 +11,7 @@
 </script>
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('login.title')}">
-    <div class="col text-end mt-auto">
+    <div class="text-end mt-auto">
         <p>
             <Link to="/signup">{$t('login.noAccount')}</Link>
         </p>

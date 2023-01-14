@@ -12,7 +12,7 @@
 
 <Page breadcrumbs="{breadcrumbs}" title="{$t('signUp.title')}">
 
-    <div class="col text-end mt-auto">
+    <div class="text-end mt-auto">
         <p>
             <Link to="/login">{$t('signUp.haveAccount')}</Link>
         </p>

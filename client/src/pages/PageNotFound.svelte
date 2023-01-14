@@ -8,6 +8,6 @@
     ];
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('pageNotFound.title')}" description="{$t('pageNotFound.description')}">
+<Page breadcrumbs="{breadcrumbs}" description="{$t('pageNotFound.description')}" title="{$t('pageNotFound.title')}">
 
 </Page>

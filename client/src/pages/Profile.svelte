@@ -67,7 +67,7 @@
     const accountCreateAt = new Date($user.createdAt).toLocaleDateString(language, { timeZone });
 </script>
 
-<Page breadcrumbs="{breadcrumbs}" title="{$t('profile.title')}" description="{$t('profile.description')}">
+<Page breadcrumbs="{breadcrumbs}" description="{$t('profile.description')}" title="{$t('profile.title')}">
     <Card title="{$t('profile.ownedWineGlassesTitle')}">
         <p class="card-text">{@html $t('profile.ownedGlassesDescription', { percentOwned })}</p>
         <ProgressBar valueNow={percentOwned} valueTotal={percentOwned}/>
