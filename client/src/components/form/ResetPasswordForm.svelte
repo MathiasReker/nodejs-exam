@@ -20,9 +20,8 @@
           method: 'POST',
           body: { email },
         });
-        displaySuccess($t('resetPassword.success')); // TODO fix
+        displaySuccess($t('resetPassword.success'));
       } catch (err) {
-          console.log(err)
         displayError($t('global.error'));
       } finally {
         email = '';

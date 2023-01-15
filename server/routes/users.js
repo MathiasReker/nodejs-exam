@@ -20,7 +20,6 @@ router.get('/me/statistics/lookups', async (req, res) => {
 router.put('/me', validate(userRules), async (req, res) => {
   const { name } = req.body;
 
-  // TODO ... user endpoint and only possible to update name??
   // TODO parse whole user object?
   const user = await User.findOneAndUpdate(
     { uuid: req.id },

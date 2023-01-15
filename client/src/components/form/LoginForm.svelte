@@ -19,7 +19,7 @@
 
     const handleOnSubmit = async () => {
       if (!isValidPassword) {
-        displayWarning('Password must be between 8 and 255 characters'); // TODO translate
+        displayWarning($t('global.validatePassword'));
         return;
       }
 

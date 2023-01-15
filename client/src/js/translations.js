@@ -89,6 +89,8 @@ export default {
     'profile.accountCreatedAt': 'Account created at {{accountCreateAt}}.',
     'profile.accountTitle': 'Account',
     'resetPassword.success': 'If the user resists, you will receive an reset link by e-mail',
+    'global.validatePassword': 'Password must be between 8 and 255 characters',
+    'global.validateName': 'Name must be between 4 and 255 characters',
   },
   da: {
     'about.description': 'Dette projekt handler om...',
@@ -179,5 +181,7 @@ export default {
     'profile.accountCreatedAt': 'Konto oprettet den {{accountCreateAt}}.',
     'profile.accountTitle': 'Konto',
     'resetPassword.success': 'Hvis brugeren eksisterer, vil du modtage en link til nulstilling af adgangskode via e-mail',
+    'global.validatePassword': 'Koden skal være mellem 8 og 255 karakterer',
+    'global.validateName': 'Navnet skal være mellem 4 og 255 karakterer',
   },
 };

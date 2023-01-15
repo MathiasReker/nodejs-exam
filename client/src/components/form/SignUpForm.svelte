@@ -21,12 +21,12 @@
 
     const handleOnSubmit = async () => {
       if (!isValidName) {
-        displayWarning('Name must be between 8 and 255 characters'); // TODO translate
+        displayWarning($t('global.validateName'));
         return;
       }
 
       if (!isValidPassword) {
-        displayWarning('Password must be between 8 and 255 characters'); // TODO translate
+        displayWarning($t('global.validatePassword'));
         return;
       }
 
