@@ -17,7 +17,7 @@
     "eslint-plugin-svelte": "^2.14.1",
     "sass": "^1.57.1",
     "svelecte": "^3.13.2",
-    "vite": "^4.0.4"
+    "vite": "^4.0.5"
   },
   "dependencies": {
     "@fontsource/chivo": "^4.5.10",
